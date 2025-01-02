@@ -37,7 +37,7 @@ const modalShowcase = `
 								</div>
 							</div>
 							<a href="../../documentation/index.html" class="btn btn-primary w-100 mb-3">Documentation</a>
-							<a href="https://mvpay.themekita.com/" class="btn btn-secondary w-100">Buy Now</a>
+							<a href="https://mvpay.mvpay.com/" class="btn btn-secondary w-100">Buy Now</a>
 						</div>
 					</div>
 					<div class="col-md-6 col-lg-4">
