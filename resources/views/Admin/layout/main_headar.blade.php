@@ -329,11 +329,12 @@
                     aria-expanded="false"
                   >
                     <div class="avatar-sm">
-                      <img
-                        src="{{ asset('assets/img/profile.jpg') }}"
-                        alt="..."
-                        class="avatar-img rounded-circle"
-                      />
+                    <img 
+    src="{{ Auth::guard('admin')->user()->image ? asset('storage/' . Auth::guard('admin')->user()->image) : asset('assets/img/profile.jpg') }}" 
+    alt="Admin Profile" 
+    class="avatar-img rounded-circle"
+/>
+
                     </div>
                     <span class="profile-username">
                       <span class="op-7">Hi,</span>

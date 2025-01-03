@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Admin;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class AdminAuthController extends Controller
 {
@@ -40,6 +41,43 @@ class AdminAuthController extends Controller
         $user = Auth::guard('admin')->user();
         return view('Admin.auth.profile', compact('user'));
     }
+
+
+public function update(Request $request, $id)
+{
+    
+   // Validate the input data
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|unique:users,email,' . $id,
+        'password' => 'nullable|min:6',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+    ]);
+
+    $user = Admin::findOrFail($id);
+    $user->name = $request->input('name');
+    $user->email = $request->input('email');
+
+    if ($request->filled('password')) {
+        $user->password =  Hash::make($request->input('password'));
+    }
+
+    if ($request->hasFile('image')) {
+        if (!empty($user->image) && Storage::disk('public')->exists($user->image)) {
+            Storage::disk('public')->delete($user->image);
+        }
+        $path = $request->file('image')->store('uploads/admin', 'public');
+        $user->image = $path;
+    }
+
+   
+    $user->save();
+
+    // return $path;
+    // die;
+
+    return redirect()->route('admin.profile')->with('success', 'Details updated successfully!');
+}
 
     public function logout()
     {
