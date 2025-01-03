@@ -18,6 +18,7 @@ Route::prefix('admin/')->middleware('auth:admin')->group(function () {
 
     // Admin dashboard or index route
     Route::post('logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
+    Route::get('/edit-profile-admin', [AdminAuthController::class, 'profile_edit'])->name('admin.profile');
 
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
    // Route::get('/profile', [AdminProfileController::class, 'showProfile'])->name('admin.profile');

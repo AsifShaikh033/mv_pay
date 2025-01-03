@@ -4,7 +4,8 @@
             <div class="logo-header" data-background-color="dark">
               <a href="index.html" class="logo">
                 <img
-                  src="assets/img/mvpay/logo_light.svg"
+                  src="{{ asset('assets/img/mvpay/logo_light.svg') }}"
+                  
                   alt="navbar brand"
                   class="navbar-brand"
                   height="20"
@@ -102,7 +103,7 @@
                           <a href="#">
                             <div class="notif-img">
                               <img
-                                src="assets/img/jm_denis.jpg"
+                                src="{{ asset('assets/img/jm_denis.jpg')}}"
                                 alt="Img Profile"
                               />
                             </div>
@@ -115,7 +116,7 @@
                           <a href="#">
                             <div class="notif-img">
                               <img
-                                src="assets/img/chadengle.jpg"
+                                src="{{ asset('assets/img/chadengle.jpg') }}"
                                 alt="Img Profile"
                               />
                             </div>
@@ -128,7 +129,7 @@
                           <a href="#">
                             <div class="notif-img">
                               <img
-                                src="assets/img/mlane.jpg"
+                                src="{{ asset('assets/img/mlane.jpg') }}"
                                 alt="Img Profile"
                               />
                             </div>
@@ -143,7 +144,7 @@
                           <a href="#">
                             <div class="notif-img">
                               <img
-                                src="assets/img/talha.jpg"
+                                src="{{ asset('assets/img/talha.jpg') }}"
                                 alt="Img Profile"
                               />
                             </div>
@@ -211,7 +212,7 @@
                           <a href="#">
                             <div class="notif-img">
                               <img
-                                src="assets/img/profile2.jpg"
+                                src="{{ asset('assets/img/profile2.jpg') }}"
                                 alt="Img Profile"
                               />
                             </div>
@@ -329,7 +330,7 @@
                   >
                     <div class="avatar-sm">
                       <img
-                        src="assets/img/profile.jpg"
+                        src="{{ asset('assets/img/profile.jpg') }}"
                         alt="..."
                         class="avatar-img rounded-circle"
                       />
@@ -345,7 +346,7 @@
                         <div class="user-box">
                           <div class="avatar-lg">
                             <img
-                              src="assets/img/profile.jpg"
+                              src="{{ asset('assets/img/profile.jpg') }}"
                               alt="image profile"
                               class="avatar-img rounded"
                             />
@@ -354,7 +355,7 @@
                             <h4>Hizrian</h4>
                             <p class="text-muted">hello@example.com</p>
                             <a
-                              href="profile.html"
+                              href="{{ route('admin.profile')}}"
                               class="btn btn-xs btn-secondary btn-sm"
                               >View Profile</a
                             >
@@ -363,7 +364,7 @@
                       </li>
                       <li>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">My Profile</a>
+                        <a class="dropdown-item" href="{{ route('admin.profile')}}">My Profile</a>
                         <a class="dropdown-item" href="#">My Balance</a>
                         <a class="dropdown-item" href="#">Inbox</a>
                         <div class="dropdown-divider"></div>
