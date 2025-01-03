@@ -57,14 +57,14 @@
               <li class="nav-item">
                 <a data-bs-toggle="collapse" href="#base">
                   <i class="fas fa-layer-group"></i>
-                  <p>Base</p>
+                  <p>Configuration</p>
                   <span class="caret"></span>
                 </a>
                 <div class="collapse" id="base">
                   <ul class="nav nav-collapse">
                     <li>
-                      <a href="components/avatars.html">
-                        <span class="sub-item">Avatars</span>
+                      <a href="{{ route('admin.webconfig.edit')}}">
+                        <span class="sub-item">Web Configuration</span>
                       </a>
                     </li>
                     <li>

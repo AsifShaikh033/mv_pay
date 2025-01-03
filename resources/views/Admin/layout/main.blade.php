@@ -39,7 +39,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/mvpay.min.css') }}" />
 
     <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/setting-theme.css') }}" />
   </head>
   <body>
     <div class="wrapper">
@@ -52,6 +52,11 @@
 
         @yield('content') 
       </div>
+      
+      <!-- Custom template -->
+      @include('Admin.layout.setting_theme')
+
+      <!-- End Custom template -->
 
     </div>
     <!--   Core JS Files   -->
@@ -86,10 +91,7 @@
 
     <!-- mvpay JS -->
     <script src="{{ asset('assets/js/mvpay.min.js') }}"></script>
-
-    <!-- mvpay DEMO methods, don't include it in your project! -->
-    <!-- <script src="{{ asset('assets/js/setting-demo.js') }}"></script>
-    <script src="{{ asset('assets/js/demo.js') }}"></script> -->
+    <script src="{{ asset('assets/js/setting-theme.js') }}"></script>
     <script>
       $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
         type: "line",
@@ -118,5 +120,42 @@
         fillColor: "rgba(255, 165, 52, .14)",
       });
     </script>
+    @if(session('success'))
+    <script>
+        // Notify
+        $.notify({
+            icon: 'icon-bell',
+            title: 'Success',
+            message: '{{ session('success') }}',
+        },{
+            type: 'success',
+            placement: {
+                from: "top",
+                align: "right"
+            },
+            time: 2000,
+        });
+
+        
+    </script>
+@endif
+
+@if(session('error'))
+    <script>
+        $.notify({
+            icon: 'icon-bell',
+            title: 'mvpay',
+            message: '{{ session('error') }}', 
+        },{
+            type: 'danger',
+            placement: {
+                from: "bottom",
+                align: "right"
+            },
+            time: 1000,
+        });
+
+    </script>
+@endif
   </body>
 </html>
