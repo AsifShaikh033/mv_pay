@@ -17,11 +17,11 @@ Route::prefix('admin')->group(function () {
 Route::prefix('admin/')->middleware('auth:admin')->group(function () {
 
     // Admin dashboard or index route
-    Route::post('logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
-
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
-   // Route::get('/profile', [AdminProfileController::class, 'showProfile'])->name('admin.profile');
-   // Route::post('/profile', [AdminProfileController::class, 'updateProfile'])->name('admin.profile.update');
+    Route::post('logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
+    Route::get('/edit-profile-admin', [AdminAuthController::class, 'profile_edit'])->name('admin.profile');
+    Route::put('/profile/{id}', [AdminAuthController::class, 'update'])->name('admin.profile.update');
+
 
 });
 
