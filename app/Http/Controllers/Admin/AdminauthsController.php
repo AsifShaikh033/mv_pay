@@ -49,12 +49,12 @@ public function update(Request $request, $id)
 {
     
    // Validate the input data
-    $request->validate([
-        'name' => 'required|string|max:255',
-        'email' => 'required|email|unique:users,email,' . $id,
-        'password' => 'nullable|min:6',
-        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-    ]);
+    // $request->validate([
+    //     'name' => 'required|string|max:255',
+    //     'email' => 'required|email|unique:users,email,' . $id,
+    //     'password' => 'nullable|min:6',
+    //     'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+    // ]);
 
     $user = Admin::findOrFail($id);
     $user->name = $request->input('name');

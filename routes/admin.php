@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\Admin\AdminauthsController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\WebConfigController;
+use App\Http\Controllers\Admin\ManageUserController;
 
 
 
@@ -31,6 +32,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function
     Route::put('/profile/{id}', [AdminauthsController::class, 'update'])->name('profile.update');
     //Dashboard
     Route::get('/', [DashboardController::class, 'index'])->name('index');
+    Route::get('/users', [ManageUserController::class, 'list'])->name('user.list');
 
 });
 
