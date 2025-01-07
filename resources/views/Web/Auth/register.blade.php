@@ -6,42 +6,6 @@
         <div class="card">
             <div class="card-header">{{ __('Register') }}</div>
             
-            {{-- @if(session('error'))
-            <script>
-                $.notify({
-                    icon: 'icon-bell',
-                    title: 'mvpay',
-                    message: '{{ session('error') }}',
-                },{
-                    type: 'danger',
-                    placement: {
-                        from: "bottom",
-                        align: "right"
-                    },
-                    time: 1000,
-                });
-            </script>
-        @endif --}}
-
-        @if($errors->any())
-        <script>
-            $.notify({
-                icon: 'icon-bell',
-                title: 'mvpay',
-                message: '{{ $errors->first() }}',
-            }, {
-                type: 'danger',
-                placement: {
-                    from: "bottom",
-                    align: "right"
-                },
-                time: 1000,
-            });
-        </script>
-    @endif
-    
-
-
             <div class="card-body">
                 <form method="POST" action="{{ route('registeruser') }}" enctype="multipart/form-data">
                     @csrf
@@ -62,7 +26,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="mobile" class="form-label">{{ __('Mobile Number') }}</label>
-                        <input type="text" id="mobile" name="mobile" class="form-control @error('mobile') is-invalid @enderror" value="{{ old('mobile') }}" required>
+                        <input type="text" id="mobile" name="mob_number" class="form-control @error('mobile') is-invalid @enderror" value="{{ old('mobile') }}" required>
                         @error('mobile')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror

@@ -12,34 +12,25 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            <!-- Sidebar -->
-            {{-- @include('Web.layout.sidebar') <!-- Sidebar Include --> --}}
 
-            <!-- Main Content -->
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-4">
-                <!-- Header/Nav -->
-                @include('Web.layout.header') <!-- Header Include -->
+            {{-- {{-- @include('Web.layout.sidebar') --> --}}
+
+            <main class="col-md-12 ms-sm-auto col-lg-12 px-4">
+                @include('Web.layout.header')
 
                 <div class="container mt-5">
-                    @yield('content') <!-- Content Section -->
+                    @yield('content')
                 </div>
             </main>
         </div>
     </div>
 
-    <!-- Footer -->
-    @include('Web.layout.footer') <!-- Footer Include -->
+    @include('Web.layout.footer')
 
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-notify@3.1.3/dist/bootstrap-notify.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
     
-    <!-- TOASTR JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
-    <!-- Toastr Notifications from Session -->
     @if(session('success'))
         <script>
             toastr.success("{{ session('success') }}", 'Success Alert', { timeOut: 5000 });
@@ -64,5 +55,14 @@
         </script>
     @endif
 
+    @if($errors->any())
+        <script>
+            var errorMessages = '';
+            @foreach ($errors->all() as $error)
+                errorMessages += '{{ $error }}\n';
+            @endforeach
+            toastr.error(errorMessages, 'Validation Errors', { timeOut: 5000 });
+        </script>
+    @endif
 </body>
 </html>
