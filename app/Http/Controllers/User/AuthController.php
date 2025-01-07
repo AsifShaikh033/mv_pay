@@ -23,6 +23,23 @@ class AuthController extends Controller
         return view('Web.Auth.login');
     }
 
+    public function loginuser_auth(Request $request)
+    {
+        $validated = $request->validate([
+            'email' => 'required|email|max:255',
+            'password' => 'required|string|min:8',
+        ],[
+            'email' => 'Email is required.',
+            'password' =>  'Password is required.',
+        ]);
+    
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            return redirect()->route('index')->with('success', 'Login successful!');
+        }
+        return back()->withErrors([
+            'email' => 'These credentials do not match our records.',
+        ]);
+    }
 
     public function register(Request $request)
     {

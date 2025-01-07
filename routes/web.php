@@ -6,6 +6,7 @@ use App\Http\Controllers\User\WebController;
 use App\Http\Controllers\User\AuthController;
 
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+    Route::post('/login-user', [AuthController::class, 'loginuser_auth'])->name('loginuser');
     Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register');
     Route::post('/register-user', [AuthController::class, 'register'])->name('registeruser');
 
