@@ -30,9 +30,11 @@ Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function
     Route::post('logout', [AdminauthsController::class, 'logout'])->name('logout');
     Route::get('/edit-profile-admin', [AdminauthsController::class, 'profile_edit'])->name('profile');
     Route::put('/profile/{id}', [AdminauthsController::class, 'update'])->name('profile.update');
-    //Dashboard
+    //User
     Route::get('/', [DashboardController::class, 'index'])->name('index');
     Route::get('/users', [ManageUserController::class, 'list'])->name('user.list');
+    Route::get('/edit-user/{id}', [ManageUserController::class, 'editUser'])->name('editUser');
+    Route::post('/update-user/{id}', [ManageUserController::class, 'updateUser'])->name('updateUser');
 
 });
 
