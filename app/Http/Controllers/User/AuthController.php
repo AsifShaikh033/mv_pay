@@ -21,11 +21,11 @@ class AuthController extends Controller
     {
 
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255', // Ensure the name is required and a string
             'email' => 'required|string|email|max:255|unique:users',
-            'mobile' => 'required|string|max:15|unique:users',
+            'mob_number' => 'required|string|max:15|unique:users',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048', // Optional image field
-            'password' => 'required|string|min:8|confirmed',
+            //'password' => 'required|string|min:8|confirmed',
         ]);
     
         if ($validator->fails()) {
@@ -39,16 +39,16 @@ class AuthController extends Controller
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('profile_images', 'public');
         }
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'mobile' => $request->mobile,
-            'image' => $imagePath,
-            'password' => Hash::make($request->password),
-        ]);
+        // $user = User::create([
+        //     'name' => $request->name,
+        //     'email' => $request->email,
+        //     'mobile' => $request->mobile,
+        //     'image' => $imagePath,
+        //     'password' => Hash::make($request->password),
+        // ]);
 
-        Auth::login($user);
-        return redirect()->route('dashboard');
+      //  Auth::login($user);
+        return redirect()->route('/login')->with('success', 'User added successfully.');
     }
 
 }

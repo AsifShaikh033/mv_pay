@@ -32,13 +32,14 @@
     <!-- Footer -->
     @include('Web.layout.footer') <!-- Footer Include -->
 
+    <!-- jQuery (Required for Bootstrap Notify) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <!-- Bootstrap JS and dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-notify@3.1.3/dist/bootstrap-notify.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 
-  
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+    @yield('scripts') <!-- Include additional custom scripts -->
 </body>
 </html>

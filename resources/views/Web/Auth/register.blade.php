@@ -22,23 +22,7 @@
                 });
             </script>
         @endif --}}
-
-        @if($errors->any())
-        <script>
-            $.notify({
-                icon: 'icon-bell',
-                title: 'mvpay',
-                message: '{{ $errors->first() }}',
-            }, {
-                type: 'danger',
-                placement: {
-                    from: "bottom",
-                    align: "right"
-                },
-                time: 1000,
-            });
-        </script>
-    @endif
+  
     
 
 
@@ -101,4 +85,31 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Bootstrap Notify -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-notify@3.1.3/dist/bootstrap-notify.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-notify@3.1.3/dist/bootstrap-notify.min.css">
+
+@if($errors->any())
+    <script>
+        $.notify({
+            icon: 'icon-bell',
+            title: 'mvpay',
+            message: '{{ $errors->first() }}',
+        }, {
+            type: 'danger',
+            placement: {
+                from: "bottom",
+                align: "right"
+            },
+            time: 1000,
+        });
+    </script>
+@endif
+@endpush
+
 @endsection
