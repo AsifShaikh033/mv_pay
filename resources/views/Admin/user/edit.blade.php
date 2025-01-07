@@ -79,7 +79,6 @@
                                     </div>
                                 </div>
 
-                                <!-- Logo and Favicon -->
                                 <div class="col-md-6 col-lg-6">
                                     <div class="form-group">
                                         <label for="logo">Logo</label>

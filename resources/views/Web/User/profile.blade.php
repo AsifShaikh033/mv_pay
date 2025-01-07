@@ -31,7 +31,6 @@
                         @enderror
                     </div>
 
-                    <!-- Image -->
                     <div class="mb-3">
                         <label for="image" class="form-label">{{ __('Profile Image') }}</label>
                         <input type="file" id="image" name="image" class="form-control @error('image') is-invalid @enderror" accept="image/*">
@@ -43,7 +42,6 @@
                         @enderror
                     </div>
 
-                    <!-- Password -->
                     <div class="mb-3">
                         <label for="password" class="form-label">{{ __('Password') }}</label>
                         <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror" >
