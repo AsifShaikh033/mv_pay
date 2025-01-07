@@ -6,10 +6,8 @@
     <title>Recharge Web</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-     <!-- Bootstrap Notify CSS -->
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap-notify@3.1.3/dist/bootstrap-notify.min.css" rel="stylesheet">
-    <!-- Custom CSS (optional) -->
-    <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
+    <!-- TOASTER Notify CSS -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="container-fluid">
@@ -32,14 +30,39 @@
     <!-- Footer -->
     @include('Web.layout.footer') <!-- Footer Include -->
 
-    <!-- jQuery (Required for Bootstrap Notify) -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
     <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-notify@3.1.3/dist/bootstrap-notify.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    
+    <!-- TOASTR JS -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
-    @yield('scripts') <!-- Include additional custom scripts -->
+    <!-- Toastr Notifications from Session -->
+    @if(session('success'))
+        <script>
+            toastr.success("{{ session('success') }}", 'Success Alert', { timeOut: 5000 });
+        </script>
+    @endif
+
+    @if(session('error'))
+        <script>
+            toastr.error("{{ session('error') }}", 'Error Alert', { timeOut: 5000 });
+        </script>
+    @endif
+
+    @if(session('warning'))
+        <script>
+            toastr.warning("{{ session('warning') }}", 'Warning Alert', { timeOut: 5000 });
+        </script>
+    @endif
+
+    @if(session('info'))
+        <script>
+            toastr.info("{{ session('info') }}", 'Information', { timeOut: 5000 });
+        </script>
+    @endif
+
 </body>
 </html>

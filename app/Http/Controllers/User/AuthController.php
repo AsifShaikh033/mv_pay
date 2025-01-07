@@ -20,19 +20,21 @@ class AuthController extends Controller
     public function register(Request $request)
     {
 
-        $validated = $request->validate([
-            'name' => 'required|string|max:255', // Ensure the name is required and a string
-            'email' => 'required|string|email|max:255|unique:users',
-            'mob_number' => 'required|string|max:15|unique:users',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048', // Optional image field
-            //'password' => 'required|string|min:8|confirmed',
-        ]);
+        // $validated = $request->validate([
+        //     'name' => 'required|string|max:255', // Ensure the name is required and a string
+        //     'email' => 'required|string|email|max:255|unique:users',
+        //     'mob_number' => 'required|string|max:15|unique:users',
+        //     'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048', // Optional image field
+        //     //'password' => 'required|string|min:8|confirmed',
+        // ]);
+
+        session()->flash('success', 'Registration was successful!');
     
-        if ($validator->fails()) {
-            return redirect()->route('register')
-                             ->withErrors($validator)
-                             ->withInput();
-        }
+        // if ($validator->fails()) {
+        //     return redirect()->route('register')
+        //                      ->withErrors($validator)
+        //                      ->withInput();
+        // }
         
 
         $imagePath = null;
@@ -48,7 +50,7 @@ class AuthController extends Controller
         // ]);
 
       //  Auth::login($user);
-        return redirect()->route('/login')->with('success', 'User added successfully.');
+        return redirect()->route('index')->with('success', 'User added successfully.');
     }
 
 }
