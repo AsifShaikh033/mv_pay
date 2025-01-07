@@ -92,6 +92,7 @@
     <!-- mvpay JS -->
     <script src="{{ asset('assets/js/mvpay.min.js') }}"></script>
     <script src="{{ asset('assets/js/setting-theme.js') }}"></script>
+    @stack('scripts')
     <script>
       $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
         type: "line",

@@ -29,33 +29,21 @@ class ManageUserController extends Controller
             'address' => 'nullable|string|max:255',
             //'profile' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-
-
-       // return $request;
-        
-
         $user = User::findOrFail($id);
-
-        // Handle profile image upload
         if ($request->hasFile('profile')) {
-            // Delete the old image if it exists
-            if ($user->identity_image && Storage::exists('public/user/profile/' . $user->identity_image)) {
-                Storage::delete('public/user/profile/' . $user->identity_image);
+            if ($user->identity_image && Storage::exists('public/' . $user->identity_image)) {
+                Storage::delete('public/' . $user->identity_image);
+            }
+            $folderPath = 'public/uploads/user/profile';
+            if (!Storage::exists($folderPath)) {
+                Storage::makeDirectory($folderPath);
             }
         
-            // Handle the new profile image upload
-            $profileImage = $request->file('profile');
-            $profileImageName = time() . '_' . $profileImage->getClientOriginalName();
-            
-            // Store the image in 'public/user/profile' folder in the public disk
-            $profileImage->storeAs('public/user/profile', $profileImageName);
-        
-            // Save the new image name in the database
-            $user->identity_image = $profileImageName;
+            $user->identity_image = $request->file('profile')->store('uploads/user/profile', 'public');
         }
         
 
-        $user->name = $request->name;
+        $user->name = $request  ->name;
         $user->email =  $request->email;
         $user->address = $request->address;
         $user->mob_number = $request->mob_number;
@@ -64,7 +52,15 @@ class ManageUserController extends Controller
 
         return redirect()->route('admin.user.list')->with('success', 'User updated successfully!');
     }
-    
 
+
+    public function destroy(Request $request)
+    {
+        $userId = $request->input('user_id'); 
+        $user = User::findOrFail($userId); 
+        $user->delete();
+        return redirect()->route('admin.user.list')->with('success', 'User deleted successfully.');
+    }
+    
 
 }

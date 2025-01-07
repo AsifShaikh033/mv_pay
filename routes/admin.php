@@ -35,6 +35,10 @@ Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function
     Route::get('/users', [ManageUserController::class, 'list'])->name('user.list');
     Route::get('/edit-user/{id}', [ManageUserController::class, 'editUser'])->name('editUser');
     Route::post('/update-user/{id}', [ManageUserController::class, 'updateUser'])->name('updateUser');
+    Route::post('/deleteUser', [ManageUserController::class, 'destroy'])->name('deleteUser');
+
+
+
 
 });
 

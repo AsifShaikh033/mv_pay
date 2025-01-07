@@ -85,7 +85,7 @@
                                         <label for="logo">Logo</label>
                                         <input type="file" name="profile" class="form-control" id="profile">
                                         @if($Data->identity_image)
-                                        <img src="{{ asset('uploads/users/' . $Data->identity_image) }}" alt="Logo" class="img-fluid" height="120px" width="120px"/>
+                                        <img src="{{ asset('storage/' . $Data->identity_image) }}" alt="Logo" class="img-fluid" height="120px" width="120px"/>
                                         @endif
                                     </div>
                                 </div>
