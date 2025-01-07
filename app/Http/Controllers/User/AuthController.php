@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 
 class AuthController extends Controller
 {
@@ -17,28 +18,42 @@ class AuthController extends Controller
         return view('Web.Auth.register');
     }
 
+    public function showLoginForm()
+    {
+        return view('Web.Auth.login');
+    }
+
+
     public function register(Request $request)
     {
 
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'mobile' => 'required|string|max:15|unique:users',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048', // Optional image field
-            'password' => 'required|string|min:8|confirmed',
+            'mob_number' => 'required|string|max:15|unique:users',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
+        ], [
+            'name.required' => 'Name is required.',
+            'email.required' => 'Email is required.',
+            'mob_number.required' => 'Mobile number is required.',
+            'image.image' => 'The image must be a valid image file.',
+            'image.mimes' => 'Allowed image types: jpg, jpeg, png, gif.',
         ]);
-    
-        if ($validator->fails()) {
-            return redirect()->route('register')
-                             ->withErrors($validator)
-                             ->withInput();
-        }
-        
+
 
         $imagePath = null;
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('profile_images', 'public');
         }
+        if ($request->hasFile('image')) {
+            $folderPath = 'public/uploads/user/profile';
+            if (!Storage::exists($folderPath)) {
+                Storage::makeDirectory($folderPath);
+            }
+        
+            $imagePath = $request->file('image')->store('uploads/user/profile', 'public');
+        }
+        
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -46,9 +61,15 @@ class AuthController extends Controller
             'image' => $imagePath,
             'password' => Hash::make($request->password),
         ]);
-
         Auth::login($user);
-        return redirect()->route('dashboard');
+        return redirect()->route('index')->with('success', 'Registration was successful!');
     }
+
+    public function logout()
+    {
+        Auth::logout(); 
+        return redirect()->route('index')->with('success', 'Sign out successful!');
+    }
+    
 
 }

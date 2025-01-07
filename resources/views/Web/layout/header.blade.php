@@ -8,11 +8,8 @@
           <ul class="navbar-nav ms-auto">
               @if(Auth::check())
                   <li class="nav-item">
-                      <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                      <a class="nav-link" href="{{ route('logout') }}">Logout</a>
                   </li>
-                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                      @csrf
-                  </form>
               @else
                   <li class="nav-item">
                       <a class="nav-link" href="{{ route('login') }}">Login</a>
