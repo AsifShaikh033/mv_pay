@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\WebConfig;
+use Illuminate\Support\Facades\Storage;
 class WebConfigController extends Controller
 {
     public function edit()
@@ -34,6 +35,11 @@ class WebConfigController extends Controller
         $config->fill($request->all());
 
         // Handle file uploads if necessary
+        $folderPath = 'public/uploads/web_config';
+        if (!Storage::exists($folderPath)) {
+            Storage::makeDirectory($folderPath);
+        }
+    
         if ($request->hasFile('logo')) {
             $config->logo = $request->file('logo')->store('uploads/web_config', 'public');
         }
@@ -47,6 +53,7 @@ class WebConfigController extends Controller
             $config->fav_icon = $request->file('fav_icon')->store('uploads/web_config', 'public');
         }
         $config->maintenance_mode = $request->has('maintenance_mode') ? 1 : 0;
+        $config->currency = 'USD';
         // Save configuration
         $config->save();
 
