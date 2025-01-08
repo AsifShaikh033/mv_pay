@@ -10,6 +10,6 @@ class WebController extends Controller
 {
      public function index(){
               
-        return view('Web.layout.main');
+        return view('Web.index');
      }
 }

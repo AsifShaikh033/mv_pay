@@ -68,8 +68,8 @@
                       </a>
                     </li>
                     <li>
-                      <a href="components/buttons.html">
-                        <span class="sub-item">Buttons</span>
+                      <a href="{{ route('admin.banner.list')}}">
+                        <span class="sub-item">Banner</span>
                       </a>
                     </li>
                     <li>

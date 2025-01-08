@@ -94,7 +94,7 @@
                                     <div class="form-group">
                                         <label for="logo">Logo</label>
                                         <input type="file" name="logo" class="form-control" id="logo">
-                                        @if($config->logo)
+                                        @if(!empty($config->logo))
                                         <img src="{{ asset('storage/' . $config->logo) }}" alt="Logo" class="img-fluid" height="120px" width="120px"/>
                                         @endif
                                     </div>
@@ -103,7 +103,7 @@
                                     <div class="form-group">
                                         <label for="fav_icon">Favicon</label>
                                         <input type="file" name="fav_icon" class="form-control" id="fav_icon">
-                                        @if($config->fav_icon)
+                                        @if(!empty($config->fav_icon))
                                             <img src="{{ asset('storage/' . $config->fav_icon) }}" alt="Favicon" class="img-fluid" height="120px" width="120px"/>
                                         @endif
                                     </div>
@@ -206,8 +206,10 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="maintenance_mode">Maintenance Mode</label>
-                                    <input type="checkbox" name="maintenance_mode" id="maintenance_mode" value="1" {{ $config->maintenance_mode ? 'checked' : '' }}>
+                                    <input type="checkbox" name="maintenance_mode" id="maintenance_mode" value="1" 
+                                        {{ !empty($config->maintenance_mode) ? 'checked' : '' }}>
                                 </div>
+
 
 
                             </div>
