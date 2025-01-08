@@ -7,7 +7,7 @@
     <div class="carousel-inner">
         @foreach($banners as $index => $banner)
             <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
-                <img src="{{ asset('uploads/banners/'.$banner->image) }}" class="d-block w-100" alt="{{ $banner->title }}">
+                <img src="{{ asset('storage/'.$banner->image) }}" class="d-block w-100" alt="{{ $banner->title }}">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>{{ $banner->title }}</h5>
                     <p>{{ $banner->description }}</p>
@@ -37,7 +37,7 @@
                 </p>
             </div>
             <div class="col-md-6">
-                <img src="{{ asset('assets/images/about-us.jpg') }}" class="img-fluid rounded" alt="About Us">
+                <img src="{{ asset('assets/img/mvpay/logo_light.svg') }}" class="img-fluid rounded" alt="About Us">
             </div>
         </div>
     </div>
@@ -51,7 +51,7 @@
             @foreach($offers as $offer)
                 <div class="col-md-4 mb-3">
                     <div class="card">
-                        <img src="{{ asset('uploads/offers/'.$offer->image) }}" class="card-img-top" alt="{{ $offer->title }}">
+                        <img src="{{ asset('assets/img/mvpay/logo_light.svg') }}" class="card-img-top" alt="{{ $offer->title }}">
                         <div class="card-body">
                             <h5 class="card-title">{{ $offer->title }}</h5>
                             <p class="card-text">{{ $offer->description }}</p>
