@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 require __DIR__.'/admin.php';
 use App\Http\Controllers\User\WebController;
 use App\Http\Controllers\User\AuthController;
+use App\Http\Controllers\User\UserController;
+
 
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
     Route::post('/login-user', [AuthController::class, 'loginuser_auth'])->name('loginuser');
@@ -13,12 +15,17 @@ use App\Http\Controllers\User\AuthController;
     //Homepage 
     Route::get('/', [WebController::class, 'index'])->name('index');
     //USER START
-    Route::middleware(['auth'])->group(function () {  
-            // Homepage route
-            Route::get('/', [WebController::class, 'index'])->name('index');
-            // Logout route
-            Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-        });
+   
+    Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
+        // Logout route
+        Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+    
+        //user routes
+        Route::get('/profile', [UserController::class, 'profiles'])->name('profile');
+        Route::post('/update-profile-user', [UserController::class, 'updateprofile'])->name('updateprofile');
+
+    });
+    
 
 
 

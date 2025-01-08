@@ -27,20 +27,21 @@ class AuthController extends Controller
     {
         $validated = $request->validate([
             'email' => 'required|email|max:255',
-            'password' => 'required|string|min:8',
-        ],[
-            'email' => 'Email is required.',
-            'password' =>  'Password is required.',
+            'password' => 'required|string|min:6',
+        ], [
+            'email.required' => 'Email is required.',
+            'password.required' => 'Password is required.',
         ]);
     
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+        if (Auth::guard('web')->attempt(['email' => $request->email, 'password' => $request->password])) {
             return redirect()->route('index')->with('success', 'Login successful!');
         }
+    
         return back()->withErrors([
             'email' => 'These credentials do not match our records.',
         ]);
     }
-
+     
     public function register(Request $request)
     {
 
@@ -75,7 +76,7 @@ class AuthController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'mobile' => $request->mobile,
-            'image' => $imagePath,
+            'identity_image' => $imagePath,
             'password' => Hash::make($request->password),
         ]);
         Auth::login($user);
