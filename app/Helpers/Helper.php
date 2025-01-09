@@ -59,3 +59,42 @@ if (!function_exists('SetToken')) {
         }
     }
 }
+
+
+
+ 
+if (!function_exists('send_spin_chance')) {
+    /**
+     * Set and save a new token for the user if it's their first login.
+     * Also sends the token to the external API to update.
+     *
+     * @param User $user
+     * @return void
+     */
+    function send_spin_chance(User $user, $spin_count)
+    {
+      
+        try {
+            $response = Http::get(env('MVivsionURL') . '/api/update-spinchance', [
+                'email' => $user->email, 
+                'token' =>  $user->remember_token, 
+                'spin_count'=> $spin_count
+            ]);
+    
+            if ($response->successful()) {
+                return response()->json([
+                    'message' => 'mv vision spin count updated.',
+                    'token' => $randomToken,
+                ]);
+            } else {
+                return response()->json([
+                    'message' => 'spin update failed on mv vision.',
+                ], 500);
+            }
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error sending spin count to vision: ' . $e->getMessage(),
+            ], 500);
+        }
+    }
+}

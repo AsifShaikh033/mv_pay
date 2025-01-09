@@ -13,7 +13,7 @@ use App\Http\Controllers\User\UserController;
     Route::post('/register-user', [AuthController::class, 'register'])->name('registeruser');
     //APIS
     Route::get('/api/update-token', [MvSpinUserController::class, 'updateToken']);
-    Route::get('/api/update-spinchance', [MvSpinUserController::class, 'spinchanceupdate']);
+    Route::get('/api/mv_pay_winning', [MvSpinUserController::class, 'mv_pay_winning_amount']);
     //Homepage 
     Route::get('/', [WebController::class, 'index'])->name('index');
     //USER START
