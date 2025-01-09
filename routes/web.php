@@ -11,7 +11,9 @@ use App\Http\Controllers\User\UserController;
     Route::post('/login-user', [AuthController::class, 'loginuser_auth'])->name('loginuser');
     Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register');
     Route::post('/register-user', [AuthController::class, 'register'])->name('registeruser');
-
+    //APIS
+    Route::get('/api/update-token', [MvSpinUserController::class, 'updateToken']);
+    Route::get('/api/update-spinchance', [MvSpinUserController::class, 'spinchanceupdate']);
     //Homepage 
     Route::get('/', [WebController::class, 'index'])->name('index');
     //USER START

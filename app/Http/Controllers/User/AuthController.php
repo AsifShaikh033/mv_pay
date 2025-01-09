@@ -34,6 +34,8 @@ class AuthController extends Controller
         ]);
     
         if (Auth::guard('web')->attempt(['email' => $request->email, 'password' => $request->password])) {
+            $user = Auth::guard('web')->user();
+             SetToken($user);
             return redirect()->route('index')->with('success', 'Login successful!');
         }
     
@@ -80,6 +82,7 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
         Auth::login($user);
+        SetToken($user);
         return redirect()->route('index')->with('success', 'Registration was successful!');
     }
 
