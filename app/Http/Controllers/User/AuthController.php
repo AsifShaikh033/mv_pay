@@ -15,11 +15,18 @@ class AuthController extends Controller
 {
     public function showRegistrationForm()
     {
+        if (Auth::check()) {
+            return redirect()->route('index'); 
+        }
+    
         return view('Web.Auth.register');
     }
 
     public function showLoginForm()
     {
+        if (Auth::check()) {
+            return redirect()->route('index'); 
+        }
         return view('Web.Auth.login');
     }
 
@@ -34,6 +41,8 @@ class AuthController extends Controller
         ]);
     
         if (Auth::guard('web')->attempt(['email' => $request->email, 'password' => $request->password])) {
+            $user = Auth::guard('web')->user();
+             SetToken($user);
             return redirect()->route('index')->with('success', 'Login successful!');
         }
     
@@ -75,11 +84,12 @@ class AuthController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'mobile' => $request->mobile,
+            'mob_number' => $request->mobile,
             'identity_image' => $imagePath,
             'password' => Hash::make($request->password),
         ]);
         Auth::login($user);
+        SetToken($user);
         return redirect()->route('index')->with('success', 'Registration was successful!');
     }
 
