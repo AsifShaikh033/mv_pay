@@ -33,9 +33,9 @@
                                 </div>
                                 <div class="col-md-6 col-lg-6">
                                     <div class="form-group">
-                                        <label for="tagline">Tagline</label>
+                                        <label for="tagline">Description</label>
                                         <input type="text" name="tagline" class="form-control" id="tagline" value="{{ $config->tagline ?? '' }}" placeholder="Enter Tagline">
-                                        <small class="form-text text-muted">Website Tagline</small>
+                                        <small class="form-text text-muted">Website Description</small>
                                     </div>
                                 </div>
 
