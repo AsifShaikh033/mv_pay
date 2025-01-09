@@ -4,12 +4,13 @@
           <div class="logo-header" data-background-color="dark">
             <a href="index.html" class="logo">
               <img
-                 src="{{ asset('assets/img/mvpay/logo_light.svg') }}"
-                alt="navbar brand"
+              src="{{ asset('storage/' . webConfig('logo')) }}" alt="Logo"
+              alt="navbar brand"
                 class="navbar-brand"
-                height="20"
+                height="60" width="90"
               />
             </a>
+           
             <div class="nav-toggle">
               <button class="btn btn-toggle toggle-sidebar">
                 <i class="gg-menu-right"></i>
@@ -111,6 +112,27 @@
                 </div>
               </li>
               <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#tables">
+                  <i class="fas fa-table"></i>
+                  <p>Users</p>
+                  <span class="caret"></span>
+                </a>
+                <div class="collapse" id="tables">
+                  <ul class="nav nav-collapse">
+                    <li>
+                      <a href="{{ route('admin.user.list')}}">
+                        <span class="sub-item">User List</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="tables/datatables.html">
+                        <span class="sub-item">Datatables</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarLayouts">
                   <i class="fas fa-th-list"></i>
                   <p>Sidebar Layouts</p>
@@ -147,27 +169,7 @@
                   </ul>
                 </div>
               </li>
-              <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#tables">
-                  <i class="fas fa-table"></i>
-                  <p>Users</p>
-                  <span class="caret"></span>
-                </a>
-                <div class="collapse" id="tables">
-                  <ul class="nav nav-collapse">
-                    <li>
-                      <a href="{{ route('admin.user.list')}}">
-                        <span class="sub-item">User List</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="tables/datatables.html">
-                        <span class="sub-item">Datatables</span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
+            
               <li class="nav-item">
                 <a data-bs-toggle="collapse" href="#maps">
                   <i class="fas fa-map-marker-alt"></i>
