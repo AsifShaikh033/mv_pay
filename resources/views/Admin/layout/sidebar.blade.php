@@ -125,7 +125,7 @@
                 <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#tables" 
                       aria-expanded="{{ Request::routeIs('admin.user.list') ? 'true' : 'false' }}">
-                        <i class="fas fa-table"></i>
+                        <i class="fas fa-users"></i>
                         <p>Users</p>
                         <span class="caret"></span>
                     </a>
@@ -134,6 +134,30 @@
                             <li>
                                 <a href="{{ route('admin.user.list') }}" class="{{ Request::routeIs('admin.user.list') ? 'active' : '' }}">
                                     <span class="sub-item">User List</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="tables/datatables.html" class="{{ Request::is('tables/datatables') ? 'active' : '' }}">
+                                    <span class="sub-item">Datatables</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+             
+                
+                <li class="nav-item">
+                    <a data-bs-toggle="collapse" href="#tables" 
+                      aria-expanded="{{ Request::routeIs('admin.transaction.list') ? 'true' : 'false' }}">
+                      <i class="fas fa-th-list"></i>
+                      <p>Transactions</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse {{ Request::routeIs('admin.transaction.list') ? 'show' : '' }}" id="tables">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="{{ route('admin.transaction.list') }}" class="{{ Request::routeIs('admin.transaction.list') ? 'active' : '' }}">
+                                    <span class="sub-item">Transaction List</span>
                                 </a>
                             </li>
                             <li>
