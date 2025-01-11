@@ -14,6 +14,7 @@ use App\Http\Controllers\User\UserController;
 
     //Homepage 
     Route::get('/', [WebController::class, 'index'])->name('index');
+    // Route::get('/', [WebController::class, 'index'])->name('index');
     //USER START
    
     Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
