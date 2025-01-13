@@ -23,6 +23,13 @@ use App\Http\Controllers\User\UserController;
     
         //user routes
         Route::get('/profile', [UserController::class, 'profiles'])->name('profile');
+        Route::get('/about', [UserController::class, 'about'])->name('about');
+        Route::get('/services', [UserController::class, 'services'])->name('services');
+        Route::get('/payment_history', [UserController::class, 'payment_history'])->name('payment_history');
+        Route::get('/privacyAndPolicy', [UserController::class, 'privacyAndPolicy'])->name('privacyAndPolicy');
+        Route::get('/termsAndConditions', [UserController::class, 'termsAndConditions'])->name('termsAndConditions');
+        Route::get('/refundAndpolicy', [UserController::class, 'refundAndpolicy'])->name('refundAndpolicy');
+        Route::get('/contactUs', [UserController::class, 'contactUs'])->name('contactUs');
         Route::post('/update-profile-user', [UserController::class, 'updateprofile'])->name('updateprofile');
 
     });

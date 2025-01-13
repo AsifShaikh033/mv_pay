@@ -1,27 +1,44 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-      <a class="navbar-brand" href="#">Recharge System</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-              @if(Auth::check())
-                  <li class="nav-item">
-                      <a class="nav-link" href="{{ route('user.logout') }}">Logout</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="{{ route('user.profile') }}">Profile</a>
-                  </li>
-              @else
-                  <li class="nav-item">
-                      <a class="nav-link" href="{{ route('login') }}">Login</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="{{ route('register') }}">Register</a>
-                  </li>
-              @endif
-          </ul>
+<div id="main-wrapper">
+  <div class="mainpage">
+    <div class="nav-header">
+      <div class="nav-control">
+        <div class="hamburger">
+          <span class="line"></span>
+          <span class="line"></span>
+          <span class="line"></span>
+        </div>
       </div>
-  </div>
-</nav>
+      <a class="brand-logo">
+        <img id="ctl00_imgCompanyLogo" src="{{ asset('assets_web/images/logo.png')}}" style="border-width:0px;" />
+      </a>
+    </div>
+    <div class="header">
+      <div class="header-content">
+        <nav class="navbar navbar-expand">
+          <div class="collapse navbar-collapse justify-content-between">
+            <div class="header-left">
+              <div class="dashboard_bar"> Dashboard </div>
+            </div>
+            <ul class="navbar-nav header-right">
+              <li class="nav-item">
+                <div class="input-group search-area">
+                  <input type="text" class="form-control" placeholder="Search here...">
+                  <span class="input-group-text">
+                    <a href="javascript:void(0)">
+                      <i class="flaticon-381-search-2"></i>
+                    </a>
+                  </span>
+                </div>
+              </li>
+              <li class="nav-item"></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <div class="div_mobile_next_page">
+      <a class="backbtn" id="bckbtn">
+        <i class="fa fa-arrow-left"></i>
+      </a>
+      <a class="backbtn" id="lblMenuName"></a>
+    </div>
