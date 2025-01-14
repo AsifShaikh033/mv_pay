@@ -1,8 +1,16 @@
 @extends('Web.layout.main')
 @section('content')
+<style>
+      .hq_style{box-sizing: border-box;
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    line-height: 24px;
+    color: rgb(0 0 0);
+    margin-top: 10px;
+    margin-bottom: 0px;}
+</style>
 <div class="content-body">
   <!-- row -->
-  <div class="container-fluid">
+  <div class="container mt-5">
     <div class="card">
       <div class="card-header">
         <h3>Privacy and Policy</h3>
@@ -10,8 +18,8 @@
       <div class="card-body">
         <div class="row">
           <div>
-            <h5 style="box-sizing: border-box; font-family: &quot;Open Sans&quot;, Helvetica, Arial, sans-serif; line-height: 24px; color: rgb(85, 85, 85); margin-top: 10px; margin-bottom: 10px; font-size: 12px;">
-              <span style="font-size:12px;">INFORMATION COLLECT</span>
+            <h5 class="hq_style">
+            INFORMATION COLLECT
             </h5>
             <section class="about_us page-section" id="about" style="box-sizing: border-box;">
               <div class="container" style="box-sizing: border-box; padding-right: 15px; padding-left: 15px; margin-right: auto; margin-left: auto;">
@@ -26,7 +34,7 @@
                 </div>
               </div>
             </section>
-            <h5 style="box-sizing: border-box; font-family: &quot;Open Sans&quot;, Helvetica, Arial, sans-serif; line-height: 24px; color: rgb(85, 85, 85); margin-top: 10px; margin-bottom: 10px; font-size: 12px;">
+            <h5 class="hq_style">
               <span style="font-size:12px;">Technical Information &ndash; The Information We Fetch</span>
             </h5>
             <section class="about_us page-section" style="box-sizing: border-box;">
@@ -42,7 +50,7 @@
                 </div>
               </div>
             </section>
-            <h5 style="box-sizing: border-box; font-family: &quot;Open Sans&quot;, Helvetica, Arial, sans-serif; line-height: 24px; color: rgb(85, 85, 85); margin-top: 10px; margin-bottom: 10px; font-size: 12px;">
+            <h5 class="hq_style">
               <span style="font-size:12px;">WHY WE COLLECT AND HOW WE USE YOUR COLLECTION</span>
             </h5>
             <section class="about_us page-section" style="box-sizing: border-box;">
@@ -61,7 +69,7 @@
                 </div>
               </div>
             </section>
-            <h5 style="box-sizing: border-box; font-family: &quot;Open Sans&quot;, Helvetica, Arial, sans-serif; line-height: 24px; color: rgb(85, 85, 85); margin-top: 10px; margin-bottom: 10px; font-size: 12px;">
+            <h5 class="hq_style">
               <span style="font-size:12px;">HOW TO ACCESS YOUR INFORMATION AND UPDATE IT.</span>
             </h5>
             <section class="about_us page-section" style="box-sizing: border-box;">
@@ -77,7 +85,7 @@
                 </div>
               </div>
             </section>
-            <h5 style="box-sizing: border-box; font-family: &quot;Open Sans&quot;, Helvetica, Arial, sans-serif; line-height: 24px; color: rgb(85, 85, 85); margin-top: 10px; margin-bottom: 10px; font-size: 12px;">
+            <h5 class="hq_style">
               <span style="font-size:12px;">USE OF DEMOGRAPHIC / PROFILE DATA / YOUR INFORMATION</span>
             </h5>
             <section class="about_us page-section" style="box-sizing: border-box;">
@@ -93,7 +101,7 @@
                 </div>
               </div>
             </section>
-            <h5 style="box-sizing: border-box; font-family: &quot;Open Sans&quot;, Helvetica, Arial, sans-serif; line-height: 24px; color: rgb(85, 85, 85); margin-top: 10px; margin-bottom: 10px; font-size: 12px;">
+            <h5 class="hq_style">
               <span style="font-size:12px;">SHARING OF PERSONAL INFORMATION</span>
             </h5>
             <section class="about_us page-section" style="box-sizing: border-box;">
@@ -109,7 +117,7 @@
                 </div>
               </div>
             </section>
-            <h5 style="box-sizing: border-box; font-family: &quot;Open Sans&quot;, Helvetica, Arial, sans-serif; line-height: 24px; color: rgb(85, 85, 85); margin-top: 10px; margin-bottom: 10px; font-size: 12px;">
+            <h5 class="hq_style">
               <span style="font-size:12px;">NO INFORMATION DISCOLOSURE POLICY TO THIRD-PARTIES</span>
             </h5>
             <section class="about_us page-section" style="box-sizing: border-box;">
@@ -125,7 +133,7 @@
                 </div>
               </div>
             </section>
-            <h5 style="box-sizing: border-box; font-family: &quot;Open Sans&quot;, Helvetica, Arial, sans-serif; line-height: 24px; color: rgb(85, 85, 85); margin-top: 10px; margin-bottom: 10px; font-size: 12px;">
+            <h5 class="hq_style">
               <span style="font-size:12px;">WE ARE 100% SECURED AND CERTIFIED</span>
             </h5>
             <section class="about_us page-section" style="box-sizing: border-box;">
@@ -141,7 +149,7 @@
                 </div>
               </div>
             </section>
-            <h5 style="box-sizing: border-box; font-family: &quot;Open Sans&quot;, Helvetica, Arial, sans-serif; line-height: 24px; color: rgb(85, 85, 85); margin-top: 10px; margin-bottom: 10px; font-size: 12px;">
+            <h5 class="hq_style">
               <span style="font-size:12px;">POLICY CHANGES</span>
             </h5>
             <section class="about_us page-section" style="box-sizing: border-box;">

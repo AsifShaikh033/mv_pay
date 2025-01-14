@@ -56,14 +56,14 @@
     <script type="text/javascript" src="../../../ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     
 </head>
-<body>
+<body class="bg-danger">
     
-    <div class="container-fluid">
+    <div class="container-fluid bg-danger">
         <div class="row">
 
             
             <main class="col-md-12 ms-sm-auto col-lg-12 px-4">
-               @include('Web.layout.sidebar') 
+               <!-- @include('Web.layout.sidebar')  -->
                 @include('Web.layout.header')
 
                 <div class="container mt-5">

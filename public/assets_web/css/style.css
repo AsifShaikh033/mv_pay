@@ -92,6 +92,7 @@
     --font-family-base: Roboto, sans-serif;
     --font-family-title: Roboto, sans-serif;
     --title: #000;
+    --blue-dark: rgba(0, 150, 136, 0.9);
 }
 
 .gradient_one {
@@ -13218,7 +13219,8 @@ label {
     position: absolute;
     left: 1.25rem;
     top: 1.25rem;
-    background-color: var(--nav-headbg);
+    /* background-color: var(--nav-headbg); */
+    background-color: var(--blue-dark);
     transition: all .2s ease;
     z-index: 4;
 }
@@ -13721,11 +13723,12 @@ svg.pulse-svg {
         padding-left: 2.5rem;
     }
 
-[data-header-position="fixed"] .header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-}
+    [data-header-position="fixed"] .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
 
 [data-header-position="fixed"] .content-body {
     padding-top: 1.5rem;
@@ -25119,8 +25122,10 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 
 [data-sibebarbg="color_1"][data-theme-version="dark"],
 [data-sibebarbg="color_1"] {
-    --sidebar-bg: #001540;
-    --nav-headbg: #001540;
+    --sidebar-bg:  rgba(0, 150, 136, 0.9);;
+    --nav-headbg:  rgba(0, 150, 136, 0.9);;
+    /* --sidebar-bg: #001540;
+    --nav-headbg: #001540; */
 }
 
     [data-sibebarbg="color_1"][data-theme-version="dark"] .hamburger .line,
