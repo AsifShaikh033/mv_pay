@@ -1,0 +1,244 @@
+
+  
+  /* Header
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #003d5b;
+    color: white;
+  }
+  
+  header .logo {
+    font-size: 24px;
+    font-weight: bold;
+  }
+   */
+  header .search-bar input {
+    padding: 10px;
+    width: 250px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+  }
+  
+  header .auth-links button {
+    margin-left: 15px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  header .login-btn {
+    background-color: #ffffff;
+    color: #003d5b;
+  }
+  
+  header .signup-btn {
+    background-color: #005041;
+    color: white;
+  }
+  
+  /* Hero Section */
+  .hero {
+    background-color: #005041;
+    color: white;
+    padding: 50px;
+    text-align: center;
+    border-radius: 30px;
+}
+  
+  .hero h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+  
+  .hero .cta-btn {
+    background-color: white;
+    color: #005041;
+    padding: 5px 40px;
+    font-size: 18px;
+    border-radius: 15px;
+    margin: 10px;
+    border: none;
+    cursor: pointer;
+}
+  
+  .hero .cta-btn:hover {
+    background-color: #e6e6e6;
+  }
+  
+  /* Services Section */
+  .services {
+    padding: 40px;
+    text-align: center;
+  }
+  
+  .services h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  
+  .service-cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .card {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .card:hover {
+    transform: translateY(-10px);
+  }
+  
+  .card .icon {
+    font-size: 40px;
+    margin-bottom: 20px;
+  }
+  
+  .card h3 {
+    font-size: 20px;
+    color: #003d5b;
+  }
+  
+  /* Footer Section */
+  footer {
+    background-color: #003d5b;
+    color: white;
+    padding: 30px;
+    text-align: center;
+  }
+  
+  .footer-links a {
+    margin: 0 15px;
+    color: white;
+  }
+  
+  .footer-links a:hover {
+    text-decoration: underline;
+  }
+  
+  .social-media a {
+    margin: 0 10px;
+    color: white;
+  }
+  
+   /* Card Styling */
+   .recharge-card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    text-align: center;
+}
+  
+          .recharge-card h2 {
+              font-size: 24px;
+              margin-bottom: 20px;
+          }
+  
+          /* Grid Layout */
+          .options-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            justify-items: center;
+        }
+  
+          .recharge-box {
+              background-color: #f5f5f5;
+              padding: 20px;
+              text-align: center;
+              border-radius: 8px;
+              cursor: pointer;
+              transition: background-color 0.3s, transform 0.2s;
+          }
+  
+          .recharge-box img {
+              width: 50px;
+              height: 50px;
+              margin-bottom: 10px;
+          }
+  
+          .recharge-box span {
+              display: block;
+              margin-top: 5px;
+              font-weight: bold;
+          }
+  
+          /* Hover Effects */
+          .recharge-box:hover {
+              background-color: #e0e0e0;
+              transform: scale(1.05);
+          }
+  
+          /* Mobile responsiveness */
+          @media (max-width: 768px) {
+              .options-grid {
+                  grid-template-columns: repeat(2, 1fr);
+              }
+          }
+  
+          @media (max-width: 480px) {
+              .options-grid {
+                  grid-template-columns: repeat(3,1fr);
+              }
+              .recharge-box {
+                padding: 0px;
+            }
+
+            .service-cards {
+              display: grid;
+              grid-template-columns: repeat(4,1fr);
+              gap: 10px;
+          }
+          .hero h1 {
+            font-size: 26px;
+            margin-bottom: 20px;
+        }
+
+        .hero .cta-btn {
+          border-radius: 15px;
+          font-size: 16px;
+      }
+
+      .services h2 {
+        color: navajowhite;
+    }
+    .card {
+      padding: 10px;
+      width: 80px;
+  }
+
+  .card .icon {
+    font-size: 25px;
+}
+
+.card h3 {
+  font-size: 12px;
+  margin-bottom: 0px;
+}
+
+.recharge-box span {
+ 
+  font-size: 12px;
+}
+          }
+  
+          .recharge_option {
+      font-size: 20px;
+      font-weight: 600;
+  }
+  

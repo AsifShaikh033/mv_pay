@@ -2,170 +2,25 @@
 
 @section('content')
 <style>
-  /* General Styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  .carousel-inner .carousel-item img {
+    height: 350px;
+    object-fit: fill;
 }
-
-body {
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
-  background-color: #f4f4f4;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-/* Header */
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-  background-color: #003d5b;
-  color: white;
-}
-
-header .logo {
-  font-size: 24px;
-  font-weight: bold;
-}
-
-header .search-bar input {
-  padding: 10px;
-  width: 250px;
-  border-radius: 5px;
-  border: 1px solid #ddd;
-}
-
-header .auth-links button {
-  margin-left: 15px;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-header .login-btn {
-  background-color: #ffffff;
-  color: #003d5b;
-}
-
-header .signup-btn {
-  background-color: #ff3d00;
-  color: white;
-}
-
-/* Hero Section */
-.hero {
-  background-color: #ff3d00;
-  color: white;
-  padding: 50px;
-  text-align: center;
-}
-
-.hero h1 {
-  font-size: 36px;
-  margin-bottom: 20px;
-}
-
-.hero .cta-btn {
-  background-color: white;
-  color: #ff3d00;
-  padding: 10px 20px;
-  font-size: 18px;
-  border-radius: 5px;
-  margin: 10px;
-  border: none;
-  cursor: pointer;
-}
-
-.hero .cta-btn:hover {
-  background-color: #e6e6e6;
-}
-
-/* Services Section */
-.services {
-  padding: 40px;
-  text-align: center;
-}
-
-.services h2 {
-  font-size: 28px;
-  margin-bottom: 20px;
-}
-
-.service-cards {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-
-.card {
-  background-color: white;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 200px;
-  text-align: center;
-  transition: transform 0.3s ease-in-out;
-}
-
-.card:hover {
-  transform: translateY(-10px);
-}
-
-.card .icon {
-  font-size: 40px;
-  margin-bottom: 20px;
-}
-
-.card h3 {
-  font-size: 20px;
-  color: #003d5b;
-}
-
-/* Footer Section */
-footer {
-  background-color: #003d5b;
-  color: white;
-  padding: 30px;
-  text-align: center;
-}
-
-.footer-links a {
-  margin: 0 15px;
-  color: white;
-}
-
-.footer-links a:hover {
-  text-decoration: underline;
-}
-
-.social-media a {
-  margin: 0 10px;
-  color: white;
-}
-
 </style>
 <div class="content-body">
   
     <div class="container py-5">
       <h1 class="text-center text-white">Dashboard</h1>
-        <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+        <div id="carouselExampleInterval" class="carousel slide mb-4" data-bs-ride="carousel">
               <div class="carousel-inner">
                     <div class="carousel-item active" data-bs-interval="10000">
-                      <img id="ctl00_imgCompanyLogo" src="{{ asset('assets_web/images/slider/r_1.png') }}" class="d-block w-100"   />
+                      <img id="ctl00_imgCompanyLogo" src="{{ asset('assets_web/images/slider/r_1.png') }}" class="d-block"   />
                     </div>
                     <div class="carousel-item" data-bs-interval="2000">
-                      <img id="ctl00_imgCompanyLogo" src="{{ asset('assets_web/images/slider/r_1.png') }}" class="d-block w-100"   />
+                      <img id="ctl00_imgCompanyLogo" src="{{ asset('assets_web/images/slider/ree.avif') }}" class="d-block "   />
                     </div>
                     <div class="carousel-item">
-                      <img id="ctl00_imgCompanyLogo" src="{{ asset('assets_web/images/slider/r_1.png') }}" class="d-block w-100"   />
+                      <img id="ctl00_imgCompanyLogo" src="{{ asset('assets_web/images/slider/rere.webp') }}" class="d-block "   />
                     </div>
               </div>
               <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
@@ -212,6 +67,224 @@ footer {
     </div>
   </section>
 
+  <section>
+  <!-- Recharge Options -->
+  <div class="recharge-card">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <span>Recharge</span>
+      <button class="btn btn-sm btn-primary mb-0">
+        View All <i class="fas fa-arrow-right"></i>
+      </button>
+    </div>
+    <div class="options-grid">
+      <div class="recharge-box" onclick="selectOption('Mobile Recharge')">
+        <span>📱</span>
+        <span>Mobile Recharge</span>
+      </div>
+      <div class="recharge-box" onclick="selectOption('DTH Recharge')">
+        <div class="icon">📺</div>
+        <span>DTH Recharge</span>
+      </div>
+      <div class="recharge-box" onclick="selectOption('Data Pack')">
+        <div class="icon">🌐</div>
+        <span>Data Pack</span>
+      </div>
+      <div class="recharge-box" onclick="selectOption('Electricity Bill')">
+        <div class="icon">⚡</div>
+        <span>Electricity Bill</span>
+      </div>
+      <div class="recharge-box" onclick="selectOption('Water Bill')">
+        <div class="icon">💧</div>
+        <span>Water Bill</span>
+      </div>
+      <div class="recharge-box" onclick="selectOption('Gas Recharge')">
+        <div class="icon">🔥</div>
+        <span>Gas Recharge</span>
+      </div>
+      <div class="recharge-box" onclick="selectOption('Broadband Recharge')">
+        <div class="icon">🌐</div>
+        <span>Broadband Recharge</span>
+      </div>
+      <div class="recharge-box" onclick="selectOption('Fastag Recharge')">
+        <div class="icon">🚗</div>
+        <span>Fastag Recharge</span>
+      </div>
+      <div class="recharge-box" onclick="selectOption('Postpaid Bill')">
+        <div class="icon">📞</div>
+        <span>Postpaid Bill</span>
+      </div>
+      <div class="recharge-box" onclick="selectOption('Cable TV')">
+        <div class="icon">📺</div>
+        <span>Cable TV</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loan Section -->
+  <div class="recharge-card">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <span>Loan</span>
+      <button class="btn btn-sm btn-primary mb-0">
+        View All <i class="fas fa-arrow-right"></i>
+      </button>
+    </div>
+    <div class="options-grid">
+      <div class="recharge-box" onclick="selectOption('Personal Loan')">
+        <div class="icon">💵</div>
+        <span>Personal Loan</span>
+      </div>
+      <div class="recharge-box" onclick="selectOption('Home Loan')">
+        <div class="icon">🏠</div>
+        <span>Home Loan</span>
+      </div>
+      <div class="recharge-box" onclick="selectOption('Car Loan')">
+        <div class="icon">🚗</div>
+        <span>Car Loan</span>
+      </div>
+      <div class="recharge-box" onclick="selectOption('Education Loan')">
+        <div class="icon">🎓</div>
+        <span>Education Loan</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Insurance Section -->
+  <div class="recharge-card">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <span>Insurance</span>
+      <button class="btn btn-sm btn-primary mb-0">
+        View All <i class="fas fa-arrow-right"></i>
+      </button>
+    </div>
+    <div class="options-grid">
+      <div class="recharge-box" onclick="selectOption('Health Insurance')">
+        <div class="icon">💊</div>
+        <span>Health Insurance</span>
+      </div>
+      <div class="recharge-box" onclick="selectOption('Life Insurance')">
+        <div class="icon">❤️</div>
+        <span>Life Insurance</span>
+      </div>
+      <div class="recharge-box" onclick="selectOption('Car Insurance')">
+        <div class="icon">🚗</div>
+        <span>Car Insurance</span>
+      </div>
+      <div class="recharge-box" onclick="selectOption('Home Insurance')">
+        <div class="icon">🏡</div>
+        <span>Home Insurance</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Wealth Management Section -->
+  <div class="recharge-card">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <span>Wealth Management</span>
+      <button class="btn btn-sm btn-primary mb-0">
+        View All <i class="fas fa-arrow-right"></i>
+      </button>
+    </div>
+    <div class="options-grid">
+      <div class="recharge-box" onclick="selectOption('Investments')">
+        <div class="icon">📈</div>
+        <span>Investments</span>
+      </div>
+      <div class="recharge-box" onclick="selectOption('Mutual Funds')">
+        <div class="icon">💹</div>
+        <span>Mutual Funds</span>
+      </div>
+      <div class="recharge-box" onclick="selectOption('Retirement Planning')">
+        <div class="icon">🛋️</div>
+        <span>Retirement Planning</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Travel Section -->
+  <div class="recharge-card">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <span>Travel</span>
+      <button class="btn btn-sm btn-primary mb-0">
+        View All <i class="fas fa-arrow-right"></i>
+      </button>
+    </div>
+    <div class="options-grid">
+      <div class="recharge-box" onclick="selectOption('Flight Booking')">
+        <div class="icon">✈️</div>
+        <span>Flight Booking</span>
+      </div>
+      <div class="recharge-box" onclick="selectOption('Hotel Booking')">
+        <div class="icon">🏨</div>
+        <span>Hotel Booking</span>
+      </div>
+      <div class="recharge-box" onclick="selectOption('Tour Packages')">
+        <div class="icon">🌍</div>
+        <span>Tour Packages</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Transit & Food Section -->
+  <div class="recharge-card">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <span>Transit & Food</span>
+      <button class="btn btn-sm btn-primary mb-0">
+        View All <i class="fas fa-arrow-right"></i>
+      </button>
+    </div>
+    <div class="options-grid">
+      <div class="recharge-box" onclick="selectOption('Public Transit')">
+        <div class="icon">🚇</div>
+        <span>Public Transit</span>
+      </div>
+      <div class="recharge-box" onclick="selectOption('Food Delivery')">
+        <div class="icon">🍕</div>
+        <span>Food Delivery</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Purchases Section -->
+  <div class="recharge-card">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <span>Purchases</span>
+      <button class="btn btn-sm btn-primary mb-0">
+        View All <i class="fas fa-arrow-right"></i>
+      </button>
+    </div>
+    <div class="options-grid">
+      <div class="recharge-box" onclick="selectOption('Online Shopping')">
+        <div class="icon">🛒</div>
+        <span>Online Shopping</span>
+      </div>
+      <div class="recharge-box" onclick="selectOption('Gift Cards')">
+        <div class="icon">🎁</div>
+        <span>Gift Cards</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sponsored Links Section -->
+  <div class="recharge-card">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <span>Sponsored Links</span>
+      <button class="btn btn-sm btn-primary mb-0">
+        View All <i class="fas fa-arrow-right"></i>
+      </button>
+    </div>
+    <div class="options-grid">
+      <div class="recharge-box" onclick="selectOption('Ad 1')">
+        <div class="icon">📢</div>
+        <span>Sponsored Ad 1</span>
+      </div>
+      <div class="recharge-box" onclick="selectOption('Ad 2')">
+        <div class="icon">📢</div>
+        <span>Sponsored Ad 2</span>
+      </div>
+    </div>
+  </div>
+</section>
+
   
 
        
@@ -233,4 +306,11 @@ $(document).ready(function() {
     });
 });
 </script> -->
+
+<script>
+        function selectOption(option) {
+            alert("You have selected " + option);
+            // Here you can replace the alert with any functionality like redirecting or opening a form.
+        }
+    </script>
 @endsection
