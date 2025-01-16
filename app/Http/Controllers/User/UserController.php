@@ -50,5 +50,40 @@ class UserController extends Controller
     
         return redirect()->route('user.profile')->with('success', 'Profile updated successfully!');
     }
+
+
+    public function about(){
+        return view('Web.User.aboutUs');
+    }
+
+    public function services(){
+        return view('Web.User.services');
+    }
+
+    public function payment_history()
+    {
+        return view('Web.User.payment_history');
+    }
+
+    public function privacyAndPolicy()
+    {
+        return view('Web.User.privacyAndPolicy');
+    }
+
+    public function termsAndConditions()
+    {
+        return view('Web.User.terms_And_Conditions');
+    }
+
+    public function refundAndpolicy()
+    {
+        return view('Web.User.RefundAndpolicy');
+    }
+
+    public function contactUs()
+    {
+        return view('Web.User.contactUs');
+    }
+
     
 }
