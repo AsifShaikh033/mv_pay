@@ -1,11 +1,48 @@
-* text=auto eol=lf
+# Laravel specific
+/vendor/
+/node_modules/
+/public/storage
+/storage/*.key
+/storage/app/public
+/storage/framework/cache
+/storage/framework/sessions
+/storage/framework/testing
+/storage/framework/views
+/storage/logs
 
-*.blade.php diff=html
-*.css diff=css
-*.html diff=html
-*.md diff=markdown
-*.php diff=php
+# Laravel environment files
+.env
+.env.*
+.env.backup
 
-/.github export-ignore
-CHANGELOG.md export-ignore
-.styleci.yml export-ignore
+# Composer dependencies
+/vendor/
+
+# Node.js dependencies
+/node_modules/
+
+# Cache files
+/.phpunit.result.cache
+/.php_cs.cache
+
+# Ignored IDE or editor files
+*.swp
+*.swo
+.idea/
+.vscode/
+*.vscode/*
+*.phpstorm.meta.php
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Laravel Mix
+/public/hot
+/public/mix-man
