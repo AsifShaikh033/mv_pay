@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\WebConfigController;
 use App\Http\Controllers\Admin\ManageUserController;
 use App\Http\Controllers\Admin\BannerController;
+use App\Http\Controllers\Admin\TransactionController;
 
 
 
@@ -44,6 +45,9 @@ Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function
     Route::get('/edit-banner/{id}', [BannerController::class, 'banner_edit'])->name('editBanner');
     Route::post('/update-Banner/{id}', [BannerController::class, 'update'])->name('updatbanner');
     Route::delete('/deleteBanner', [BannerController::class, 'destroy'])->name('banner_delete');
+    //Transactions
+    Route::get('/admin/transactions', [TransactionController::class, 'list'])->name('transaction.list');
+
 
 
 

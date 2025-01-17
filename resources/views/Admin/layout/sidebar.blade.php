@@ -1,3 +1,12 @@
+
+
+<style>
+  .active {
+    color: #fff;
+    background-color: #106770ad;
+}
+
+  </style>
 <div class="sidebar" data-background-color="dark">
         <div class="sidebar-logo">
           <!-- Logo Header -->
@@ -28,7 +37,7 @@
         <div class="sidebar-wrapper scrollbar scrollbar-inner">
           <div class="sidebar-content">
             <ul class="nav nav-secondary">
-              <li class="nav-item active">
+              <li class="nav-item ">
                 <a
                   data-bs-toggle="collapse"
                   href="#dashboard"
@@ -55,83 +64,111 @@
                 </span>
                 <h4 class="text-section">Components</h4>
               </li>
-              <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#base">
-                  <i class="fas fa-layer-group"></i>
-                  <p>Configuration</p>
-                  <span class="caret"></span>
-                </a>
-                <div class="collapse" id="base">
-                  <ul class="nav nav-collapse">
-                    <li>
-                      <a href="{{ route('admin.webconfig.edit')}}">
-                        <span class="sub-item">Web Configuration</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="{{ route('admin.banner.list')}}">
-                        <span class="sub-item">Banner</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="components/gridsystem.html">
-                        <span class="sub-item">Grid System</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="components/panels.html">
-                        <span class="sub-item">Panels</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="components/notifications.html">
-                        <span class="sub-item">Notifications</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="components/sweetalert.html">
-                        <span class="sub-item">Sweet Alert</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="components/font-awesome-icons.html">
-                        <span class="sub-item">Font Awesome Icons</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="components/simple-line-icons.html">
-                        <span class="sub-item">Simple Line Icons</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="components/typography.html">
-                        <span class="sub-item">Typography</span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
+   <li class="nav-item">  
+            <a data-bs-toggle="collapse" href="#base"  
+            aria-expanded="{{ Request::routeIs('admin.webconfig.edit') || Request::routeIs('admin.banner.list') ? 'true' : 'false' }}">
+            <i class="fas fa-layer-group"></i>
+            <p>Configuration</p>
+            <span class="caret"></span>
+          </a>
+    <div class="collapse {{ Request::routeIs('admin.webconfig.edit') || Request::routeIs('admin.banner.list') ? 'show' : '' }}" id="base">
+        <ul class="nav nav-collapse">
+              <li>
+                  <a href="{{ route('admin.webconfig.edit') }}" class="{{ Request::routeIs('admin.webconfig.edit') ? 'active' : '' }}">
+                      <span class="sub-item">Web Configuration</span>
+                  </a>
               </li>
-              <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#tables">
-                  <i class="fas fa-table"></i>
-                  <p>Users</p>
-                  <span class="caret"></span>
-                </a>
-                <div class="collapse" id="tables">
-                  <ul class="nav nav-collapse">
-                    <li>
-                      <a href="{{ route('admin.user.list')}}">
-                        <span class="sub-item">User List</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="tables/datatables.html">
-                        <span class="sub-item">Datatables</span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
+              <li>
+                  <a href="{{ route('admin.banner.list') }}" class="{{ Request::routeIs('admin.banner.list') ? 'active' : '' }}">
+                      <span class="sub-item">Banner</span>
+                  </a>
               </li>
+              <li>
+                  <a href="components/gridsystem.html" class="{{ Request::is('components/gridsystem') ? 'active' : '' }}">
+                      <span class="sub-item">Grid System</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="components/panels.html" class="{{ Request::is('components/panels') ? 'active' : '' }}">
+                      <span class="sub-item">Panels</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="components/notifications.html" class="{{ Request::is('components/notifications') ? 'active' : '' }}">
+                      <span class="sub-item">Notifications</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="components/sweetalert.html" class="{{ Request::is('components/sweetalert') ? 'active' : '' }}">
+                      <span class="sub-item">Sweet Alert</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="components/font-awesome-icons.html" class="{{ Request::is('components/font-awesome-icons') ? 'active' : '' }}">
+                      <span class="sub-item">Font Awesome Icons</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="components/simple-line-icons.html" class="{{ Request::is('components/simple-line-icons') ? 'active' : '' }}">
+                      <span class="sub-item">Simple Line Icons</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="components/typography.html" class="{{ Request::is('components/typography') ? 'active' : '' }}">
+                      <span class="sub-item">Typography</span>
+                  </a>
+              </li>
+          </ul>
+      </div>
+  </li>
+
+                <li class="nav-item">
+                    <a data-bs-toggle="collapse" href="#tables" 
+                      aria-expanded="{{ Request::routeIs('admin.user.list') ? 'true' : 'false' }}">
+                        <i class="fas fa-users"></i>
+                        <p>Users</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse {{ Request::routeIs('admin.user.list') ? 'show' : '' }}" id="tables">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="{{ route('admin.user.list') }}" class="{{ Request::routeIs('admin.user.list') ? 'active' : '' }}">
+                                    <span class="sub-item">User List</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="tables/datatables.html" class="{{ Request::is('tables/datatables') ? 'active' : '' }}">
+                                    <span class="sub-item">Datatables</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+             
+                
+                <li class="nav-item">
+                    <a data-bs-toggle="collapse" href="#tables" 
+                      aria-expanded="{{ Request::routeIs('admin.transaction.list') ? 'true' : 'false' }}">
+                      <i class="fas fa-th-list"></i>
+                      <p>Transactions</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse {{ Request::routeIs('admin.transaction.list') ? 'show' : '' }}" id="tables">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="{{ route('admin.transaction.list') }}" class="{{ Request::routeIs('admin.transaction.list') ? 'active' : '' }}">
+                                    <span class="sub-item">Transaction List</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="tables/datatables.html" class="{{ Request::is('tables/datatables') ? 'active' : '' }}">
+                                    <span class="sub-item">Datatables</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
               <li class="nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarLayouts">
                   <i class="fas fa-th-list"></i>
