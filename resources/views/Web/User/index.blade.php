@@ -6,10 +6,25 @@
     height: 350px;
     object-fit: fill;
 }
+
+
+
+
+
 </style>
 <div class="content-body">
-  
+
     <div class="container-fluid py-5">
+
+
+    <div class="scrolling-container mb-3">
+    <div class="scrolling-text">
+        <span>Welcome to my pay</span>
+       
+    </div>
+</div>
+
+
         <div id="carouselExampleInterval" class="carousel slide mb-4" data-bs-ride="carousel">
               <div class="carousel-inner">
               @foreach ($banners as $index => $banner)
@@ -68,7 +83,14 @@
   <!-- Recharge Options -->
   <div class="recharge-card">
     <div class="d-flex justify-content-between align-items-center mb-3">
-      <span>Recharge</span>
+    <!-- <span class="flowing-text">Recharge</span> -->
+    <div class="outPop">
+  <div class="popUpWord">
+  Recharge
+  </div>
+</div>
+
+
       <button class="btn btn-sm btn-primary mb-0">
         View All <i class="fas fa-arrow-right"></i>
       </button>
@@ -120,7 +142,13 @@
   <!-- Loan Section -->
   <div class="recharge-card">
     <div class="d-flex justify-content-between align-items-center mb-3">
-      <span>Loan</span>
+      <!-- <span>Loan</span> -->
+
+      <div class="outPop">
+  <div class="popUpWord">
+  Bill Payments
+  </div>
+</div>
       <button class="btn btn-sm btn-primary mb-0">
         View All <i class="fas fa-arrow-right"></i>
       </button>
@@ -148,7 +176,12 @@
   <!-- Insurance Section -->
   <div class="recharge-card">
     <div class="d-flex justify-content-between align-items-center mb-3">
-      <span>Insurance</span>
+      <!-- <span>Insurance</span> -->
+        <div class="outPop">
+    <div class="popUpWord">
+    Financial Services
+    </div>
+  </div>
       <button class="btn btn-sm btn-primary mb-0">
         View All <i class="fas fa-arrow-right"></i>
       </button>
@@ -173,113 +206,6 @@
     </div>
   </div>
 
-  <!-- Wealth Management Section -->
-  <div class="recharge-card">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-      <span>Wealth Management</span>
-      <button class="btn btn-sm btn-primary mb-0">
-        View All <i class="fas fa-arrow-right"></i>
-      </button>
-    </div>
-    <div class="options-grid">
-      <div class="recharge-box" onclick="selectOption('Investments')">
-        <div class="icon">📈</div>
-        <span>Investments</span>
-      </div>
-      <div class="recharge-box" onclick="selectOption('Mutual Funds')">
-        <div class="icon">💹</div>
-        <span>Mutual Funds</span>
-      </div>
-      <div class="recharge-box" onclick="selectOption('Retirement Planning')">
-        <div class="icon">🛋️</div>
-        <span>Retirement Planning</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Travel Section -->
-  <div class="recharge-card">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-      <span>Travel</span>
-      <button class="btn btn-sm btn-primary mb-0">
-        View All <i class="fas fa-arrow-right"></i>
-      </button>
-    </div>
-    <div class="options-grid">
-      <div class="recharge-box" onclick="selectOption('Flight Booking')">
-        <div class="icon">✈️</div>
-        <span>Flight Booking</span>
-      </div>
-      <div class="recharge-box" onclick="selectOption('Hotel Booking')">
-        <div class="icon">🏨</div>
-        <span>Hotel Booking</span>
-      </div>
-      <div class="recharge-box" onclick="selectOption('Tour Packages')">
-        <div class="icon">🌍</div>
-        <span>Tour Packages</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Transit & Food Section -->
-  <div class="recharge-card">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-      <span>Transit & Food</span>
-      <button class="btn btn-sm btn-primary mb-0">
-        View All <i class="fas fa-arrow-right"></i>
-      </button>
-    </div>
-    <div class="options-grid">
-      <div class="recharge-box" onclick="selectOption('Public Transit')">
-        <div class="icon">🚇</div>
-        <span>Public Transit</span>
-      </div>
-      <div class="recharge-box" onclick="selectOption('Food Delivery')">
-        <div class="icon">🍕</div>
-        <span>Food Delivery</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Purchases Section -->
-  <div class="recharge-card">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-      <span>Purchases</span>
-      <button class="btn btn-sm btn-primary mb-0">
-        View All <i class="fas fa-arrow-right"></i>
-      </button>
-    </div>
-    <div class="options-grid">
-      <div class="recharge-box" onclick="selectOption('Online Shopping')">
-        <div class="icon">🛒</div>
-        <span>Online Shopping</span>
-      </div>
-      <div class="recharge-box" onclick="selectOption('Gift Cards')">
-        <div class="icon">🎁</div>
-        <span>Gift Cards</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Sponsored Links Section -->
-  <div class="recharge-card">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-      <span>Sponsored Links</span>
-      <button class="btn btn-sm btn-primary mb-0">
-        View All <i class="fas fa-arrow-right"></i>
-      </button>
-    </div>
-    <div class="options-grid">
-      <div class="recharge-box" onclick="selectOption('Ad 1')">
-        <div class="icon">📢</div>
-        <span>Sponsored Ad 1</span>
-      </div>
-      <div class="recharge-box" onclick="selectOption('Ad 2')">
-        <div class="icon">📢</div>
-        <span>Sponsored Ad 2</span>
-      </div>
-    </div>
-  </div>
 </section>
 
   

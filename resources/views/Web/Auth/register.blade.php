@@ -5,7 +5,7 @@
 <!-- row -->
 <div class="container-fluid mt-5">
 <div class="row justify-content-center">
-    <div class="col-md-8">
+    <div class="col-md-6 col-lg-12 col-xl-12">
         <div class="card">
             <div class="card-header  justify-content-center"><h2>{{ __('Register') }}</h2></div>
             
