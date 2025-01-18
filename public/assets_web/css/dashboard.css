@@ -235,6 +235,13 @@
  
   font-size: 12px;
 }
+
+
+.carousel-control-next-icon, .carousel-control-prev-icon {
+  width: 1rem !important;
+  height: 1rem !important;
+ 
+}
           }
   
           .recharge_option {
@@ -242,3 +249,92 @@
       font-weight: 600;
   }
   
+
+
+  /* scrolling */
+
+.scrolling-container {
+  width: 100%;
+  overflow: hidden;
+  background-color: transparent;
+  white-space: nowrap;
+}
+
+.scrolling-text {
+display: block;
+animation: scroll-left 10s linear infinite;
+}
+
+.scrolling-text span {
+margin-right: 50px;
+font-size: 20px;
+color: white;
+}
+
+
+
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.popUpWord {
+  text-transform: uppercase;
+  /* font: bold 26vmax/.8 Open Sans, Impact; */
+  background: linear-gradient(to left, yellow, black); /* Gradient from yellow to black */
+  background-size: 200% 100%; /* Set background size to cover the text */
+  background-position: 100% 0; /* Start from right */
+  color: transparent; /* Make the text transparent so background is visible */
+  -webkit-background-clip: text; /* Clip background to the text */
+  display: inline-block;
+  animation: colorFlow 3s linear infinite; /* Animate the background to simulate the color flow */
+}
+
+.outPop {
+  display: inline-block;
+}
+
+@keyframes colorFlow {
+  0% {
+    background-position: 100% 0; /* Start the gradient at the far right */
+  }
+  50% {
+    background-position: 0% 0; /* Move the gradient to the left */
+  }
+  100% {
+    background-position: 100% 0; /* Move the gradient back to the right */
+  }
+}
+
+.carousel-item .active img{
+border-radius: 15px;
+}
+
+
+.popUpWord {
+  text-transform: uppercase;
+  background: linear-gradient(to left, #ffea00, #000000);
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  color: transparent;
+  -webkit-background-clip: text;
+  display: inline-block;
+  animation: colorFlow 3s linear infinite;
+}
+
+@keyframes colorFlow {
+  0% {
+      background-position: 100% 0; /* Start the gradient at the far right */
+  }
+  50% {
+      background-position: 0% 0; /* Move the gradient to the left */
+  }
+  100% {
+      background-position: 100% 0; /* Move the gradient back to the right */
+  }
+}
