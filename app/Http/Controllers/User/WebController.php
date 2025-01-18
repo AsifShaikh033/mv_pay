@@ -37,6 +37,6 @@ class WebController extends Controller
        ];
 
     //    return view('Web.index', compact('banners', 'offers'));
-       return view('Web.user.index', compact('banners', 'offers'));
+       return view('Web.User.index', compact('banners', 'offers'));
    }
 }
