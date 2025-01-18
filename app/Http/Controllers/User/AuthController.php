@@ -58,13 +58,13 @@ class AuthController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'mob_number' => 'required|string|max:15|unique:users',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
+           // 'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
         ], [
             'name.required' => 'Name is required.',
             'email.required' => 'Email is required.',
             'mob_number.required' => 'Mobile number is required.',
-            'image.image' => 'The image must be a valid image file.',
-            'image.mimes' => 'Allowed image types: jpg, jpeg, png, gif.',
+           // 'image.image' => 'The image must be a valid image file.',
+           // 'image.mimes' => 'Allowed image types: jpg, jpeg, png, gif.',
         ]);
 
 

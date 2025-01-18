@@ -9,7 +9,15 @@
         </div>
       </div>
       <a class="brand-logo">
-        <img id="ctl00_imgCompanyLogo" src="{{ asset('assets_web/images/mv.jpg')}}" style="border-width:0px;width: 100px;height: 50px;"/>
+      <img 
+    id="ctl00_imgCompanyLogo" 
+    src="{{ asset('storage/' . (webConfig('logo') ?? '')) }}" 
+    onerror="this.src='{{ asset('assets_web/images/mv.jpg') }}'" 
+   style="border-width:0px;width: 100px;height: 50px;"
+    alt="Logo"
+/>
+
+        <!-- <img id="ctl00_imgCompanyLogo" src="{{ asset('storage/' . webConfig('logo', 'default-image.png')) }}{{ asset('assets_web/images/mv.jpg')}}" style="border-width:0px;width: 100px;height: 50px;"/> -->
       </a>
     </div>
     <div class="header">
