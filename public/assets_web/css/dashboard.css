@@ -71,7 +71,7 @@
   
   /* Services Section */
   .services {
-    padding: 40px;
+    padding: 40px 0;
     text-align: center;
   }
   
@@ -91,7 +91,7 @@
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 200px;
+    /* width: 200px; */
     text-align: center;
     transition: transform 0.3s ease-in-out;
   }
@@ -219,7 +219,7 @@
     }
     .card {
       padding: 10px;
-      width: 80px;
+      /* width: 80px; */
   }
 
   .card .icon {

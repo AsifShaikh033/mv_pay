@@ -46,20 +46,21 @@
     <div class="dlabnav-scroll">
     
         <ul class="metismenu" id="menu">
-            @if(Auth::check()) 
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('user.logout') }}">Logout</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('user.profile') }}">Profile</a>
-            </li>
-            @else
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('login') }}">Login</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('register') }}">Register</a>
-            </li>
+            @if(!Auth::check())  
+
+            <li>
+                  <a id="ctl00_lnkServices" href="{{ route('login') }}">
+                  <i class="basecolor flaticon-381-user-2"></i>
+                  <span class="nav-text">Login</span>
+                  </a>
+              </li>
+            
+              <li class="nav-item">
+              <a class="nav-link" href="{{ route('register') }}">
+               <i class="basecolor flaticon-043-menu"></i>
+                    <span class="nav-text">Register</span>
+                  </a>
+              </li> 
             @endif
         <li>
             <a id="ctl00_lnkServices" href="{{ route('index') }}">
@@ -67,24 +68,27 @@
             <span class="nav-text">Dashboard</span>
             </a>
         </li>
-        <li>
+            @if(Auth::check())  
+            <li>
+                <a href="{{ route('user.profile') }}">
+                <i class="basecolor flaticon-381-user-2"></i>
+                <span class="nav-text">My account</span>
+                </a>
+          </li>
+          @endif
+        <!-- <li>
             <a id="ctl00_lnkServices" href="#">
             <i class="basecolor flaticon-381-user-2"></i>
             <span class="nav-text">Services</span>
             </a>
         </li>
-        <li>
-            <a>
-            <i class="basecolor flaticon-381-user-2"></i>
-            <span class="nav-text">My account</span>
-            </a>
-        </li>
+       
         <li>
             <a>
             <i class="basecolor flaticon-043-menu"></i>
             <span class="nav-text">Payment History</span>
             </a>
-        </li>
+        </li> -->
         <li>
             <a href="{{route('user.privacyAndPolicy')}}">
             <i class="basecolor flaticon-050-info"></i>
@@ -115,6 +119,14 @@
             <span class="nav-text">Contact us</span>
             </a>
         </li>
+        @if(Auth::check())  
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('user.logout') }}">
+                <i class="basecolor flaticon-043-menu"></i>
+                  <span class="nav-text">Logout</span>
+                </a>
+            </li>
+          @endif
         </ul>
     </div>
     </div>

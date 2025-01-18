@@ -1,21 +1,20 @@
-
-
-
-@extends('Web.layout.main')
-
-@section('content')
-<div class="row justify-content-center">
-    <div class="col-md-6">
+@extends('Web.layout.main') 
+@section('content') 
+    <div class="content-body">
+      <!-- row -->
+      <div class="container-fluid mt-5">
+      <div class="row justify-content-center">
+      <div class="col-md-6">
         <div class="card">
-            <div class="card-header">{{ __('Login') }}</div>
-            
+
+            <div class="card-header  justify-content-center"><h2>{{ __('Login') }}</h2></div>
             <div class="card-body">
                 <form method="POST" action="{{ route('loginuser') }}" enctype="multipart/form-data">
                     @csrf
 
                 
                     <div class="mb-3">
-                        <label for="email" class="form-label">{{ __('Email') }}</label>
+                        <label for="email" class="form-label d-block text-start">{{ __('Email') }}</label>
                         <input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" required>
                         @error('email')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -24,7 +23,7 @@
 
                     <!-- Password -->
                     <div class="mb-3">
-                        <label for="password" class="form-label">{{ __('Password') }}</label>
+                        <label for="password" class="form-label d-block text-start">{{ __('Password') }}</label>
                         <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror" required>
                         @error('password')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -38,7 +37,12 @@
                     </div>
                 </form>
             </div>
-        </div>
+
+            </div>
+            </div>
+
+
     </div>
-</div>
-@endsection
+  </div>
+  </div>
+  @endsection

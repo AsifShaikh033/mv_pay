@@ -9,8 +9,7 @@
 </style>
 <div class="content-body">
   
-    <div class="container py-5">
-      <h1 class="text-center text-white">Dashboard</h1>
+    <div class="container-fluid py-5">
         <div id="carouselExampleInterval" class="carousel slide mb-4" data-bs-ride="carousel">
               <div class="carousel-inner">
                     <div class="carousel-item active" data-bs-interval="10000">
