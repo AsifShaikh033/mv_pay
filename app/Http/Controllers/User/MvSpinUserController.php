@@ -40,6 +40,10 @@ class MvSpinUserController extends Controller
         $user = User::where('email', $request->email)->first();
 
         if ($user) {
+
+            if ($user->remember_token !== $request->random_token) {
+                return response()->json(['error' => 'Invalid token.'], 403);
+            }
                  $user->balance += $request->amount;
                   $transaction = new Transaction;
                   $transaction->user_id = $user->id;
@@ -53,7 +57,7 @@ class MvSpinUserController extends Controller
                   $transaction->save(); 
                 $user->save();
 
-            return response()->json(['message' => 'Amount updated successfully.']);
+                return response()->json(['message' => 'Amount updated successfully.'], 200);
         }
 
         return response()->json(['error' => 'User not found.'], 404);

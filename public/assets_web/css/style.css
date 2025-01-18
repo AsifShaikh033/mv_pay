@@ -92,6 +92,7 @@
     --font-family-base: Roboto, sans-serif;
     --font-family-title: Roboto, sans-serif;
     --title: #000;
+    --blue-dark: rgba(0, 150, 136, 0.9);
 }
 
 .gradient_one {
@@ -13201,7 +13202,8 @@ label {
 
 [data-header-position="fixed"] .nav-header {
     position: fixed;
-    left: 1.25rem;
+    /* left: 1.25rem; */
+    left: 0;
 }
 
 @media only screen and (max-width: 767px) {
@@ -13216,9 +13218,10 @@ label {
     display: inline-block;
     text-align: left;
     position: absolute;
-    left: 1.25rem;
-    top: 1.25rem;
-    background-color: var(--nav-headbg);
+    /* left: 1.25rem;
+    top: 1.25rem; */
+    /* background-color: var(--nav-headbg); */
+    background-color: var(--blue-dark);
     transition: all .2s ease;
     z-index: 4;
 }
@@ -13246,7 +13249,7 @@ label {
 
 @media only screen and (max-width: 1400px) {
     .nav-header {
-        height: 5.5rem;
+        height: 6.5rem;
         width: 17rem;
     }
 }
@@ -13502,7 +13505,7 @@ label {
     }
 
 .header {
-    height: 7.5rem;
+    height: 6.5rem;
     z-index: 1;
     position: relative;
     padding: 0rem;
@@ -13721,11 +13724,12 @@ svg.pulse-svg {
         padding-left: 2.5rem;
     }
 
-[data-header-position="fixed"] .header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-}
+    [data-header-position="fixed"] .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
 
 [data-header-position="fixed"] .content-body {
     padding-top: 1.5rem;
@@ -13744,7 +13748,7 @@ svg.pulse-svg {
 }
 
 [data-header-position="fixed"] .dlabnav {
-    margin-top: 0;
+    margin-top: -3px;
 }
 
 [data-sidebar-style="compact"][data-header-position="fixed"][data-container="boxed"][data-layout="vertical"] .header {
@@ -17913,8 +17917,21 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
         transform: rotate(0);
     }
 }
-
 .dlabnav {
+    width: 20.5rem;
+    padding-bottom: 0;
+    height: calc(100% - 0px);
+    position: absolute;
+    top: 6.7rem;
+    /* left: 1.25rem; */
+    left:0;
+    padding-top: 0;
+    z-index: 6;
+    background-color: var(--sidebar-bg);
+    transition: all .2s ease;
+    box-shadow: 0px 15px 30px 0px rgba(0, 0, 0, 0.02);
+}
+/* .dlabnav {
     width: 20.5rem;
     padding-bottom: 0;
     height: calc(100% - 135px);
@@ -17926,14 +17943,20 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
     background-color: var(--sidebar-bg);
     transition: all .2s ease;
     box-shadow: 0px 15px 30px 0px rgba(0, 0, 0, 0.02);
-}
+} */
 
 @media only screen and (max-width: 1400px) {
     .dlabnav {
         top: 6.7rem;
-        height: calc(100% - 125px);
+        height: calc(100% - 0px);
     }
 }
+/* @media only screen and (max-width: 1400px) {
+    .dlabnav {
+        top: 6.7rem;
+        height: calc(100% - 125px);
+    }
+} */
 
 @media only screen and (max-width: 1199px) {
     .dlabnav {
@@ -20625,14 +20648,14 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 
 [data-sidebar-position="fixed"][data-layout="vertical"] .nav-header {
     position: fixed;
-    border-top-left-radius: 1.25rem;
-    border-top-right-radius: 1.25rem;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
 }
 
 [data-sidebar-position="fixed"][data-layout="vertical"] .dlabnav {
     position: fixed;
-    border-bottom-left-radius: 1.25rem;
-    border-bottom-right-radius: 1.25rem;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
 }
 
     [data-sidebar-position="fixed"][data-layout="vertical"] .dlabnav .dlabnav-scroll {
@@ -20721,6 +20744,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
     background-color: var(--primary);
     color: #fff;
     display: inline-block;
+    display: none !important;
     height: 3rem;
     width: 3rem;
     text-align: center;
@@ -25119,8 +25143,10 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 
 [data-sibebarbg="color_1"][data-theme-version="dark"],
 [data-sibebarbg="color_1"] {
-    --sidebar-bg: #001540;
-    --nav-headbg: #001540;
+    --sidebar-bg:  rgba(0, 150, 136, 0.9);;
+    --nav-headbg:  rgba(0, 150, 136, 0.9);;
+    /* --sidebar-bg: #001540;
+    --nav-headbg: #001540; */
 }
 
     [data-sibebarbg="color_1"][data-theme-version="dark"] .hamburger .line,

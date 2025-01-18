@@ -23,12 +23,14 @@
 <link href="{{ asset('assets_web/vendor/select2/css/select2.min.css')}}" rel="stylesheet" />
 <link rel="stylesheet" href="../../../code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" />
 <link href="{{ asset('assets_web/css/style.css')}}" rel="stylesheet" />
+<link href="{{ asset('assets_web/css/dashboard.css')}}" rel="stylesheet" />
 <link href="{{ asset('assets_web/css/serives.css')}}" rel="stylesheet" />
 <link href="{{ asset('assets_web/css/StyleSheet2.css')}}" rel="stylesheet" />
 <link href="{{ asset('assets_web/css/Loader.css')}}" rel="stylesheet" />
 <link href="{{ asset('assets_web/icons/flaticon_1/flaticon_1.css')}}" rel="stylesheet" />
 <link href="{{ asset('assets_web/fonts2/flaticon.css')}}" rel="stylesheet" />
 
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
 <title>{{ webConfig('web_title', 'Default Title') }}</title>
 <meta name="description" content="{{ webConfig('tagline', 'Default Description') }}">
@@ -56,14 +58,14 @@
     <script type="text/javascript" src="../../../ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     
 </head>
-<body>
+<body class="bg-danger">
     
-    <div class="container-fluid">
+    <div class="container-fluid bg-danger">
         <div class="row">
 
             
-            <main class="col-md-12 ms-sm-auto col-lg-12 px-4">
-               @include('Web.layout.sidebar') 
+            <main class="col-md-12 ms-sm-auto col-lg-12 ">
+               <!-- @include('Web.layout.sidebar')  -->
                 @include('Web.layout.header')
 
                 <div class="container mt-5">
