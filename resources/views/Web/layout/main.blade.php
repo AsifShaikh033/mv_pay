@@ -21,7 +21,7 @@
 <link rel="apple-touch-startup-image" href="../../pwa/App_icon/192x192.png" />
 <link href="{{ asset('assets_web/vendor/datatables/css/jquery.dataTables.min.css')}}" rel="stylesheet" />
 <link href="{{ asset('assets_web/vendor/select2/css/select2.min.css')}}" rel="stylesheet" />
-<link rel="stylesheet" href="../../../code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" />
+<link rel="stylesheet" href="{{ asset('assets_web/js/jquery-ui.css')}}" />
 <link href="{{ asset('assets_web/css/style.css')}}" rel="stylesheet" />
 <link href="{{ asset('assets_web/css/dashboard.css')}}" rel="stylesheet" />
 <link href="{{ asset('assets_web/css/serives.css')}}" rel="stylesheet" />

@@ -47,12 +47,20 @@
     
         <ul class="metismenu" id="menu">
             @if(!Auth::check())  
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('login') }}">Login</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('register') }}">Register</a>
-            </li>
+
+            <li>
+                  <a id="ctl00_lnkServices" href="{{ route('login') }}">
+                  <i class="basecolor flaticon-381-user-2"></i>
+                  <span class="nav-text">Login</span>
+                  </a>
+              </li>
+            
+              <li class="nav-item">
+              <a class="nav-link" href="{{ route('register') }}">
+               <i class="basecolor flaticon-043-menu"></i>
+                    <span class="nav-text">Register</span>
+                  </a>
+              </li> 
             @endif
         <li>
             <a id="ctl00_lnkServices" href="{{ route('index') }}">
