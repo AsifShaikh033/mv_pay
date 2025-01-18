@@ -11,7 +11,6 @@ use App\Http\Controllers\User\UserController;
 
         Route::get('/run-storage-link', function () {
             try {
-                // Run the `storage:link` command
                 Artisan::call('storage:link');
 
                 return response()->json([
@@ -26,20 +25,25 @@ use App\Http\Controllers\User\UserController;
             }
         });
 
-        Route::get('/run-migrations-and-seeder', function (Request $request) {
-            $key = $request->query('key');
+        
 
+        Route::get('/run-migrations-and-seeder', function () {
+            $key = request()->query('key'); // Correct way to get query parameters
+        
             if ($key !== env('MIGRATION_KEY')) {
                 return response()->json([
                     'success' => false,
                     'message' => 'Unauthorized access!',
                 ], 403);
             }
-
+        
             try {
+                // Run migrations
                 Artisan::call('migrate', ['--force' => true]);
-              //  Artisan::call('db:seed', ['--force' => true]);
-
+        
+                // Run seeders (uncomment if needed)
+                // Artisan::call('db:seed', ['--force' => true]);
+        
                 return response()->json([
                     'success' => true,
                     'message' => 'Migrations and seeders executed successfully!',
@@ -47,11 +51,10 @@ use App\Http\Controllers\User\UserController;
             } catch (\Exception $e) {
                 return response()->json([
                     'success' => false,
-                    'message' => $e->getMessage(),
+                    'message' => 'Error: ' . $e->getMessage(),
                 ], 500);
             }
         });
-
 
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
     Route::post('/login-user', [AuthController::class, 'loginuser_auth'])->name('loginuser');
