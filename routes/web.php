@@ -8,6 +8,24 @@ use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\UserController;
    
 
+
+        Route::get('/run-storage-link', function () {
+            try {
+                // Run the `storage:link` command
+                Artisan::call('storage:link');
+
+                return response()->json([
+                    'success' => true,
+                    'message' => 'The storage link has been created successfully.',
+                ]);
+            } catch (\Exception $e) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Failed to create the storage link: ' . $e->getMessage(),
+                ], 500);
+            }
+        });
+
         Route::get('/run-migrations-and-seeder', function (Request $request) {
             $key = $request->query('key');
 
