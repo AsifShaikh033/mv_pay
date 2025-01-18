@@ -12,16 +12,12 @@
     <div class="container-fluid py-5">
         <div id="carouselExampleInterval" class="carousel slide mb-4" data-bs-ride="carousel">
               <div class="carousel-inner">
-                    <div class="carousel-item active" data-bs-interval="10000">
-                      <img id="ctl00_imgCompanyLogo" src="{{ asset('assets_web/images/slider/r_1.png') }}" class="d-block"   />
-                    </div>
-                    <div class="carousel-item" data-bs-interval="2000">
-                      <img id="ctl00_imgCompanyLogo" src="{{ asset('assets_web/images/slider/ree.avif') }}" class="d-block "   />
-                    </div>
-                    <div class="carousel-item">
-                      <img id="ctl00_imgCompanyLogo" src="{{ asset('assets_web/images/slider/rere.webp') }}" class="d-block "   />
-                    </div>
-              </div>
+              @foreach ($banners as $index => $banner)
+                <div class="carousel-item {{ $index == 0 ? 'active' : '' }}" data-bs-interval="10000">
+                    <img id="ctl00_imgCompanyLogo" src="{{ asset('storage/' . $banner->image) }}" class="d-block " alt="Banner {{ $index + 1 }}" />
+                </div>
+            @endforeach
+                </div>
               <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
                   data-bs-slide="prev">
                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -33,6 +29,8 @@
                   <span class="visually-hidden">Next</span>
               </button>
         </div>
+
+        
 
          <!-- Main Banner -->
   <section class="hero">
