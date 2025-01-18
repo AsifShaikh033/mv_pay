@@ -1,10 +1,38 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 require __DIR__.'/admin.php';
 use App\Http\Controllers\User\WebController;
 use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\UserController;
+   
+
+        Route::get('/run-migrations-and-seeder', function (Request $request) {
+            $key = $request->query('key');
+
+            if ($key !== env('MIGRATION_KEY')) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Unauthorized access!',
+                ], 403);
+            }
+
+            try {
+                Artisan::call('migrate', ['--force' => true]);
+              //  Artisan::call('db:seed', ['--force' => true]);
+
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Migrations and seeders executed successfully!',
+                ]);
+            } catch (\Exception $e) {
+                return response()->json([
+                    'success' => false,
+                    'message' => $e->getMessage(),
+                ], 500);
+            }
+        });
 
 
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
