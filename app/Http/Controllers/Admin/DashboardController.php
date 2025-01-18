@@ -14,6 +14,6 @@ class DashboardController extends Controller
         $user_count = User::all()->count();
 
         $latestTransactions = Transaction::latest()->take(10)->with('user')->get();
-        return view('admin.index', compact('latestUsers', 'latestTransactions','user_count'));
+        return view('Admin.index', compact('latestUsers', 'latestTransactions','user_count'));
     }
 }
