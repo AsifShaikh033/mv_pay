@@ -93,7 +93,7 @@ class AuthController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'mob_number' => $request->mobile,
+            'mob_number' => $request->mob_number,
             'identity_image' => $imagePath,
             'password' => Hash::make($request->password),
             'referred_by' => $referrer ? $referrer->id : null,
