@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
 class AuthController extends Controller
@@ -58,11 +59,13 @@ class AuthController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'mob_number' => 'required|string|max:15|unique:users',
+            'referral_code' => 'nullable|string|exists:users,referral_code',
            // 'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
         ], [
             'name.required' => 'Name is required.',
             'email.required' => 'Email is required.',
             'mob_number.required' => 'Mobile number is required.',
+            'referral_code.exists' => 'You have entered an invalid referral code.',
            // 'image.image' => 'The image must be a valid image file.',
            // 'image.mimes' => 'Allowed image types: jpg, jpeg, png, gif.',
         ]);
@@ -80,6 +83,12 @@ class AuthController extends Controller
         
             $imagePath = $request->file('image')->store('uploads/user/profile', 'public');
         }
+
+        $referrer = null;
+        if (!empty($request->referral_code)) {
+            $referrer = User::where('referral_code', $request->referral_code)->first();
+        }
+        $uniqueReferralCode = $this->generateUniqueReferralCode();
         
         $user = User::create([
             'name' => $request->name,
@@ -87,11 +96,27 @@ class AuthController extends Controller
             'mob_number' => $request->mobile,
             'identity_image' => $imagePath,
             'password' => Hash::make($request->password),
+            'referred_by' => $referrer ? $referrer->id : null,
+            'referral_code' => $uniqueReferralCode,   
         ]);
         Auth::login($user);
         SetToken($user);
         return redirect()->route('index')->with('success', 'Registration was successful!');
     }
+
+            /**
+         * Generate a unique referral code.
+         *
+         * @return string
+         */
+        private function generateUniqueReferralCode()
+        {
+            do {
+                $referralCode = strtoupper(Str::random(8)); 
+            } while (User::where('referral_code', $referralCode)->exists()); 
+
+            return $referralCode;
+        }
 
     public function logout()
     {

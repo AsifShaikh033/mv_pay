@@ -52,6 +52,21 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
+                    <!-- Referral Code -->
+                        <div class="mb-3">
+                            <label for="referral_code" class="form-label d-block text-start">{{ __('Referral Code') }}</label>
+                            <input 
+                                type="text" 
+                                id="referral_code" 
+                                name="referral_code" 
+                                class="form-control @error('referral_code') is-invalid @enderror" 
+                                value="{{ request('referral_code') ?? old('referral_code') }}" 
+                                {{ request('referral_code') ? 'readonly' : '' }}>
+                            @error('referral_code')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
 
                     <!-- Confirm Password -->
                     {{-- <div class="mb-3">

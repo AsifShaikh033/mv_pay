@@ -82,6 +82,8 @@ use App\Http\Controllers\User\UserController;
         Route::get('/refundAndpolicy', [UserController::class, 'refundAndpolicy'])->name('refundAndpolicy');
         Route::get('/contactUs', [UserController::class, 'contactUs'])->name('contactUs');
         Route::post('/update-profile-user', [UserController::class, 'updateprofile'])->name('updateprofile');
+        //Reffrel
+        Route::get('/reffrel-list', [UserController::class, 'reffrel_list'])->name('reffrellist');
 
     });
     
