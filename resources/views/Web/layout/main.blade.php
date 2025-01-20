@@ -83,25 +83,25 @@
 
     @if(session('success'))
         <script>
-            toastr.success("{{ session('success') }}", 'Success Alert', { timeOut: 5000 });
+            toastr.success("{{ session('success') }}", 'Success Alert', { timeOut: 8000 });
         </script>
     @endif
 
     @if(session('error'))
         <script>
-            toastr.error("{{ session('error') }}", 'Error Alert', { timeOut: 5000 });
+            toastr.error("{{ session('error') }}", 'Error Alert', { timeOut: 8000 });
         </script>
     @endif
 
     @if(session('warning'))
         <script>
-            toastr.warning("{{ session('warning') }}", 'Warning Alert', { timeOut: 5000 });
+            toastr.warning("{{ session('warning') }}", 'Warning Alert', { timeOut: 8000 });
         </script>
     @endif
 
     @if(session('info'))
         <script>
-            toastr.info("{{ session('info') }}", 'Information', { timeOut: 5000 });
+            toastr.info("{{ session('info') }}", 'Information', { timeOut: 8000 });
         </script>
     @endif
 
@@ -111,7 +111,7 @@
             @foreach ($errors->all() as $error)
                 errorMessages += '{{ $error }}\n';
             @endforeach
-            toastr.error(errorMessages, 'Validation Errors', { timeOut: 5000 });
+            toastr.error(errorMessages, 'Validation Errors', { timeOut: 8000 });
         </script>
     @endif
 

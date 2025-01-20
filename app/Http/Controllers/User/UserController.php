@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -55,6 +56,32 @@ class UserController extends Controller
     public function about(){
         return view('Web.User.aboutUs');
     }
+
+    public function reffrel_list()
+    {
+        $user = auth()->user(); 
+        $referralCode = $user->referral_code; 
+        if($user->referral_code === null){
+            $user->referral_code = $this->generateUniqueReferralCode();
+            $user->save();
+        }
+        $referredUsers = User::where('referred_by', $user->id)->get(); 
+        return view('Web.User.reffrel', compact('referralCode', 'referredUsers'));
+    }
+    
+            /**
+         * Generate a unique referral code.
+         *
+         * @return string
+         */
+        private function generateUniqueReferralCode()
+        {
+            do {
+                $referralCode = strtoupper(Str::random(8)); 
+            } while (User::where('referral_code', $referralCode)->exists()); 
+
+            return $referralCode;
+        }
 
     public function services(){
         return view('Web.User.services');

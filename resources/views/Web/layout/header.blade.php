@@ -83,6 +83,12 @@
                 <span class="nav-text">My account</span>
                 </a>
           </li>
+          <li>
+            <a href="{{ route('user.reffrellist') }}">
+            <i class="basecolor flaticon-043-menu"></i>
+            <span class="nav-text">Referral</span>
+            </a>
+        </li>
           @endif
         <!-- <li>
             <a id="ctl00_lnkServices" href="#">
@@ -90,13 +96,7 @@
             <span class="nav-text">Services</span>
             </a>
         </li>
-       
-        <li>
-            <a>
-            <i class="basecolor flaticon-043-menu"></i>
-            <span class="nav-text">Payment History</span>
-            </a>
-        </li> -->
+        -->
         <li>
             <a href="{{route('user.privacyAndPolicy')}}">
             <i class="basecolor flaticon-050-info"></i>
