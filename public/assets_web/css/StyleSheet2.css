@@ -189,8 +189,8 @@ input[type=text] {
 }
 
     .footer_icons > li > a {
-        padding: 10px;
-        font-size: 25px;
+        /* padding: 10px; */
+        /* font-size: 25px; */
         text-align: center;
         color: var(--primary);
     }

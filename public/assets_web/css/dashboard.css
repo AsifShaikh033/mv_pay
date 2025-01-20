@@ -315,6 +315,12 @@ color: white;
 border-radius: 15px;
 }
 
+.carousel-inner .carousel-item img {
+  height: 350px;
+  object-fit: fill;
+  border-radius: 20px;
+}
+
 
 .popUpWord {
   text-transform: uppercase;
@@ -338,3 +344,6 @@ border-radius: 15px;
       background-position: 100% 0; /* Move the gradient back to the right */
   }
 }
+
+
+

@@ -47,7 +47,7 @@
     
         <ul class="metismenu" id="menu">
             @if(!Auth::check())  
-
+          
             <li>
                   <a id="ctl00_lnkServices" href="{{ route('login') }}">
                   <i class="basecolor flaticon-381-user-2"></i>
@@ -75,6 +75,19 @@
                 <span class="nav-text">My account</span>
                 </a>
           </li>
+          <li >
+            <a  href="{{route('user.others')}}">
+                <i class="basecolor flaticon-381-more"></i> 
+                <span class="nav-text">Others</span>
+                </a>
+             
+            </li>
+            <li >
+            <a href="{{route('user.reports')}}">
+            <i class="basecolor flaticon-381-list-1"></i>
+                  <span class="nav-text">Reports</span>
+                  </a>
+            </li>
           @endif
         <!-- <li>
             <a id="ctl00_lnkServices" href="#">
