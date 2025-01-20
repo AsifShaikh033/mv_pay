@@ -9,7 +9,15 @@
         </div>
       </div>
       <a class="brand-logo">
-        <img id="ctl00_imgCompanyLogo" src="{{ asset('assets_web/images/mv.jpg')}}" style="border-width:0px;width: 100px;height: 50px;"/>
+      <img 
+    id="ctl00_imgCompanyLogo" 
+    src="{{ asset('storage/' . (webConfig('logo') ?? '')) }}" 
+    onerror="this.src='{{ asset('assets_web/images/mv.jpg') }}'" 
+   style="border-width:0px;width: 100px;height: 50px;"
+    alt="Logo"
+/>
+
+        <!-- <img id="ctl00_imgCompanyLogo" src="{{ asset('storage/' . webConfig('logo', 'default-image.png')) }}{{ asset('assets_web/images/mv.jpg')}}" style="border-width:0px;width: 100px;height: 50px;"/> -->
       </a>
     </div>
     <div class="header">
@@ -75,6 +83,12 @@
                 <span class="nav-text">My account</span>
                 </a>
           </li>
+          <li>
+            <a href="{{ route('user.reffrellist') }}">
+            <i class="basecolor flaticon-043-menu"></i>
+            <span class="nav-text">Referral</span>
+            </a>
+        </li>
           @endif
         <!-- <li>
             <a id="ctl00_lnkServices" href="#">
@@ -82,13 +96,7 @@
             <span class="nav-text">Services</span>
             </a>
         </li>
-       
-        <li>
-            <a>
-            <i class="basecolor flaticon-043-menu"></i>
-            <span class="nav-text">Payment History</span>
-            </a>
-        </li> -->
+        -->
         <li>
             <a href="{{route('user.privacyAndPolicy')}}">
             <i class="basecolor flaticon-050-info"></i>
