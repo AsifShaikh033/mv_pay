@@ -21,6 +21,21 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'status',
+        'balance',
+        'spin_amount',
+        'last_name',
+        'address',
+        'phone',
+        'country',
+        'state',
+        'city',
+        'zip',
+        'mob_number',
+        'identity_image',
+        'referral_code',
+        'referred_by',
+        'remember_token',
     ];
 
     /**
