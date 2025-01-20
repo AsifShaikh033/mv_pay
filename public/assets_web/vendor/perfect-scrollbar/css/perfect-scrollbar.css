@@ -2,7 +2,8 @@
  * Container style
  */
 .ps {
-  overflow: hidden !important;
+  /* overflow: hidden !important; */
+  overflow-y: scroll;
   overflow-anchor: none;
   -ms-overflow-style: none;
   touch-action: auto;

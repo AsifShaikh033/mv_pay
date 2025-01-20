@@ -65,13 +65,15 @@ use App\Http\Controllers\User\UserController;
     Route::get('/api/mv_pay_winning', [MvSpinUserController::class, 'mv_pay_winning_amount']);
     //Homepage 
     Route::get('/', [WebController::class, 'index'])->name('index');
+   
     // Route::get('/', [WebController::class, 'index'])->name('index');
     //USER START
    
     Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
         // Logout route
         Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-    
+        Route::get('/reports', [WebController::class, 'reports'])->name('reports');
+        Route::get('/others', [WebController::class, 'other'])->name('others');
         //user routes
         Route::get('/profile', [UserController::class, 'profiles'])->name('profile');
         Route::get('/about', [UserController::class, 'about'])->name('about');
