@@ -7,7 +7,9 @@
     object-fit: fill;
 }
 
-
+.carousel-control-next, .carousel-control-prev{
+  width:unset;
+}
 
 
 
@@ -25,10 +27,10 @@
 </div>
 
 
-        <div id="carouselExampleInterval" class="carousel slide mb-4" data-bs-ride="carousel">
+        <div id="carouselExampleInterval pt-2" class="carousel slide mb-4" data-bs-ride="carousel">
               <div class="carousel-inner">
               @foreach ($banners as $index => $banner)
-                <div class="carousel-item {{ $index == 0 ? 'active' : '' }}" data-bs-interval="10000">
+                <div class="carousel-item p-0 {{ $index == 0 ? 'active' : '' }}" data-bs-interval="10000">
                     <img id="ctl00_imgCompanyLogo" src="{{ asset('storage/' . $banner->image) }}" class="d-block " alt="Banner {{ $index + 1 }}" />
                 </div>
             @endforeach
