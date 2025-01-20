@@ -13,7 +13,7 @@
         <div id="carouselExampleInterval" class="carousel slide mb-4" data-bs-ride="carousel">
               <div class="carousel-inner">
                     <div class="carousel-item active" data-bs-interval="10000">
-                      <img id="ctl00_imgCompanyLogo" src="{{ asset('assets_web/images/slider/r_1.png') }}" class="d-block"   />
+                      <img id="ctl00_imgCompanyLogo" src="{{ asset('assets_web/images/slider/ree.avif') }}" class="d-block"   />
                     </div>
                     <div class="carousel-item" data-bs-interval="2000">
                       <img id="ctl00_imgCompanyLogo" src="{{ asset('assets_web/images/slider/ree.avif') }}" class="d-block "   />
