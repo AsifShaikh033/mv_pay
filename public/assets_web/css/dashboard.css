@@ -183,6 +183,12 @@
               background-color: #e0e0e0;
               transform: scale(1.05);
           }
+
+          .fund-cards {
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            gap: 20px;
+        }
   
           /* Mobile responsiveness */
           @media (max-width: 768px) {
@@ -227,7 +233,7 @@
 }
 
 .card h3 {
-  font-size: 12px;
+  font-size: 10px;
   margin-bottom: 0px;
 }
 

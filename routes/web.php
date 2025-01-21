@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 require __DIR__.'/admin.php';
 use App\Http\Controllers\User\WebController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\UserController;
    
@@ -86,6 +87,8 @@ use App\Http\Controllers\User\UserController;
         Route::post('/update-profile-user', [UserController::class, 'updateprofile'])->name('updateprofile');
         //Reffrel
         Route::get('/reffrel-list', [UserController::class, 'reffrel_list'])->name('reffrellist');
+
+        Route::get('/report/{type}', [ReportController::class, 'showReport'])->name('report.show');
 
     });
     
