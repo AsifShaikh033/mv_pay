@@ -14,7 +14,7 @@
     .other_card {
       
         color: #fff;
-        padding: 20px;
+        /* padding: 20px; */
         width: calc(33.333% - 20px); /* Default width for larger screens */
         border-radius: 10px;
         text-align: center;
@@ -45,12 +45,17 @@
 
       
         .other_icon {
-    font-size: 1rem;
+    font-size: 2rem;
     margin-bottom: 5px;
 }
 
+.other_icon img {
+    width: 100%;
+    height: 100%;
+}
+
 .other_card h3 {
-    font-size: 10px;
+    font-size: 9px;
 }
     }
     
@@ -64,7 +69,9 @@
               
                 <!-- Payment Request -->
                 <div class="card other_card" style="cursor: pointer;" onclick="window.location=''">
-                    <div class="other_icon">💸</div>
+                    <div class="other_icon">
+                        <img src="{{ asset('assets_web/images/others_services/payment_staus.png') }}" width="100px" height="100px" alt="">
+                            </div>
                     <h3>Payment Request</h3>
                 </div>
 
@@ -75,21 +82,23 @@
                 </div>
 
                 <!-- Add User -->
-                <div class="card other_card" style="cursor: pointer;" onclick="window.location=''">
+                <!-- <div class="card other_card" style="cursor: pointer;" onclick="window.location=''">
                     <div class="other_icon">➕</div>
                     <h3>Add User</h3>
-                </div>
+                </div> -->
 
                 <!-- Day Book -->
-                <div class="card other_card" style="cursor: pointer;" onclick="window.location=''">
+                <!-- <div class="card other_card" style="cursor: pointer;" onclick="window.location=''">
                     <div class="other_icon">📖</div>
                     <h3>Day Book</h3>
-                </div>
+                </div> -->
 
                 <!-- Member List -->
-                <div class="card other_card" style="cursor: pointer;" onclick="window.location=''">
-                    <div class="other_icon">👥</div>
-                    <h3>Member List</h3>
+                <div class="card other_card" style="cursor: pointer;" onclick="window.location='{{route('user.reffrellist')}}'">
+                    <div class="other_icon">
+                    <img src="{{ asset('assets_web/images/others_services/member_list.png') }}"  width="100px" height="100px"  alt="">
+                    </div>
+                    <h3>Member Refer List</h3>
                 </div>
 
                 <!-- Commission Report -->
@@ -100,7 +109,10 @@
 
                 <!-- Fund Transaction -->
                 <div class="card other_card" style="cursor: pointer;" onclick="window.location=''">
-                    <div class="other_icon">💰</div>
+                    <div class="other_icon">
+                    <img src="{{ asset('assets_web/images/others_services/fund_trans.png') }}" width="100px" height="100px" alt="">
+              
+                    </div>
                     <h3>Fund Transaction</h3>
                 </div>
             </div>
