@@ -189,6 +189,11 @@
             grid-template-columns: repeat(2,1fr);
             gap: 20px;
         }
+
+        .icon img {
+          width: 100%;
+          height: auto;
+      }
   
           /* Mobile responsiveness */
           @media (max-width: 768px) {
