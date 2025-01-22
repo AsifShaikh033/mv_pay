@@ -1,17 +1,7 @@
 @extends('Web.layout.main')
 
 @section('content')
-<style>
-  .carousel-inner .carousel-item img {
-    height: 350px;
-    object-fit: fill;
-}
 
-
-
-
-
-</style>
 <div class="content-body">
 
     <div class="container-fluid py-5">
@@ -45,6 +35,24 @@
               </button>
         </div>
 
+         <!-- Fund wallet Section -->
+  <section class="services">
+   
+   <div class="fund-cards">
+     <div class="card">
+       <div class="icon">
+       <img src="{{ asset('assets_web/images/others_services/add_fund.gif') }}" alt="">
+       </div>
+       <h3>Add Fund</h3>
+     </div>
+     <div class="card">
+       <div class="icon">
+       <img src="{{ asset('assets_web/images/others_services/ff.gif') }}" alt="">
+       </div>
+       <h3>Cash Wallet</h3>
+     </div>
+   </div>
+ </section>
         
 
          <!-- Main Banner -->
@@ -55,6 +63,8 @@
       <button class="cta-btn">Pay Bills</button>
     </div>
   </section>
+
+ 
 
   <!-- Services Section -->
   <section class="services">
@@ -80,13 +90,49 @@
   </section>
 
   <section>
-  <!-- Recharge Options -->
+
+ <!-- Recharge Options -->
+ <div class="recharge-card">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <!-- <span>Loan</span> -->
+
+      <div class="outPop">
+        <div class="popUpWord">
+          Recharge
+        </div>
+      </div>
+      <button class="btn btn-sm btn-primary mb-0">
+        View All <i class="fas fa-arrow-right"></i>
+      </button>
+    </div>
+    <div class="options-grid">
+      <div class="recharge-box" onclick="selectOption('Prepaid')">
+        <div class="icon">📱</div> <!-- Updated to Prepaid icon -->
+        <span>Prepaid</span>
+      </div>
+      <div class="recharge-box" onclick="selectOption('Postpaid')">
+        <div class="icon">📞</div> <!-- Updated to Postpaid icon -->
+        <span>Postpaid</span>
+      </div>
+      <div class="recharge-box" onclick="selectOption('DTH')">
+        <div class="icon">📡</div> <!-- Updated to DTH icon -->
+        <span>DTH</span>
+      </div>
+      <div class="recharge-box" onclick="selectOption('Google Play')">
+        <div class="icon">🎮</div> <!-- Updated to Google Play icon -->
+        <span>Google Play</span>
+      </div>
+    </div>
+</div>
+
+
+ <!-- Loan Section -->
   <div class="recharge-card">
     <div class="d-flex justify-content-between align-items-center mb-3">
     <!-- <span class="flowing-text">Recharge</span> -->
     <div class="outPop">
   <div class="popUpWord">
-  Recharge
+    Bill Payments
   </div>
 </div>
 
@@ -139,39 +185,8 @@
     </div>
   </div>
 
-  <!-- Loan Section -->
-  <div class="recharge-card">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-      <!-- <span>Loan</span> -->
-
-      <div class="outPop">
-  <div class="popUpWord">
-  Bill Payments
-  </div>
-</div>
-      <button class="btn btn-sm btn-primary mb-0">
-        View All <i class="fas fa-arrow-right"></i>
-      </button>
-    </div>
-    <div class="options-grid">
-      <div class="recharge-box" onclick="selectOption('Personal Loan')">
-        <div class="icon">💵</div>
-        <span>Personal Loan</span>
-      </div>
-      <div class="recharge-box" onclick="selectOption('Home Loan')">
-        <div class="icon">🏠</div>
-        <span>Home Loan</span>
-      </div>
-      <div class="recharge-box" onclick="selectOption('Car Loan')">
-        <div class="icon">🚗</div>
-        <span>Car Loan</span>
-      </div>
-      <div class="recharge-box" onclick="selectOption('Education Loan')">
-        <div class="icon">🎓</div>
-        <span>Education Loan</span>
-      </div>
-    </div>
-  </div>
+  
+ 
 
   <!-- Insurance Section -->
   <div class="recharge-card">

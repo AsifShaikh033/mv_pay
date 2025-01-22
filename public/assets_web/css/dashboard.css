@@ -183,6 +183,17 @@
               background-color: #e0e0e0;
               transform: scale(1.05);
           }
+
+          .fund-cards {
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            gap: 20px;
+        }
+
+        .icon img {
+          width: 100%;
+          height: auto;
+      }
   
           /* Mobile responsiveness */
           @media (max-width: 768px) {
@@ -198,14 +209,16 @@
               .recharge-box {
                 padding: 0px;
             }
-
+            .hero {
+              padding: 20px;
+          }
             .service-cards {
               display: grid;
               grid-template-columns: repeat(4,1fr);
               gap: 10px;
           }
           .hero h1 {
-            font-size: 26px;
+            font-size: 22px;
             margin-bottom: 20px;
         }
 
@@ -227,7 +240,7 @@
 }
 
 .card h3 {
-  font-size: 12px;
+  font-size: 10px;
   margin-bottom: 0px;
 }
 
@@ -315,6 +328,12 @@ color: white;
 border-radius: 15px;
 }
 
+.carousel-inner .carousel-item img {
+  height: 350px;
+  object-fit: fill;
+  border-radius: 20px;
+}
+
 
 .popUpWord {
   text-transform: uppercase;
@@ -336,5 +355,89 @@ border-radius: 15px;
   }
   100% {
       background-position: 100% 0; /* Move the gradient back to the right */
+  }
+}
+
+.card h4 {
+  font-size: 20px;
+  color: #003d5b;
+}
+/* refrel code */
+
+.btn-facebook {
+  background-color: #3b5998!important;
+  color: white!important;
+  font-size: 16px;
+  padding: 12px 30px;
+  transition: transform 0.3s ease-in-out, background-color 0.3s ease;
+}
+
+.btn-twitter {
+  background-color: #1da1f2!important;
+  color: white!important;
+  font-size: 16px;
+  padding: 12px 30px;
+  transition: transform 0.3s ease-in-out, background-color 0.3s ease;
+}
+
+.btn-whatsapp {
+  background-color: #25d366 !important;
+  color: white!important;
+  font-size: 16px;
+  padding: 12px 30px;
+  transition: transform 0.3s ease-in-out, background-color 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .btn-facebook, .btn-twitter, .btn-whatsapp {
+    font-size: 14px;
+    padding: 10px 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  .btn-facebook, .btn-twitter, .btn-whatsapp {
+    font-size: 14px; /* Reduced font size */
+    padding: 10px 20px; /* Reduced padding */
+  }
+  .d-flex {
+    flex-direction: column;
+    gap: 8px; /* Reduced gap between buttons */
+  }
+
+  .btn-facebook, .btn-twitter, .btn-whatsapp {
+    width: 100%; /* Make buttons take up full width */
+    text-align: center;
+  }
+}
+
+/* Hover Effects for Buttons */
+.btn-facebook:hover {
+  transform: scale(1.1);
+  background-color: #3b5998;
+}
+
+.btn-twitter:hover {
+  transform: scale(1.1);
+  background-color: #1da1f2;
+}
+
+.btn-whatsapp:hover {
+  transform: scale(1.1);
+  background-color: #25d366;
+}
+
+/* Gradient Header */
+.bg-gradient {
+  background: linear-gradient(135deg, #4e73df, #1cc88a);
+}
+
+
+@keyframes fadeIn {
+  0% {
+      opacity: 0;
+  }
+  100% {
+      opacity: 1;
   }
 }
