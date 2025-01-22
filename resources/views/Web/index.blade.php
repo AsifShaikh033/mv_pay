@@ -1,7 +1,12 @@
 @extends('Web.layout.main')
 
 @section('content')
-
+<style>
+    .icon img {
+    width: 100%;
+    height: 100%;
+}
+</style>
 <!-- Banner Slider Section -->
 <div id="bannerSlider" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
