@@ -65,8 +65,14 @@ class UserController extends Controller
             $user->referral_code = $this->generateUniqueReferralCode();
             $user->save();
         }
+        $subcription = false;
+        $subscriptionStatus = checkSubcription($user);
+if($subscriptionStatus == 1){
+    $subcription = true;
+}
+
         $referredUsers = User::where('referred_by', $user->id)->get(); 
-        return view('Web.User.reffrel', compact('referralCode', 'referredUsers'));
+        return view('Web.User.reffrel', compact('referralCode', 'referredUsers', 'subcription'));
     }
     
             /**

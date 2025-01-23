@@ -97,4 +97,35 @@ if (!function_exists('send_spin_chance')) {
             ], 500);
         }
     }
+
+
+    function checkSubcription(User $user)
+    { 
+       
+    
+        try {
+            $response = Http::get(env('MVivsionURL') . '/api/chech-subcription', [
+                'email' => $user->email, 
+                //'random_token' => $randomToken, 
+            ]);
+   
+    if ($response->successful()) {
+        $responseData = $response->json();
+
+        if (isset($responseData['subscription'])) {
+            $subscription = $responseData['subscription']; 
+        }
+
+        return $subscription; // Return the subscription status
+    } else {
+                return response()->json([
+                    'message' => 'Token update failed on mvpay.',
+                ], 500);
+            }
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error sending token to mvpay: ' . $e->getMessage(),
+            ], 500);
+        }
+    }
 }

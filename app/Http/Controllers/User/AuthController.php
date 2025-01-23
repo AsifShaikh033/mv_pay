@@ -59,7 +59,7 @@ class AuthController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'mob_number' => 'required|string|max:15|unique:users',
-            'referral_code' => 'nullable|string|exists:users,referral_code',
+            'referral_code' => 'required|string|exists:users,referral_code',
            // 'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
         ], [
             'name.required' => 'Name is required.',
