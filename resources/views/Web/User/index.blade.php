@@ -43,7 +43,7 @@
          <!-- Fund wallet Section -->
   <section class="pb-3">
    
-   <div class="fund-cards row">
+   <div class="fund-cards row gap-0">
      <div class="col-6 px-1">
      <div class="card">
        <div class="icon">
@@ -78,7 +78,7 @@
   <!-- Services Section -->
   <section class="services">
     <h2 class="text-light">Popular Services</h2>
-    <div class="service-cards row">
+    <div class="service-cards row gap-0">
       <div class="col-md-3 col-6 px-1">
       <div class="card ">
         <div class="icon">📱</div>
@@ -122,7 +122,7 @@
         View All <i class="fas fa-arrow-right"></i>
       </button>
     </div>
-    <div class="options-grid row">
+    <div class="options-grid row gap-0">
       <div class="col-md-3 col-6">
       <div class="recharge-box mb-3" onclick="selectOption('Prepaid')">
         <div class="icon">📱</div> 
@@ -166,7 +166,7 @@
         View All <i class="fas fa-arrow-right"></i>
       </button>
     </div>
-    <div class="options-grid row">
+    <div class="options-grid row gap-0">
     <div class="col-md-3 col-6">
       <div class="recharge-box mb-3" onclick="selectOption('Mobile Recharge')">
         <span>📱</span>
@@ -246,7 +246,7 @@
         View All <i class="fas fa-arrow-right"></i>
       </button>
     </div>
-    <div class="options-grid row">
+    <div class="options-grid row gap-0">
     <div class="col-md-3 col-6">
       <div class="recharge-box mb-3" onclick="selectOption('Health Insurance')">
         <div class="icon">💊</div>
