@@ -68,7 +68,7 @@
                <!-- @include('Web.layout.sidebar')  -->
                 @include('Web.layout.header')
 
-                <div class="container mt-5">
+                <div>
                     @yield('content')
                 </div>
             </main>

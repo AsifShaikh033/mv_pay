@@ -39,4 +39,11 @@ class WebController extends Controller
     //    return view('Web.index', compact('banners', 'offers'));
        return view('Web.User.index', compact('banners', 'offers'));
    }
+
+   public function other(){
+        return view('Web.User.other');
+   }
+   public function reports(){
+        return view('Web.User.reports');
+   }
 }
