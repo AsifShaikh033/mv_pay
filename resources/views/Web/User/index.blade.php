@@ -2,7 +2,7 @@
 
 @section('content')
 <style>
-@media (max-width: 500px) {
+@media (min-width: 500px) {
   .w-100{
     height:350px !important;
   } 
@@ -41,20 +41,24 @@
         </div>
 
          <!-- Fund wallet Section -->
-  <section class="services">
+  <section class="pb-3">
    
-   <div class="fund-cards">
+   <div class="fund-cards row">
+     <div class="col-6 px-1">
      <div class="card">
        <div class="icon">
        <img src="{{ asset('assets_web/images/others_services/add_fund.gif') }}" alt="">
        </div>
        <h3>Add Fund</h3>
      </div>
+     </div>
+     <div class="col-6 px-1">
      <div class="card">
        <div class="icon">
        <img src="{{ asset('assets_web/images/others_services/ff.gif') }}" alt="">
        </div>
        <h3>Cash Wallet</h3>
+     </div>
      </div>
    </div>
  </section>
@@ -75,25 +79,25 @@
   <section class="services">
     <h2 class="text-light">Popular Services</h2>
     <div class="service-cards row">
-      <div class="col-md-3 col-6">
+      <div class="col-md-3 col-6 px-1">
       <div class="card ">
         <div class="icon">📱</div>
         <h3>Mobile Recharge</h3>
       </div>
       </div>
-      <div class="col-md-3 col-6">
+      <div class="col-md-3 col-6 px-1">
       <div class="card ">
         <div class="icon">💡</div>
         <h3>Pay Bills</h3>
       </div>
       </div>
-      <div class="col-md-3 col-6">
+      <div class="col-md-3 col-6 px-1">
       <div class="card ">
         <div class="icon">🎬</div>
         <h3>Book Tickets</h3>
       </div>
       </div>
-      <div class="col-md-3 col-6">
+      <div class="col-md-3 col-6 px-1">
       <div class="card ">
         <div class="icon">🛍️</div>
         <h3>Shop Online</h3>
