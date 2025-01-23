@@ -71,19 +71,13 @@
   
   /* Services Section */
   .services {
-    padding: 40px 0;
+    padding: 30px 0;
     text-align: center;
   }
   
   .services h2 {
     font-size: 28px;
     margin-bottom: 20px;
-  }
-  
-  .service-cards {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
   }
   
   .card {
@@ -139,9 +133,8 @@
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 800px;
-    margin: 20px auto;
     text-align: center;
+    margin-bottom:30px;
 }
   
           .recharge-card h2 {
@@ -151,9 +144,7 @@
   
           /* Grid Layout */
           .options-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
+           
             justify-items: center;
         }
   
@@ -209,6 +200,7 @@
               .recharge-box {
                 padding: 0px;
             }
+
             .hero {
               padding: 20px;
           }

@@ -266,6 +266,7 @@ input[type=text] {
         background-color: #fff;
         position: fixed;
         top: 0px;
+        left: 0;
         padding-left: 10px;
         z-index: 3;
         border-bottom: 1px solid #e3e3e3;
