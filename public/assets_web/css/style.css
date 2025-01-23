@@ -45671,7 +45671,7 @@ button#btnBooking {
 
 @media only screen and (min-width:320px) and (max-width:767px) {
     .card {
-        margin-bottom: 30px !important;
+        margin-bottom: 10px !important;
         border-radius: 10px;
     }
 
