@@ -38,6 +38,24 @@
               </button>
         </div>
 
+         <!-- Fund wallet Section -->
+  <section class="services">
+   
+   <div class="fund-cards">
+     <div class="card">
+       <div class="icon">
+       <img src="{{ asset('assets_web/images/others_services/add_fund.gif') }}" alt="">
+       </div>
+       <h3>Add Fund</h3>
+     </div>
+     <div class="card">
+       <div class="icon">
+       <img src="{{ asset('assets_web/images/others_services/ff.gif') }}" alt="">
+       </div>
+       <h3>Cash Wallet</h3>
+     </div>
+   </div>
+ </section>
         
 
          <!-- Main Banner -->
@@ -48,6 +66,8 @@
       <button class="cta-btn">Pay Bills</button>
     </div>
   </section>
+
+ 
 
   <!-- Services Section -->
   <section class="services">

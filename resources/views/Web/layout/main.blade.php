@@ -54,13 +54,17 @@
         .cls_Mobile > span {
             top: 4.4rem;
         }
+        .body{
+            background: linear-gradient(277deg, #8b005e, #14002e) !important;
+            font-family:open sans,sans-serif;
+        }
     </style>
     <script type="text/javascript" src="../../../ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     
 </head>
-<body class="bg-danger">
+<body class="body">
     
-    <div class="container-fluid bg-danger">
+    <div class="container-fluid ">
         <div class="row">
 
             
