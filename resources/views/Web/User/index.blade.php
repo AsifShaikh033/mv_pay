@@ -41,15 +41,15 @@
    <div class="fund-cards">
      <div class="card">
        <div class="icon">
-       <img src="{{ asset('assets_web/images/others_services/6.png') }}" width="100px" height="100px" alt="">
+       <img src="{{ asset('assets_web/images/others_services/add_fund.gif') }}" alt="">
        </div>
        <h3>Add Fund</h3>
      </div>
      <div class="card">
        <div class="icon">
-       <img src="{{ asset('assets_web/images/others_services/ff.gif') }}" width="100px" height="100px" alt="">
+       <img src="{{ asset('assets_web/images/others_services/ff.gif') }}" alt="">
        </div>
-       <h3>Fund Wallet</h3>
+       <h3>Cash Wallet</h3>
      </div>
    </div>
  </section>

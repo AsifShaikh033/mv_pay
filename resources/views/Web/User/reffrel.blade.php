@@ -1,33 +1,47 @@
 @extends('Web.layout.main')
 
 @section('content')
+
 <div class="content-body">
     <!-- Referral Program Section -->
     <div class="mt-5">
-        <div class="card shadow">
-            <div class="card-header bg-primary  text-center">
-                <h3>Referral</h3>
+        <div class="card shadow-lg border-0 rounded-3">
+            <div class="card-header bg-gradient text-white text-center">
+                <h4><i class="fas fa-share-alt"></i> Referral Program</h4>
             </div>
             <div class="card-body">
                 <!-- Referral Code Section -->
                 @if($subcription)
                 <div class="mb-4 text-center">
-                    <h5 class="mb-3 text-primary"><i class="fas fa-share-alt"></i> Your Referral Code</h5>
+                    <h5 class="mb-3 text-primary"><i class="fas fa-link"></i> Your Referral Code</h5>
                     <div class="input-group justify-content-center">
                         <input 
                             type="text" 
                             id="referralCode" 
-                            class="form-control w-50 text-center" 
+                            class="form-control w-75 text-center fs-5" 
                             value="{{ route('register', ['referral_code' => $referralCode]) }}" 
                             readonly>
-                        <button 
-                            id="copyButton" 
-                            class="btn btn-primary ms-2" 
-                            onclick="copyReferralCode()">
-                            Copy Link
-                        </button>
                     </div>
                     <small class="text-muted mt-2 d-block">Share this link with your friends and earn rewards!</small>
+                </div>
+
+                <!-- Social Media Share Buttons -->
+                <div class="text-center mt-4">
+                    <h5 class="text-primary"><i class="fas fa-share-alt"></i> Share on Social Media</h5>
+                    <div class="d-flex justify-content-center gap-3 mt-3">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(route('register', ['referral_code' => $referralCode])) }}" 
+                           target="_blank" class="btn btn-facebook rounded-pill shadow-sm">
+                            <i class="fab fa-facebook-f"></i> Facebook
+                        </a>
+                        <a href="https://twitter.com/intent/tweet?url={{ urlencode(route('register', ['referral_code' => $referralCode])) }}" 
+                           target="_blank" class="btn btn-twitter rounded-pill shadow-sm">
+                            <i class="fab fa-twitter"></i> Twitter
+                        </a>
+                        <a href="https://wa.me/?text={{ urlencode(route('register', ['referral_code' => $referralCode])) }}" 
+                           target="_blank" class="btn btn-whatsapp rounded-pill shadow-sm">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </a>
+                    </div>
                 </div>
 
                 <!-- List of Referred Users -->
@@ -79,23 +93,5 @@
     </div>
 </div>
 
-<script>
-    function copyReferralCode() {
-        const referralInput = document.getElementById('referralCode');
-        const copyButton = document.getElementById('copyButton');
-
-        referralInput.select();
-        referralInput.setSelectionRange(0, 99999);
-        navigator.clipboard.writeText(referralInput.value).then(() => {
-            copyButton.textContent = 'Copied!';
-            copyButton.classList.remove('btn-primary');
-            copyButton.classList.add('btn-success');
-            setTimeout(() => {
-                copyButton.textContent = 'Copy Link';
-                copyButton.classList.remove('btn-success');
-                copyButton.classList.add('btn-primary');
-            }, 2000);
-        });
-    }
-</script>
 @endsection
+
