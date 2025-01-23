@@ -204,11 +204,7 @@
             .hero {
               padding: 20px;
           }
-            .service-cards {
-              display: grid;
-              grid-template-columns: repeat(4,1fr);
-              gap: 10px;
-          }
+           
           .hero h1 {
             font-size: 22px;
             margin-bottom: 20px;
