@@ -53,6 +53,9 @@
     font-size: 36px;
     margin-bottom: 20px;
   }
+  .navajowhite{
+    color: navajowhite;
+}
   
   .hero .cta-btn {
     background-color: white;
@@ -227,7 +230,7 @@
           font-size: 16px;
       }
 
-      .services h2 {
+      .navajowhite{
         color: navajowhite;
     }
     .card {

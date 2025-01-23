@@ -56,19 +56,19 @@
         
 
          <!-- Main Banner -->
-  <section class="hero">
+  <!-- <section class="hero">
     <div class="hero-content">
       <h1>Recharge, Pay Bills & More</h1>
       <button class="cta-btn">Recharge Now</button>
       <button class="cta-btn">Pay Bills</button>
     </div>
-  </section>
+  </section> -->
 
  
 
   <!-- Services Section -->
   <section class="services">
-    <h2>Popular Services</h2>
+    <h2 class="navajowhite">Popular Services</h2>
     <div class="service-cards">
       <div class="card">
         <div class="icon">📱</div>
@@ -107,7 +107,7 @@
     </div>
     <div class="options-grid">
       <div class="recharge-box" onclick="selectOption('Prepaid')">
-        <div class="icon">📱</div> <!-- Updated to Prepaid icon -->
+        <div class="icon">📱</div> 
         <span>Prepaid</span>
       </div>
       <div class="recharge-box" onclick="selectOption('Postpaid')">
@@ -142,10 +142,11 @@
       </button>
     </div>
     <div class="options-grid">
-      <div class="recharge-box" onclick="selectOption('Mobile Recharge')">
-        <span>📱</span>
-        <span>Mobile Recharge</span>
-      </div>
+  <div class="recharge-box" onclick="window.location.href='{{ route('user.recharge.mobile') }}'">
+    <span>📱</span>
+    <span>Mobile Recharge</span>
+  </div>
+
       <div class="recharge-box" onclick="selectOption('DTH Recharge')">
         <div class="icon">📺</div>
         <span>DTH Recharge</span>
