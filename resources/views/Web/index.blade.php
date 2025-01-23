@@ -10,6 +10,7 @@
 <!-- Banner Slider Section -->
 <div id="bannerSlider" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
+        <?php echo '<pre>'; print_r($banners);die;?>
         @foreach($banners as $index => $banner)
             <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
                 <img src="{{ asset('storage/'.$banner->image) }}" class="d-block w-100" alt="{{ $banner->title }}">

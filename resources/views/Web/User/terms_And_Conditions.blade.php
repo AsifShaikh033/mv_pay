@@ -2,7 +2,6 @@
 @section('content')
 <div class="content-body">
   <!-- row -->
-  <div class="container mt-5">
     <div class="card">
       <div class="card-header">
         <h3>Terms & Conditions</h3>
@@ -44,6 +43,5 @@
         </div>
       </div>
     </div>
-  </div>
 </div>
 @endsection
