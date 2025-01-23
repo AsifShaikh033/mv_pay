@@ -7,6 +7,7 @@ use App\Http\Controllers\User\WebController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\User\RechargeController;
    
 
 
@@ -89,7 +90,7 @@ use App\Http\Controllers\User\UserController;
         Route::get('/reffrel-list', [UserController::class, 'reffrel_list'])->name('reffrellist');
 
         Route::get('/report/{type}', [ReportController::class, 'showReport'])->name('report.show');
-
+        Route::get('/recharge/mobile',[RechargeController::class,'mobile'])->name('recharge.mobile');
     });
     
 
