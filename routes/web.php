@@ -91,6 +91,9 @@ use App\Http\Controllers\User\RechargeController;
 
         Route::get('/report/{type}', [ReportController::class, 'showReport'])->name('report.show');
         Route::get('/recharge/mobile',[RechargeController::class,'mobile'])->name('recharge.mobile');
+
+        Route::get('/recharge/plan',[RechargeController::class,'plan'])->name('recharge.plan');
+
     });
     
 

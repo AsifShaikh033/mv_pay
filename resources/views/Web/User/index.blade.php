@@ -47,7 +47,7 @@
      <div class="col-6 px-1">
      <div class="card">
        <div class="icon">
-       <img src="{{ asset('assets_web/images/others_services/add_fund.gif') }}" alt="">
+       <img src="{{ asset('assets_web/images/others_services/add_fund.gif') }}" style="width:100%; height:100%;" alt="">
        </div>
        <h3>Add Fund</h3>
      </div>
@@ -55,7 +55,7 @@
      <div class="col-6 px-1">
      <div class="card">
        <div class="icon">
-       <img src="{{ asset('assets_web/images/others_services/ff.gif') }}" alt="">
+       <img src="{{ asset('assets_web/images/others_services/ff.gif') }}" style="width:100%; height:100%;" alt="">
        </div>
        <h3>Cash Wallet</h3>
      </div>
@@ -82,7 +82,7 @@
     <h2 class="text-light">Popular Services</h2>
     <div class="service-cards row gap-0">
       <div class="col-md-3 col-6 px-1">
-      <div class="card ">
+      <div class="card " onclick="window.location.href='{{ route('user.recharge.mobile') }}'" style="cursor:pointer;">
 
         <div class="icon">📱</div>
         <h3>Mobile Recharge</h3>
@@ -172,18 +172,20 @@
       </button>
     </div>
 
-    <div class="options-grid">
-  <div class="recharge-box" onclick="window.location.href='{{ route('user.recharge.mobile') }}'">
-    <span>📱</span>
-    <span>Mobile Recharge</span>
-  </div>
-
-      <div class="recharge-box" onclick="selectOption('DTH Recharge')">
-  
-        <div class="icon">📺</div>
-        <span>DTH Recharge</span>
-      </div>
-      </div>
+    <div class="options-grid row">
+        <div class="col-md-3 col-6">
+            <div class="recharge-box mb-3" onclick="window.location.href='{{ route('user.recharge.mobile') }}'">
+              <span>📱</span>
+              <span>Mobile Recharge</span>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="recharge-box  mb-3" onclick="selectOption('DTH Recharge')">
+      
+            <div class="icon">📺</div>
+            <span>DTH Recharge</span>
+          </div>
+        </div>
       <div class="col-md-3 col-6">
       <div class="recharge-box mb-3" onclick="selectOption('Data Pack')">
         <div class="icon">🌐</div>

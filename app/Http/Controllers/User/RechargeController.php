@@ -10,4 +10,8 @@ class RechargeController extends Controller
     public function mobile(){
         return view('Web.User.recharge.mobile');
     }
+
+    public function plan(){
+        return view('Web.User.recharge.plan');
+    }
 }
