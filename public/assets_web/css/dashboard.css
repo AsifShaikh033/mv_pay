@@ -98,12 +98,12 @@
   }
   
   .card .icon {
-    font-size: 40px;
+    font-size: 50px;
     margin-bottom: 20px;
   }
   
   .card h3 {
-    font-size: 20px;
+    font-size: 25px;
     color: #003d5b;
   }
   
@@ -219,7 +219,12 @@
 }
 
 .card h3 {
-  font-size: 10px;
+  font-size: 18px;
+  margin-bottom: 0px;
+}
+
+.card h4 {
+  font-size: 14px;
   margin-bottom: 0px;
 }
 

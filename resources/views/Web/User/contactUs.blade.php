@@ -3,7 +3,7 @@
 <div class="content-body">
   <!-- row -->
   <div class="container-fluid">
-    <div class="card">
+    <div class="card" style="margin-top:6rem;">
       <div class="card-header">
         <h3>Contact us</h3>
       </div>
