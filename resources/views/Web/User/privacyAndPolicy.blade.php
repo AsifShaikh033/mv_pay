@@ -10,7 +10,6 @@
 </style>
 <div class="content-body">
   <!-- row -->
-  <div class="container mt-5">
     <div class="card">
       <div class="card-header">
         <h3>Privacy and Policy</h3>
@@ -171,5 +170,4 @@
       </div>
     </div>
   </div>
-</div>
 @endsection
