@@ -3,7 +3,7 @@
 <div class="content-body">
   <!-- row -->
   <div class="container-fluid mt-5">
-    <div class="card">
+    <div class="card" style="margin-top:2rem;">
       <div class="card-header">
         <h3>Refund and policy</h3>
       </div>
