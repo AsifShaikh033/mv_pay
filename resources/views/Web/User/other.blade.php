@@ -75,10 +75,10 @@
 
                 <!-- Payment Status -->
                 <div class="card " style="cursor: pointer;" onclick="window.location=''">
-                    <div class="other_icon">🔄</div>
+                    <div class="other_icon"><img src="{{ asset('assets_web/images/dashboard/payment status.png') }}" width="100px" height="100px" alt=""></div>
                     <h5 class="card-title">Payment Status</h5>
                 </div>
-
+                
                 <!-- Add User -->
                 <!-- <div class="card " style="cursor: pointer;" onclick="window.location=''">
                     <div class="other_icon">➕</div>
@@ -94,14 +94,14 @@
                 <!-- Member List -->
                 <div class="card " style="cursor: pointer;" onclick="window.location='{{route('user.reffrellist')}}'">
                     <div class="other_icon">
-                    <img src="{{ asset('assets_web/images/others_services/member_list.png') }}"  width="100px" height="100px"  alt="">
+                        <img src="{{ asset('assets_web/images/others_services/member_list.png') }}"  width="100px" height="100px"  alt="">
                     </div>
                     <h5 class="card-title">Member Refer List</h5>
                 </div>
 
                 <!-- Commission Report -->
                 <div class="card " style="cursor: pointer;" onclick="window.location=''">
-                    <div class="other_icon">📊</div>
+                    <div class="other_icon"><img src="{{ asset('assets_web/images/dashboard/commission report.png') }}" width="100px" height="100px" alt=""></div>
                     <h5 class="card-title">Commission Report</h5>
                 </div>
 

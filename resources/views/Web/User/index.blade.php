@@ -65,42 +65,45 @@
         
 
          <!-- Main Banner -->
-  <section class="hero">
+  <!-- <section class="hero">
     <div class="hero-content">
       <h1>Recharge, Pay Bills & More</h1>
       <button class="cta-btn">Recharge Now</button>
       <button class="cta-btn">Pay Bills</button>
     </div>
-  </section>
+  </section> -->
 
  
 
   <!-- Services Section -->
   <section class="services">
+
+ 
     <h2 class="text-light">Popular Services</h2>
     <div class="service-cards row gap-0">
       <div class="col-md-3 col-6 px-1">
       <div class="card ">
-        <div class="icon">📱</div>
-        <h3>Mobile Recharge</h3>
+
+      <div class="mb-3"><img src="{{ asset('assets_web/images/dashboard/mobile.png') }}" alt="" width="50"></div> 
+      <h6 class="font-bold">Mobile Recharge</h6>
+    </div>
+  </div>
+  <div class="col-md-3 col-6 px-1">
+    <div class="card ">
+        <div class="mb-3"><img src="{{ asset('assets_web/images/dashboard/electriity.png') }}" alt="" width="50"></div> 
+        <h6 class="font-bold">Pay Bills</h6>
+      </div>
+    </div>
+    <div class="col-md-3 col-6 px-1">
+      <div class="card ">
+        <div class="mb-3"><img src="{{ asset('assets_web/images/dashboard/cinema.png') }}" alt="" width="50"></div> 
+        <h6 class="font-bold">Book Tickets</h6>
       </div>
       </div>
       <div class="col-md-3 col-6 px-1">
       <div class="card ">
-        <div class="icon">💡</div>
-        <h3>Pay Bills</h3>
-      </div>
-      </div>
-      <div class="col-md-3 col-6 px-1">
-      <div class="card ">
-        <div class="icon">🎬</div>
-        <h3>Book Tickets</h3>
-      </div>
-      </div>
-      <div class="col-md-3 col-6 px-1">
-      <div class="card ">
-        <div class="icon">🛍️</div>
-        <h3>Shop Online</h3>
+      <div class="mb-3"><img src="{{ asset('assets_web/images/dashboard/shopping.png') }}" alt="" width="50"></div> 
+        <h6 class="font-bold">Shop Online</h6>
       </div>
       </div>
     </div>
@@ -122,28 +125,30 @@
         View All <i class="fas fa-arrow-right"></i>
       </button>
     </div>
+
     <div class="options-grid row gap-0">
+        <div class="col-md-3 col-6">
+          <div class="recharge-box mb-3 p-2" onclick="selectOption('Prepaid')">
+
+          <div class=""><img src="{{ asset('assets_web/images/dashboard/mobile.png') }}" alt="" width="50"></div> 
+              <span>Prepaid</span>
+          </div>
+        </div>
       <div class="col-md-3 col-6">
-      <div class="recharge-box mb-3" onclick="selectOption('Prepaid')">
-        <div class="icon">📱</div> 
-        <span>Prepaid</span>
-      </div>
-      </div>
-      <div class="col-md-3 col-6">
-      <div class="recharge-box mb-3" onclick="selectOption('Postpaid')">
-        <div class="icon">📞</div> 
+      <div class="recharge-box mb-3 p-2" onclick="selectOption('Postpaid')">
+      <div class=""><img src="{{ asset('assets_web/images/dashboard/postpaid.gif') }}" alt="" width="50"></div> 
         <span>Postpaid</span>
       </div>
       </div>
       <div class="col-md-3 col-6">
-      <div class="recharge-box mb-3" onclick="selectOption('DTH')">
-        <div class="icon">📡</div> 
+      <div class="recharge-box mb-3 p-2" onclick="selectOption('DTH')">
+        <div class=""><img src="{{ asset('assets_web/images/dashboard/dth.png') }}" alt="" width="50"></div> 
         <span>DTH</span>
       </div>
       </div>
       <div class="col-md-3 col-6">
-      <div class="recharge-box mb-3" onclick="selectOption('Google Play')">
-        <div class="icon">🎮</div> 
+      <div class="recharge-box mb-3 p-2" onclick="selectOption('Google Play')">
+          <div class=""><img src="{{ asset('assets_web/images/dashboard/play_game.png') }}" alt="" width="50"></div>  
         <span>Google Play</span>
       </div>
       </div>
@@ -166,72 +171,76 @@
         View All <i class="fas fa-arrow-right"></i>
       </button>
     </div>
+
     <div class="options-grid row gap-0">
-    <div class="col-md-3 col-6">
-      <div class="recharge-box mb-3" onclick="selectOption('Mobile Recharge')">
-        <span>📱</span>
-        <span>Mobile Recharge</span>
-      </div>
-      </div>
       <div class="col-md-3 col-6">
-      <div class="recharge-box mb-3" onclick="selectOption('DTH Recharge')">
-        <div class="icon">📺</div>
-        <span>DTH Recharge</span>
+        <div class="recharge-box mb-3 " onclick="window.location.href='{{ route('user.recharge.mobile') }}'">
+        <div class=""><img src="{{ asset('assets_web/images/dashboard/mobile.png') }}" alt="" width="50"></div> 
+          <span>Mobile Recharge</span>
+        </div>
       </div>
-      </div>
+
       <div class="col-md-3 col-6">
-      <div class="recharge-box mb-3" onclick="selectOption('Data Pack')">
-        <div class="icon">🌐</div>
+        <div class="recharge-box mb-3 " onclick="selectOption('DTH Recharge')">
+    
+            <div class=""><img src="{{ asset('assets_web/images/dashboard/dth.png') }}" alt="" width="50"></div> 
+            <span>DTH Recharge</span>
+        </div>
+        </div>
+
+      <div class="col-md-3 col-6">
+      <div class="recharge-box mb-3 p-2" onclick="selectOption('Data Pack')">
+        <div class=""><img src="{{ asset('assets_web/images/dashboard/data.png') }}" alt="" width="50"></div> 
         <span>Data Pack</span>
       </div>
-      </div>
-      <div class="col-md-3 col-6">
-      <div class="recharge-box mb-3" onclick="selectOption('Electricity Bill')">
-        <div class="icon">⚡</div>
+    </div>
+    <div class="col-md-3 col-6">
+      <div class="recharge-box mb-3 p-2" onclick="selectOption('Electricity Bill')">
+        <div class=""><img src="{{ asset('assets_web/images/dashboard/electriity.png') }}" alt="" width="50"></div> 
         <span>Electricity Bill</span>
       </div>
       </div>
       <div class="col-md-3 col-6">
-      <div class="recharge-box mb-3" onclick="selectOption('Water Bill')">
-        <div class="icon">💧</div>
-        <span>Water Bill</span>
-      </div>
-      </div>
-      <div class="col-md-3 col-6">
-      <div class="recharge-box mb-3" onclick="selectOption('Gas Recharge')">
-        <div class="icon">🔥</div>
-        <span>Gas Recharge</span>
-      </div>
-      </div>
-      <div class="col-md-3 col-6">
-      <div class="recharge-box mb-3" onclick="selectOption('Broadband Recharge')">
-        <div class="icon">🌐</div>
+      <div class="recharge-box mb-3 p-2" onclick="selectOption('Water Bill')">
+      <div class=""><img src="{{ asset('assets_web/images/dashboard/water.png') }}" alt="" width="50"></div> 
+      <span>Water Bill</span>
+    </div>
+  </div>
+  <div class="col-md-3 col-6">
+    <div class="recharge-box mb-3 p-2" onclick="selectOption('Gas Recharge')">
+      <div class=""><img src="{{ asset('assets_web/images/dashboard/gas.png') }}" alt="" width="50"></div> 
+      <span>Gas Recharge</span>
+    </div>
+  </div>
+  <div class="col-md-3 col-6">
+    <div class="recharge-box mb-3 p-2" onclick="selectOption('Broadband Recharge')">
+        <div class=""><img src="{{ asset('assets_web/images/dashboard/broadband.png') }}" alt="" width="50"></div> 
         <span>Broadband Recharge</span>
       </div>
-      </div>
-      <div class="col-md-3 col-6">
-      <div class="recharge-box mb-3" onclick="selectOption('Fastag Recharge')">
-        <div class="icon">🚗</div>
+    </div>
+    <div class="col-md-3 col-6">
+      <div class="recharge-box mb-3 p-2" onclick="selectOption('Fastag Recharge')">
+        <div class=""><img src="{{ asset('assets_web/images/dashboard/fastag.png') }}" alt="" width="50"></div> 
         <span>Fastag Recharge</span>
       </div>
-      </div>
-      <div class="col-md-3 col-6">
-      <div class="recharge-box mb-3" onclick="selectOption('Postpaid Bill')">
-        <div class="icon">📞</div>
+    </div>
+    <div class="col-md-3 col-6">
+      <div class="recharge-box mb-3 p-2" onclick="selectOption('Postpaid Bill')">
+        <div class=""><img src="{{ asset('assets_web/images/dashboard/postpaid.gif') }}" alt="" width="50"></div> 
         <span>Postpaid Bill</span>
       </div>
-      </div>
-      <div class="col-md-3 col-6">
-      <div class="recharge-box mb-3" onclick="selectOption('Cable TV')">
-        <div class="icon">📺</div>
-        <span>Cable TV</span>
-      </div>
+    </div>
+    <div class="col-md-3 col-6">
+      <div class="recharge-box mb-3 p-2" onclick="selectOption('Cable TV')">
+      <div class=""><img src="{{ asset('assets_web/images/dashboard/cable.png') }}" alt="" width="50"></div> 
+      <span>Cable TV</span>
+    </div>
       </div>
     </div>
   </div>
 
   
- 
+  
 
   <!-- Insurance Section -->
   <div class="recharge-card">
@@ -242,32 +251,32 @@
     Financial Services
     </div>
   </div>
-      <button class="btn btn-sm btn-primary mb-0">
-        View All <i class="fas fa-arrow-right"></i>
-      </button>
+  <button class="btn btn-sm btn-primary mb-0">
+    View All <i class="fas fa-arrow-right"></i>
+  </button>
+</div>
+<div class="options-grid row gap-0">
+  <div class="col-md-3 col-6">
+    <div class="recharge-box mb-3 p-2" onclick="selectOption('Health Insurance')">
+      <div class=""><img src="{{ asset('assets_web/images/dashboard/health.png') }}" alt="" width="50"></div> 
+      <span>Health Insurance</span>
     </div>
-    <div class="options-grid row gap-0">
-    <div class="col-md-3 col-6">
-      <div class="recharge-box mb-3" onclick="selectOption('Health Insurance')">
-        <div class="icon">💊</div>
-        <span>Health Insurance</span>
-      </div>
-      </div>
-      <div class="col-md-3 col-6">
-      <div class="recharge-box mb-3" onclick="selectOption('Life Insurance')">
-        <div class="icon">❤️</div>
-        <span>Life Insurance</span>
-      </div>
-      </div>
-      <div class="col-md-3 col-6">
-      <div class="recharge-box mb-3" onclick="selectOption('Car Insurance')">
-        <div class="icon">🚗</div>
-        <span>Car Insurance</span>
-      </div>
-      </div>
-      <div class="col-md-3 col-6">
-      <div class="recharge-box mb-3" onclick="selectOption('Home Insurance')">
-        <div class="icon">🏡</div>
+  </div>
+  <div class="col-md-3 col-6">
+    <div class="recharge-box mb-3 p-2" onclick="selectOption('Life Insurance')">
+      <div class=""><img src="{{ asset('assets_web/images/dashboard/life.png') }}" alt="" width="50"></div> 
+      <span>Life Insurance</span>
+    </div>
+  </div>
+  <div class="col-md-3 col-6">
+    <div class="recharge-box mb-3 p-2" onclick="selectOption('Car Insurance')">
+      <div class=""><img src="{{ asset('assets_web/images/dashboard/car-insurance.png') }}" alt="" width="50"></div> 
+      <span>Car Insurance</span>
+    </div>
+  </div>
+  <div class="col-md-3 col-6">
+    <div class="recharge-box mb-3 p-2" onclick="selectOption('Home Insurance')">
+      <div class=""><img src="{{ asset('assets_web/images/dashboard/home-insurance.png') }}" alt="" width="50"></div> 
         <span>Home Insurance</span>
       </div>
       </div>
