@@ -13736,7 +13736,7 @@ svg.pulse-svg {
 
 @media only screen and (max-width: 1400px) {
     [data-header-position="fixed"] .content-body {
-        padding-top: 3.5rem;
+        padding-top: 1.5rem;
     }
 }
 
@@ -45889,4 +45889,9 @@ button#btnBooking {
 }
 .header-margin-top{
     margin-top:104px;
+}
+@media (max-width: 767px) {
+.header-margin-top{
+    margin-top:65px;
+}
 }
