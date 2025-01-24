@@ -53,6 +53,9 @@
     font-size: 36px;
     margin-bottom: 20px;
   }
+  .navajowhite{
+    color: navajowhite;
+}
   
   .hero .cta-btn {
     background-color: white;
@@ -71,19 +74,13 @@
   
   /* Services Section */
   .services {
-    padding: 40px 0;
+    padding: 30px 0;
     text-align: center;
   }
   
   .services h2 {
     font-size: 28px;
     margin-bottom: 20px;
-  }
-  
-  .service-cards {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
   }
   
   .card {
@@ -139,9 +136,8 @@
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 800px;
-    margin: 20px auto;
     text-align: center;
+    margin-bottom:30px;
 }
   
           .recharge-card h2 {
@@ -151,9 +147,7 @@
   
           /* Grid Layout */
           .options-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
+           
             justify-items: center;
         }
   
@@ -184,39 +178,24 @@
               transform: scale(1.05);
           }
 
-          .fund-cards {
-            display: grid;
-            grid-template-columns: repeat(2,1fr);
-            gap: 20px;
-        }
-
+          
         .icon img {
           width: 100%;
-          height: auto;
+          height: 100%;
       }
   
           /* Mobile responsiveness */
-          @media (max-width: 768px) {
-              .options-grid {
-                  grid-template-columns: repeat(2, 1fr);
-              }
-          }
-  
+         
           @media (max-width: 480px) {
-              .options-grid {
-                  grid-template-columns: repeat(3,1fr);
-              }
+              
               .recharge-box {
                 padding: 0px;
             }
+
             .hero {
               padding: 20px;
           }
-            .service-cards {
-              display: grid;
-              grid-template-columns: repeat(4,1fr);
-              gap: 10px;
-          }
+           
           .hero h1 {
             font-size: 22px;
             margin-bottom: 20px;
@@ -227,7 +206,7 @@
           font-size: 16px;
       }
 
-      .services h2 {
+      .navajowhite{
         color: navajowhite;
     }
     .card {
