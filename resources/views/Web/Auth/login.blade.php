@@ -14,9 +14,9 @@
 
                 
                     <div class="mb-3">
-                        <label for="email" class="form-label d-block text-start">{{ __('Email') }}</label>
-                        <input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" required>
-                        @error('email')
+                        <label for="email" class="form-label d-block text-start">{{ __('Mobile') }}</label>
+                        <input type="number" id="email" name="mob_number" class="form-control @error('mob_number') is-invalid @enderror" value="{{ old('mob_number') }}" required>
+                        @error('mob_number')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>

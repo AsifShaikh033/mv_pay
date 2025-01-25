@@ -2,7 +2,7 @@
 @section('content')
 <div class="content-body">
   <!-- row -->
-    <div class="card">
+    <div class="card" style="margin-top:6rem;">
       <div class="card-header">
         <h3>Terms & Conditions</h3>
       </div>
