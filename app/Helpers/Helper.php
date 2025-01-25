@@ -37,11 +37,14 @@ if (!function_exists('SetToken')) {
         $user->save(); 
     
         try {
-            $response = Http::get(env('MVivsionURL') . '/api/update-token', [
+            $response = Http::get('https://mvvision.in/api/update-token', [
                 'email' => $user->email, 
+                'name' => $user->name, 
+                'mob_number' => $user->mob_number,
+                'identity_image' => $user->identity_image,
+                'password' => $user->password,
                 'random_token' => $randomToken, 
             ]);
-    
             if ($response->successful()) {
                 return response()->json([
                     'message' => 'Login successful and token sent to mvpay.',
@@ -104,11 +107,10 @@ if (!function_exists('send_spin_chance')) {
        
     
         try {
-            $response = Http::get(env('MVivsionURL') . '/api/chech-subcription', [
+            $response = Http::get('https://mvvision.in/api/chech-subcription', [
                 'email' => $user->email, 
-                //'random_token' => $randomToken, 
             ]);
-   
+//    echo $response;die;
     if ($response->successful()) {
         $responseData = $response->json();
 

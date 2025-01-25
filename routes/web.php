@@ -10,6 +10,7 @@ use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\User\RechargeController;
    
 
+Route::get('/api/register-user', [UserController::class, 'registeruser']);
 
         Route::get('/run-storage-link', function () {
             try {

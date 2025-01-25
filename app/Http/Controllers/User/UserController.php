@@ -53,6 +53,32 @@ class UserController extends Controller
     }
 
 
+    public function registeruser(Request $request)
+    {
+        $user = User::where('phone', $request->mob_number)->where('email', $request->email)->first();
+                
+
+        if(!$user){ 
+            $randomCode = $this->generateRandomCode();
+            $imagePath = null;
+            if ($request->hasFile('identity_image')) {
+                $originalPath = $request->identity_image->getClientOriginalName();
+                $modifiedPath = str_replace('uploads/user/profile/', '', $originalPath);
+                $imagePath = $request->identity_image->storeAs('profile_images', $modifiedPath, 'public');
+            }
+            
+            $newUser = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => $request->password,
+                'mob_number' => $request->mob_number,
+            ]);
+            
+        }
+    
+        return response()->json(['error' => 'User Register Success.'], 404);
+    }
+
     public function about(){
         return view('Web.User.aboutUs');
     }
@@ -67,7 +93,7 @@ class UserController extends Controller
         }
         $subcription = false;
         $subscriptionStatus = checkSubcription($user);
-if($subscriptionStatus == 1){
+if($subscriptionStatus == true){
     $subcription = true;
 }
 
