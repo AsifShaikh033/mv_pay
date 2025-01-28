@@ -30,6 +30,7 @@
                                     <tr>
                                         <th>Balance</th>
                                         <th>Cashback</th>
+                                        <th>Category</th>
                                         <th>Status</th>
                                         <th style="width: 10%">Action</th>
                                     </tr>
@@ -42,6 +43,9 @@
                                         </td>
                                         <td>
                                             {{$data->cashback}}
+                                        </td>
+                                        <td>
+                                            {{ ucwords(str_replace('_', ' ', $data->category)) }}
                                         </td>
                                         <td>
                                      @if($data->status == 1)
@@ -96,6 +100,36 @@
                         <label for="priority" class="form-label">Cashback</label>
                         <input type="number" name="cashback" id="cashback" class="form-control" placeholder="Enter Cashback">
                     </div>
+                   
+                        <div class="form-group">
+                            <label for="">Select Ctegory</label>
+                            <select class="form-control" required="required" name="category" id="category"> 
+                              <option value="">Select</option>
+                              <option value="electricity">Electricity</option>
+                              <option value="postpaid">Postpaid </option>
+                              <option value="landline">Landline</option>
+                              <option value="broadband">Broadband</option>
+                              <option value="gas_piped">GAS Piped</option>
+                              <option value="insurance_service">Insurance Service</option>
+                              <option value="water_service">Water Service</option>
+                              <option value="fastag_recharge">Fastag Recharge</option>
+                              <option value="loan_repayment">Loan Repayment</option>
+                              <option value="gas_cylinder">Gas Cylinder</option>
+                              <option value="municipal_services">Municipal Services</option>
+                              <option value="municipal_tax">Municipal Tax</option>
+                              <option value="housing_society">Housing Society</option>
+                              <option value="cable_tv">Cable TV</option>
+                              <option value="clubs_and_associations">Clubs and Associations</option>
+                              <option value="education_fees">Education Fees</option>
+                              <option value="hospital">Hospital</option>
+                              <option value="credit_card">Credit Card</option>
+                              <option value="donation">Donation</option>
+                              <option value="recurring_deposit">Recurring Deposit</option>
+                              <option value="rental_services">Rental Services</option>
+    
+                            </select>
+                        </div>
+                   
                     <div class="form-group mb-3">
                         <label for="status" class="form-label">Status</label>
                         <select name="status" id="status" class="form-control">

@@ -15,8 +15,9 @@ class CreateBalanceCashbackTable extends Migration
     {
         Schema::create('balance_cashbacks', function (Blueprint $table) {
             $table->id(); // Auto-incrementing ID
-            $table->decimal('balance', 10, 2); // Balance column with precision
-            $table->decimal('cashback', 10, 2); // Cashback column with precision
+            $table->integer('balance'); // Balance column with precision
+            $table->integer('cashback'); // Cashback column with precision
+            $table->string('category'); // Cashback column with precision
             $table->tinyInteger('status')->default(0); // Status column with default value 0
             $table->timestamps(); // created_at and updated_at columns
         });

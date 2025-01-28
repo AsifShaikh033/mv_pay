@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class BalanceCashback extends Model
 {
-    protected $fillable = ['balance', 'cashback', 'status'];
+    protected $fillable = ['balance', 'cashback', 'category', 'status'];
 }

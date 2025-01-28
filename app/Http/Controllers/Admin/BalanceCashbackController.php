@@ -20,6 +20,7 @@ class BalanceCashbackController extends Controller
         $request->validate([
            'balance' => 'required|integer',
             'cashback' => 'required|integer',
+            'category' => 'required',
             'status' => 'required|boolean',
         ]);
 
@@ -29,6 +30,7 @@ class BalanceCashbackController extends Controller
           
             'balance' => $request->balance,
             'cashback' => $request->cashback,
+            'category' => $request->category,
             'status' => $request->status,
         ]);
 
@@ -46,6 +48,7 @@ class BalanceCashbackController extends Controller
         $request->validate([
             'balance' => 'required|integer',
             'cashback' => 'required|integer',
+            'category' => 'required',
             'status' => 'required|boolean',
         ]);
 
@@ -54,6 +57,7 @@ class BalanceCashbackController extends Controller
 
         $balanceCashback->balance = $request->balance;
         $balanceCashback->cashback = $request->cashback;
+        $balanceCashback->category = $request->category;
         $balanceCashback->status = $request->status;
         $balanceCashback->save();
 
