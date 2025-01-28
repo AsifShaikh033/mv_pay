@@ -10,7 +10,7 @@
 </style>
 <div class="content-body">
   <!-- row -->
-    <div class="card">
+    <div class="card" style="margin-top:6rem;">
       <div class="card-header">
         <h3>Privacy and Policy</h3>
       </div>

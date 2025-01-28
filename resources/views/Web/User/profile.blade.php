@@ -6,7 +6,7 @@
 <div class="container-fluid mt-5">
 <div class="row justify-content-center">
     <div class="col-md-9">
-        <div class="card">
+        <div class=" card mt-5">
             <div class="card-header  justify-content-center"><h2>{{ __('Profile') }}</h2></div>
             
             <div class="card-body">
