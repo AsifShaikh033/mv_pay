@@ -81,13 +81,13 @@ input[type="search"]:focus, textarea:focus {
             <!-- First Card -->
             <div class="card wallet_back mb-4">
                 <div class="card-body">
-                    <div class="container">
-                        <img src="{{ asset('assets_web/images/wallet/1.png') }}" class="card-img" style="width:100px!important; height;100px;!important" alt="">
-                        <img src="{{ asset('assets_web/images/wallet/2.png') }}" class="card-img" style="width:100px!important; height;100px;!important" alt="">
+                    <div class="d-flex">
+                        <img src="{{ asset('assets_web/images/wallet/1.png') }}"  style="width:50%!important; height;100px;!important" alt="">
+                        <img src="{{ asset('assets_web/images/wallet/2.png') }}" style="width:50%!important; height;100px;!important" alt="">
                     </div>
-                    <div class="container">
-                        <img src="{{ asset('assets_web/images/wallet/3.png') }}" class="card-img" style="width:100px!important; height;100px;!important" alt="">
-                        <img src="{{ asset('assets_web/images/wallet/4.png') }}" class="card-img" style="width:100px!important; height;100px;!important" alt="">
+                    <div class="d-flex">
+                        <img src="{{ asset('assets_web/images/wallet/3a.png') }}"  style="width:50%!important; height;100px;!important" alt="">
+                        <img src="{{ asset('assets_web/images/wallet/4a.png') }}"  style="width:50%!important; height;100px;!important" alt="">
                     </div>
                     <div class="container">
                     
