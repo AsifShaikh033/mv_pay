@@ -197,7 +197,8 @@ Sys.WebForms.PageRequestManager._initialize('ctl00$ctl29', 'aspnetForm', [], [],
             Content body start
         ***********************************-->
             </div>
-            <div class="div_mobile_next_page"><a class="backbtn" id="bckbtn"><i class="fa fa-arrow-left"></i></a><a class="backbtn" id="lblMenuName"></a></div>
+            <div class="div_mobile_next_page">
+                <a class="backbtn" id="bckbtn"><i class="fa fa-arrow-left"></i></a><a class="backbtn" id="lblMenuName"></a></div>
             <div class="content-body">
                 <!-- row -->
 
