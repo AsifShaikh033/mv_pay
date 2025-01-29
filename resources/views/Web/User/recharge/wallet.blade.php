@@ -69,7 +69,15 @@ input[type="search"]:focus, textarea:focus {
     background-position: center; 
    
 }
+.solid {
+    display: flex;
+}
 
+@media screen and (max-width: 400px) {
+    .content-body .container {
+        margin-top: 90px;
+    }
+}
 
 </style>
 
@@ -81,11 +89,11 @@ input[type="search"]:focus, textarea:focus {
             <!-- First Card -->
             <div class="card wallet_back mb-4">
                 <div class="card-body">
-                    <div class="d-flex">
+                    <div class="solid">
                         <img src="{{ asset('assets_web/images/wallet/1.png') }}"  style="width:50%!important; height;100px;!important" alt="">
                         <img src="{{ asset('assets_web/images/wallet/2.png') }}" style="width:50%!important; height;100px;!important" alt="">
                     </div>
-                    <div class="d-flex">
+                    <div class="solid">
                         <img src="{{ asset('assets_web/images/wallet/3a.png') }}"  style="width:50%!important; height;100px;!important" alt="">
                         <img src="{{ asset('assets_web/images/wallet/4a.png') }}"  style="width:50%!important; height;100px;!important" alt="">
                     </div>

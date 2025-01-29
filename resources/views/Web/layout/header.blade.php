@@ -9,10 +9,7 @@
         </div>
       </div>
       <a class="brand-logo">
-      <img 
-    id="ctl00_imgCompanyLogo" 
-    src="{{ asset('storage/' . (webConfig('logo') ?? '')) }}" 
-    onerror="this.src='{{ asset('assets_web/images/mv.jpg') }}'" 
+      <img id="ctl00_imgCompanyLogo" src="{{ asset('storage/' . (webConfig('logo') ?? '')) }}" onerror="this.src='{{ asset('assets_web/images/mv.jpg') }}'" 
    style="border-width:0px;width: 100px;height: 50px;"
     alt="Logo"
 />
@@ -151,8 +148,11 @@
     <div class="menu_overlay"></div>
 </div>
 <div class="div_mobile_next_page">
-    <a class="backbtn" id="bckbtn">
-        <i class="fa fa-arrow-left"></i>
+    <a href='' class="backbtn" id="bckbtn">
+    <img id="ctl00_imgCompanyLogo" src="{{ asset('storage/' . (webConfig('logo') ?? '')) }}" onerror="this.src='{{ asset('assets_web/images/mv.jpg') }}'" 
+  style="border-width:0px;width: 100%;height: 35px;"
+    alt="Logo"
+/>
     </a>
     <a class="backbtn" id="lblMenuName"></a>
 </div>
