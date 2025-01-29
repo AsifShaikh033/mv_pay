@@ -14,4 +14,8 @@ class RechargeController extends Controller
     public function plan(){
         return view('Web.User.recharge.plan');
     }
+
+    public function wallet(){
+        return view('Web.User.recharge.wallet');
+    }
 }
