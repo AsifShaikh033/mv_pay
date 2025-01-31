@@ -48,8 +48,8 @@
                 <div class="card h-100" style="cursor: pointer;" onclick="window.location='{{ route('user.report.show', ['type' => 'payment_report']) }}'">
                     <div class="card-body text-center">
                         <i class="fas fa-credit-card fa-3x mb-3"></i> <!-- Payment Icon -->
-                        <h5 class="card-title">Other Payment Status</h5>
-                        <p class="card-text">View the details of other payments .</p>
+                        <h5 class="card-title">Team's Other Payment Status</h5>
+                        <p class="card-text">View the details of team's other payments .</p>
                     </div>
                 </div>
             </div>
