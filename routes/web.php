@@ -115,6 +115,7 @@ Route::get('/api/register-user', [UserController::class, 'registeruser']);
         Route::get('/recharge/mobile',[RechargeController::class,'mobile'])->name('recharge.mobile');
 
         Route::get('/recharge/plan',[RechargeController::class,'plan'])->name('recharge.plan');
+        Route::get('/wallet',[RechargeController::class,'wallet'])->name('cash.wallet');
 
     });
     

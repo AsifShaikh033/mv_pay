@@ -31,7 +31,7 @@
 <link href="{{ asset('assets_web/fonts2/flaticon.css')}}" rel="stylesheet" />
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <title>{{ webConfig('web_title', 'Default Title') }}</title>
 <meta name="description" content="{{ webConfig('tagline', 'Default Description') }}">
 <link rel="icon" href="{{ asset('storage/' . webConfig('fav_icon', 'default-favicon.ico')) }}" type="image/x-icon">
