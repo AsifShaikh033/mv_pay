@@ -135,11 +135,11 @@
             </a>
         </li>
         @if(Auth::check())  
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('user.logout') }}">
-                <i class="basecolor flaticon-043-menu"></i>
-                  <span class="nav-text">Logout</span>
-                </a>
+            <li class="">
+            <a href="{{route('user.logout')}}">
+            <i class="basecolor flaticon-381-smartphone-2"></i>
+            <span class="nav-text">Logout</span>
+            </a>
             </li>
           @endif
         </ul>

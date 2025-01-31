@@ -37,11 +37,14 @@ if (!function_exists('SetToken')) {
         $user->save(); 
     
         try {
-            $response = Http::get(env('MVivsionURL') . '/api/update-token', [
+            $response = Http::get('https://mvvision.in/api/update-token', [
                 'email' => $user->email, 
+                'name' => $user->name, 
+                'mob_number' => $user->mob_number,
+                'identity_image' => $user->identity_image,
+                'password' => $user->password,
                 'random_token' => $randomToken, 
             ]);
-    
             if ($response->successful()) {
                 return response()->json([
                     'message' => 'Login successful and token sent to mvpay.',
@@ -94,6 +97,36 @@ if (!function_exists('send_spin_chance')) {
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Error sending spin count to vision: ' . $e->getMessage(),
+            ], 500);
+        }
+    }
+
+
+    function checkSubcription(User $user)
+    { 
+       
+    
+        try {
+            $response = Http::get('https://mvvision.in/api/chech-subcription', [
+                'email' => $user->email, 
+            ]);
+//    echo $response;die;
+    if ($response->successful()) {
+        $responseData = $response->json();
+
+        if (isset($responseData['subscription'])) {
+            $subscription = $responseData['subscription']; 
+        }
+
+        return $subscription; // Return the subscription status
+    } else {
+                return response()->json([
+                    'message' => 'Token update failed on mvpay.',
+                ], 500);
+            }
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error sending token to mvpay: ' . $e->getMessage(),
             ], 500);
         }
     }

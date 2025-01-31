@@ -10,6 +10,7 @@ use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\User\RechargeController;
    
 
+Route::get('/api/register-user', [UserController::class, 'registeruser']);
 
         Route::get('/run-storage-link', function () {
             try {
@@ -30,7 +31,7 @@ use App\Http\Controllers\User\RechargeController;
         
 
         Route::get('/run-migrations-and-seeder', function () {
-            $key = request()->query('key'); // Correct way to get query parameters
+            $key = request()->query('key'); 
         
             if ($key !== env('MIGRATION_KEY')) {
                 return response()->json([
@@ -58,6 +59,24 @@ use App\Http\Controllers\User\RechargeController;
             }
         });
 
+
+    Route::get('/clear-cache', function () {
+        try {
+            Artisan::call('cache:clear');
+            Artisan::call('view:clear');
+            
+            return response()->json([
+                'success' => true,
+                'message' => 'Application cache has been cleared successfully.',
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to clear application cache: ' . $e->getMessage(),
+            ], 500);
+        }
+    });
+
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
     Route::post('/login-user', [AuthController::class, 'loginuser_auth'])->name('loginuser');
     Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register');
@@ -65,6 +84,9 @@ use App\Http\Controllers\User\RechargeController;
     //APIS
     Route::get('/api/update-token', [MvSpinUserController::class, 'updateToken']);
     Route::get('/api/mv_pay_winning', [MvSpinUserController::class, 'mv_pay_winning_amount']);
+
+    Route::post('/api/chech-subcription', [HomeController::class, 'chechSubcription']);
+
     //Homepage 
     Route::get('/', [WebController::class, 'index'])->name('index');
    
