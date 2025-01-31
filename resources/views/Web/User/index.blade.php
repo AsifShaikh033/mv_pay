@@ -89,19 +89,19 @@
     </div>
   </div>
   <div class="col-md-3 col-6 px-1">
-    <div class="card ">
+    <div class="card " style="cursor:pointer;">
         <div class="mb-3"><img src="{{ asset('assets_web/images/dashboard/electriity.png') }}" alt="" width="50"></div> 
         <h6 class="font-bold">Pay Bills</h6>
       </div>
     </div>
     <div class="col-md-3 col-6 px-1">
-      <div class="card ">
+      <div class="card " style="cursor:pointer;">
         <div class="mb-3"><img src="{{ asset('assets_web/images/dashboard/cinema.png') }}" alt="" width="50"></div> 
         <h6 class="font-bold">Book Tickets</h6>
       </div>
       </div>
       <div class="col-md-3 col-6 px-1">
-      <div class="card ">
+      <div class="card " style="cursor:pointer;">
       <div class="mb-3"><img src="{{ asset('assets_web/images/dashboard/shopping.png') }}" alt="" width="50"></div> 
         <h6 class="font-bold">Shop Online</h6>
       </div>
@@ -128,7 +128,7 @@
 
     <div class="options-grid row gap-0">
         <div class="col-md-3 col-6">
-          <div class="recharge-box mb-3 p-2" onclick="selectOption('Prepaid')">
+          <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.recharge.mobile') }}'">
 
           <div class=""><img src="{{ asset('assets_web/images/dashboard/mobile.png') }}" alt="" width="50"></div> 
               <span>Prepaid</span>
@@ -150,6 +150,45 @@
       <div class="recharge-box mb-3 p-2" onclick="selectOption('Google Play')">
           <div class=""><img src="{{ asset('assets_web/images/dashboard/play_game.png') }}" alt="" width="50"></div>  
         <span>Google Play</span>
+      </div>
+      </div>
+    </div>
+</div>
+
+
+ <!-- Recharge Options -->
+ <div class="recharge-card services">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <!-- <span>Loan</span> -->
+
+      <div class="outPop">
+        <div class="popUpWord">
+          Offline(Manually Payment)
+        </div>
+      </div>
+      <button class="btn btn-sm btn-primary mb-0">
+        View All <i class="fas fa-arrow-right"></i>
+      </button>
+    </div>
+
+    <div class="options-grid row gap-0">
+        <div class="col-md-3 col-6">
+          <div class="recharge-box mb-3 p-2" onclick="selectOption('Prepaid')">
+
+          <div class=""><img src="{{ asset('assets_web/images/dashboard/mobile.png') }}" alt="" width="50"></div> 
+              <span>Electricity Offline System(Manual)</span>
+          </div>
+        </div>
+      <div class="col-md-3 col-6">
+      <div class="recharge-box mb-3 p-2" onclick="selectOption('Postpaid')">
+      <div class=""><img src="{{ asset('assets_web/images/dashboard/postpaid.gif') }}" alt="" width="50"></div> 
+        <span>Postpaid Offline System(Manual)</span>
+      </div>
+      </div>
+      <div class="col-md-3 col-6">
+      <div class="recharge-box mb-3 p-2" onclick="selectOption('DTH')">
+        <div class=""><img src="{{ asset('assets_web/images/dashboard/dth.png') }}" alt="" width="50"></div> 
+        <span>LIC Payment Offline System(Manual)</span>
       </div>
       </div>
     </div>
