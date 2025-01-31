@@ -57,6 +57,9 @@ class AuthController extends Controller
 
         $validated = $request->validate([
             'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'mob_number' => 'required|string|max:15|unique:users',
+            'referral_code' => 'required|string|exists:users,referral_code',
             'email' => 'required|string|email|max:255|unique:users,email',
             'mob_number' => 'required|string|max:15|unique:users,mob_number',
             'referral_code' => 'required|string|exists:users,referral_code',

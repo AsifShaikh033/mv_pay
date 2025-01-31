@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\WebConfigController;
 use App\Http\Controllers\Admin\ManageUserController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\TransactionController;
+use App\Http\Controllers\Admin\BalanceCashbackController;
 
 
 
@@ -47,6 +48,13 @@ Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function
     Route::delete('/deleteBanner', [BannerController::class, 'destroy'])->name('banner_delete');
     //Transactions
     Route::get('/admin/transactions', [TransactionController::class, 'list'])->name('transaction.list');
+
+    //Balance Cashback
+    Route::get('/balance-cashback', [BalanceCashbackController::class, 'list'])->name('balance.cashback.list');
+    Route::post('/store-balance-cashback', [BalanceCashbackController::class, 'store'])->name('balance.cashback.store');
+    Route::get('/edit-balance-cashback/{id}', [BalanceCashbackController::class, 'edit'])->name('balance.cashback.edit');
+    Route::post('/update-balance-cashback/{id}', [BalanceCashbackController::class, 'update'])->name('balance.cashback.update');
+    Route::delete('/delete-balance-cashback', [BalanceCashbackController::class, 'destroy'])->name('balance.cashback.delete');
 
 
 
