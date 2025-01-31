@@ -55,7 +55,7 @@ class UserController extends Controller
 
     public function registeruser(Request $request)
     {
-        $user = User::where('phone', $request->mob_number)->where('email', $request->email)->first();
+        $user = User::where('phone', $request->mob_number)->first();
                 
 
         if(!$user){ 
@@ -71,7 +71,7 @@ class UserController extends Controller
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => $request->password,
-                'mob_number' => $request->mob_number,
+                'mob_number' => $request->phone,
             ]);
             
         }
