@@ -94,10 +94,10 @@ use App\Http\Controllers\User\RechargeController;
 
         Route::get('/recharge/plan',[RechargeController::class,'plan'])->name('recharge.plan');
         Route::get('/wallet',[RechargeController::class,'wallet'])->name('cash.wallet');
-
+        Route::get('/search/page',[RechargeController::class,'pages'])->name('search.pages'); 
     });
     
 
-
+    
 
 

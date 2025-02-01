@@ -135,19 +135,19 @@
           </div>
         </div>
       <div class="col-md-3 col-6">
-      <div class="recharge-box mb-3 p-2" onclick="selectOption('Postpaid')">
+      <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.search.pages') }}'">
       <div class=""><img src="{{ asset('assets_web/images/dashboard/postpaid.gif') }}" alt="" width="50"></div> 
         <span>Postpaid</span>
       </div>
       </div>
       <div class="col-md-3 col-6">
-      <div class="recharge-box mb-3 p-2" onclick="selectOption('DTH')">
+      <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.search.pages') }}'">
         <div class=""><img src="{{ asset('assets_web/images/dashboard/dth.png') }}" alt="" width="50"></div> 
         <span>DTH</span>
       </div>
       </div>
       <div class="col-md-3 col-6">
-      <div class="recharge-box mb-3 p-2" onclick="selectOption('Google Play')">
+      <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.search.pages') }}'">
           <div class=""><img src="{{ asset('assets_web/images/dashboard/play_game.png') }}" alt="" width="50"></div>  
         <span>Google Play</span>
       </div>
@@ -173,21 +173,21 @@
 
     <div class="options-grid row gap-0">
         <div class="col-md-3 col-6">
-          <div class="recharge-box mb-3 p-2" onclick="selectOption('Prepaid')">
+          <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.search.pages') }}'">
 
-          <div class=""><img src="{{ asset('assets_web/images/dashboard/mobile.png') }}" alt="" width="50"></div> 
+          <div class=""><img src="{{ asset('assets_web/images/wallet/electricity.png') }}" alt="" width="50"></div> 
               <span>Electricity Offline System(Manual)</span>
           </div>
         </div>
       <div class="col-md-3 col-6">
-      <div class="recharge-box mb-3 p-2" onclick="selectOption('Postpaid')">
-      <div class=""><img src="{{ asset('assets_web/images/dashboard/postpaid.gif') }}" alt="" width="50"></div> 
+      <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.search.pages') }}'">
+      <div class=""><img src="{{ asset('assets_web/images/dashboard/mobile.png') }}"  alt="" width="50"></div> 
         <span>Postpaid Offline System(Manual)</span>
       </div>
       </div>
       <div class="col-md-3 col-6">
-      <div class="recharge-box mb-3 p-2" onclick="selectOption('DTH')">
-        <div class=""><img src="{{ asset('assets_web/images/dashboard/dth.png') }}" alt="" width="50"></div> 
+      <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.search.pages') }}'">
+        <div class=""><img src="{{ asset('assets_web/images/wallet/lic.png') }}" alt="" width="50"></div> 
         <span>LIC Payment Offline System(Manual)</span>
       </div>
       </div>
@@ -223,7 +223,7 @@
       </div>
 
       <div class="col-md-3 col-6">
-        <div class="recharge-box mb-3 " onclick="selectOption('DTH Recharge')">
+        <div class="recharge-box mb-3 " onclick="window.location.href='{{ route('user.search.pages') }}'">
     
             <div class=""><img src="{{ asset('assets_web/images/dashboard/dth.png') }}" alt="" width="50"></div> 
             <span>DTH Recharge</span>
@@ -231,53 +231,69 @@
         </div>
 
       <div class="col-md-3 col-6">
-      <div class="recharge-box mb-3 p-2" onclick="selectOption('Data Pack')">
+      <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.search.pages') }}'">
         <div class=""><img src="{{ asset('assets_web/images/dashboard/data.png') }}" alt="" width="50"></div> 
         <span>Data Pack</span>
       </div>
     </div>
     <div class="col-md-3 col-6">
-      <div class="recharge-box mb-3 p-2" onclick="selectOption('Electricity Bill')">
+      <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.search.pages') }}'">
         <div class=""><img src="{{ asset('assets_web/images/dashboard/electriity.png') }}" alt="" width="50"></div> 
         <span>Electricity Bill</span>
       </div>
       </div>
       <div class="col-md-3 col-6">
-      <div class="recharge-box mb-3 p-2" onclick="selectOption('Water Bill')">
+      <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.search.pages') }}'">
       <div class=""><img src="{{ asset('assets_web/images/dashboard/water.png') }}" alt="" width="50"></div> 
       <span>Water Bill</span>
     </div>
   </div>
   <div class="col-md-3 col-6">
-    <div class="recharge-box mb-3 p-2" onclick="selectOption('Gas Recharge')">
+    <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.search.pages') }}'">
       <div class=""><img src="{{ asset('assets_web/images/dashboard/gas.png') }}" alt="" width="50"></div> 
       <span>Gas Recharge</span>
     </div>
   </div>
   <div class="col-md-3 col-6">
-    <div class="recharge-box mb-3 p-2" onclick="selectOption('Broadband Recharge')">
+    <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.search.pages') }}'">
         <div class=""><img src="{{ asset('assets_web/images/dashboard/broadband.png') }}" alt="" width="50"></div> 
         <span>Broadband Recharge</span>
       </div>
     </div>
     <div class="col-md-3 col-6">
-      <div class="recharge-box mb-3 p-2" onclick="selectOption('Fastag Recharge')">
+      <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.search.pages') }}'">
         <div class=""><img src="{{ asset('assets_web/images/dashboard/fastag.png') }}" alt="" width="50"></div> 
         <span>Fastag Recharge</span>
       </div>
     </div>
     <div class="col-md-3 col-6">
-      <div class="recharge-box mb-3 p-2" onclick="selectOption('Postpaid Bill')">
+      <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.search.pages') }}'">
         <div class=""><img src="{{ asset('assets_web/images/dashboard/postpaid.gif') }}" alt="" width="50"></div> 
         <span>Postpaid Bill</span>
       </div>
     </div>
-    <div class="col-md-3 col-6">
-      <div class="recharge-box mb-3 p-2" onclick="selectOption('Cable TV')">
-      <div class=""><img src="{{ asset('assets_web/images/dashboard/cable.png') }}" alt="" width="50"></div> 
-      <span>Cable TV</span>
-    </div>
-      </div>
+        <div class="col-md-3 col-6">
+            <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.search.pages') }}'">
+                <div class=""><img src="{{ asset('assets_web/images/dashboard/cable.png') }}" alt="" width="50">
+                </div> 
+                    <span>Cable TV</span>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.search.pages') }}'">
+                <div class=""><img src="{{ asset('assets_web/images/wallet/8.png') }}" alt="" width="50">
+                </div> 
+                    <span>Ott Subscription</span>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.search.pages') }}'">
+                <div class=""><img src="{{ asset('assets_web/images/wallet/hospital.png') }}" alt="" width="50">
+                </div> 
+                    <span>Hospital</span>
+            </div>
+        </div>
+       
     </div>
   </div>
 
@@ -299,28 +315,46 @@
 </div>
 <div class="options-grid row gap-0">
   <div class="col-md-3 col-6">
-    <div class="recharge-box mb-3 p-2" onclick="selectOption('Health Insurance')">
+    <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.search.pages') }}'">
       <div class=""><img src="{{ asset('assets_web/images/dashboard/health.png') }}" alt="" width="50"></div> 
       <span>Health Insurance</span>
     </div>
   </div>
   <div class="col-md-3 col-6">
-    <div class="recharge-box mb-3 p-2" onclick="selectOption('Life Insurance')">
+    <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.search.pages') }}'">
       <div class=""><img src="{{ asset('assets_web/images/dashboard/life.png') }}" alt="" width="50"></div> 
       <span>Life Insurance</span>
     </div>
   </div>
   <div class="col-md-3 col-6">
-    <div class="recharge-box mb-3 p-2" onclick="selectOption('Car Insurance')">
+    <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.search.pages') }}'">
       <div class=""><img src="{{ asset('assets_web/images/dashboard/car-insurance.png') }}" alt="" width="50"></div> 
       <span>Car Insurance</span>
     </div>
   </div>
-  <div class="col-md-3 col-6">
-    <div class="recharge-box mb-3 p-2" onclick="selectOption('Home Insurance')">
-      <div class=""><img src="{{ asset('assets_web/images/dashboard/home-insurance.png') }}" alt="" width="50"></div> 
-        <span>Home Insurance</span>
+      <div class="col-md-3 col-6">
+        <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.search.pages') }}'">
+          <div class=""><img src="{{ asset('assets_web/images/dashboard/home-insurance.png') }}" alt="" width="50"></div> 
+          <span>Home Insurance</span>
+        </div>
       </div>
+      <div class="col-md-3 col-6">
+        <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.search.pages') }}'">
+          <div class=""><img src="{{ asset('assets_web/images/wallet/6.png') }}" alt="" width="50"></div> 
+          <span>Loan Repayment</span>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.search.pages') }}'">
+          <div class=""><img src="{{ asset('assets_web/images/wallet/education.png') }}" alt="" width="50"></div> 
+          <span>Education Fees</span>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.search.pages') }}'">
+          <div class=""><img src="{{ asset('assets_web/images/wallet/muncipial.png') }}" alt="" width="50"></div> 
+          <span>Muninipal Tax</span>
+        </div>
       </div>
     </div>
   </div>
