@@ -314,6 +314,14 @@
                   </ul>
                 </div>
               </li>
+
+              <li class="nav-item">
+                <a href="{{ route('admin.balance.cashback.list') }}">
+                  <i class="fas fa-file"></i>
+                  <p>Balance Cashback</p>
+                  <span class="badge badge-secondary">1</span>
+                </a>
+              </li>
             </ul>
           </div>
         </div>

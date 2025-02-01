@@ -34,14 +34,14 @@ class AuthController extends Controller
     public function loginuser_auth(Request $request)
     {
         $validated = $request->validate([
-            'email' => 'required|email|max:255',
+            'mob_number' => 'required|string|max:255',
             'password' => 'required|string|min:6',
         ], [
-            'email.required' => 'Email is required.',
+            'mob_number.required' => 'Mobile Number is required.',
             'password.required' => 'Password is required.',
         ]);
     
-        if (Auth::guard('web')->attempt(['email' => $request->email, 'password' => $request->password])) {
+        if (Auth::guard('web')->attempt(['mob_number' => $request->mob_number, 'password' => $request->password])) {
             $user = Auth::guard('web')->user();
              SetToken($user);
             return redirect()->route('index')->with('success', 'Login successful!');
@@ -59,15 +59,21 @@ class AuthController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'mob_number' => 'required|string|max:15|unique:users',
-            'referral_code' => 'nullable|string|exists:users,referral_code',
+            'referral_code' => 'required|string|exists:users,referral_code',
+            'email' => 'required|string|email|max:255|unique:users,email',
+            'mob_number' => 'required|string|max:15|unique:users,mob_number',
+            'referral_code' => 'required|string|exists:users,referral_code',
+            'password' => 'required|string|min:6|max:255',
            // 'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
         ], [
             'name.required' => 'Name is required.',
             'email.required' => 'Email is required.',
+            'email.unique' => 'This email is already registered.', 
             'mob_number.required' => 'Mobile number is required.',
+            'mob_number.unique' => 'This mobile number is already registered.',
             'referral_code.exists' => 'You have entered an invalid referral code.',
-           // 'image.image' => 'The image must be a valid image file.',
-           // 'image.mimes' => 'Allowed image types: jpg, jpeg, png, gif.',
+            'password.required' => 'Password is required.',
+             'password.min' => 'Password must be at least 6 characters.',
         ]);
 
 

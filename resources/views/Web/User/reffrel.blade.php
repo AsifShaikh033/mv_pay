@@ -11,6 +11,7 @@
             </div>
             <div class="card-body">
                 <!-- Referral Code Section -->
+                @if($subcription)
                 <div class="mb-4 text-center">
                     <h5 class="mb-3 text-primary"><i class="fas fa-link"></i> Your Referral Code</h5>
                     <div class="input-group justify-content-center">
@@ -77,6 +78,16 @@
                         </div>
                     @endif
                 </div>
+                @else
+                <div class="mb-4 text-center">
+                   
+                   
+                    <div class="alert alert-warning mt-3 text-center">
+                        <i class="fas fa-exclamation-circle"></i> You don't have any subscription plan so subscribe first then see your referral link.
+                    </div>
+                    
+                </div>
+                @endif
             </div>
         </div>
     </div>
