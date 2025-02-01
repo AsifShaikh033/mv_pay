@@ -17,3 +17,5 @@ class Operator extends Model
         'OperatorName',
     ];
 }
+
+
