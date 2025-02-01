@@ -70,7 +70,7 @@
                     <div class="other_icon">
                         <img src="{{ asset('assets_web/images/others_services/payment_staus.png') }}" width="100px" height="100px" alt="">
                             </div>
-                    <h5 class="card-title">Payment Request</h5>
+                    <h5 class="card-title">Bank details for withdrawal</h5>
                 </div>
 
                 <!-- Payment Status -->

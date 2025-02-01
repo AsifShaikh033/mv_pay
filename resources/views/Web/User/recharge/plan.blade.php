@@ -186,6 +186,21 @@
     font-size: 15px;
     color: lightgrey;
 }
+
+.plan_choose {
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on mobile */
+}
+
+.scroll-right {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-group button {
+    flex-shrink: 0; /* Prevents buttons from shrinking */
+}
 </style>
 </head>
 
@@ -236,7 +251,7 @@
                 </div>
 
                 <div class="plan_choose">
-                    <div class="btn-group" role="group" aria-label="Basic example">
+                    <div class="btn-group scroll-right" role="group" aria-label="Basic example">
                         <button type="button" class="btn btn-primary">Smart Phone</button>
                         <button type="button" class="btn btn-primary">Popular</button>
                         <button type="button" class="btn btn-primary">True 5G Unlimited</button>
@@ -267,7 +282,7 @@
 
                             <div class="validity">
                                 <i class="fa fa-address-book" aria-hidden="true"></i>
-                                <p>Per Day Cost: ₹14.14</p>
+                                <p>Spin cash rewards from ₹2 to ₹20</p>
                                 <button class="btn btn-sm btn-light mb-0" type="submit">show more</button>
                             </div>
                         </div>
@@ -292,7 +307,7 @@
 
                             <div class="validity">
                                 <i class="fa fa-address-book" aria-hidden="true"></i>
-                                <p>Per Day Cost: ₹14.14</p>
+                                <p>Spin cash rewards from ₹2 to ₹20</p>
                                 <button class="btn btn-sm btn-light mb-0" type="submit">show more</button>
                             </div>
                         </div>
@@ -317,7 +332,7 @@
 
                             <div class="validity">
                                 <i class="fa fa-address-book" aria-hidden="true"></i>
-                                <p>Per Day Cost: ₹14.14</p>
+                                <p>Spin cash rewards from ₹2 to ₹20</p>
                                 <button class="btn btn-sm btn-light mb-0" type="submit">show more</button>
                             </div>
                         </div>
