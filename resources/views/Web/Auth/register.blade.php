@@ -193,6 +193,7 @@
     transition: all 0.3s ease-in-out;
 }
 
+
 /* Hover effect */
 .fancy-heading:hover {
     text-shadow: 4px 4px 20px rgba(255, 200, 0, 1);
