@@ -57,6 +57,7 @@ class UserController extends Controller
     {
         $user = User::where('mob_number', $request->mob_number)->first();
                 
+        
 
         if(!$user){ 
             $imagePath = null;
