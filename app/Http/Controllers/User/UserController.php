@@ -23,7 +23,7 @@ class UserController extends Controller
             'email' => 'required|email|unique:users,email,' . Auth::id(),
             'mob_number' => 'nullable|string|max:15',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'password' => 'nullable|string|min:6|confirmed',
+            'password' => 'nullable|string|min:6|',
         ]);
     
         $user = Auth::user();

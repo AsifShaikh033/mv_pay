@@ -1,17 +1,40 @@
 @extends('Web.layout.main')
 
 @section('content')
+<link rel="stylesheet" href="{{ url('public/assets_web/css/profile.css') }}">
 <div class="content-body">
 <!-- row -->
 <div class="container-fluid mt-5">
 <div class="row justify-content-center">
     <div class="col-md-9">
-        <div class=" card mt-5">
-            <div class="card-header  justify-content-center"><h2>{{ __('Profile') }}</h2></div>
-            
-            <div class="card-body">
+        <!-- <div class=" card profile_change mt-5 text-light"> -->
+        <h2 class="fancy-heading mt-5">{{ __('Update Account Details') }}</h2>
+        <div class="box mt-5">
+          
+          <span class="borderLine"></span>
+          
+           
+          
                 <form method="POST" action="{{ route('user.updateprofile') }}" enctype="multipart/form-data">
                     @csrf
+                    
+                    <div class="mb-3 text-center">
+                        <input type="file" id="image" name="image" class="form-control d-none @error('image') is-invalid @enderror" accept="image/*" onchange="previewImage(event)">
+                        
+                        <!-- Default or Uploaded Image -->
+                        <label for="image" class="d-inline-block">
+                            <img id="profilePreview" 
+                                src="{{ $data->identity_image ? url('storage/app/public/' . $data->identity_image) : asset('assets_web/images/profile/default.png') }}" 
+                                alt="Profile Image" 
+                                class="img-fluid rounded-circle" 
+                                style="cursor: pointer; width: 120px; height: 120px; object-fit: cover; border: 2px solid #ccc;">
+                        </label>
+
+                        @error('image')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+
                     <div class="mb-3">
                         <label for="name" class="form-label d-block text-start">{{ __('Name') }}</label>
                         <input type="text" id="name" name="name" class="form-control"  autofocus value="{{$data->name}}">
@@ -34,16 +57,7 @@
                         @enderror
                     </div>
 
-                    <div class="mb-3">
-                        <label for="image" class="form-label d-block text-start">{{ __('Profile Image') }}</label>
-                        <input type="file" id="image" name="image" class="form-control @error('image') is-invalid @enderror" accept="image/*">
-                        @if($data->identity_image)
-                                        <img src="{{ asset('storage/' . $data->identity_image) }}" alt="Logo" class="img-fluid" height="120px" width="120px"/>
-                                        @endif
-                        @error('image')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
+                   
 
                     <div class="mb-3">
                         <label for="password" class="form-label d-block text-start">{{ __('Password') }}</label>
@@ -55,13 +69,23 @@
 
 
                     <div class="d-flex justify-content-between">
-                        <button type="submit" class="btn btn-primary">{{ __('Update') }}</button>
+                        <button type="submit" class="btn btn-info w-100 h-100">{{ __('Update') }}</button>
                     </div>
                 </form>
-            </div>
+          
         </div>
     </div>
 </div>
 </div>
 </div>
+
+<script>
+    function previewImage(event) {
+        const reader = new FileReader();
+        reader.onload = function() {
+            document.getElementById('profilePreview').src = reader.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>
 @endsection
