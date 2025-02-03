@@ -74,28 +74,33 @@ class MvSpinUserController extends Controller
         ]);
 
         $user = User::where('mob_number', $request->phone)->first();
-
+echo "<pre>"; print_r($user);die;
         if ($user) {
-
             if ($user->remember_token !== $request->random_token) {
                 return response()->json(['error' => 'Invalid token.'], 403);
             }
-                 $user->balance += $request->amount;
-                  $transaction = new Transaction;
-                  $transaction->user_id = $user->id;
-                  $transaction->amount =$request->amount;
-                  $transaction->post_balance =$user->balance;
-                  $transaction->trx_type = '+';
-                  $transaction->status = 1;
-                  $transaction->payment_status = 'paid';
-                  $transaction->remark ='spin_direct_winn';
-                //   $transaction->details = 'You have Win '. $request->amount.' Amount from Spin';
-                  $transaction->details = 'You have plan'. $request->recharge_plan .'so you have won '. $request->amount.' amount from your spin';
-                  $transaction->save(); 
-                $user->save();
-
-                return response()->json(['message' => 'Amount updated successfully.'], 200);
+        
+            // Update user balance
+            $user->balance += $request->amount;
+        
+            // Save user with updated balance
+            $user->save();
+        
+            // Create a new transaction
+            $transaction = new Transaction;
+            $transaction->user_id = $user->id;
+            $transaction->amount = $request->amount;
+            $transaction->post_balance = $user->balance;
+            $transaction->trx_type = '+';
+            $transaction->status = 1;
+            $transaction->payment_status = 'paid';
+            $transaction->remark = 'spin_direct_winn';
+            $transaction->details = 'You have plan ' . $request->recharge_plan . ' so you have won ' . $request->amount . ' amount from your spin';
+            $transaction->save();
+        
+            return response()->json(['message' => 'Amount updated successfully.'], 200);
         }
+        
 
         return response()->json(['error' => 'User not found.'], 404);
     }
