@@ -74,7 +74,7 @@ class MvSpinUserController extends Controller
         ]);
 
         $user = User::where('mob_number', $request->phone)->first();
-echo "<pre>"; print_r($user);die;
+// echo "<pre>"; print_r($user);die;
         if ($user) {
             if ($user->remember_token !== $request->random_token) {
                 return response()->json(['error' => 'Invalid token.'], 403);
