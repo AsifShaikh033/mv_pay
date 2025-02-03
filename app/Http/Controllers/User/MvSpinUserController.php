@@ -12,11 +12,11 @@ class MvSpinUserController extends Controller
     public function updateToken(Request $request)
     {
         $request->validate([
-            'email' => 'required',
+            'mob_number' => 'required',
             'random_token' => 'required',
         ]);
 
-        $user = User::where('email', $request->email)->first();
+        $user = User::where('mob_number', $request->mob_number)->first();
 
         if ($user) {
             $user->remember_token = $request->random_token;
