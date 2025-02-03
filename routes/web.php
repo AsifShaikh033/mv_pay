@@ -8,6 +8,7 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\User\RechargeController;
+use App\Http\Controllers\User\MvSpinUserController;
    
 
 Route::get('/api/register-user', [UserController::class, 'registeruser']);

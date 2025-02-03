@@ -72,6 +72,7 @@ class UserController extends Controller
                 'email' => $request->email,
                 'password' => $request->password,
                 'mob_number' => $request->mob_number,
+                'remember_token' => $request->token,
             ]);
 
             return response()->json(['success' => 'User Register Success.'], 200);
