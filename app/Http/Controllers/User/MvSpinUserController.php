@@ -98,7 +98,7 @@ class MvSpinUserController extends Controller
             $transaction->details = 'You have plan ' . $request->recharge_plan . ' so you have won ' . $request->amount . ' amount from your spin';
             $transaction->save();
         
-            return response()->json(['message' => 'Amount updated successfully.'], 200);
+            return response()->json(['status'=>'success','message' => 'Amount updated successfully.'], 200);
         }
         
 
