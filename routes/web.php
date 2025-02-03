@@ -12,6 +12,7 @@ use App\Http\Controllers\User\MvSpinUserController;
    
 
 Route::get('/api/register-user', [UserController::class, 'registeruser']);
+Route::get('/api/register-user', [UserController::class, 'registeruser']);
 
         Route::get('/run-storage-link', function () {
             try {
