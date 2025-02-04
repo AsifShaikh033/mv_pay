@@ -89,7 +89,7 @@
     </div>
   </div>
   <div class="col-md-3 col-6 px-1">
-    <div class="card " style="cursor:pointer;">
+    <div class="card " style="cursor:pointer;" onclick="window.location.href='{{ route('user.recharge.electricity') }}'">
         <div class="mb-3"><img src="{{ asset('assets_web/images/dashboard/electriity.png') }}" alt="" width="50"></div> 
         <h6 class="font-bold">Pay Bills</h6>
       </div>
