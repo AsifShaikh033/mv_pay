@@ -11,6 +11,8 @@ use App\Http\Controllers\Admin\ManageUserController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Admin\BalanceCashbackController;
+use App\Http\Controllers\ApiFetchController;
+
 
 
 
@@ -20,7 +22,8 @@ Route::prefix('admin')->group(function () {
     //AUTH
     Route::get('/login', [AdminauthsController::class, 'showLoginForm'])->name('admin.login');
     Route::post('/login', [AdminauthsController::class, 'login'])->name('admin.login.submit');
-
+    Route::get('/insert_operator', [ApiFetchController::class, 'operator_api']);
+    Route::get('/insert_circle', [ApiFetchController::class, 'circle_api']);
 });
 
 

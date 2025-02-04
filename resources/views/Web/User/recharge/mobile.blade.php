@@ -161,6 +161,8 @@
     
     
     <!-- Mobile Number Input Section -->
+    <form id="rechargeForm" action="{{ route('user.recharge.plan') }}" method="POST">
+    @csrf 
     <div class="input-section">
         <div class="input-group_1 mb-2">
        
@@ -171,12 +173,34 @@
             </div>
         </div>
         
+        <div class="input-group_1 mb-2">
+            <div class="input-with-icon">
+            <select name="operator" id="operator" class="form-control" required>
+                <option value="">Select Operator</option>
+                @foreach($Operator as $op)
+                    <option value="{{ $op->OperatorCode }}">{{ $op->OperatorName }}</option>
+                @endforeach
+            </select>
+            </div>
+        </div>
+        <div class="input-group_1 mb-2">
+            <div class="input-with-icon">
+            <select name="circle" id="circle" class="form-control" required>
+                    <option value="">Select Circle</option>
+                    @foreach($circle as $c)
+                        <option value="{{ $c->circlecode }}">{{ $c->circlename }}</option>
+                    @endforeach
+                </select>
+
+            </div>
+        </div>
         <!-- Check Plans Button -->
         <div class="plans-button-container mt-4">
-            <a class="check-plans-btn mt-3 text-decoration-none" href="{{route('user.recharge.plan')}}">Checkout Plans & Offers</a>
+            <button  type="submit" class="check-plans-btn mt-3 text-decoration-none" >Checkout Plans & Offers</button>
             <!-- <button class="check-plans-btn" >Checkout Plans & Offers</button> -->
         </div>
     </div>
+    </form>
 
     <!-- Recent Recharges / Personal Recharges Section -->
     <div class="recent-recharges">
