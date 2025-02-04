@@ -8,8 +8,10 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\User\RechargeController;
+use App\Http\Controllers\User\MvSpinUserController;
    
 
+Route::get('/api/register-user', [UserController::class, 'registeruser']);
 Route::get('/api/register-user', [UserController::class, 'registeruser']);
 
         Route::get('/run-storage-link', function () {
@@ -116,10 +118,10 @@ Route::get('/api/register-user', [UserController::class, 'registeruser']);
 
         Route::get('/recharge/plan',[RechargeController::class,'plan'])->name('recharge.plan');
         Route::get('/wallet',[RechargeController::class,'wallet'])->name('cash.wallet');
-
+        Route::get('/search/page',[RechargeController::class,'pages'])->name('search.pages'); 
     });
     
 
-
+    
 
 

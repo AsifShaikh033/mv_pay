@@ -279,9 +279,9 @@
                             </div>
                         </div>
                         <div class="card-body">
-
+                       
                             <div class="validity">
-                                <i class="fa fa-address-book" aria-hidden="true"></i>
+                                <img src="{{ asset('assets_web/images/wallet/13.png') }}"  style="width:10%!important;" alt="">
                                 <p>Spin cash rewards from ₹2 to ₹20</p>
                                 <button class="btn btn-sm btn-light mb-0" type="submit">show more</button>
                             </div>
@@ -306,7 +306,7 @@
                         <div class="card-body">
 
                             <div class="validity">
-                                <i class="fa fa-address-book" aria-hidden="true"></i>
+                                <img src="{{ asset('assets_web/images/wallet/13.png') }}"  style="width:10%!important;" alt="">
                                 <p>Spin cash rewards from ₹2 to ₹20</p>
                                 <button class="btn btn-sm btn-light mb-0" type="submit">show more</button>
                             </div>
@@ -331,7 +331,7 @@
                         <div class="card-body">
 
                             <div class="validity">
-                                <i class="fa fa-address-book" aria-hidden="true"></i>
+                                <img src="{{ asset('assets_web/images/wallet/13.png') }}"  style="width:10%!important;" alt="">
                                 <p>Spin cash rewards from ₹2 to ₹20</p>
                                 <button class="btn btn-sm btn-light mb-0" type="submit">show more</button>
                             </div>

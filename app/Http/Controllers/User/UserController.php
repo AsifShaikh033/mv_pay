@@ -23,7 +23,7 @@ class UserController extends Controller
             'email' => 'required|email|unique:users,email,' . Auth::id(),
             'mob_number' => 'nullable|string|max:15',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'password' => 'nullable|string|min:6|confirmed',
+            'password' => 'nullable|string|min:6|',
         ]);
     
         $user = Auth::user();
@@ -55,11 +55,11 @@ class UserController extends Controller
 
     public function registeruser(Request $request)
     {
-        $user = User::where('phone', $request->mob_number)->first();
+        $user = User::where('mob_number', $request->mob_number)->first();
                 
+        
 
         if(!$user){ 
-            $randomCode = $this->generateRandomCode();
             $imagePath = null;
             if ($request->hasFile('identity_image')) {
                 $originalPath = $request->identity_image->getClientOriginalName();
@@ -71,12 +71,16 @@ class UserController extends Controller
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => $request->password,
-                'mob_number' => $request->phone,
+                'mob_number' => $request->mob_number,
+                'remember_token' => $request->token,
             ]);
+
+            return response()->json(['success' => 'User Register Success.'], 200);
             
         }
+        return response()->json(['error' => 'User allready added.'], 400);
     
-        return response()->json(['error' => 'User Register Success.'], 404);
+        
     }
 
     public function about(){
