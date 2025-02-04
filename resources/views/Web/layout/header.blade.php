@@ -11,9 +11,7 @@
     
     padding-bottom: 0;
     height: calc(100% - 0px);
-    position: absolute;
-    top: 6.7rem;
-    left: 0;
+   
     padding-top: 0;
     z-index: 6;
     animation: navGradientAnimation 4s infinite ease-in-out;
@@ -21,6 +19,14 @@
     transition: all 0.2s ease;
     box-shadow: 0px 15px 30px 0px rgba(0, 0, 0, 0.02);
 }
+
+@media (max-width: 500px) {
+
+  .dlabnav {
+  top:3.9rem;
+  }
+}
+
 .dash_changes {
     font-size: 24px;
     font-weight: bold;
@@ -59,7 +65,9 @@
         .dashboard {
     background: linear-gradient(to bottom, blue, darkblue);
     margin-bottom: 10px;
+    border:2px solid gold;
 }
+
         .logout {
             background: none;
             color: gold;
@@ -81,7 +89,7 @@
           <span class="line"></span>
         </div>
       </div>
-      <a class="brand-logo">
+      <a class="brand-logo ">
       <img id="ctl00_imgCompanyLogo" src="{{ asset('storage/' . (webConfig('logo') ?? '')) }}" onerror="this.src='{{ asset('assets_web/images/mv.jpg') }}'" 
    style="border-width:0px;width: 100px;height: 50px;"
     alt="Logo"
@@ -124,22 +132,7 @@
     <div class="dlabnav-scroll">
     
         <ul class="metismenu" id="menu">
-            @if(!Auth::check())  
           
-            <li>
-                  <a id="ctl00_lnkServices" href="{{ route('login') }}">
-                  <i class="basecolor flaticon-381-user-2"></i>
-                  <span class="nav-text">Login</span>
-                  </a>
-              </li>
-            
-              <li class="nav-item">
-              <a class="nav-link" href="{{ route('register') }}">
-               <i class="basecolor flaticon-043-menu"></i>
-                    <span class="nav-text">Register</span>
-                  </a>
-              </li> 
-            @endif
             
         <li>
             <a id="ctl00_lnkServices" class="dashboard" href="{{ route('index') }}">
@@ -147,6 +140,22 @@
             <span class="nav-text">Dashboard</span>
             </a>
         </li>
+        @if(!Auth::check())  
+          
+          <li>
+                <a id="ctl00_lnkServices" class='dash_changes' href="{{ route('login') }}">
+                <i class="basecolor flaticon-381-user-2"></i>
+                <span class="nav-text">Login</span>
+                </a>
+            </li>
+          
+            <li class="nav-item">
+            <a class="nav-link dash_changes"  href="{{ route('register') }}">
+             <i class="basecolor flaticon-043-menu"></i>
+                  <span class="nav-text">Register</span>
+                </a>
+            </li> 
+          @endif
             @if(Auth::check())  
             <li>
                 <a class="dash_changes" href="{{ route('user.profile') }}">
