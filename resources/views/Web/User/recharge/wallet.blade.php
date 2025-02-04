@@ -61,7 +61,7 @@ input[type="search"]:focus, textarea:focus {
 .solid {
     padding: 10px;
     display: flex;
-    background-image: url('http://localhost/mv_pay/public/assets_web/images/wallet/back_1.gif');
+    background-image:  url('{{ asset('assets_web/images/wallet/back_1.gif') }}');
     background-size: cover;
     background-position: center;
     align-items: flex-end;
@@ -76,7 +76,7 @@ input[type="search"]:focus, textarea:focus {
 }
 .solid_2 {
     padding: 50px;
-    background-image: url('http://localhost/mv_pay/public/assets_web/images/wallet/back_3.gif');
+    background-image:  url('{{ asset('assets_web/images/wallet/back_3.gif') }}');
     background-size: cover;
     background-position: center;
 }
