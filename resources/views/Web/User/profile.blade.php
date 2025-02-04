@@ -5,11 +5,11 @@
 <div class="content-body">
 <!-- row -->
 <div class="container-fluid mt-5">
-<div class="row justify-content-center">
+<div class="row justify-content-center mt-5">
     <div class="col-md-9">
         <!-- <div class=" card profile_change mt-5 text-light"> -->
-        <h2 class="fancy-heading mt-5">{{ __('Update Account Details') }}</h2>
-        <div class="box mt-5">
+        <h2 class="fancy-heading ">{{ __('Update Account Details') }}</h2>
+        <div class="box ">
           
           <span class="borderLine"></span>
           
