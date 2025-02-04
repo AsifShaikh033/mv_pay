@@ -6,5 +6,8 @@ use Illuminate\Http\Request;
 
 class RechargeApiController extends Controller
 {
-    //
+    
+    public function plan_fetch(){
+        
+    }
 }

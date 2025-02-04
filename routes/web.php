@@ -9,6 +9,7 @@ use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\User\RechargeController;
 use App\Http\Controllers\User\MvSpinUserController;
+use App\Http\Controllers\RechargeApiController;
    
 
 Route::get('/api/register-user', [UserController::class, 'registeruser']);
@@ -116,9 +117,13 @@ Route::get('/api/register-user', [UserController::class, 'registeruser']);
         Route::get('/report/{type}', [ReportController::class, 'showReport'])->name('report.show');
         Route::get('/recharge/mobile',[RechargeController::class,'mobile'])->name('recharge.mobile');
 
-        Route::get('/recharge/plan',[RechargeController::class,'plan'])->name('recharge.plan');
+        Route::post('/recharge/plan',[RechargeController::class,'plan'])->name('recharge.plan');
         Route::get('/wallet',[RechargeController::class,'wallet'])->name('cash.wallet');
         Route::get('/search/page',[RechargeController::class,'pages'])->name('search.pages'); 
+
+        //RECHAREGE APIS
+        Route::post('/plan-fetch', [RechargeApiController::class, 'plan_fetch'])->name('plan.fetch');
+
     });
     
 
