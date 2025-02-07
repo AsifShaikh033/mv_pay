@@ -165,42 +165,40 @@
     @csrf 
     <div class="input-section">
         <div class="input-group_1 mb-2">
-       
             <div class="input-with-icon">
                 <input type="text" id="mobile-number" name="mobile_number" placeholder="Enter mobile number" required>
-                <span class="contact-icon"><i class="fa fa-address-book" aria-hidden="true"></i>
-                </span>
+                <span class="contact-icon"><i class="fa fa-address-book" aria-hidden="true"></i></span>
             </div>
         </div>
         
         <div class="input-group_1 mb-2">
             <div class="input-with-icon">
-            <select name="operator" id="operator" class="form-control" required>
-                <option value="">Select Operator</option>
-                @foreach($Operator as $op)
-                    <option value="{{ $op->OperatorCode }}">{{ $op->OperatorName }}</option>
-                @endforeach
-            </select>
+                <select name="operator" id="operator" class="form-control" required>
+                    <option value="">Select Operator</option>
+                    @foreach($Operator as $op)
+                        <option value="{{ $op->OperatorCode }}">{{ $op->OperatorName }}</option>
+                    @endforeach
+                </select>
             </div>
         </div>
+        
         <div class="input-group_1 mb-2">
             <div class="input-with-icon">
-            <select name="circle" id="circle" class="form-control" required>
+                <select name="circle" id="circle" class="form-control" required>
                     <option value="">Select Circle</option>
                     @foreach($circle as $c)
                         <option value="{{ $c->circlecode }}">{{ $c->circlename }}</option>
                     @endforeach
                 </select>
-
             </div>
         </div>
+
         <!-- Check Plans Button -->
         <div class="plans-button-container mt-4">
-            <button  type="submit" class="check-plans-btn mt-3 text-decoration-none" >Checkout Plans & Offers</button>
-            <!-- <button class="check-plans-btn" >Checkout Plans & Offers</button> -->
+            <button type="submit" class="check-plans-btn mt-3 text-decoration-none">Checkout Plans & Offers</button>
         </div>
     </div>
-    </form>
+</form>
 
     <!-- Recent Recharges / Personal Recharges Section -->
     <div class="recent-recharges">
@@ -217,7 +215,42 @@
 
 </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    $('#mobile-number').on('keyup', function() {
+        let mobileNumber = $(this).val();
+
+        if (mobileNumber.length === 10) {
+            $.ajax({
+                url: "{{ route('fetch.operator.circle') }}",
+                type: "POST",
+                data: {
+                    mobile_number: mobileNumber,
+                    _token: "{{ csrf_token() }}"
+                },
+                success: function(response) {
+                    if (response.operator) {
+                        $('#operator').val(response.operator);
+                    }
+                    if (response.circle) {
+                        $('#circle').val(response.circle);
+                    }
+                },
+                error: function(xhr) {
+                    console.log(xhr.responseJSON);
+                    $('#operator').val('');
+                    $('#circle').val('');
+                }
+            });
+        }
+    });
+});
+</script>
 @endsection
+
+
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/recharge.css') }}">

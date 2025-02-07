@@ -9,8 +9,50 @@ use Illuminate\Support\Facades\Log;
 
 class ApiFetchController extends Controller
 {
-      
 
+    public function fetchOperatorCircle(Request $request)
+    {
+        $mobileNumber = $request->mobile_number;
+    
+        if (strlen($mobileNumber) !== 10) {
+            return response()->json(['error' => 'Invalid mobile number'], 400);
+        }
+    
+        $operatorResponse = Http::get('https://cyrusrecharge.in/API/CyrusOperatorFatchAPI.aspx', [
+            'APIID' => 'AP548117',
+            'PASSWORD' => 'htrytdsa5674564564hj',
+            'MOBILENUMBER' => $mobileNumber 
+        ]);
+    
+        $operatorData = $operatorResponse->json();
+    
+        $circleResponse = Http::get('https://cyrusrecharge.in/API/CyrusOperatorFatchAPI.aspx?', [
+            'memberid' => 'AP548117',
+            'pin' => 'htrytdsa5674564564hj',
+            'Method' => 'getcircle',
+            'Mobile' => $mobileNumber
+        ]);
+    
+        $circleData = $circleResponse->json();
+       
+        if (!empty($operatorData) && isset($operatorData[0]['Status']) && $operatorData[0]['Status'] == "1") {
+            $operator = $operatorData[0]['data'][0]['OperatorCode'] ?? null;
+        } else {
+            $operator = null;
+        }
+    
+        if (!empty($circleData) && isset($circleData[0]['Status']) && $circleData[0]['Status'] == "1") {
+            $circle = $circleData[0]['data'][0]['circlecode'] ?? null;
+        } else {
+            $circle = null;
+        }
+       
+    
+        return response()->json([
+            'operator' => $operator,
+            'circle' => $circle
+        ]);
+    }
  
     public function circle_api()
     {
