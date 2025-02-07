@@ -56,7 +56,9 @@ input[type="search"]:focus, textarea:focus {
     border-color: darkblue;
     outline: none;
 }
-
+.wallet_back {
+    margin-bottom: 80px;
+}  
 
 .solid {
     padding: 10px;
