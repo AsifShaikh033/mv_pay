@@ -6,9 +6,15 @@ use App\Models\Operator;
 use App\Models\Circle;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
-
+use App\Services\RechargeService;
 class ApiFetchController extends Controller
 {
+    protected $rechargeService;
+    public function __construct(RechargeService $rechargeService)
+    {
+        $this->rechargeService = $rechargeService;
+    }
+
 
     public function fetchOperatorCircle(Request $request)
     {
@@ -17,41 +23,24 @@ class ApiFetchController extends Controller
         if (strlen($mobileNumber) !== 10) {
             return response()->json(['error' => 'Invalid mobile number'], 400);
         }
-    
-        $operatorResponse = Http::get('https://cyrusrecharge.in/API/CyrusOperatorFatchAPI.aspx', [
-            'APIID' => 'AP548117',
-            'PASSWORD' => 'htrytdsa5674564564hj',
-            'MOBILENUMBER' => $mobileNumber 
-        ]);
-    
-        $operatorData = $operatorResponse->json();
-    
-        $circleResponse = Http::get('https://cyrusrecharge.in/API/CyrusOperatorFatchAPI.aspx?', [
-            'memberid' => 'AP548117',
-            'pin' => 'htrytdsa5674564564hj',
-            'Method' => 'getcircle',
-            'Mobile' => $mobileNumber
-        ]);
-    
-        $circleData = $circleResponse->json();
-       
-        if (!empty($operatorData) && isset($operatorData[0]['Status']) && $operatorData[0]['Status'] == "1") {
-            $operator = $operatorData[0]['data'][0]['OperatorCode'] ?? null;
-        } else {
-            $operator = null;
+
+        $plans = $this->rechargeService->mobileoperatorfetch($mobileNumber);
+      
+        if (isset($plans['error'])) {
+            return response()->json(['error' => $plans['error']], 400);
         }
-    
-        if (!empty($circleData) && isset($circleData[0]['Status']) && $circleData[0]['Status'] == "1") {
-            $circle = $circleData[0]['data'][0]['circlecode'] ?? null;
-        } else {
-            $circle = null;
+        if (isset($plans['Status']) && $plans['Status'] == "1") {
+            return response()->json(['error' => $plans['ErrorDescription']], 400);
+        }elseif(isset($plans['Status']) && $plans['Status'] == "0"){
+            return response()->json([
+                'status' => 1,
+                'operator' => $plans['OperatorCode'],
+                'circle' => $plans['CircleCode'],
+            ]);
+        }else{
+            return response()->json(['error' => $plans], 400);
         }
-       
-    
-        return response()->json([
-            'operator' => $operator,
-            'circle' => $circle
-        ]);
+      
     }
  
     public function circle_api()
