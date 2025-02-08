@@ -10,6 +10,7 @@ use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\User\RechargeController;
 use App\Http\Controllers\User\MvSpinUserController;
 use App\Http\Controllers\RechargeApiController;
+use App\Http\Controllers\ApiFetchController;
    
 
 Route::get('/api/register-user', [UserController::class, 'registeruser']);
@@ -79,6 +80,9 @@ Route::get('/api/register-user', [UserController::class, 'registeruser']);
             ], 500);
         }
     });
+
+    Route::post('/fetch-operator-circle', [ApiFetchController::class, 'fetchOperatorCircle'])->name('fetch.operator.circle');
+
 
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
     Route::post('/login-user', [AuthController::class, 'loginuser_auth'])->name('loginuser');
