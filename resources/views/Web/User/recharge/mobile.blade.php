@@ -150,6 +150,17 @@
     padding: 10px 0px 6px 10px;
     border-radius: 5px;
 }
+.recharge-history ul {
+    padding: 0;
+    margin: 0;
+}
+
+.recharge-history li {
+    background: #f8f9fa;
+    padding: 8px 12px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
 
 </style>
 
@@ -200,54 +211,78 @@
     </div>
 </form>
 
-    <!-- Recent Recharges / Personal Recharges Section -->
-    <div class="recent-recharges">
-        <p>Recent or Personal Recharges</p>
-       <div class="d-flex gap-2 my_num">
-            <div><i class="fa fa-mobile" aria-hidden="true"></i>
-            </div>
-            <div>
-                <h6 class="fw-bold">My Number</h6>
-                <p>{{ auth()->user()->mobile_number }}</p>
-            </div>
-       </div>
+<div class="recent-recharges">
+    <p>Recent or Personal Recharges</p>
+    <div class="recharge-history mt-3">
+        <h6 class="fw-bold">Recent Numbers</h6>
+        <ul class="list-unstyled">
+    <li class="d-flex align-items-center gap-2 recent-number">
+        <i class="fa fa-mobile" aria-hidden="true"></i>
+        <span data-number="{{ auth()->user()->mob_number }}">{{ auth()->user()->mob_number }}</span>
+    </li>
+    @foreach($rechargeNumbers as $number)
+        <li class="d-flex align-items-center gap-2 recent-number">
+            <i class="fa fa-mobile" aria-hidden="true"></i>
+            <span data-number="{{ $number->number }}">{{ $number->number }}</span>
+        </li>
+    @endforeach
+</ul>
+
     </div>
+</div>
+
 
 </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 <script>
 $(document).ready(function() {
-    $('#mobile-number').on('keyup', function() {
-        let mobileNumber = $(this).val();
 
-        if (mobileNumber.length === 10) {
-            $.ajax({
-                url: "{{ route('fetch.operator.circle') }}",
-                type: "POST",
-                data: {
-                    mobile_number: mobileNumber,
-                    _token: "{{ csrf_token() }}"
-                },
-                success: function(response) {
-                    if (response.operator) {
-                        $('#operator').val(response.operator);
-                    }
-                    if (response.circle) {
-                        $('#circle').val(response.circle);
-                    }
-                },
-                error: function(xhr) {
-                    console.log(xhr.responseJSON);
-                    $('#operator').val('');
-                    $('#circle').val('');
+    $('.recent-number span').on('click', function() {
+    let selectedNumber = $(this).data('number');
+    $('#mobile-number').val(selectedNumber).trigger('input');
+    fetchOperatorAndCircle(selectedNumber);
+    console.log(selectedNumber);
+
+});
+
+
+function fetchOperatorAndCircle(mobileNumber) {
+   // if (mobileNumber.length === 10) {
+        $.ajax({
+            url: "{{ route('fetch.operator.circle') }}",
+            type: "POST",
+            data: {
+                mobile_number: mobileNumber,
+                _token: "{{ csrf_token() }}"
+            },
+            success: function(response) {
+                if (response.status === 1) {
+                    $('#operator').val(response.operator).change();
+                    $('#circle').val(response.circle).change();
                 }
-            });
-        }
-    });
+            },
+            error: function(xhr) {
+                $('#operator').val('');
+                $('#circle').val('');
+                if (xhr.responseJSON && xhr.responseJSON.error) {
+                    alert(xhr.responseJSON.error);
+                } else {
+                    alert('Something went wrong. Please try again.');
+                }
+            }
+        });
+   //}
+}
+
+// Bind to keyup
+$('#mobile-number').on('keyup', function() {
+    fetchOperatorAndCircle($(this).val());
+});
+
 });
 </script>
+
 @endsection
 
 

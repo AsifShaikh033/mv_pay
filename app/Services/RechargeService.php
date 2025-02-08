@@ -30,6 +30,23 @@ class RechargeService
         $this->DTH_Plan_Fetch = 'jghffhftryur567dhfd';
     }
 
+    
+    /**
+     * Fetch Recharge Plans
+     */
+    public function mobileoperatorfetch($mobileNumber)
+    {
+        $response = Http::get($this->apiBaseUrl . 'API/CyrusOperatorFatchAPI.aspx', [
+            'APIID'         => $this->CYRUS_MEMBER_ID,
+            'PASSWORD'      => $this->PR_MOBILE_FETCH, 
+            'MOBILENUMBER' => $mobileNumber,
+        ]);
+
+        return $response->json();
+    }
+
+
+
     /**
      * Fetch Recharge Plans
      */

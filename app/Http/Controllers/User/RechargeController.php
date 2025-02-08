@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Circle;
 use App\Models\Operator;
 use App\Services\RechargeService;
+use App\Models\Recharge;
+use Illuminate\Support\Facades\Auth;
 class RechargeController extends Controller
 {
     protected $rechargeService;
@@ -30,9 +32,12 @@ class RechargeController extends Controller
                     ->get();
             }
             $circle = Circle::all();
-            // {{ route('user.recharge.mobile', ['type' => 'postpaid_mob']) }}
-        // return  $Operator;
-            return view('Web.User.recharge.mobile',compact('circle', 'Operator'));
+
+            $rechargeNumbers = Recharge::where('user_id', Auth::id())
+                 ->where('serviceType','Prepaid-Mobile')
+                ->orderBy('created_at', 'desc') // Latest first
+                ->get();
+            return view('Web.User.recharge.mobile',compact('circle', 'Operator','rechargeNumbers'));
         }
 
        public function plan(Request $request)
