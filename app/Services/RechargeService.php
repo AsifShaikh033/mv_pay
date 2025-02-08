@@ -25,6 +25,7 @@ class RechargeService
 
         // API Keys
         $this->PR_MOBILE_FETCH = 'htrytdsa5674564564hj';
+        $this->PR_PLAN_FETCH = 'jghffhftryur567dhfd';
         $this->BILL_FECTH_API = '546ghjfdtreyertyrrtd';
         $this->OFFERS_DTH_Info = '465fghgfdfegfghfdhdh';
         $this->DTH_Plan_Fetch = 'jghffhftryur567dhfd';
@@ -54,7 +55,7 @@ class RechargeService
     {
         $response = Http::get($this->apiBaseUrl . 'API/CyrusPlanFatchAPI.aspx', [
             'APIID'         => $this->CYRUS_MEMBER_ID,
-            'PASSWORD'      => $this->PR_MOBILE_FETCH, 
+            'PASSWORD'      => $this->PR_PLAN_FETCH, 
             'Operator_Code' => $operatorCode,
             'Circle_Code'   => $circleCode,
             'MobileNumber'  => $mobileNumber,

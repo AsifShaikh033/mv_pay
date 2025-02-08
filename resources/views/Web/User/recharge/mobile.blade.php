@@ -166,12 +166,9 @@
 
 <div class="content-body">
 <div class="mobile-recharge-container ">
-    <!-- Prepaid Button -->
   
         <button class="prepaid-button mb-3">Prepaid</button>
     
-    
-    <!-- Mobile Number Input Section -->
     <form id="rechargeForm" action="{{ route('user.recharge.plan') }}" method="POST">
     @csrf 
     <div class="input-section">
@@ -242,7 +239,7 @@ $(document).ready(function() {
     let selectedNumber = $(this).data('number');
     $('#mobile-number').val(selectedNumber).trigger('input');
     fetchOperatorAndCircle(selectedNumber);
-    console.log(selectedNumber);
+   // console.log(selectedNumber);
 
 });
 
@@ -263,12 +260,10 @@ function fetchOperatorAndCircle(mobileNumber) {
                 }
             },
             error: function(xhr) {
-                $('#operator').val('');
-                $('#circle').val('');
                 if (xhr.responseJSON && xhr.responseJSON.error) {
-                    alert(xhr.responseJSON.error);
+                    toastr.error(xhr.responseJSON.error, 'Error Alert', { timeOut: 8000 });
                 } else {
-                    alert('Something went wrong. Please try again.');
+                    toastr.error('Issue in Fetch Mobile details', 'Error', { timeOut: 8000 });
                 }
             }
         });
@@ -284,8 +279,6 @@ $('#mobile-number').on('keyup', function() {
 </script>
 
 @endsection
-
-
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/recharge.css') }}">

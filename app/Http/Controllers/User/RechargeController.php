@@ -53,10 +53,25 @@ class RechargeController extends Controller
             ]);
         
             $mobileNumber = $request->input('mobile_number');
-            $operator = $request->input('operator');
-            $circle = $request->input('circle');
+            $operatorCode = $request->input('operator');
+            $circleCode = $request->input('circle');
             $plans = $this->rechargeService->fetchPlans($mobileNumber, $operatorCode, $circleCode);
-           
+            if (isset($plans['Status']) && $plans['Status'] == "1") {
+
+                return redirect()->back()->with(['error' => $plans['ErrorDescription']])->withInput();
+
+            }elseif(isset($plans['Status']) && $plans['Status'] == "0"){
+
+                    $plans = $plans['PlanDescription'];
+                    $operator=  Operator::where('OperatorCode', $operatorCode)->first();
+                    $Circle=  Circle::where('circlecode', $circleCode)->first();
+                  return view('Web.User.recharge.Airtel_pr_plans', compact('mobileNumber',
+                   'Circle','plans', 'operator'));
+            }else{
+                return redirect()->back()->with(['error' => json_encode($plans)])->withInput();
+            }
+          
+            return $plans;
             return view('Web.User.recharge.plan', compact('mobileNumber', 'operator', 'circle'));
         }
 
