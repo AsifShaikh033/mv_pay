@@ -6,18 +6,34 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Circle;
 use App\Models\Operator;
+use App\Services\RechargeService;
 class RechargeController extends Controller
 {
-    public function mobile(){
-
-        $circle = Circle::all();
-        $Operator = Operator::where('ServiceTypeName', 'Prepaid-Mobile')
-        ->whereIn('OperatorCode', ['AT', 'BSNL', 'VI', 'JIO'])
-        ->get();
-    
-      // return  $Operator;
-        return view('Web.User.recharge.mobile',compact('circle', 'Operator'));
+    protected $rechargeService;
+    public function __construct(RechargeService $rechargeService)
+    {
+        $this->rechargeService = $rechargeService;
     }
+    public function mobile(Request $request)
+    {       
+          $type = $request->query('type', 'Prepaid-Mobile');
+            if ($type === 'postpaid_mob') {
+                $type = 'Postpaid-Mobile';
+                $exists = Operator::where('ServiceTypeName', $type)->exists();
+                if (!$exists) {
+                    insertOperators($type);
+                }
+                $Operator = Operator::where('ServiceTypeName', $type)->get();
+            }else{
+                $Operator = Operator::where('ServiceTypeName', $type)
+                    ->whereIn('OperatorCode', ['AT', 'BSNL', 'VI', 'JIO'])
+                    ->get();
+            }
+            $circle = Circle::all();
+            // {{ route('user.recharge.mobile', ['type' => 'postpaid_mob']) }}
+        // return  $Operator;
+            return view('Web.User.recharge.mobile',compact('circle', 'Operator'));
+        }
 
        public function plan(Request $request)
         {
@@ -30,18 +46,24 @@ class RechargeController extends Controller
                 'operator.required' => 'Please select an operator.',
                 'circle.required' => 'Please select a circle.',
             ]);
-            // Retrieve form data
+        
             $mobileNumber = $request->input('mobile_number');
             $operator = $request->input('operator');
             $circle = $request->input('circle');
-
-
-           // return $request;
-            // Debugging (optional)
-            // dd($mobileNumber, $operator, $circle);
-
-            // Return a view or response
+            $plans = $this->rechargeService->fetchPlans($mobileNumber, $operatorCode, $circleCode);
+           
             return view('Web.User.recharge.plan', compact('mobileNumber', 'operator', 'circle'));
+        }
+
+        public function electtric_f(){
+
+            $circle = Circle::all();
+            $Operator = Operator::where('ServiceTypeName', 'Electricity')
+           // ->whereIn('OperatorCode', ['AT', 'BSNL', 'VI', 'JIO'])
+            ->get();
+        
+        // return  $Operator;
+            return view('Web.User.bills.electric_bill',compact('circle', 'Operator'));
         }
 
     public function wallet(){

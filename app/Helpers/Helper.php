@@ -4,6 +4,9 @@ use App\Models\WebConfig;
 use Illuminate\Support\Str;
 use App\Models\User;
 use Illuminate\Support\Facades\Http;
+use App\Models\Operator;
+
+
 
 if (!function_exists('webConfig')) {
     /**
@@ -131,3 +134,29 @@ if (!function_exists('send_spin_chance')) {
         }
     }
 }
+
+
+
+if (!function_exists('insertOperators')) {
+    function insertOperators($type)
+    {
+        $operators = [
+            'Postpaid-Mobile' => [
+                ['ServiceTypeName' => $type, 'OperatorCode' => 'ATP', 'OperatorName' => 'Airtel'],
+                ['ServiceTypeName' => $type, 'OperatorCode' => 'IDP', 'OperatorName' => 'Idea'],
+                ['ServiceTypeName' => $type, 'OperatorCode' => 'VPOLD', 'OperatorName' => 'Vodafone'],
+                ['ServiceTypeName' => $type, 'OperatorCode' => 'BSP', 'OperatorName' => 'BSNL Mobile'],
+                ['ServiceTypeName' => $type, 'OperatorCode' => 'TDCMP', 'OperatorName' => 'Tata Docomo CDMA Mobile Postpaid'],
+                ['ServiceTypeName' => $type, 'OperatorCode' => 'TDGMP', 'OperatorName' => 'Tata Docomo GSM Mobile Postpaid'],
+                ['ServiceTypeName' => $type, 'OperatorCode' => 'MMD', 'OperatorName' => 'MTNL Mumbai Dolphin'],
+                ['ServiceTypeName' => $type, 'OperatorCode' => 'VFP', 'OperatorName' => 'Vi Postpaid'],
+                ['ServiceTypeName' => $type, 'OperatorCode' => 'RJC', 'OperatorName' => 'Reliance Jio Postpaid'],
+            ]
+        ];
+
+        if (isset($operators[$type])) {
+            Operator::insert($operators[$type]);
+        }
+    }
+}
+
