@@ -119,11 +119,13 @@ Route::get('/api/register-user', [UserController::class, 'registeruser']);
         Route::get('/reffrel-list', [UserController::class, 'reffrel_list'])->name('reffrellist');
 
         Route::get('/report/{type}', [ReportController::class, 'showReport'])->name('report.show');
+        //MOBILE
         Route::get('/recharge/mobile',[RechargeController::class,'mobile'])->name('recharge.mobile');
-
         Route::post('/recharge/plan',[RechargeController::class,'plan'])->name('recharge.plan');
         Route::get('/wallet',[RechargeController::class,'wallet'])->name('cash.wallet');
-        Route::get('/search/page',[RechargeController::class,'pages'])->name('search.pages'); 
+        Route::get('/search/page',[RechargeController::class,'pages'])->name('search.pages');
+        //ELECTRICITY
+        Route::get('/recharge/electricity',[RechargeController::class,'electtric_f'])->name('recharge.electricity'); 
 
         //RECHAREGE APIS
         Route::post('/plan-fetch', [RechargeApiController::class, 'plan_fetch'])->name('plan.fetch');
