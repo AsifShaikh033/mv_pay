@@ -6,8 +6,14 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Circle;
 use App\Models\Operator;
+use App\Services\RechargeService;
 class RechargeController extends Controller
 {
+    protected $rechargeService;
+    public function __construct(RechargeService $rechargeService)
+    {
+        $this->rechargeService = $rechargeService;
+    }
     public function mobile(Request $request)
     {       
           $type = $request->query('type', 'Prepaid-Mobile');
@@ -44,6 +50,8 @@ class RechargeController extends Controller
             $mobileNumber = $request->input('mobile_number');
             $operator = $request->input('operator');
             $circle = $request->input('circle');
+            $plans = $this->rechargeService->fetchPlans($mobileNumber, $operatorCode, $circleCode);
+           
             return view('Web.User.recharge.plan', compact('mobileNumber', 'operator', 'circle'));
         }
 
