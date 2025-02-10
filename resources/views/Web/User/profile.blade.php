@@ -7,7 +7,7 @@
 .box {
     position: relative;
     /* width: 100%; */
-    height: 450px;
+    height: 550px;
     background: #1c1c1c;
     border-radius: 8px;
     overflow: hidden;

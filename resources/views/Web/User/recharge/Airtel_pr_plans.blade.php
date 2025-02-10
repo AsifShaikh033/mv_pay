@@ -263,7 +263,7 @@
             </div>
             <!--PlanVoucher,FULLTT, DATA,TOPUP, STV, -->
             <div class="row" id="smartphone">
-                @foreach
+             
                 <div class="col-sm-12 col-md-6 col-lg-6 ">
                     <div class="card">
                         <div class="card-header">
@@ -289,7 +289,7 @@
                         </div>
                     </div>
                 </div>
-                @endforeach
+            
             </div>
         </div>
     </div>

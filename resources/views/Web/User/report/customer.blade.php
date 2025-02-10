@@ -20,7 +20,6 @@
                 @php
                     $operators = [
                         'Airtel' => 'airtel.png',
-                        'Idea' => 'idea.png',
                         'Jio' => 'jio.png',
                         'BSNL' => 'bsnl.png',
                         'Vi' => 'vi.png',
