@@ -7,26 +7,28 @@ use App\Models\WebConfig;
 use App\Models\Banner;
 use App\Models\Transaction;
 use App\Models\Recharge;
+use Illuminate\Support\Facades\Auth;
 
 class ReportController extends Controller
 {
     public function showReport($type)
     {
         $validTypes = [
-            'recharge_report' => 'Recharge Report',
-            'customer_report' => 'Customer Report',
-            'spin_report' => 'Spin Report',
-            'wallet_report' => 'Wallet Report',
-            'payment_report' => 'Payment Report',
-        ];
+        'recharge_report' => 'Recharge Report',
+        'customer_report' => 'Customer Report',
+        'spin_report' => 'Spin Report',
+        'wallet_report' => 'Wallet Report',
+        'payment_report' => 'Payment Report',
+    ];
 
-        if (!isset($validTypes[$type])) {
-            abort(404);
-        }
+    if (!isset($validTypes[$type])) {
+        abort(404);
+    }
 
-        // Fetch only required fields from 'recharges' table
-        $recharges = Recharge::whereIn('recharges.status', ['pending', 'success', 'failed'])
-        ->join('users', 'users.id', '=', 'recharges.user_id')
+    $userId = Auth::id();
+
+    // Start the query
+    $query = Recharge::join('users', 'users.id', '=', 'recharges.user_id')
         ->select(
             'recharges.id',
             'recharges.user_id',
@@ -39,12 +41,78 @@ class ReportController extends Controller
             'recharges.status',
             'recharges.created_at'
         )
-        ->orderBy('recharges.created_at', 'desc')
-        ->get();
+        ->where('recharges.user_id', $userId)
+        ->whereIn('recharges.status', ['pending', 'success', 'failed'])
+        ->orderBy('recharges.created_at', 'desc');
+
+    // Apply filter only for 'customer_report'
+    if ($type === 'customer_report') {
+        $query->where('users.referred_by', 1);
+    }
+    if ($type === 'wallet_report') {
+        $query->where(function ($q) {
+            $q->whereIn('recharges.operator', [
+                'DTH', 'Electricity', 'Broadband', 'GAS', 'Insurance', 'DMR', 'Water', 'PAN UTI - Token Based',
+                'Loan Repayment', 'Prepaid Meter', 'NCMC Recharge', 'Donation', 'Hospital and Pathology', 'Rental',
+                'Recurring Deposit', 'Google Play', 'Fastag', 'Axis Bank Saving A/c', 'Broadband Postpaid',
+                'Clubs and Associations', 'IRCTC - Dongle Based', 'OTT Subscription', 'PayService', 'Credit Card',
+                'Subscription', 'Hospital', 'Cable TV', 'LPG Gas', 'Health Insurance', 'Municipal Taxes',
+                'Housing Society', 'Life Insurance', 'Municipal Services', 'CHALLAN', 'METRO CARD RECHARGE',
+                'Education Fees'
+            ])
+            ->orWhereNotIn('recharges.operator', ['Airtel', 'Idea', 'Jio', 'BSNL', 'Vi']);
+        });
+    } 
+    
+    if ($type === 'payment_report') {
+        $transactions = Transaction::join('users', 'users.id', '=', 'transactions.user_id')
+            ->select(
+                'transactions.*',
+                'users.name as user_name'
+            )
+            ->where('transactions.user_id', $userId)
+            ->orderBy('transactions.created_at', 'desc')
+            ->get();
 
         $reportTitle = $validTypes[$type];
 
-        return view('Web.User.report.show', compact('recharges', 'reportTitle'));
+        return view('Web.User.report.payment', compact('transactions', 'reportTitle'));
+    }
+
+
+    if ($type === 'spin_report') {
+        $transactions = Transaction::join('users', 'users.id', '=', 'transactions.user_id')
+            ->select(
+                'transactions.*',
+                'users.name as user_name'
+            )
+            ->where('transactions.user_id', $userId)
+            ->where('transactions.remark', 'spin_win')
+            ->orderBy('transactions.created_at', 'desc')
+            ->get();
+    
+        $reportTitle = $validTypes[$type];
+    
+        return view('Web.User.report.spin', compact('transactions', 'reportTitle'));
+    }
+    
+
+    // Fetch the results
+    $recharges = $query->get();
+
+    $reportTitle = $validTypes[$type];
+
+    $views = [
+        'recharge_report' => 'Web.User.report.show',
+        'customer_report' => 'Web.User.report.customer',
+        'spin_report' => 'Web.User.report.spin',
+        'wallet_report' => 'Web.User.report.wallet',
+        'payment_report' => 'Web.User.report.payment',
+    ];
+
+    return view($views[$type], compact('recharges', 'reportTitle'));
+
+        // return view('Web.User.report.show', compact('recharges', 'reportTitle'));
     }
 
 
