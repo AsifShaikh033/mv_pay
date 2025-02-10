@@ -6,8 +6,16 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Circle;
 use App\Models\Operator;
+use App\Services\RechargeService;
+use App\Models\Recharge;
+use Illuminate\Support\Facades\Auth;
 class RechargeController extends Controller
 {
+    protected $rechargeService;
+    public function __construct(RechargeService $rechargeService)
+    {
+        $this->rechargeService = $rechargeService;
+    }
     public function mobile(Request $request)
     {       
           $type = $request->query('type', 'Prepaid-Mobile');
@@ -24,9 +32,12 @@ class RechargeController extends Controller
                     ->get();
             }
             $circle = Circle::all();
-            // {{ route('user.recharge.mobile', ['type' => 'postpaid_mob']) }}
-        // return  $Operator;
-            return view('Web.User.recharge.mobile',compact('circle', 'Operator'));
+
+            $rechargeNumbers = Recharge::where('user_id', Auth::id())
+                 ->where('serviceType','Prepaid-Mobile')
+                ->orderBy('created_at', 'desc') // Latest first
+                ->get();
+            return view('Web.User.recharge.mobile',compact('circle', 'Operator','rechargeNumbers'));
         }
 
        public function plan(Request $request)
@@ -42,8 +53,25 @@ class RechargeController extends Controller
             ]);
         
             $mobileNumber = $request->input('mobile_number');
-            $operator = $request->input('operator');
-            $circle = $request->input('circle');
+            $operatorCode = $request->input('operator');
+            $circleCode = $request->input('circle');
+            $plans = $this->rechargeService->fetchPlans($mobileNumber, $operatorCode, $circleCode);
+            if (isset($plans['Status']) && $plans['Status'] == "1") {
+
+                return redirect()->back()->with(['error' => $plans['ErrorDescription']])->withInput();
+
+            }elseif(isset($plans['Status']) && $plans['Status'] == "0"){
+
+                    $plans = $plans['PlanDescription'];
+                    $operator=  Operator::where('OperatorCode', $operatorCode)->first();
+                    $Circle=  Circle::where('circlecode', $circleCode)->first();
+                  return view('Web.User.recharge.Airtel_pr_plans', compact('mobileNumber',
+                   'Circle','plans', 'operator'));
+            }else{
+                return redirect()->back()->with(['error' => json_encode($plans)])->withInput();
+            }
+          
+            return $plans;
             return view('Web.User.recharge.plan', compact('mobileNumber', 'operator', 'circle'));
         }
 

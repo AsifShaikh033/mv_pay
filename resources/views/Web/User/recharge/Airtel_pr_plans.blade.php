@@ -223,9 +223,9 @@
 
                              
                                <div class="details_user ms-3">
-                                <div class="btn-num">9340029158</div>
-                                <div class="btn-num-2">Jio Prepaid</div>
-                                <div class="btn-num-3">Chattisgarh</div>
+                                <div class="btn-num">{{$mobileNumber}}</div>
+                                <div class="btn-num-2">{{$operator->OperatorName ?? 'N/A'}}</div>
+                                <div class="btn-num-3">{{$Circle->circlename ?? 'N/A'}}</div>
                                </div>
                                </div>
                                <button type="submit" class='btn btn-sm btn-light'>Change</button>
@@ -252,17 +252,18 @@
 
                 <div class="plan_choose">
                     <div class="btn-group scroll-right" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-primary">Smart Phone</button>
                         <button type="button" class="btn btn-primary">Popular</button>
-                        <button type="button" class="btn btn-primary">True 5G Unlimited</button>
-                        <button type="button" class="btn btn-primary">Smart Phone</button>
-                        <button type="button" class="btn btn-primary">Popular</button>
+                        <button type="button" class="btn btn-primary">Full Talk Time</button>
+                        <button type="button" class="btn btn-primary">DATA</button>
+                        <button type="button" class="btn btn-primary">TOPUP</button>
+                        <button type="button" class="btn btn-primary">STV</button>
                         <button type="button" class="btn btn-primary">True 5G Unlimited</button>
                     </div>
                 </div>
             </div>
-
-            <div class="row ">
+            <!--PlanVoucher,FULLTT, DATA,TOPUP, STV, -->
+            <div class="row" id="smartphone">
+                @foreach
                 <div class="col-sm-12 col-md-6 col-lg-6 ">
                     <div class="card">
                         <div class="card-header">
@@ -288,58 +289,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-6 col-lg-6 ">
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="plan-price">
-                                ₹ 199
-                            </div>
-                            <div class="plan-details">
-                                14 days
-                                <div class="plans_value">Validity</div>
-                            </div>
-                            <div class="plan-details">
-                                2GB/day
-                                <div class="plans_value">Data</div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-
-                            <div class="validity">
-                                <img src="{{ asset('assets_web/images/wallet/13.png') }}"  style="width:10%!important;" alt="">
-                                <p>Spin cash rewards from ₹2 to ₹20</p>
-                                <button class="btn btn-sm btn-light mb-0" type="submit">show more</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-6 col-lg-6 ">
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="plan-price">
-                                ₹ 199
-                            </div>
-                            <div class="plan-details">
-                                14 days
-                                <div class="plans_value">Validity</div>
-                            </div>
-                            <div class="plan-details">
-                                2GB/day
-                                <div class="plans_value">Data</div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-
-                            <div class="validity">
-                                <img src="{{ asset('assets_web/images/wallet/13.png') }}"  style="width:10%!important;" alt="">
-                                <p>Spin cash rewards from ₹2 to ₹20</p>
-                                <button class="btn btn-sm btn-light mb-0" type="submit">show more</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-               
-
+                @endforeach
             </div>
         </div>
     </div>
