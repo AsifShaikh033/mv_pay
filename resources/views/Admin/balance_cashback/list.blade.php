@@ -105,6 +105,7 @@
                             <label for="">Select Ctegory</label>
                             <select class="form-control" required="required" name="category" id="category"> 
                               <option value="">Select</option>
+                              <option value="Prepaid-Mobile">Prepaid-Mobile</option>
                               <option value="electricity">Electricity</option>
                               <option value="postpaid">Postpaid </option>
                               <option value="landline">Landline</option>

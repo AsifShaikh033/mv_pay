@@ -5,6 +5,40 @@ use Illuminate\Support\Str;
 use App\Models\User;
 use Illuminate\Support\Facades\Http;
 use App\Models\Operator;
+use App\Models\BalanceCashback;
+
+
+
+if (!function_exists('webConfig')) {
+    /**
+     * Get value from the web_config table by column name.
+     *
+     * @param string $key
+     * @param mixed $default
+     * @return mixed
+     */
+    function webConfig($key, $default = null)
+    {
+        $config = WebConfig::first();
+        return $config ? $config->{$key} : $default;
+    }
+}
+
+if (!function_exists('cashback_value')) {
+    /**
+     * Get value from the web_config table by column name.
+     *
+     * @param string $type
+     * @param mixed $amount
+     * @return mixed
+     */
+    function cashback_value($type, $category, $amount)
+    {
+        $config = BalanceCashback::where('category',$type)->where('balance',$amount)->value('cashback');
+
+        return $config;
+    }
+}
 
 
 
