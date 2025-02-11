@@ -22,6 +22,19 @@
     .plan_choose { overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; }
     .scroll-right { display: flex; gap: 10px; }
     .btn-group .btn.active, .btn-group .btn:focus, .btn-group .btn:hover { background-color: #007bff; color: white; }
+
+    @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.spin-animation {
+    animation: spin 1s linear;
+}
+
+img.spin-img {
+    cursor: pointer;
+}
 </style>
 
 <div class="content-body">
@@ -30,15 +43,39 @@
             <div class="col-12 text-center mb-3">
                 <div class="card_top">
                     <div class="card_heading p-2 d-flex justify-content-between">
+                    @php
+                        $operators = [
+                            'Airtel' => 'airtel.png',
+                            'Idea' => 'idea.png',
+                            'Reliance Jio' => 'jio.png',
+                            'BSNL TopUp' => 'bsnl.png',
+                            'VodafoneIdea' => 'vi.png',
+                            'DTH' => 'dth.png',
+                            'Electricity' => 'electricity.png',
+                            'Hospital' => 'hospital.png',
+                            'Loan Repayment' => 'loan.png',
+                            'LPG Gas' => 'lpg.png',
+                            'Municipal Services' => 'municipal.png',
+                            'Municipal Taxes' => 'municipal.png',
+                            'Education Fees' => 'education.png'
+                        ];
+
+                        $operatorLogo = isset($operators[$operator]) 
+                            ? asset('assets/operators/' . $operators[$operator]) 
+                            : asset('assets/operators/default.png');
+                    @endphp
                         <div class="reharge_us d-flex">
-                            <img src="{{ asset('path/to/logo.png') }}" width="50" height="50">
+                            <!-- <img src="{{ asset('path/to/logo.png') }}" width="50" height="50"> -->
+                            <img src="{{ $operatorLogo }}" alt="{{ $operator }}" width="50" height="50" style="border-radius: 30px;">
                             <div class="details_user ms-3">
                                 <div class="btn-num">{{ $mobileNumber }}</div>
                                 <div class="btn-num-2">{{ $circle ?? 'N/A' }}</div>
                                 <div class="btn-num-3">{{ $operator ?? 'N/A' }}</div>
                             </div>
                         </div>
-                        <button class="btn btn-sm btn-light">Change</button>
+                       <!-- <button class="btn btn-sm btn-light">Change</button> -->
+                        <a href="{{ route('user.recharge.mobile') }}"><button class="btn btn-sm btn-light">Change</button></a>
+
                     </div>
                 </div>
             </div>
@@ -65,16 +102,21 @@
                 <!-- Dynamic Plans -->
                 <div class="row mt-3">
                 @foreach($planVouchers as $plan)
-    <div class="col-md-4 plan-card" data-type="{{ $plan['recharge_type'] }}">
-        <div class="card p-3 mb-3">
-            <h4>₹{{ $plan['recharge_amount'] }}</h4>
-            <p class="validity">{{ $plan['recharge_validity'] }}</p>
-            <p>{{ $plan['recharge_short_desc'] }}</p>
-            <p class="cashback">Cashback: ₹{{ cashback_value('Prepaid-Mobile', 'Prepaid-Mobile', $plan['recharge_amount']) }}</p>
-            <button class="btn btn-recharge">Recharge</button>
-        </div>
-    </div>
-@endforeach
+                    <div class="col-md-4 plan-card" data-type="{{ $plan['recharge_type'] }}">
+                        <div class="card p-3 mb-3">
+                            <h4>₹{{ $plan['recharge_amount'] }}</h4>
+                            <p class="validity">{{ $plan['recharge_validity'] }}</p>
+                            <div class="validity d-flex">
+                                <img src="{{ asset('assets_web/images/wallet/13.png') }}" class="spin-img" style="width:20%!important;height:20%!important;" alt="">
+                                <p class="text-success">Spin cash rewards from ₹2 to ₹20</p>
+                                <button class="btn btn-sm btn-light mb-0" type="submit">show more</button>
+                            </div>
+                            <p>{{ $plan['recharge_short_desc'] }}</p>
+                            <p class="cashback">Cashback: ₹{{ cashback_value('Prepaid-Mobile', 'Prepaid-Mobile', $plan['recharge_amount']) }}</p>
+                            <button class="btn btn-recharge">Recharge</button>
+                        </div>
+                    </div>
+                @endforeach
                 </div>
             </div>
         </div>
@@ -97,4 +139,17 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
 });
 
 </script>
+<script>
+document.querySelectorAll('.spin-img').forEach(img => {
+    img.addEventListener('click', function() {
+        this.classList.add('spin-animation');
+        
+        // Remove the animation class after it completes (1s) to allow re-clicking
+        setTimeout(() => {
+            this.classList.remove('spin-animation');
+        }, 1000);
+    });
+});
+</script>
+
 @endsection

@@ -158,13 +158,13 @@
 
         <button class="prepaid-button mb-3">Bills</button>
     
-    <form id="rechargeForm" action="{{ route('user.recharge.plan') }}" method="POST">
+    <form id="rechargeForm" action="{{ route('user.recharge.bill_plan') }}" method="POST">
     @csrf 
     <div class="input-section">
         <div class="input-group_1 mb-2">
        
             <div class="input-with-icon">
-                <input type="text" id="mobile-number" name="bill_number" placeholder="Enter Bill number" required>
+                <input type="text" id="bill-number" name="bill_number" placeholder="Enter Bill number" required>
                 <span class="contact-icon"><i class="fa fa-electric" aria-hidden="true"></i>
                 </span>
             </div>
@@ -199,8 +199,76 @@
     </div>
     </form>
 
+    <div class="recent-recharges">
+    <p>Recent or Personal Bill Recharges</p>
+    <div class="recharge-history mt-3">
+        <h6 class="fw-bold">Recent Bill Numbers</h6>
+        <ul class="list-unstyled">
+    <li class="d-flex align-items-center gap-2 recent-number">
+        <i class="fa fa-mobile" aria-hidden="true"></i>
+        <span data-number="{{ auth()->user()->mob_number }}">{{ auth()->user()->mob_number }}</span>
+    </li>
+    @foreach($billNumbers as $number)
+        <li class="d-flex align-items-center gap-2 recent-number">
+            <i class="fa fa-mobile" aria-hidden="true"></i>
+            <span data-number="{{ $number->number }}">{{ $number->number }}</span>
+        </li>
+    @endforeach
+</ul>
+
+    </div>
+</div>
+
 </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+
+    $('.recent-number span').on('click', function() {
+    let selectedNumber = $(this).data('number');
+    $('#bill-number').val(selectedNumber).trigger('input');
+    fetchOperatorAndCircle(selectedNumber);
+   // console.log(selectedNumber);
+
+});
+
+
+function fetchOperatorAndCircle(billNumber) {
+   // if (mobileNumber.length === 10) {
+        $.ajax({
+            url: "{{ route('fetch.operator.circle') }}",
+            type: "POST",
+            data: {
+                bill_number: billNumber,
+                _token: "{{ csrf_token() }}"
+            },
+            success: function(response) {
+                if (response.status === 1) {
+                    $('#operator').val(response.operator).change();
+                    $('#circle').val(response.circle).change();
+                }
+            },
+            error: function(xhr) {
+                if (xhr.responseJSON && xhr.responseJSON.error) {
+                    toastr.error(xhr.responseJSON.error.replace('mobile', 'Bill'), 'Error Alert', { timeOut: 8000 });
+                } else {
+                    toastr.error('Invalid Bill number', 'Error', { timeOut: 8000 });
+                }
+            }
+
+        });
+   //}
+}
+
+// Bind to keyup
+$('#bill-number').on('keyup', function() {
+    fetchOperatorAndCircle($(this).val());
+});
+
+});
+</script>
 @endsection
 
 @section('styles')

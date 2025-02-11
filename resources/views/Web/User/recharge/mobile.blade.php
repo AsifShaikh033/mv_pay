@@ -245,7 +245,7 @@ $(document).ready(function() {
 
 
 function fetchOperatorAndCircle(mobileNumber) {
-   // if (mobileNumber.length === 10) {
+    if (/^\d{10}$/.test(mobileNumber)) {
         $.ajax({
             url: "{{ route('fetch.operator.circle') }}",
             type: "POST",
@@ -267,13 +267,35 @@ function fetchOperatorAndCircle(mobileNumber) {
                 }
             }
         });
-   //}
+   }
 }
 
 // Bind to keyup
 $('#mobile-number').on('keyup', function() {
-    fetchOperatorAndCircle($(this).val());
-});
+        let mobileNumber = $(this).val();
+
+        if (mobileNumber === "") {
+            return;
+        }
+        
+        if (!/^\d+$/.test(mobileNumber)) {
+            toastr.error('Invalid mobile number. Please enter only digits.', 'Error Alert', { timeOut: 5000 });
+            return;
+        }
+
+        if (mobileNumber.length > 10) {
+            toastr.error('Mobile number cannot exceed 10 digits.', 'Error Alert', { timeOut: 5000 });
+            return;
+        }
+
+        if (mobileNumber.length === 10) {
+            fetchOperatorAndCircle(mobileNumber);
+        }
+    });
+    
+// $('#mobile-number').on('keyup', function() {
+//     fetchOperatorAndCircle($(this).val());
+// });
 
 });
 </script>
