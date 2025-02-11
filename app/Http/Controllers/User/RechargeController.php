@@ -105,6 +105,18 @@ class RechargeController extends Controller
     $operatorCode = $request->input('operator');
     $circleCode = $request->input('circle');
 
+    $operator = Operator::where('OperatorCode', $operatorCode)->value('OperatorName');
+
+    if (!$operator) {
+        return redirect()->back()->with(['error' => 'Invalid Operator selected.'])->withInput();
+    }
+
+    $circle = Circle::where('CircleCode', $circleCode)->value('CircleName');
+
+    if (!$circle) {
+        return redirect()->back()->with(['error' => 'Invalid Circle selected.'])->withInput();
+    }
+
     $plans = $this->rechargeService->fetchPlans($mobileNumber, $operatorCode, $circleCode);
 
     // Ensure that processing continues only if $plans is received
@@ -119,8 +131,8 @@ class RechargeController extends Controller
         
 
 
-        $operator = $request->input('operator');
-        $circle = $request->input('circle');
+        // $operator = $request->input('operator');
+        // $circle = $request->input('circle');
         // $plans = $this->rechargeService->fetchPlans($mobileNumber, $operatorCode, $circleCode);
         return view('Web.User.recharge.plans', compact('mobileNumber', 'circle', 'planVouchers', 'operator', 'plans'));
     }
