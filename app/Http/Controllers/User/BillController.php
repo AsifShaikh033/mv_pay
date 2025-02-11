@@ -16,29 +16,7 @@ class BillController extends Controller
     {
         $this->rechargeService = $rechargeService;
     }
-    public function mobile(Request $request)
-    {       
-          $type = $request->query('type', 'Prepaid-Mobile');
-            if ($type === 'postpaid_mob') {
-                $type = 'Postpaid-Mobile';
-                $exists = Operator::where('ServiceTypeName', $type)->exists();
-                if (!$exists) {
-                    insertOperators($type);
-                }
-                $Operator = Operator::where('ServiceTypeName', $type)->get();
-            }else{
-                $Operator = Operator::where('ServiceTypeName', $type)
-                    ->whereIn('OperatorCode', ['AT', 'BSNL', 'VI', 'JIO'])
-                    ->get();
-            }
-            $circle = Circle::all();
-
-            $rechargeNumbers = Recharge::where('user_id', Auth::id())
-                 ->where('serviceType','Prepaid-Mobile')
-                ->orderBy('created_at', 'desc') // Latest first
-                ->get();
-            return view('Web.User.recharge.mobile',compact('circle', 'Operator','rechargeNumbers'));
-        }
+   
 
        public function bill_plan(Request $request)
         {
@@ -82,15 +60,11 @@ class BillController extends Controller
            // ->whereIn('OperatorCode', ['AT', 'BSNL', 'VI', 'JIO'])
             ->get();
         
+            $billNumbers = Recharge::where('user_id', Auth::id())
+                 ->where('serviceType','Prepaid-Mobile')
+                ->orderBy('created_at', 'desc') // Latest first
+                ->get();
         // return  $Operator;
-            return view('Web.User.bills.electric_bill',compact('circle', 'Operator'));
+            return view('Web.User.bills.electric_bill',compact('circle', 'Operator', 'billNumbers'));
         }
-
-    public function wallet(){
-        return view('Web.User.recharge.wallet');
-    }
-    
-    public function pages(){
-        return view('Web.User.recharge.searchpages');
-    }
 }

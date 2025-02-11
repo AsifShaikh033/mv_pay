@@ -67,14 +67,14 @@ class RechargeService
     /**
      * Fetch Electricity Bill Plans
      */
-    public function fetchBillPlans($mobileNumber, $operatorCode, $circleCode)
+    public function fetchBillPlans($billNumber, $operatorCode, $circleCode)
     {
         $response = Http::get($this->apiBaseUrl . 'API/CyrusPlanFatchAPI.aspx', [
             'APIID'         => $this->CYRUS_MEMBER_ID,
             'PASSWORD'      => $this->PR_PLAN_FETCH, 
             'Operator_Code' => $operatorCode,
             'Circle_Code'   => $circleCode,
-            'MobileNumber'  => $mobileNumber,
+            'billNumber'  => $billNumber,
             'data'          => 'ALL'
         ]);
 
