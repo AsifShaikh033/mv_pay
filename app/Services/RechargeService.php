@@ -80,4 +80,25 @@ class RechargeService
 
         return $response->json();
     }
+
+
+     /**
+     * Fetch Electricity Bill Plans
+     */
+    public function recharge_prepaid($mobileNumber, $operatorCode, $circleCode, $rechargeAmount, $transaction_id)
+    {
+        $response = Http::get($this->apiBaseUrl . 'services_cyapi/recharge_cyapi.aspx', [
+            'memberid'         => $this->CYRUS_MEMBER_ID,
+            'pin'              => $this->PR_PLAN_FETCH, 
+            'number'           => $mobileNumber,
+            'operator'         => $operatorCode,
+            'circle'           => $circleCode,
+            'amount'           => $rechargeAmount,
+            'usertx'           => $transaction_id,
+            'format'           => 'json',
+            'RechargeMode'          => 1
+        ]);
+
+        return $response->json();
+    }
 }
