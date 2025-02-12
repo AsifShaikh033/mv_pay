@@ -174,7 +174,7 @@
     <div class="input-section">
         <div class="input-group_1 mb-2">
             <div class="input-with-icon">
-                <input type="text" id="mobile-number" name="mobile_number" placeholder="Enter mobile number" required>
+                <input type="text" id="mobile-number" name="mobile_number" placeholder="Enter mobile number" value="{{ old('mobile_number') }}" required>
                 <span class="contact-icon"><i class="fa fa-address-book" aria-hidden="true"></i></span>
             </div>
         </div>
@@ -184,7 +184,7 @@
                 <select name="operator" id="operator" class="form-control" required>
                     <option value="">Select Operator</option>
                     @foreach($Operator as $op)
-                        <option value="{{ $op->OperatorCode }}">{{ $op->OperatorName }}</option>
+                        <option value="{{ $op->OperatorCode }}" {{ old('operator') == $op->OperatorCode ? 'selected' : '' }}>{{ $op->OperatorName }}</option>
                     @endforeach
                 </select>
             </div>
@@ -195,7 +195,7 @@
                 <select name="circle" id="circle" class="form-control" required>
                     <option value="">Select Circle</option>
                     @foreach($circle as $c)
-                        <option value="{{ $c->circlecode }}">{{ $c->circlename }}</option>
+                        <option value="{{ $c->circlecode }}" {{ old('circle') == $c->circlecode ? 'selected' : '' }}>{{ $c->circlename }}</option>
                     @endforeach
                 </select>
             </div>

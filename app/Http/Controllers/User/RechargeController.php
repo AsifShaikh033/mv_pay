@@ -6,9 +6,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Circle;
 use App\Models\Operator;
+use App\Models\Transaction;
 use App\Services\RechargeService;
 use App\Models\Recharge;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
+
 class RechargeController extends Controller
 {
     protected $rechargeService;
@@ -118,23 +121,48 @@ class RechargeController extends Controller
     }
 
     $plans = $this->rechargeService->fetchPlans($mobileNumber, $operatorCode, $circleCode);
-
+// return $plans;
     // Ensure that processing continues only if $plans is received
     if (isset($plans['Status']) && $plans['Status'] === "1") {
         return redirect()->back()->with(['error' => $plans['ErrorDescription']])->withInput();
     } elseif (isset($plans['Status']) && $plans['Status'] === "0") {
         $plans = $plans['PlanDescription'] ?? [];
         
-        $planVouchers = array_filter($plans, function ($plan) {
-            return isset($plan['recharge_type']) && in_array($plan['recharge_type'], ["PlanVoucher", "FULLTT ", "DATA", "TOPUP","STV"]);
-        });
-        
+        // $planVouchers = array_filter($plans, function ($plan) {
+        //     return isset($plan['recharge_type']) && in_array($plan['recharge_type'], ["PlanVoucher", "FULLTT", "DATA", "TOPUP","STV","3G/4G"]);
+        // });
 
+
+        $operatorRechargeTypes = [
+            'Jio' => ['PlanVoucher', 'FULLTT', 'DATA', 'JioPhone', 'JioPhoneDataAddon', 'JioBharatPhone', 'ISD', 'Value', 'IRWiFiCalling', 'InFlightPacks', 'Annual Plans', 'Entertainment', 'TrueUnlimitedUpgrade', 'True Unlimited Upgrade', 'Plan Extension', 'International Roaming'],
+            'BSNL' => ['FULLTT', 'TOPUP', '3G/4G', 'COMBO', 'Romaing'],
+            'Airtel' => ['PlanVoucher', 'COMBO', 'Annual Plans', 'Roaming', 'Value', 'Entertainment'],
+            'VI' => ['TOPUP', 'STV', 'TrueUnlimitedUpgrade', 'IRWiFiCalling', 'InFlightPacks'],
+        ];
+
+        $operatorKey = null;
+        foreach ($operatorRechargeTypes as $key => $types) {
+            if (stripos($operator, $key) !== false) {
+                $operatorKey = $key;
+                break;
+            }
+        }
+        
+        if (!$operatorKey) {
+            return redirect()->back()->with(['error' => 'Unsupported operator selected.'])->withInput();
+        }
+        
+        $allowedRechargeTypes = $operatorRechargeTypes[$operatorKey] ?? [];
+
+        $filteredPlans = array_filter($plans, function ($plan) use ($allowedRechargeTypes) {
+            return isset($plan['recharge_type']) && in_array($plan['recharge_type'], $allowedRechargeTypes);
+        });
 
         // $operator = $request->input('operator');
         // $circle = $request->input('circle');
         // $plans = $this->rechargeService->fetchPlans($mobileNumber, $operatorCode, $circleCode);
-        return view('Web.User.recharge.plans', compact('mobileNumber', 'circle', 'planVouchers', 'operator', 'plans'));
+        return view('Web.User.recharge.plans', compact('mobileNumber', 'circle',
+        'operatorCode', 'circleCode', 'filteredPlans', 'operator', 'plans'));
     }
 
 
@@ -160,4 +188,67 @@ class RechargeController extends Controller
     public function pages(){
         return view('Web.User.recharge.searchpages');
     }
+    
+    public function recharge(Request $request)
+    {
+        $mobileNumber = $request->input('mobileNumber');
+        $circle = $request->input('circle');
+        $circleCode = $request->input('circleCode');
+        $operator = $request->input('operator');
+        $operatorCode = $request->input('operatorCode');
+        $rechargeAmount = $request->input('recharge_amount');
+        $rechargeValidity = $request->input('recharge_validity');
+    
+        $user = auth()->user();
+        $userBalance = $user->balance ?? 0;
+    
+        if ($userBalance < $rechargeAmount) { 
+            return redirect()->route('user.recharge.mobile')->with([
+                'error' => 'User Balance Not sufficient.'
+            ])->withInput();
+        }
+    
+        // Generate a unique transaction ID (8-9 digit random number)
+        $transaction_id = rand(10000000, 999999999);
+    
+        // Call the recharge service
+        $plans = $this->rechargeService->recharge_prepaid($mobileNumber, $operatorCode, $circleCode, $rechargeAmount, $transaction_id);
+    
+        // Deduct the recharge amount from user's balance
+        $user->balance -= $rechargeAmount;
+        $user->save();
+    
+        // Create a transaction record using the Transaction model
+        Transaction::create([
+            'user_id'         => $user->id,
+            'amount'          => $rechargeAmount,
+            'charge'          => 0.00,
+            'post_balance'    => $user->balance,
+            'trx_type'        => '+',
+            'details'         => 'recharge',
+            'remark'          => 'recharge_deduct',
+            'status'          => 0,
+            'payment_status'  => 'pending',
+            'transaction_id'  => $transaction_id,
+            'response_msg'    => '',
+            'response_api_msg'=> json_encode($plans), // Store API response if needed
+            'created_at'      => Carbon::now(),
+            'updated_at'      => Carbon::now(),
+        ]);
+    
+        return response()->json([
+            'status' => 'success',
+            'mobileNumber' => $mobileNumber,
+            'circle' => $circle,
+            'circleCode' => $circleCode,
+            'operator' => $operator,
+            'operatorCode' => $operatorCode,
+            'recharge_amount' => $rechargeAmount,
+            'recharge_validity' => $rechargeValidity,
+            'transaction_id' => $transaction_id,
+        ]);
+    }
+    
+    
+
 }

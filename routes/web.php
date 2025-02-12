@@ -125,6 +125,10 @@ Route::get('/api/register-user', [UserController::class, 'registeruser']);
         Route::post('/recharge/plan',[RechargeController::class,'plan'])->name('recharge.plan');
         Route::get('/wallet',[RechargeController::class,'wallet'])->name('cash.wallet');
         Route::get('/search/page',[RechargeController::class,'pages'])->name('search.pages');
+        
+        Route::post('/recharge', [RechargeController::class, 'recharge'])->name('recharge.process');
+
+        
         //ELECTRICITY
         // Route::get('/recharge/electricity',[RechargeController::class,'electtric_f'])->name('recharge.electricity');
         //Bill ELECTRICITY bill_plan
@@ -135,6 +139,8 @@ Route::get('/api/register-user', [UserController::class, 'registeruser']);
         Route::post('/plan-fetch', [RechargeApiController::class, 'plan_fetch'])->name('plan.fetch');
 
     });
+
+
     
 
     
