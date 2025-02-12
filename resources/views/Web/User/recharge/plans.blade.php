@@ -22,6 +22,19 @@
     .plan_choose { overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; }
     .scroll-right { display: flex; gap: 10px; }
     .btn-group .btn.active, .btn-group .btn:focus, .btn-group .btn:hover { background-color: #007bff; color: white; }
+
+    @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.spin-animation {
+    animation: spin 1s linear;
+}
+
+img.spin-img {
+    cursor: pointer;
+}
 </style>
 
 <div class="content-body">
@@ -30,15 +43,39 @@
             <div class="col-12 text-center mb-3">
                 <div class="card_top">
                     <div class="card_heading p-2 d-flex justify-content-between">
+                    @php
+                        $operators = [
+                            'Airtel' => 'airtel.png',
+                            'Idea' => 'idea.png',
+                            'Reliance Jio' => 'jio.png',
+                            'BSNL TopUp' => 'bsnl.png',
+                            'VI' => 'vi.png',
+                            'DTH' => 'dth.png',
+                            'Electricity' => 'electricity.png',
+                            'Hospital' => 'hospital.png',
+                            'Loan Repayment' => 'loan.png',
+                            'LPG Gas' => 'lpg.png',
+                            'Municipal Services' => 'municipal.png',
+                            'Municipal Taxes' => 'municipal.png',
+                            'Education Fees' => 'education.png'
+                        ];
+
+                        $operatorLogo = isset($operators[$operator]) 
+                            ? asset('assets/operators/' . $operators[$operator]) 
+                            : asset('assets/operators/default.png');
+                    @endphp
                         <div class="reharge_us d-flex">
-                            <img src="{{ asset('path/to/logo.png') }}" width="50" height="50">
+                            <!-- <img src="{{ asset('path/to/logo.png') }}" width="50" height="50"> -->
+                            <img src="{{ $operatorLogo }}" alt="{{ $operator }}" width="50" height="50" style="border-radius: 30px;">
                             <div class="details_user ms-3">
                                 <div class="btn-num">{{ $mobileNumber }}</div>
                                 <div class="btn-num-2">{{ $circle ?? 'N/A' }}</div>
                                 <div class="btn-num-3">{{ $operator ?? 'N/A' }}</div>
                             </div>
                         </div>
-                        <button class="btn btn-sm btn-light">Change</button>
+                       <!-- <button class="btn btn-sm btn-light">Change</button> -->
+                        <a href="{{ route('user.recharge.mobile') }}"><button class="btn btn-sm btn-light">Change</button></a>
+
                     </div>
                 </div>
             </div>
@@ -55,26 +92,53 @@
                 <div class="plan_choose">
                     <div class="btn-group scroll-right" role="group">
                         <button type="button" class="btn btn-primary filter-btn active" data-type="ALL">All</button>
-                        @foreach(['TOPUP', 'PlanVoucher', 'FULLTT ', 'DATA','STV'] as $type)
+                        @php
+                            $rechargeTypes = collect($plans)->pluck('recharge_type')->unique();
+                        @endphp
+                        @foreach($rechargeTypes as $type)
                             <button type="button" class="btn btn-primary filter-btn" data-type="{{ $type }}">{{ $type }}</button>
                         @endforeach
+                        <!-- @foreach(['TOPUP', 'PlanVoucher', 'FULLTT ', 'DATA','STV'] as $type)
+                            <button type="button" class="btn btn-primary filter-btn" data-type="{{ $type }}">{{ $type }}</button>
+                        @endforeach -->
                     </div>
 
                 </div>
 
                 <!-- Dynamic Plans -->
                 <div class="row mt-3">
-                @foreach($planVouchers as $plan)
-    <div class="col-md-4 plan-card" data-type="{{ $plan['recharge_type'] }}">
-        <div class="card p-3 mb-3">
-            <h4>₹{{ $plan['recharge_amount'] }}</h4>
-            <p class="validity">{{ $plan['recharge_validity'] }}</p>
-            <p>{{ $plan['recharge_short_desc'] }}</p>
-            <p class="cashback">Cashback: ₹{{ cashback_value('Prepaid-Mobile', 'Prepaid-Mobile', $plan['recharge_amount']) }}</p>
-            <button class="btn btn-recharge">Recharge</button>
-        </div>
-    </div>
-@endforeach
+                @foreach($plans as $plan)
+                    <div class="col-md-4 plan-card" data-type="{{ $plan['recharge_type'] }}">
+                        <div class="card p-3 mb-3">
+                            <h4>₹{{ $plan['recharge_amount'] }}</h4>
+                            <p class="validity">{{ $plan['recharge_validity'] }}</p>
+                            <p>{{ $plan['recharge_short_desc'] }}</p>
+                            <!-- <p class="cashback">Cashback: ₹{{ cashback_value('Prepaid-Mobile', 'Prepaid-Mobile', $plan['recharge_amount']) }}</p> -->
+                            <div class="validity d-flex">
+                                <img src="{{ asset('assets_web/images/wallet/13.png') }}" class="spin-img" style="width:20%!important;height:20%!important;" alt="">
+                                <p class="text-success m-auto">Spin cash rewards from <br> ₹2 to ₹20</p>
+                                <!-- <button class="btn btn-sm btn-light mb-0" type="submit">show more</button> -->
+                            </div>
+                            <form id="rechargeForm" action="{{ route('user.recharge.process') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="mobileNumber" value="{{ $mobileNumber }}">
+                                <input type="hidden" name="circle" value="{{ $circle }}">
+                                <input type="hidden" name="circleCode" value="{{ $circleCode }}">
+                                <input type="hidden" name="operator" value="{{ $operator }}">
+                                <input type="hidden" name="operatorCode" value="{{ $operatorCode }}">
+                                <input type="hidden" name="recharge_amount" value="{{ $plan['recharge_amount'] }}">
+                                <input type="hidden" name="recharge_validity" value="{{ $plan['recharge_validity'] }}">
+                                <button type="submit" class="btn btn-recharge">Recharge</button>
+                            </form>
+
+                            <!-- <a href="{{ route('user.recharge.process', ['mobileNumber' => $mobileNumber, 'circle' => $circle, 'operator' => $operator]) }}">
+                                <button class="btn btn-recharge">Recharge</button>
+                            </a> -->
+
+
+                        </div>
+                    </div>
+                @endforeach
                 </div>
             </div>
         </div>
@@ -91,10 +155,60 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
         });
 
         // Remove active class from all buttons and add it to the clicked one
-        document.querySelectorAll('.filter-btn').forEach(button => button.classList.remove('active'));
-        this.classList.add('active');
+        document.querySelectorAll('.filter-btn').forEach(button => {
+            button.classList.remove('active', 'btn-success');
+            button.classList.add('btn-primary'); 
+        });
+        
+        this.classList.add('active', 'btn-success');
+        this.classList.remove('btn-primary');
     });
 });
 
 </script>
+
+
+<script>
+document.querySelectorAll('.btn-recharge').forEach(button => {
+    button.addEventListener('click', function() {
+        let mobileNumber = this.getAttribute('data-mobile');
+        let circle = this.getAttribute('data-circle');
+        let operator = this.getAttribute('data-operator');
+
+        fetch("{{ route('user.recharge.process') }}", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content")
+            },
+            body: JSON.stringify({
+                mobileNumber: mobileNumber,
+                circle: circle,
+                operator: operator
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            alert("Recharge successful!");
+        })
+        .catch(error => console.error("Error:", error));
+    });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('.spin-img').forEach(img => {
+    img.addEventListener('click', function() {
+        this.classList.add('spin-animation');
+        
+        // Remove the animation class after it completes (1s) to allow re-clicking
+        setTimeout(() => {
+            this.classList.remove('spin-animation');
+        }, 1000);
+    });
+});
+</script>
+
 @endsection

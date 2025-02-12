@@ -8,6 +8,7 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\User\RechargeController;
+use App\Http\Controllers\User\BillController;
 use App\Http\Controllers\User\MvSpinUserController;
 use App\Http\Controllers\RechargeApiController;
 use App\Http\Controllers\ApiFetchController;
@@ -124,13 +125,22 @@ Route::get('/api/register-user', [UserController::class, 'registeruser']);
         Route::post('/recharge/plan',[RechargeController::class,'plan'])->name('recharge.plan');
         Route::get('/wallet',[RechargeController::class,'wallet'])->name('cash.wallet');
         Route::get('/search/page',[RechargeController::class,'pages'])->name('search.pages');
+        
+        Route::post('/recharge', [RechargeController::class, 'recharge'])->name('recharge.process');
+
+        
         //ELECTRICITY
-        Route::get('/recharge/electricity',[RechargeController::class,'electtric_f'])->name('recharge.electricity'); 
+        // Route::get('/recharge/electricity',[RechargeController::class,'electtric_f'])->name('recharge.electricity');
+        //Bill ELECTRICITY bill_plan
+        Route::get('/recharge/electricity',[BillController::class,'electtric_f'])->name('recharge.electricity');
+        Route::post('/recharge/bill_plan',[BillController::class,'bill_plan'])->name('recharge.bill_plan');
 
         //RECHAREGE APIS
         Route::post('/plan-fetch', [RechargeApiController::class, 'plan_fetch'])->name('plan.fetch');
 
     });
+
+
     
 
     

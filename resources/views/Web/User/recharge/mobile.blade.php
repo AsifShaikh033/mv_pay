@@ -174,7 +174,7 @@
     <div class="input-section">
         <div class="input-group_1 mb-2">
             <div class="input-with-icon">
-                <input type="text" id="mobile-number" name="mobile_number" placeholder="Enter mobile number" required>
+                <input type="text" id="mobile-number" name="mobile_number" placeholder="Enter mobile number" value="{{ old('mobile_number') }}" required>
                 <span class="contact-icon"><i class="fa fa-address-book" aria-hidden="true"></i></span>
             </div>
         </div>
@@ -184,7 +184,7 @@
                 <select name="operator" id="operator" class="form-control" required>
                     <option value="">Select Operator</option>
                     @foreach($Operator as $op)
-                        <option value="{{ $op->OperatorCode }}">{{ $op->OperatorName }}</option>
+                        <option value="{{ $op->OperatorCode }}" {{ old('operator') == $op->OperatorCode ? 'selected' : '' }}>{{ $op->OperatorName }}</option>
                     @endforeach
                 </select>
             </div>
@@ -195,7 +195,7 @@
                 <select name="circle" id="circle" class="form-control" required>
                     <option value="">Select Circle</option>
                     @foreach($circle as $c)
-                        <option value="{{ $c->circlecode }}">{{ $c->circlename }}</option>
+                        <option value="{{ $c->circlecode }}" {{ old('circle') == $c->circlecode ? 'selected' : '' }}>{{ $c->circlename }}</option>
                     @endforeach
                 </select>
             </div>
@@ -245,7 +245,7 @@ $(document).ready(function() {
 
 
 function fetchOperatorAndCircle(mobileNumber) {
-   // if (mobileNumber.length === 10) {
+    if (/^\d{10}$/.test(mobileNumber)) {
         $.ajax({
             url: "{{ route('fetch.operator.circle') }}",
             type: "POST",
@@ -267,13 +267,35 @@ function fetchOperatorAndCircle(mobileNumber) {
                 }
             }
         });
-   //}
+   }
 }
 
 // Bind to keyup
 $('#mobile-number').on('keyup', function() {
-    fetchOperatorAndCircle($(this).val());
-});
+        let mobileNumber = $(this).val();
+
+        if (mobileNumber === "") {
+            return;
+        }
+        
+        if (!/^\d+$/.test(mobileNumber)) {
+            toastr.error('Invalid mobile number. Please enter only digits.', 'Error Alert', { timeOut: 5000 });
+            return;
+        }
+
+        if (mobileNumber.length > 10) {
+            toastr.error('Mobile number cannot exceed 10 digits.', 'Error Alert', { timeOut: 5000 });
+            return;
+        }
+
+        if (mobileNumber.length === 10) {
+            fetchOperatorAndCircle(mobileNumber);
+        }
+    });
+    
+// $('#mobile-number').on('keyup', function() {
+//     fetchOperatorAndCircle($(this).val());
+// });
 
 });
 </script>

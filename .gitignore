@@ -27,3 +27,4 @@ _ide_helper_models.php
 /public/mix-manifest.json
 /public/js/app.js
 /public/css/app
+vendor/

@@ -6,8 +6,10 @@
     
     .box {
     position: relative;
+
     width: auto;
     height: 700px;
+
     background: #1c1c1c;
     border-radius: 8px;
     /* overflow: hidden; */
