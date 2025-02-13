@@ -198,6 +198,7 @@ class RechargeController extends Controller
         $operatorCode = $request->input('operatorCode');
         $rechargeAmount = $request->input('recharge_amount');
         $rechargeValidity = $request->input('recharge_validity');
+        $serviceType = $request->input('serviceType');
     
         $user = auth()->user();
         $userBalance = $user->balance ?? 0;
@@ -208,46 +209,68 @@ class RechargeController extends Controller
             ])->withInput();
         }
     
-        // Generate a unique transaction ID (8-9 digit random number)
-        $transaction_id = rand(10000000, 999999999);
+        $transaction_id = rand(1000000000, 99999999999);
     
         // Call the recharge service
         $plans = $this->rechargeService->recharge_prepaid($mobileNumber, $operatorCode, $circleCode, $rechargeAmount, $transaction_id);
-    
-        // Deduct the recharge amount from user's balance
+        // echo "<pre>";print_r($plans['Status']);die;
+
+        if (isset($plans['Status']) && $plans['Status'] === "0") {
+            
+            return redirect()->route('user.recharge.mobile')->with([
+                'error' => 'Invalid Credientials.'
+            ])->withInput();
+        }elseif (isset($plans['Status']) && $plans['Status'] === "FAILURE") {
+        
         $user->balance -= $rechargeAmount;
         $user->save();
-    
-        // Create a transaction record using the Transaction model
-        Transaction::create([
-            'user_id'         => $user->id,
-            'amount'          => $rechargeAmount,
-            'charge'          => 0.00,
-            'post_balance'    => $user->balance,
-            'trx_type'        => '+',
-            'details'         => 'recharge',
-            'remark'          => 'recharge_deduct',
-            'status'          => 0,
-            'payment_status'  => 'pending',
-            'transaction_id'  => $transaction_id,
-            'response_msg'    => '',
-            'response_api_msg'=> json_encode($plans), // Store API response if needed
-            'created_at'      => Carbon::now(),
-            'updated_at'      => Carbon::now(),
+
+        $Transaction =  new Transaction();
+        $Transaction->user_id = $user->id;
+        $Transaction->amount = $rechargeAmount;
+        $Transaction->charge = 0.00;
+        $Transaction->post_balance = $user->balance;
+        $Transaction->trx_type = '+';
+        $Transaction->details = 'recharge';
+        $Transaction->remark = 'recharge_deduct';
+        $Transaction->status = 0;
+        $Transaction->payment_status = 'pending';
+        $Transaction->transaction_id = $transaction_id;
+
+        $Transaction->save();
+        $user->save();
+
+
+        $Recharge = new Recharge();
+        $Recharge->user_id = $user->id;
+        $Recharge->number = $mobileNumber;
+        $Recharge->serviceType = $serviceType;
+        $Recharge->operator = $operator;
+        $Recharge->circle = $circleCode;
+        $Recharge->amount = $rechargeAmount;
+        $Recharge->user_tx = $transaction_id;
+        $Recharge->status = 'success';
+        $Recharge->format = 'json';
+        $Recharge->api_response = json_encode($plans);
+        $Recharge->save();
+
+        return redirect()->route('user.recharge.mobile')->with([
+            'success' => 'Recharge successfully completed.'
         ]);
     
-        return response()->json([
-            'status' => 'success',
-            'mobileNumber' => $mobileNumber,
-            'circle' => $circle,
-            'circleCode' => $circleCode,
-            'operator' => $operator,
-            'operatorCode' => $operatorCode,
-            'recharge_amount' => $rechargeAmount,
-            'recharge_validity' => $rechargeValidity,
-            'transaction_id' => $transaction_id,
-        ]);
+        // return response()->json([
+        //     'status' => 'success',
+        //     'mobileNumber' => $mobileNumber,
+        //     'circle' => $circle,
+        //     'circleCode' => $circleCode,
+        //     'operator' => $operator,
+        //     'operatorCode' => $operatorCode,
+        //     'recharge_amount' => $rechargeAmount,
+        //     'recharge_validity' => $rechargeValidity,
+        //     'transaction_id' => $transaction_id,
+        // ]);
     }
+}
     
     
 
