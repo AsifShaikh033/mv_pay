@@ -82,11 +82,31 @@
     <h2 class="text-light">Popular Services</h2>
     <div class="service-cards row gap-0">
       <div class="col-md-3 col-6 px-1">
-      <div class="card " onclick="window.location.href='{{ route('user.recharge.mobile') }}'" style="cursor:pointer;">
+      <div class="card " onclick="openRechargeModal()'" style="cursor:pointer;">
 
       <div class="mb-3"><img src="{{ asset('assets_web/images/dashboard/mobile.png') }}" alt="" width="50"></div> 
       <h6 class="font-bold">Mobile Recharge</h6>
     </div>
+    <!-- Recharge Modal -->
+<div class="modal fade" id="rechargeModal" tabindex="-1" aria-labelledby="rechargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="rechargeModalLabel">Select Recharge Option</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body text-center">
+              <button class="btn btn-primary me-2" onclick="window.location.href=''">
+                  Sairas Recharge
+              </button>
+              <button class="btn btn-secondary" onclick="window.location.href=''">
+                  Cplanet
+              </button>
+          </div>
+      </div>
+  </div>
+</div>
+    <!-- Recharge Modal -->
   </div>
   <div class="col-md-3 col-6 px-1">
     <div class="card " style="cursor:pointer;" onclick="window.location.href='{{ route('user.recharge.electricity') }}'">
@@ -386,5 +406,12 @@ $(document).ready(function() {
             alert("You have selected " + option);
             // Here you can replace the alert with any functionality like redirecting or opening a form.
         }
+     
+    function openRechargeModal() {
+        var rechargeModal = new bootstrap.Modal(document.getElementById('rechargeModal'));
+        rechargeModal.show();
+    }
     </script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 @endsection
