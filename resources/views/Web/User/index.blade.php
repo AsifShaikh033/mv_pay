@@ -74,6 +74,30 @@
   </section> -->
 
  
+<!-- Add Modal HTML -->
+<div class="modal fade" id="rechargeModal" tabindex="-1" aria-labelledby="rechargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content shadow-lg rounded-4">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title" id="rechargeModalLabel">Select Recharge Option</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center py-4">
+        <p class="mb-3 text-muted">Choose your preferred recharge method:</p>
+        <div class="d-grid gap-3">
+          <button class="btn btn-primary btn-lg rounded-pill" onclick="window.location.href='{{ route('user.recharge.mobile') }}'">
+            🚀 Cyrus Recharge
+          </button>
+          <button class="btn btn-secondary btn-lg rounded-pill" onclick="window.location.href='{{ route('user.c_recharge.mobile') }}'">
+            🌍 Planet Recharge
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
   <!-- Services Section -->
   <section class="services">
@@ -82,32 +106,12 @@
     <h2 class="text-light">Popular Services</h2>
     <div class="service-cards row gap-0">
       <div class="col-md-3 col-6 px-1">
-      <div class="card " onclick="openRechargeModal()'" style="cursor:pointer;">
+      <div class="card " onclick="$('#rechargeModal').modal('show');" style="cursor:pointer;">
 
-      <div class="mb-3"><img src="{{ asset('assets_web/images/dashboard/mobile.png') }}" alt="" width="50"></div> 
-      <h6 class="font-bold">Mobile Recharge</h6>
+          <div class="mb-3"><img src="{{ asset('assets_web/images/dashboard/mobile.png') }}" alt="" width="50"></div> 
+          <h6 class="font-bold">Mobile Recharge</h6>
+        </div>
     </div>
-    <!-- Recharge Modal -->
-<div class="modal fade" id="rechargeModal" tabindex="-1" aria-labelledby="rechargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h5 class="modal-title" id="rechargeModalLabel">Select Recharge Option</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body text-center">
-              <button class="btn btn-primary me-2" onclick="window.location.href=''">
-                  Sairas Recharge
-              </button>
-              <button class="btn btn-secondary" onclick="window.location.href=''">
-                  Cplanet
-              </button>
-          </div>
-      </div>
-  </div>
-</div>
-    <!-- Recharge Modal -->
-  </div>
   <div class="col-md-3 col-6 px-1">
     <div class="card " style="cursor:pointer;" onclick="window.location.href='{{ route('user.recharge.electricity') }}'">
         <div class="mb-3"><img src="{{ asset('assets_web/images/dashboard/electriity.png') }}" alt="" width="50"></div> 
