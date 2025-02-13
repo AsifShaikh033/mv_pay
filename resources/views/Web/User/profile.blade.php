@@ -4,13 +4,15 @@
 <!-- <link rel="stylesheet" href="{{ asset('assets_web/css/profile.css') }}"> -->
 <style>
     
-.box {
+    .box {
     position: relative;
-    /* width: 100%; */
-    height: 550px;
+
+    width: auto;
+    height: 700px;
+
     background: #1c1c1c;
     border-radius: 8px;
-    overflow: hidden;
+    /* overflow: hidden; */
     padding: 10px;
 }
 

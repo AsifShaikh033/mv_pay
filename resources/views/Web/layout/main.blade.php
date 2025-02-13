@@ -87,19 +87,19 @@
 
     @if(session('success'))
         <script>
-            toastr.success("{{ session('success') }}", 'Success Alert', { timeOut: 8000 });
+            toastr.success("{{ session('success') }}", 'Success', { timeOut: 8000 });
         </script>
     @endif
 
     @if(session('error'))
         <script>
-            toastr.error("{{ session('error') }}", 'Error Alert', { timeOut: 8000 });
+            toastr.error("{{ session('error') }}", 'Alert', { timeOut: 8000 });
         </script>
     @endif
 
     @if(session('warning'))
         <script>
-            toastr.warning("{{ session('warning') }}", 'Warning Alert', { timeOut: 8000 });
+            toastr.warning("{{ session('warning') }}", 'Warning', { timeOut: 8000 });
         </script>
     @endif
 
