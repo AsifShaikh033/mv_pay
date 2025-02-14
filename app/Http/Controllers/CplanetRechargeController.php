@@ -21,7 +21,8 @@ class CplanetRechargeController extends Controller
      {     
         $rechargeNumbers = Recharge::where('user_id', Auth::id())
         ->where('serviceType','Prepaid-Mobile')
-       ->orderBy('created_at', 'desc') 
+       ->orderBy('created_at', 'desc')
+       ->limit(3)
        ->get();
        
         $Operator = [
