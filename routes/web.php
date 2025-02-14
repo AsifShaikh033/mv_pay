@@ -107,7 +107,11 @@ Route::get('/api/register-user', [UserController::class, 'registeruser']);
         Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
         Route::get('/reports', [WebController::class, 'reports'])->name('reports');
         Route::get('/others', [WebController::class, 'other'])->name('others');
+        Route::get('/bank_details', [WebController::class, 'bank_details'])->name('bank_details');
         //user routes
+        Route::post('/save-bank-details', [WebController::class, 'saveBankDetails'])->name('save.bank.details');
+
+        
         Route::get('/profile', [UserController::class, 'profiles'])->name('profile');
         Route::get('/about', [UserController::class, 'about'])->name('about');
         Route::get('/services', [UserController::class, 'services'])->name('services');
