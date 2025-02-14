@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\WebConfig;
+use App\Models\Bankdetail;
 use App\Models\Banner;
 
 class WebController extends Controller
@@ -43,6 +44,86 @@ class WebController extends Controller
    public function other(){
         return view('Web.User.other');
    }
+   
+   public function bank_details(){
+    $bankDetail = Bankdetail::first();
+        return view('Web.User.bank.bank_details', compact('bankDetail'));
+   }
+
+
+   public function saveBankDetails(Request $request)
+{
+    // Validate incoming data
+    $request->validate([
+        'upi_id' => 'required|string',
+        // 'account_holder_name' => 'required|string',
+        // 'bank_name' => 'required|string',
+        // 'branch_name' => 'required|string',
+        // 'ifsc_code' => 'required|string',
+        // 'account_number' => 'required|string',
+        'status' => 'required|boolean',
+        'barcode_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    ]);
+
+    // Check if bank details already exist for this user_id
+    $bankDetail = BankDetail::where('user_id', $request->user_id)->first();
+
+    if ($bankDetail) {
+        // Update existing record
+        $bankDetail->user_id = $request->user_id;
+        $bankDetail->upi_id = $request->upi_id;
+        // $bankDetail->account_holder_name = $request->account_holder_name;
+        // $bankDetail->bank_name = $request->bank_name;
+        // $bankDetail->branch_name = $request->branch_name;
+        // $bankDetail->ifsc_code = $request->ifsc_code;
+        // $bankDetail->account_number = $request->account_number;
+        $bankDetail->status = $request->status;
+
+        // Handle file upload if a new file is provided
+        if ($request->hasFile('barcode_image')) {
+            // Delete old barcode image if exists
+            if ($bankDetail->barcode) {
+                Storage::delete('public/barcodes/' . $bankDetail->barcode);
+            }
+
+            // Save the new barcode image
+            $barcode = $request->file('barcode_image');
+            $imageName = time() . '.' . $barcode->getClientOriginalExtension();
+            $barcode->storeAs('public/barcodes', $imageName);
+            $bankDetail->barcode = $imageName;
+        }
+
+        $bankDetail->save();
+
+        return redirect()->back()->with('success', 'Bank details updated successfully!');
+    } else {
+        // Insert new record
+        $bankDetail = new BankDetail();
+        $bankDetail->user_id = $request->user_id;
+        $bankDetail->upi_id = $request->upi_id;
+        // $bankDetail->account_holder_name = $request->account_holder_name;
+        // $bankDetail->bank_name = $request->bank_name;
+        // $bankDetail->branch_name = $request->branch_name;
+        // $bankDetail->ifsc_code = $request->ifsc_code;
+        // $bankDetail->account_number = $request->account_number;
+        $bankDetail->status = $request->status;
+
+        // Handle file upload if a file is provided
+        if ($request->hasFile('barcode_image')) {
+            $barcode = $request->file('barcode_image');
+            $imageName = time() . '.' . $barcode->getClientOriginalExtension();
+            $barcode->storeAs('public/barcodes', $imageName);
+            $bankDetail->barcode = $imageName;
+        }
+
+        $bankDetail->save();
+
+        return redirect()->back()->with('success', 'Bank details added successfully!');
+    }
+}
+
+
+
    public function reports(){
         return view('Web.User.reports');
    }

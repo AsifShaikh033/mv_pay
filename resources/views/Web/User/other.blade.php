@@ -66,7 +66,7 @@
             <div class="service-cards">
               
                 <!-- Payment Request -->
-                <div class="card " style="cursor: pointer;" onclick="window.location=''">
+                <div class="card " style="cursor: pointer;" onclick="window.location='{{route('user.bank_details')}}'">
                     <div class="other_icon">
                         <img src="{{ asset('assets_web/images/others_services/payment_staus.png') }}" width="100px" height="100px" alt="">
                             </div>
