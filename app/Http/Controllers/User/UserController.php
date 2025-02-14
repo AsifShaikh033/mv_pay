@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Transaction;
 use Illuminate\Support\Str;
 
 class UserController extends Controller
@@ -146,6 +147,42 @@ if($subscriptionStatus == true){
     public function contactUs()
     {
         return view('Web.User.contactUs');
+    }
+
+
+    
+
+    public function member_refer_list()
+    {
+        $users = User::where('referred_by', Auth::id())->get(); 
+
+        $users_list = User::whereIn('id', $users->pluck('id'))->get();
+        
+        return view('Web.User.member_list', compact('users', 'users_list'));
+    }
+
+
+    public function commission_report()
+    {
+        $userId = Auth::id();
+
+        $commission = Transaction::with('user')
+        ->where('user_id', $userId)
+        ->where('remark', 'referral_bonus')
+        ->orderBy('created_at', 'desc')
+        ->get();
+        
+        return view('Web.User.commission_report', compact('commission'));
+    }
+
+
+    public function fund_transaction()
+    {
+
+        $fund = Transaction::with('user')
+        ->orderBy('created_at', 'desc')
+        ->get();
+        return view('Web.User.fund_transaction', compact('fund'));
     }
 
     

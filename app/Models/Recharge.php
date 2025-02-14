@@ -14,6 +14,7 @@ class Recharge extends Model
     protected $fillable = [
         'user_id',
         'number',
+        'serviceType',
         'operator',
         'circle',
         'amount',

@@ -120,6 +120,11 @@ Route::get('/api/register-user', [UserController::class, 'registeruser']);
         //Reffrel
         Route::get('/reffrel-list', [UserController::class, 'reffrel_list'])->name('reffrellist');
 
+        //Member Others
+        Route::get('/member-list', [UserController::class, 'member_refer_list'])->name('memberlist');
+        Route::get('/commission-report', [UserController::class, 'commission_report'])->name('commissionreport');
+        Route::get('/fund-transaction', [UserController::class, 'fund_transaction'])->name('fundtransaction');
+
         Route::get('/report/{type}', [ReportController::class, 'showReport'])->name('report.show');
         //MOBILE
         Route::get('/recharge/mobile',[RechargeController::class,'mobile'])->name('recharge.mobile');

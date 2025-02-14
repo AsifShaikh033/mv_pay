@@ -22,7 +22,7 @@
                         'Airtel' => 'airtel.png',
                         'Idea' => 'idea.png',
                         'Jio' => 'jio.png',
-                        'BSNL' => 'bsnl.png',
+                        'BSNL TopUp' => 'bsnl.png',
                         'Vi' => 'vi.png',
                         'DTH' => 'dth.png',
                         'Electricity' => 'electricity.png',
@@ -49,7 +49,7 @@
                     <div class="d-flex align-items-center" style="flex-direction: row;">
                         <!-- <img src="{{ $operatorLogo }}" alt="{{ $transaction->operator }}" width="50" style="border-radius: 30px;"> -->
                         <div>
-                            <h5 class="card-title mb-1">{{ ucfirst($transaction->user_name) }}</h5>
+                            <h5 class="card-title mb-1">{{ ucfirst($transaction->user->name) }}</h5>
                             <strong>TRX Type:</strong> 
                             @if($transaction->trx_type == '+')
                                 <span class="badge bg-success">+</span>

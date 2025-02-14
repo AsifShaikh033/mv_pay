@@ -7,14 +7,13 @@
         height: 25% !important;
     }
 }
-
 </style>
 <div class="content-body">
     <div class="container py-4">
-        <h2 class="text-light text-center mb-4 mt-2">{{ $reportTitle }}</h2>
+        <h2 class="text-light text-center mb-4 mt-2">Commission Report</h2>
 
-        @if($transactions->isEmpty())
-            <p class="text-center text-white">No Transactions found for this report.</p>
+        @if($commission->isEmpty())
+            <p class="text-center text-white">No Commission Report found for this report.</p>
         @else
             <div class="d-flex flex-wrap justify-content-center">
                 @php
@@ -35,7 +34,7 @@
                         'Education Fees' => 'education.png'
                     ];
                 @endphp
-                @foreach($transactions as $transaction)
+                @foreach($commission as $transaction)
                 
                     @php
                         $operatorLogo = isset($operators[$transaction->operator]) 
@@ -49,7 +48,7 @@
                     <div class="d-flex align-items-center" style="flex-direction: row;">
                         <!-- <img src="{{ $operatorLogo }}" alt="{{ $transaction->operator }}" width="50" style="border-radius: 30px;"> -->
                         <div>
-                            <h5 class="card-title mb-1">{{ ucfirst($transaction->user_name) }}</h5>
+                            <h5 class="card-title mb-1">{{ ucfirst($transaction->user->name) }}</h5>
                             <strong>TRX Type:</strong> 
                             @if($transaction->trx_type == '+')
                                 <span class="badge bg-success">+</span>
@@ -86,7 +85,7 @@
 
                     <div class="d-flex justify-content-between" style="flex-direction: row;">
                         <p class="card-text me-4"><strong>Details:</strong> {{ $transaction->details }}</p>
-                        <p class="card-text me-4"><strong>Remark:</strong> {{ $transaction->remark }}</p>
+                        <p class="card-text me-4"><strong>Remark:</strong> {{ ucfirst(str_replace('_', ' ', $transaction->remark)) }}</p>
                         <p class="card-text"><strong>Response Msg:</strong> {{ $transaction->response_msg }}</p>
                     </div>
 
