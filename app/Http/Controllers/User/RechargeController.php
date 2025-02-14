@@ -41,7 +41,7 @@ class RechargeController extends Controller
             $rechargeNumbers = Recharge::where('user_id', Auth::id())
                  ->where('serviceType','Prepaid-Mobile')
                 ->orderBy('created_at', 'desc')
-                ->limit(5)
+                ->limit(3)
                 ->get();
             return view('Web.User.recharge.mobile',compact('circle', 'Operator','rechargeNumbers'));
         }
@@ -209,7 +209,7 @@ class RechargeController extends Controller
         $user = Auth::user();
         $cashback = BalanceCashback::where('category', 'Prepaid-Mobile')->where('balance', $rechargeAmount)->first();
         if($cashback){
-            send_spin_chance($user, $cashback->cashback, $cashback->category);
+            send_spin_chance($user,$rechargeAmount, $cashback->cashback, $cashback->category);
         }
        
                
