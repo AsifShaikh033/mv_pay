@@ -21,7 +21,7 @@
                     $operators = [
                         'Airtel' => 'airtel.png',
                         'Jio' => 'jio.png',
-                        'BSNL' => 'bsnl.png',
+                        'BSNL TopUp' => 'bsnl.png',
                         'Vi' => 'vi.png',
                         'DTH' => 'dth.png',
                         'Electricity' => 'electricity.png',
@@ -46,7 +46,7 @@
                     <div class="d-flex align-items-center" style="flex-direction: row;">
                         <img src="{{ $operatorLogo }}" alt="{{ $recharge->operator }}" width="50" style="border-radius: 30px;">
                         <div class="ms-2">
-                            <h5 class="card-title mb-1">{{ ucfirst($recharge->user_name) }}</h5>
+                            <h5 class="card-title mb-1">{{ ucfirst($recharge->user->name) }}</h5>
                             <p class="card-text mb-0">{{ $recharge->number }}</p>
                         </div>
                     </div>

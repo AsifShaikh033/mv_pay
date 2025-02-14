@@ -7,6 +7,7 @@ use App\Models\WebConfig;
 use App\Models\Banner;
 use App\Models\Transaction;
 use App\Models\Recharge;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class ReportController extends Controller
@@ -47,8 +48,28 @@ class ReportController extends Controller
 
     // Apply filter only for 'customer_report'
     if ($type === 'customer_report') {
-        $query->where('users.referred_by', 1);
+        $users = User::whereNotNull('referred_by')
+        ->where('referred_by', '>', 0)
+        ->where('referred_by', Auth::id())
+        ->get();
+
+    $recharges = Recharge::with('user')
+        ->whereIn('user_id', function ($subQuery) {
+            $subQuery->select('id')
+                ->from('users')
+                ->whereNotNull('referred_by')
+                ->where('referred_by', '>', 0);
+        })
+        ->whereIn('user_id', $users->pluck('id'))
+        ->get();
+
+        $reportTitle = $validTypes[$type];
+
+    return view('Web.User.report.customer', compact('users', 'recharges', 'reportTitle'));
     }
+    
+    
+    
     if ($type === 'wallet_report') {
         $query->where(function ($q) {
             $q->whereIn('recharges.operator', [
@@ -60,25 +81,22 @@ class ReportController extends Controller
                 'Housing Society', 'Life Insurance', 'Municipal Services', 'CHALLAN', 'METRO CARD RECHARGE',
                 'Education Fees'
             ])
-            ->orWhereNotIn('recharges.operator', ['Airtel', 'Idea', 'Jio', 'BSNL', 'Vi']);
+            ->orWhereNotIn('recharges.operator', ['Airtel', 'Idea', 'Jio', 'BSNL', 'Vi', 'BSNL TopUp']);
         });
     } 
     
     if ($type === 'payment_report') {
-        $transactions = Transaction::join('users', 'users.id', '=', 'transactions.user_id')
-            ->select(
-                'transactions.*',
-                'users.name as user_name'
-            )
-            ->where('transactions.user_id', $userId)
-            ->orderBy('transactions.created_at', 'desc')
+        $users = User::where('referred_by', Auth::id())->get(); 
+
+        $transactions = Transaction::with('user:id,name')
+            ->whereIn('user_id', $users->pluck('id'))
             ->get();
-
+    
         $reportTitle = $validTypes[$type];
-
+    
         return view('Web.User.report.payment', compact('transactions', 'reportTitle'));
     }
-
+    
 
     if ($type === 'spin_report') {
         $transactions = Transaction::join('users', 'users.id', '=', 'transactions.user_id')
@@ -114,6 +132,40 @@ class ReportController extends Controller
 
         // return view('Web.User.report.show', compact('recharges', 'reportTitle'));
     }
+
+    public function customer_transaction_report()
+    {
+        $users = User::where('referred_by', Auth::id())->get(); 
+
+        $transactions = Transaction::with('user')
+            ->whereIn('user_id', $users->pluck('id'))
+            ->get();
+
+        return view('Web.User.report.payment', compact('users', 'transactions'));
+    }
+    
+    public function customer_Recharge_report()
+    {
+        $users = User::where('referred_by', Auth::id())->get(); 
+
+        $transactions = Recharge::with('user')
+            ->whereIn('user_id', $users->pluck('id'))
+            ->get();
+
+        return view('Web.User.report.customer', compact('users', 'transactions'));
+    }
+
+    public function own_Recharge_report()
+    {
+        $users = User::where('referred_by', Auth::id())->get(); 
+
+        $transactions = Recharge::with('user')
+            ->where('user_id',Auth::id())
+            ->get();
+
+        return view('Web.User.report.customer', compact('users', 'transactions'));
+    }
+
 
 
     // public function showReport($type)

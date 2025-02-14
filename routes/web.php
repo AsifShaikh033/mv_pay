@@ -12,6 +12,7 @@ use App\Http\Controllers\User\BillController;
 use App\Http\Controllers\User\MvSpinUserController;
 use App\Http\Controllers\RechargeApiController;
 use App\Http\Controllers\ApiFetchController;
+use App\Http\Controllers\CplanetRechargeController;
    
 
 Route::get('/api/register-user', [UserController::class, 'registeruser']);
@@ -123,6 +124,11 @@ Route::get('/api/register-user', [UserController::class, 'registeruser']);
         //Reffrel
         Route::get('/reffrel-list', [UserController::class, 'reffrel_list'])->name('reffrellist');
 
+        //Member Others
+        Route::get('/member-list', [UserController::class, 'member_refer_list'])->name('memberlist');
+        Route::get('/commission-report', [UserController::class, 'commission_report'])->name('commissionreport');
+        Route::get('/fund-transaction', [UserController::class, 'fund_transaction'])->name('fundtransaction');
+
         Route::get('/report/{type}', [ReportController::class, 'showReport'])->name('report.show');
         //MOBILE
         Route::get('/recharge/mobile',[RechargeController::class,'mobile'])->name('recharge.mobile');
@@ -141,7 +147,11 @@ Route::get('/api/register-user', [UserController::class, 'registeruser']);
 
         //RECHAREGE APIS
         Route::post('/plan-fetch', [RechargeApiController::class, 'plan_fetch'])->name('plan.fetch');
-
+        //CPLANET APIS
+        Route::get('/c-recharge/mobile',[CplanetRechargeController::class,'mobile'])->name('c_recharge.mobile');
+        Route::post('/c-recharge/prepaid',[CplanetRechargeController::class,'recharge_prepaid_m'])->name('c_recharge');
+    
+    
     });
 
 
