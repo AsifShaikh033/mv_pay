@@ -9,8 +9,10 @@ use App\Models\Operator;
 use App\Models\Transaction;
 use App\Services\RechargeService;
 use App\Models\Recharge;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use App\Models\BalanceCashback;
 
 class RechargeController extends Controller
 {
@@ -38,59 +40,13 @@ class RechargeController extends Controller
 
             $rechargeNumbers = Recharge::where('user_id', Auth::id())
                  ->where('serviceType','Prepaid-Mobile')
-                ->orderBy('created_at', 'desc') // Latest first
+                ->orderBy('created_at', 'desc')
+                ->limit(5)
                 ->get();
             return view('Web.User.recharge.mobile',compact('circle', 'Operator','rechargeNumbers'));
         }
 
-    //    public function plan(Request $request)
-    //     {
-    //         $request->validate([
-    //             'mobile_number' => 'required|digits:10',
-    //             'operator' => 'required',
-    //             'circle' => 'required',
-    //         ], [
-    //             'mobile_number.digits' => 'Please enter a valid 10-digit mobile number.',
-    //             'operator.required' => 'Please select an operator.',
-    //             'circle.required' => 'Please select a circle.',
-    //         ]);
-        
-    //         $mobileNumber = $request->input('mobile_number');
-    //         $operatorCode = $request->input('operator');
-    //         $circleCode = $request->input('circle');
-    //         $plans = $this->rechargeService->fetchPlans($mobileNumber, $operatorCode, $circleCode);
-    //         return $plans;
-    //         // if (isset($plans['Status']) && $plans['Status'] == "1") {
-
-    //         //     return redirect()->back()->with(['error' => $plans['ErrorDescription']])->withInput();
-
-    //         // }elseif(isset($plans['Status']) && $plans['Status'] == "0"){
-
-    //         //         $plans = $plans['PlanDescription'];
-    //         //         $operator=  Operator::where('OperatorCode', $operatorCode)->first();
-    //         //         $Circle=  Circle::where('circlecode', $circleCode)->first();
-    //         //       return view('Web.User.recharge.Airtel_pr_plans', compact('mobileNumber',
-    //         //        'Circle','plans', 'operator'));
-    //         // }
-
-    //         if (isset($plans['Status']) && $plans['Status'] === "1") {
-    //             return redirect()->back()->with(['error' => $plans['ErrorDescription']])->withInput();
-    //         } elseif (isset($plans['Status']) && $plans['Status'] === "0") {
-    //             // Extract PlanVoucher plans only
-    //             $allPlans = $plans['PlanDescription'];
-    //             $planVouchers = array_filter($allPlans, function ($plan) {
-    //                 return isset($plan['recharge_type']) && $plan['recharge_type'] === "PlanVoucher";
-    //             });
-        
-    //             $operator = Operator::where('OperatorCode', $operatorCode)->first();
-    //             $circle = Circle::where('circlecode', $circleCode)->first();
-        
-    //             return view('Web.User.recharge.plans', compact('mobileNumber', 'circle', 'planVouchers', 'operator'));
-    //         }
-          
-    //         // return $plans;
-    //         return view('Web.User.recharge.plan', compact('mobileNumber', 'operator', 'circle'));
-    //     }
+ 
 
     public function plan(Request $request)
 {
@@ -170,24 +126,6 @@ class RechargeController extends Controller
 }
 
 
-        public function electtric_f(){
-
-            $circle = Circle::all();
-            $Operator = Operator::where('ServiceTypeName', 'Electricity')
-           // ->whereIn('OperatorCode', ['AT', 'BSNL', 'VI', 'JIO'])
-            ->get();
-        
-        // return  $Operator;
-            return view('Web.User.bills.electric_bill',compact('circle', 'Operator'));
-        }
-
-    public function wallet(){
-        return view('Web.User.recharge.wallet');
-    }
-    
-    public function pages(){
-        return view('Web.User.recharge.searchpages');
-    }
     
     public function recharge(Request $request)
     {
@@ -198,7 +136,7 @@ class RechargeController extends Controller
         $operatorCode = $request->input('operatorCode');
         $rechargeAmount = $request->input('recharge_amount');
         $rechargeValidity = $request->input('recharge_validity');
-        $serviceType = $request->input('serviceType');
+        $serviceType = $request->input('serviceType') ?? 'Prepaid-Mobile';
     
         $user = auth()->user();
         $userBalance = $user->balance ?? 0;
@@ -210,36 +148,15 @@ class RechargeController extends Controller
         }
     
         $transaction_id = rand(1000000000, 99999999999);
-    
-        // Call the recharge service
-        $plans = $this->rechargeService->recharge_prepaid($mobileNumber, $operatorCode, $circleCode, $rechargeAmount, $transaction_id);
-        // echo "<pre>";print_r($plans['Status']);die;
-
-        if (isset($plans['Status']) && $plans['Status'] === "0") {
-            
-            return redirect()->route('user.recharge.mobile')->with([
-                'error' => 'Invalid Credientials.'
-            ])->withInput();
-        }elseif (isset($plans['Status']) && $plans['Status'] === "FAILURE") {
-        
-        $user->balance -= $rechargeAmount;
-        $user->save();
 
         $Transaction =  new Transaction();
         $Transaction->user_id = $user->id;
         $Transaction->amount = $rechargeAmount;
+        $Transaction->transaction_id = $transaction_id;
         $Transaction->charge = 0.00;
-        $Transaction->post_balance = $user->balance;
-        $Transaction->trx_type = '+';
+        $Transaction->trx_type = '-';
         $Transaction->details = 'recharge';
         $Transaction->remark = 'recharge_deduct';
-        $Transaction->status = 0;
-        $Transaction->payment_status = 'pending';
-        $Transaction->transaction_id = $transaction_id;
-
-        $Transaction->save();
-        $user->save();
-
 
         $Recharge = new Recharge();
         $Recharge->user_id = $user->id;
@@ -249,29 +166,109 @@ class RechargeController extends Controller
         $Recharge->circle = $circleCode;
         $Recharge->amount = $rechargeAmount;
         $Recharge->user_tx = $transaction_id;
+
+      
+    
+        // Call the recharge service
+        $plans = $this->rechargeService->recharge_prepaid($mobileNumber, $operatorCode, $circleCode, $rechargeAmount, $transaction_id);
+        // echo "<pre>";print_r($plans['Status']);die;
+
+        if (isset($plans['Status']) && $plans['Status'] === "1") {
+
+            $Transaction->post_balance = $user->balance;
+            $Transaction->status = 0;
+            $Transaction->payment_status = 'failed';
+            $Transaction->save();
+            
+            $Recharge->status = 'failed';
+            $Recharge->format = 'json';
+            $Recharge->api_response = json_encode($plans);
+            $Recharge->save();
+            
+            return redirect()->route('user.recharge.mobile')->with([
+                'error' => $plans['ErrorMessage'],
+            ])->withInput();
+        }elseif (isset($plans['Status']) && $plans['Status'] === "FAILURE") {
+        
+            // return   $plans;
+        $user->balance -= $rechargeAmount;
+       
         $Recharge->status = 'success';
         $Recharge->format = 'json';
         $Recharge->api_response = json_encode($plans);
+
+        $Transaction->post_balance = $user->balance;
+        $Transaction->status = 1;
+        $Transaction->payment_status = 'success';
+        $Transaction->save();
         $Recharge->save();
+        $user->save();
+        //recharge bonus
+        $this->recharge_bonus($user, $rechargeAmount);
+        //spin bonus
+        $user = Auth::user();
+        $cashback = BalanceCashback::where('category', 'Prepaid-Mobile')->where('balance', $rechargeAmount)->first();
+        if($cashback){
+            send_spin_chance($user, $cashback->cashback, $cashback->category);
+        }
+       
+               
 
         return redirect()->route('user.recharge.mobile')->with([
             'success' => 'Recharge successfully completed.'
         ]);
     
-        // return response()->json([
-        //     'status' => 'success',
-        //     'mobileNumber' => $mobileNumber,
-        //     'circle' => $circle,
-        //     'circleCode' => $circleCode,
-        //     'operator' => $operator,
-        //     'operatorCode' => $operatorCode,
-        //     'recharge_amount' => $rechargeAmount,
-        //     'recharge_validity' => $rechargeValidity,
-        //     'transaction_id' => $transaction_id,
-        // ]);
     }
 }
-    
+
+public function recharge_bonus($user, $rechargeAmount) {
+    $authUser = Auth::user();
+
+    if (!empty($authUser->referred_by)) {
+        $referrer = User::where('id', $authUser->referred_by)->first();
+
+        if ($referrer) {
+            $referrer->balance += 1;
+          
+            Transaction::create([
+                'user_id'         => $referrer->id,
+                'amount'          => $rechargeAmount, 
+                'transaction_id'  => rand(1000000000, 99999999999),
+                'charge'          => 0.00,
+                'trx_type'        => '+',
+                'details'         => 'recharge commission from '.$authUser->name,
+                'remark'          => 'reffrel_bonus',
+                'post_balance'    => $user->balance, 
+                'status'          => 1,
+                'payment_status'  => 'success',
+            ]);
+
+
+            $referrer->save();
+        }
+    }
+}
+
+
+public function electtric_f(){
+
+    $circle = Circle::all();
+    $Operator = Operator::where('ServiceTypeName', 'Electricity')
+   // ->whereIn('OperatorCode', ['AT', 'BSNL', 'VI', 'JIO'])
+    ->get();
+
+// return  $Operator;
+    return view('Web.User.bills.electric_bill',compact('circle', 'Operator'));
+}
+
+public function wallet(){
+return view('Web.User.recharge.wallet');
+}
+
+public function pages(){
+return view('Web.User.recharge.searchpages');
+}
+
     
 
 }

@@ -111,14 +111,15 @@ if (!function_exists('send_spin_chance')) {
      * @param User $user
      * @return void
      */
-    function send_spin_chance(User $user, $spin_count)
+    function send_spin_chance(User $user, $spin_count, $category)
     {
       
         try {
             $response = Http::get(env('MVivsionURL') . '/api/update-spinchance', [
-                'email' => $user->email, 
+                'mob_number' => $user->mob_number, 
                 'token' =>  $user->remember_token, 
-                'spin_count'=> $spin_count
+                'spin_count'=> $spin_count,
+                'category'=> $category
             ]);
     
             if ($response->successful()) {

@@ -92,7 +92,7 @@
                 </div> -->
 
                 <!-- Member List -->
-                <div class="card " style="cursor: pointer;" onclick="window.location='{{route('user.reffrellist')}}'">
+                <div class="card " style="cursor: pointer;" onclick="window.location='{{route('user.memberlist')}}'">
                     <div class="other_icon">
                         <img src="{{ asset('assets_web/images/others_services/member_list.png') }}"  width="100px" height="100px"  alt="">
                     </div>
@@ -100,13 +100,13 @@
                 </div>
 
                 <!-- Commission Report -->
-                <div class="card " style="cursor: pointer;" onclick="window.location=''">
+                <div class="card " style="cursor: pointer;" onclick="window.location='{{route('user.commissionreport')}}'">
                     <div class="other_icon"><img src="{{ asset('assets_web/images/dashboard/commission report.png') }}" width="100px" height="100px" alt=""></div>
                     <h5 class="card-title">Commission Report</h5>
                 </div>
 
                 <!-- Fund Transaction -->
-                <div class="card " style="cursor: pointer;" onclick="window.location=''">
+                <div class="card " style="cursor: pointer;" onclick="window.location='{{route('user.fundtransaction')}}'">
                     <div class="other_icon">
                     <img src="{{ asset('assets_web/images/others_services/fund_trans.png') }}" width="100px" height="100px" alt="">
               
