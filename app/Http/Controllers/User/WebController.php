@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\WebConfig;
 use App\Models\Bankdetail;
 use App\Models\Banner;
+use Illuminate\Support\Facades\Storage;
 
 class WebController extends Controller
 {
