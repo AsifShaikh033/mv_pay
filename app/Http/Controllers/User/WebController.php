@@ -81,9 +81,14 @@ class WebController extends Controller
         $bankDetail->status = $request->status;
 
         if ($request->hasFile('barcode_image')) {
-            // Delete old barcode image if exists
+
+            if (!Storage::exists('public/barcodes')) {
+                Storage::makeDirectory('public/barcodes');
+            }
+           
             if ($bankDetail->barcode && \Storage::disk('public')->exists('barcodes/' . $bankDetail->barcode)) {
                 \Storage::disk('public')->delete('barcodes/' . $bankDetail->barcode);
+    
             }
 
             // Save the new barcode image in the 'public/barcodes' folder

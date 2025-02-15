@@ -13,7 +13,7 @@ use App\Http\Controllers\User\MvSpinUserController;
 use App\Http\Controllers\RechargeApiController;
 use App\Http\Controllers\ApiFetchController;
 use App\Http\Controllers\CplanetRechargeController;
-   
+use App\Http\Controllers\LeadGenerateController;  
 
 Route::get('/api/register-user', [UserController::class, 'registeruser']);
 Route::get('/api/register-user', [UserController::class, 'registeruser']);
@@ -150,7 +150,8 @@ Route::get('/api/register-user', [UserController::class, 'registeruser']);
         //CPLANET APIS
         Route::get('/c-recharge/mobile',[CplanetRechargeController::class,'mobile'])->name('c_recharge.mobile');
         Route::post('/c-recharge/prepaid',[CplanetRechargeController::class,'recharge_prepaid_m'])->name('c_recharge');
-    
+        //CREDIT CARD AND BANK ACCOUNT APiS
+        Route::get('/credit-card-apply', [LeadGenerateController::class, 'credit_card_link'])->name('credit_card');
     
     });
 
