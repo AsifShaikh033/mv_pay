@@ -80,22 +80,18 @@ class WebController extends Controller
         // $bankDetail->account_number = $request->account_number;
         $bankDetail->status = $request->status;
 
+       
         if ($request->hasFile('barcode_image')) {
+            $folderPath = 'uploads/user/profile';
 
-            if (!Storage::exists('public/barcodes')) {
-                Storage::makeDirectory('public/barcodes');
-            }
-           
-            if ($bankDetail->barcode && \Storage::disk('public')->exists('barcodes/' . $bankDetail->barcode)) {
-                \Storage::disk('public')->delete('barcodes/' . $bankDetail->barcode);
-    
+            // Delete old barcode image if exists
+            if ($bankDetail->barcode && \Storage::disk('public')->exists($bankDetail->barcode)) {
+                \Storage::disk('public')->delete($bankDetail->barcode);
             }
 
-            // Save the new barcode image in the 'public/barcodes' folder
-            $image = $request->file('barcode_image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->storeAs('public/barcodes', $imageName);
-            $bankDetail->barcode = $imageName;
+            // Store new barcode image
+            $imagePath = $request->file('barcode_image')->store($folderPath, 'public');
+            $bankDetail->barcode = $imagePath; 
         }
 
         $bankDetail->save();
@@ -113,16 +109,12 @@ class WebController extends Controller
         // $bankDetail->account_number = $request->account_number;
         $bankDetail->status = $request->status;
 
-        // Handle file upload if a file is provided
         if ($request->hasFile('barcode_image')) {
-            $barcode = $request->file('barcode_image');
-            $imageName = time() . '.' . $barcode->getClientOriginalExtension();
-            $barcode->storeAs('public/barcodes', $imageName);
-            $bankDetail->barcode = $imageName;
-        }
-        
-        
+            $folderPath = 'uploads/user/profile';
 
+            $imagePath = $request->file('barcode_image')->store($folderPath, 'public');
+            $bankDetail->barcode = $imagePath; 
+        }
         $bankDetail->save();
 
         return redirect()->back()->with('success', 'Bank details added successfully!');
