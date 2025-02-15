@@ -63,8 +63,12 @@
                     <!-- Preview uploaded barcode image -->
                     <div id="imagePreview" class="mt-3">
                         @if(isset($bankDetail->barcode))
-                      
-                            <img src="{{ url('storage/app/private/public/barcodes/'.$bankDetail->barcode) }}" alt="Barcode Image" class="img-fluid" style="max-width: 200px;">
+                        <img 
+                src="{{ $data->barcode ? url('storage/' . $data->barcode) : asset('assets_web/images/profile/default.png') }}"
+                alt="Barcode Image" 
+                class="img-fluid" style="max-width: 200px;">
+
+                            <!-- <img src="{{ url('storage/app/private/public/barcodes/'.$bankDetail->barcode) }}" alt="Barcode Image" class="img-fluid" style="max-width: 200px;"> -->
                             <button type="button" class="btn btn-danger btn-sm mt-2" onclick="deleteImage()">Delete Image</button>
                         @endif
                     </div>
