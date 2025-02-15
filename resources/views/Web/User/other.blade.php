@@ -113,6 +113,13 @@
                     </div>
                     <h5 class="card-title">Fund Transaction</h5>
                 </div>
+                <div class="card" style="cursor: pointer;" onclick="window.location='{{route('user.credit_card')}}'">
+                    <div class="other_icon">
+                        <i class="fa fa-credit-card"></i>
+                    </div>
+                    <h5 class="card-title">Credit Card</h5>
+               </div>
+
             </div>
         </section>
     </div>
