@@ -80,21 +80,21 @@ class WebController extends Controller
         // $bankDetail->account_number = $request->account_number;
         $bankDetail->status = $request->status;
 
-        // Handle file upload if a new file is provided
         if ($request->hasFile('barcode_image')) {
 
             if (!Storage::exists('public/barcodes')) {
                 Storage::makeDirectory('public/barcodes');
             }
-            // Delete old barcode image if exists
-            if (!empty($bankDetail->barcode)) {
-                Storage::delete('public/barcodes/' . $bankDetail->barcode);
+           
+            if ($bankDetail->barcode && \Storage::disk('public')->exists('barcodes/' . $bankDetail->barcode)) {
+                \Storage::disk('public')->delete('barcodes/' . $bankDetail->barcode);
+    
             }
 
-            // Save the new barcode image
-            $barcode = $request->file('barcode_image');
-            $imageName = time() . '.' . $barcode->getClientOriginalExtension();
-            $barcode->storeAs('public/barcodes', $imageName);
+            // Save the new barcode image in the 'public/barcodes' folder
+            $image = $request->file('barcode_image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('public/barcodes', $imageName);
             $bankDetail->barcode = $imageName;
         }
 
@@ -120,6 +120,8 @@ class WebController extends Controller
             $barcode->storeAs('public/barcodes', $imageName);
             $bankDetail->barcode = $imageName;
         }
+        
+        
 
         $bankDetail->save();
 
