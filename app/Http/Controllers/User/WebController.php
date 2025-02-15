@@ -82,8 +82,12 @@ class WebController extends Controller
 
         // Handle file upload if a new file is provided
         if ($request->hasFile('barcode_image')) {
+
+            if (!Storage::exists('public/barcodes')) {
+                Storage::makeDirectory('public/barcodes');
+            }
             // Delete old barcode image if exists
-            if ($bankDetail->barcode) {
+            if (!empty($bankDetail->barcode)) {
                 Storage::delete('public/barcodes/' . $bankDetail->barcode);
             }
 
