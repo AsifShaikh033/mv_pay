@@ -57,15 +57,9 @@ a.transaction-title {
 </style>
 <div class="content-body">
     <div class="container" style="margin-top:90px;">
-      
+     
 
-        @if(session('success'))
-            <div class="alert alert-success mb-4">
-                {{ session('success') }}
-            </div>
-        @endif
-
-        <div id="back-gradient" class="card  shadow-sm w-75 mt-5 mx-auto">
+        <div id="back-gradient" class="card  shadow-sm mt-5 mx-auto">
             <h5 class="modal-title">Add Bank details</h5>
             <form action="{{ route('user.save.bank.details') }}" method="POST" enctype="multipart/form-data" id="withdrawalForm">
                 @csrf
