@@ -152,7 +152,8 @@ Route::get('/api/register-user', [UserController::class, 'registeruser']);
         Route::post('/c-recharge/prepaid',[CplanetRechargeController::class,'recharge_prepaid_m'])->name('c_recharge');
         //CREDIT CARD AND BANK ACCOUNT APiS
         Route::get('/credit-card-apply', [LeadGenerateController::class, 'credit_card_link'])->name('credit_card');
-    
+        Route::get('/axis-bank-apply', [LeadGenerateController::class, 'axic_account'])->name('axic_bank');
+       
     });
 
 
