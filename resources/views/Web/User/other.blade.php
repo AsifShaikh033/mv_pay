@@ -58,6 +58,20 @@
     }
     
 </STYLE>
+<style>
+.gradient-icon {
+    font-size: 3rem;
+    background: linear-gradient(45deg, #FF5722,rgb(221, 21, 37), #0d8889, #2196F3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.gradient-icon-bank {
+    font-size: 3rem;
+    background: linear-gradient(45deg, #FF5722, #0d8889,rgb(221, 21, 37), #2196F3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+</style>
 <div class="content-body">
     <div class="container-fluid ">
        
@@ -114,13 +128,13 @@
                     <h5 class="card-title">Fund Transaction</h5>
                 </div>
                 <div class="card" style="cursor: pointer;" onclick="applyCreditCard()">
-                    <div class="other_icon">
+                <div class="other_icon gradient-icon">
                         <i class="fa fa-credit-card"></i>
                     </div>
                     <h5 class="card-title">Credit Card</h5>
                </div>
                <div class="card" style="cursor: pointer;" onclick="showBankAccountModal()">
-                        <div class="other_icon">
+                        <div class="other_icon gradient-icon-bank">
                             <i class="fa fa-university"></i> <!-- Bank icon -->
                         </div>
                         <h5 class="card-title">Open Bank Account</h5>
