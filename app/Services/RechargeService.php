@@ -30,10 +30,44 @@ class RechargeService
         $this->BILL_FECTH_API = '546ghjfdtreyertyrrtd';
         $this->OFFERS_DTH_Info = '465fghgfdfegfghfdhdh';
         $this->DTH_Plan_Fetch = 'jghffhftryur567dhfd';
+        $this->CREDIT_CARD='FC8FD51008';
+        $this->AXIS_BANK='FC8FD51008';
         $this->Bill_Pay = 'X7Cf62_cIGage(i';
     }
 
+
+    //LEAD GENRATE START
+     /**
+     * genrate credit card link
+     */
+    public function credit_card_link()
+    {
+        $response = Http::asJson()->post($this->apiBaseUrl . 'api/LeadGeneration.aspx', [
+            'refid'         => uniqid(), 
+            'merchantcode'  => mt_rand(1000, 9999), 
+            'MerchantID'    => $this->CYRUS_MEMBER_ID, 
+            'MerchantKey'   =>  $this->CREDIT_CARD, 
+            'MethodName'    => 'CCCA',
+        ]);
+        return $response->json();
+    }
+
+    public function applyAxicAccount($type)
+    {
+        $response = Http::post($this->apiBaseUrl . 'api/openaxisaccount.aspx', [
+            "MerchantID"   => $this->CYRUS_MEMBER_ID,
+            "MerchantKey"  => $this->AXIS_BANK,
+            'TransID'         => uniqid(), 
+            "MethodName"   => "openaxisaccount",
+            "merchantcode" => rand(1000, 9999), 
+            "type"         => $type 
+        ]);
+
+        return $response->json();
+    }
     
+    
+    //RECHARGE START
     /**
      * Fetch Recharge Plans
      */
