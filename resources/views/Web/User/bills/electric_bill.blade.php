@@ -164,9 +164,15 @@
         <div class="input-group_1 mb-2">
        
             <div class="input-with-icon">
-                <input type="text" id="bill-number" name="bill_number" placeholder="Enter Bill number" required>
+                <input type="text" id="bill-number" name="bill_number" placeholder="Enter Bill number" value="{{ old('bill_number') }}" required>
                 <span class="contact-icon"><i class="fa fa-electric" aria-hidden="true"></i>
                 </span>
+            </div>
+        </div>
+
+        <div class="input-group_1 mb-2">
+            <div class="input-with-icon">
+                <input type="text" id="amount" name="amount" placeholder="Enter Amount" value="{{ old('amount') }}" > 
             </div>
         </div>
         
@@ -175,7 +181,9 @@
             <select name="operator" id="operator" class="form-control" required>
                 <option value="">Select Operator</option>
                 @foreach($Operator as $op)
-                    <option value="{{ $op->OperatorCode }}">{{ $op->OperatorName }}</option>
+                <option value="{{ $op->OperatorCode }}" {{ old('operator') == $op->OperatorCode ? 'selected' : '' }}>
+                    {{ $op->OperatorName }}
+                </option>
                 @endforeach
             </select>
             </div>
@@ -185,7 +193,7 @@
             <select name="circle" id="circle" class="form-control" required>
                     <option value="">Select Circle</option>
                     @foreach($circle as $c)
-                        <option value="{{ $c->circlecode }}">{{ $c->circlename }}</option>
+                        <option value="{{ $c->circlecode }}" {{ old('circle') == $c->circlecode ? 'selected' : '' }}>{{ $c->circlename }}</option>
                     @endforeach
                 </select>
 
@@ -204,10 +212,6 @@
     <div class="recharge-history mt-3">
         <h6 class="fw-bold">Recent Bill Numbers</h6>
         <ul class="list-unstyled">
-    <li class="d-flex align-items-center gap-2 recent-number">
-        <i class="fa fa-mobile" aria-hidden="true"></i>
-        <span data-number="{{ auth()->user()->mob_number }}">{{ auth()->user()->mob_number }}</span>
-    </li>
     @foreach($billNumbers as $number)
         <li class="d-flex align-items-center gap-2 recent-number">
             <i class="fa fa-mobile" aria-hidden="true"></i>
@@ -235,37 +239,46 @@ $(document).ready(function() {
 });
 
 
-function fetchOperatorAndCircle(billNumber) {
-   // if (mobileNumber.length === 10) {
-        $.ajax({
-            url: "{{ route('fetch.operator.circle') }}",
-            type: "POST",
-            data: {
-                bill_number: billNumber,
-                _token: "{{ csrf_token() }}"
-            },
-            success: function(response) {
-                if (response.status === 1) {
-                    $('#operator').val(response.operator).change();
-                    $('#circle').val(response.circle).change();
-                }
-            },
-            error: function(xhr) {
-                if (xhr.responseJSON && xhr.responseJSON.error) {
-                    toastr.error(xhr.responseJSON.error.replace('mobile', 'Bill'), 'Error Alert', { timeOut: 8000 });
-                } else {
-                    toastr.error('Invalid Bill number', 'Error', { timeOut: 8000 });
-                }
-            }
+// function fetchOperatorAndCircle(billNumber) {
+//         $.ajax({
+//             url: "{{ route('fetch.operator.circle') }}",
+//             type: "POST",
+//             data: {
+//                 bill_number: billNumber,
+//                 _token: "{{ csrf_token() }}"
+//             },
+//             success: function(response) {
+//                 if (response.status === 1) {
+//                     $('#operator').val(response.operator).change();
+//                     $('#circle').val(response.circle).change();
+//                 }
+//             },
+//             error: function(xhr) {
+//                 if (xhr.responseJSON && xhr.responseJSON.error) {
+//                     toastr.error(xhr.responseJSON.error.replace('mobile', 'Bill'), 'Error Alert', { timeOut: 8000 });
+//                 } else {
+//                     toastr.error('Invalid Bill number', 'Error', { timeOut: 8000 });
+//                 }
+//             }
 
-        });
-   //}
-}
+//         });
+// }
 
 // Bind to keyup
+// $('#bill-number').on('keyup', function() {
+//     fetchOperatorAndCircle($(this).val());
+// });
+
+
 $('#bill-number').on('keyup', function() {
-    fetchOperatorAndCircle($(this).val());
-});
+        let billNumber = $(this).val();
+
+        if (billNumber === "") {
+            return;
+        }
+
+        fetchOperatorAndCircle(billNumber);
+    });
 
 });
 </script>

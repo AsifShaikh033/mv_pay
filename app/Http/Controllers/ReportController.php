@@ -83,7 +83,37 @@ class ReportController extends Controller
             ])
             ->orWhereNotIn('recharges.operator', ['Airtel', 'Idea', 'Jio', 'BSNL', 'Vi', 'BSNL TopUp']);
         });
-    } 
+    
+        $transactions = Transaction::with(['user' => function ($query) {
+            $query->select('id', 'name', 'mob_number');
+        }])
+        ->where('user_id', $userId)
+        ->where('remark', 'electricity_bill')
+        ->orderBy('created_at', 'desc')
+        ->get()
+        ->map(function ($transaction) {
+            return (object) [
+                'id' => $transaction->id,
+                'user_id' => $transaction->user_id,
+                'user_name' => $transaction->user->name ?? 'N/A',
+                'operator' => 'Electricity',
+                'number' => optional($transaction->user)->mob_number ?? 'N/A',
+                'status' => $transaction->status,
+                'amount' => $transaction->amount,
+                'user_tx' => $transaction->transaction_id,
+                'created_at' => $transaction->created_at
+            ];
+        });
+    
+        $recharges = $query->with('user:id,name')->get();
+    
+        $mergedData = collect($recharges)->merge($transactions)->sortByDesc('created_at');
+    
+        $reportTitle = $validTypes[$type];
+    
+        return view('Web.User.report.wallet', compact('mergedData', 'reportTitle'));
+    }
+     
     
     if ($type === 'payment_report') {
         $users = User::where('referred_by', Auth::id())->get(); 
