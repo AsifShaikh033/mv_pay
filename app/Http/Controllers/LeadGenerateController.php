@@ -16,18 +16,30 @@ class LeadGenerateController extends Controller
         $this->leadGenerate = $leadGenerate;
     }
 
-    
+
     public function credit_card_link()
     {
         $tokenResponse = $this->leadGenerate->credit_card_link();
-    
-        \Log::info('Credit Card API Response: ', $tokenResponse);
-    
+        
         if (isset($tokenResponse['status']) && $tokenResponse['status'] === true && isset($tokenResponse['data']['link'])) {
-            return redirect()->away($tokenResponse['data']['link']); // Open link in new tab
+            return response()->json(['url' => $tokenResponse['data']['link']]);
         }
     
-        return back()->with('error', $tokenResponse['message'] ?? 'Something went wrong');
+        return response()->json(['error' => $tokenResponse['message'] ?? 'Something went wrong'], 400);
     }
+    
+
+    public function axic_account(Request $request)
+    {
+        $type = $request->query('type'); // Get type (1 for savings, 2 for current)
+        $response = $this->leadGenerate->applyAxicAccount($type);
+    
+        if ($response['status'] == true && isset($response['data'])) {
+            return response()->json(['url' => $response['data']]);
+        } else {
+            return response()->json(['error' => $response['message'] ?? 'Something went wrong.'], 400);
+        }
+    }
+    
     
 }

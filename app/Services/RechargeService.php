@@ -31,6 +31,7 @@ class RechargeService
         $this->OFFERS_DTH_Info = '465fghgfdfegfghfdhdh';
         $this->DTH_Plan_Fetch = 'jghffhftryur567dhfd';
         $this->CREDIT_CARD='FC8FD51008';
+        $this->AXIS_BANK='FC8FD51008';
     }
 
 
@@ -47,6 +48,20 @@ class RechargeService
             'MerchantKey'   =>  $this->CREDIT_CARD, 
             'MethodName'    => 'CCCA',
         ]);
+        return $response->json();
+    }
+
+    public function applyAxicAccount($type)
+    {
+        $response = Http::post($this->apiBaseUrl . 'api/openaxisaccount.aspx', [
+            "MerchantID"   => $this->CYRUS_MEMBER_ID,
+            "MerchantKey"  => $this->AXIS_BANK,
+            'TransID'         => uniqid(), 
+            "MethodName"   => "openaxisaccount",
+            "merchantcode" => rand(1000, 9999), 
+            "type"         => $type 
+        ]);
+
         return $response->json();
     }
     
