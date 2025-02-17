@@ -412,5 +412,12 @@ $(document).ready(function() {
             alert("You have selected " + option);
             // Here you can replace the alert with any functionality like redirecting or opening a form.
         }
+     
+    function openRechargeModal() {
+        var rechargeModal = new bootstrap.Modal(document.getElementById('rechargeModal'));
+        rechargeModal.show();
+    }
     </script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 @endsection
