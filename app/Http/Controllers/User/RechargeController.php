@@ -204,7 +204,7 @@ class RechargeController extends Controller
         $Recharge->save();
         $user->save();
         //recharge bonus
-        $this->recharge_bonus($user, $rechargeAmount);
+        $this->recharge_bonus($user, $rechargeAmount, $plans);
         //spin bonus
         $user = Auth::user();
         $cashback = BalanceCashback::where('category', 'Prepaid-Mobile')->where('balance', $rechargeAmount)->first();
@@ -221,7 +221,7 @@ class RechargeController extends Controller
     }
 }
 
-public function recharge_bonus($user, $rechargeAmount) {
+public function recharge_bonus($user, $rechargeAmount, $plans) {
     $authUser = Auth::user();
 
     if (!empty($authUser->referred_by)) {
@@ -241,6 +241,7 @@ public function recharge_bonus($user, $rechargeAmount) {
                 'post_balance'    => $user->balance, 
                 'status'          => 1,
                 'payment_status'  => 'success',
+                'response_api_msg'  => json_encode($plans),
             ]);
 
 
