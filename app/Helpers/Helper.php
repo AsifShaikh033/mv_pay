@@ -122,7 +122,6 @@ if (!function_exists('send_spin_chance')) {
                 'balance' => $rechargeAmount,
                 'category'=> $category
             ]);
-            // echo $response;die;
     
             if ($response->successful()) {
                 return response()->json([

@@ -23,6 +23,7 @@ class Transaction extends Model
         'payment_status',
         'transaction_id',
         'response_msg',
+        'response_api_msg',
     ];
 
     // The attributes that should be cast to native types.
