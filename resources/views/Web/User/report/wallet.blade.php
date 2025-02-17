@@ -13,7 +13,7 @@
     <div class="container py-4">
         <h2 class="text-light text-center mb-4 mt-2">{{ $reportTitle }}</h2>
 
-        @if($recharges->isEmpty())
+        @if($mergedData->isEmpty())
             <p class="text-center text-white">No Recharges found for this report.</p>
         @else
             <div class="d-flex flex-wrap justify-content-center">
@@ -34,7 +34,7 @@
                         'Education Fees' => 'education.png'
                     ];
                 @endphp
-                @foreach($recharges as $recharge)
+                @foreach($mergedData as $recharge)
                     @php
                         $operatorLogo = isset($operators[$recharge->operator]) 
                             ? asset('assets/operators/' . $operators[$recharge->operator]) 
@@ -54,12 +54,14 @@
 
     <!-- Status (Right) -->
                         <div>
-                            @if($recharge->status == 'success')
+                            @if($recharge->status == 'success' || $recharge->status == 1)
                                 <span class="badge bg-success">Success</span>
-                            @elseif($recharge->status == 'pending')
+                            @elseif($recharge->status == 'pending' || $recharge->status == 0)
                                 <span class="badge bg-warning">Pending</span>
-                            @else
+                            @elseif($recharge->status == 'failed' || $recharge->status == 2)
                                 <span class="badge bg-danger">Failed</span>
+                            @elseif($recharge->status == 'rejected' || $recharge->status == 3)
+                            <span class="badge bg-danger">Rejected</span>
                             @endif
                         </div>
                     </div>

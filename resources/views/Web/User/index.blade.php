@@ -152,7 +152,8 @@
 
     <div class="options-grid row gap-0">
         <div class="col-md-3 col-6">
-          <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.recharge.mobile') }}'">
+          <!-- <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.recharge.mobile') }}'"> -->
+          <div class="recharge-box mb-3 p-2" onclick="$('#rechargeModal').modal('show');">
 
           <div class=""><img src="{{ asset('assets_web/images/dashboard/mobile.png') }}" alt="" width="50"></div> 
               <span>Prepaid</span>
@@ -240,7 +241,8 @@
     <div class="options-grid row gap-0">
 
       <div class="col-md-3 col-6">
-        <div class="recharge-box mb-3 " onclick="window.location.href='{{ route('user.recharge.mobile') }}'">
+        <!-- <div class="recharge-box mb-3 " onclick="window.location.href='{{ route('user.recharge.mobile') }}'"> -->
+        <div class="recharge-box mb-3 " onclick="$('#rechargeModal').modal('show');">
         <div class=""><img src="{{ asset('assets_web/images/dashboard/mobile.png') }}" alt="" width="50"></div> 
           <span>Mobile Recharge</span>
         </div>
@@ -410,5 +412,12 @@ $(document).ready(function() {
             alert("You have selected " + option);
             // Here you can replace the alert with any functionality like redirecting or opening a form.
         }
+     
+    function openRechargeModal() {
+        var rechargeModal = new bootstrap.Modal(document.getElementById('rechargeModal'));
+        rechargeModal.show();
+    }
     </script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 @endsection
