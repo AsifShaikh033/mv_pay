@@ -33,6 +33,7 @@ class RechargeService
         $this->CREDIT_CARD='FC8FD51008';
         $this->AXIS_BANK='FC8FD51008';
         $this->Bill_Pay = 'X7Cf62_cIGage(i';
+        $this->Bill_Pay_MEMBER_ID = 'AP517747';
     }
 
 
@@ -106,13 +107,13 @@ class RechargeService
     public function fetchBillPlans($billNumber, $operatorCode, $circleCode, $billAmount, $transaction_id)
     {
         $response = Http::get($this->apiBaseUrl . 'services_cyapi/recharge_cyapi.aspx', [
-            'memberid'         => $this->CYRUS_MEMBER_ID,
+            'memberid'         => $this->Bill_Pay_MEMBER_ID,
             'pin'              => $this->Bill_Pay, 
             'number'           => $billNumber, 
             'operator'         => $operatorCode,
-            'circle '          => $circleCode,
-            'amount '          => $billAmount,
-            'usertx '          => $transaction_id,
+            'circle'          => $circleCode,
+            'amount'          => $billAmount,
+            'usertx'          => $transaction_id,
             'format'           => 'json',
             'RechargeMode'     => 1
         ]);

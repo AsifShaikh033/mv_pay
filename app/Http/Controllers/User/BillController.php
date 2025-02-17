@@ -8,7 +8,9 @@ use App\Models\Circle;
 use App\Models\Operator;
 use App\Services\RechargeService;
 use App\Models\Recharge;
+use App\Models\User;
 use App\Models\Transaction;
+use App\Models\BalanceCashback;
 use Illuminate\Support\Facades\Auth;
 class BillController extends Controller
 {
@@ -65,11 +67,11 @@ class BillController extends Controller
             $transaction->trx_type = '-';
 
 
-            if (isset($billplans['Status']) && $billplans['Status'] === "FAILURE") {
+            if (isset($billplans['Status']) && $billplans['Status'] === "1") {
                 $transaction->status = 0;
                 $transaction->payment_status = 'pending';
                 $transaction->details = 'Bill Pending for ' . $transaction->remark . ' ' . $request->circle;
-            } elseif (isset($billplans['Status']) && $billplans['Status'] === "1") {
+            } elseif (isset($billplans['Status']) && $billplans['Status'] === "FAILURE") {
                 $user->balance -= $billAmount;
                 $user->save();
         
@@ -80,7 +82,16 @@ class BillController extends Controller
                 $transaction->post_balance = $user->balance;
             }
         
-            $transaction->save();
+            // $transaction->save();
+
+            $test = $this->bill_bonus($user, $billAmount, $billplans);
+
+            $user = Auth::user();
+            $cashback = BalanceCashback::where('category', 'Electricity')->where('balance', $billAmount)->first();
+            
+            if($cashback){
+                send_spin_chance($user,$billAmount, $cashback->cashback, $cashback->category);
+            }
 
             if ($transaction->status == 1) {
                 return redirect()->back()->with('success', 'Bill successful. Transaction ID: ' . $transaction->transaction_id);
@@ -90,6 +101,36 @@ class BillController extends Controller
                 return redirect()->back()->with('info', 'Bill failed. Please try again.');
             }
           
+        }
+
+
+        public function bill_bonus($user, $billAmount, $billplans) {
+            
+            $authUser = Auth::user();
+            
+            if (!empty($authUser->referred_by)) {
+                $referrer = User::where('id', $authUser->referred_by)->first();
+                
+                if ($referrer) {
+                    $referrer->balance += 1;
+                    
+                    Transaction::create([
+                        'user_id'         => $referrer->id,
+                        'amount'          => $billAmount, 
+                        'transaction_id'  => rand(1000000000, 99999999999),
+                        'charge'          => 0.00,
+                        'trx_type'        => '+',
+                        'details' => 'Recharge commission from ' . $authUser->name . ' (User ID: ' . $user->id . ')',
+                        'remark'          => 'bill_reffrel_bonus',
+                        'post_balance'    => $user->balance, 
+                        'status'          => 1,
+                        'payment_status'  => 'success',
+                        'response_api_msg'  => json_encode($billplans),
+                    ]);
+        // echo "<pre>";print_r($user->id);die;
+                    $referrer->save();
+                }
+            }
         }
 
         public function electtric_f(){
