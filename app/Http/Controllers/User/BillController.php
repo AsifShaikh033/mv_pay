@@ -112,21 +112,22 @@ class BillController extends Controller
                 $referrer = User::where('id', $authUser->referred_by)->first();
                 
                 if ($referrer) {
-                    // $referrer->balance += 1;
+                    $referrer->balance += 1;
                     
                     Transaction::create([
                         'user_id'         => $referrer->id,
-                        'amount'          => '1', 
+                        'amount'          => $billAmount, 
                         'transaction_id'  => rand(1000000000, 99999999999),
                         'charge'          => 0.00,
                         'trx_type'        => '+',
-                        'details'         => 'recharge commission from '.$authUser->name,
+                        'details' => 'Recharge commission from ' . $authUser->name . ' (User ID: ' . $user->id . ')',
                         'remark'          => 'bill_reffrel_bonus',
                         'post_balance'    => $user->balance, 
                         'status'          => 1,
                         'payment_status'  => 'success',
                         'response_api_msg'  => json_encode($billplans),
                     ]);
+        // echo "<pre>";print_r($user->id);die;
                     $referrer->save();
                 }
             }
