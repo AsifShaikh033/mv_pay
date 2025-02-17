@@ -22,7 +22,7 @@
                         'Airtel' => 'airtel.png',
                         'Idea' => 'idea.png',
                         'Jio' => 'jio.png',
-                        'BSNL' => 'bsnl.png',
+                        'BSNL TopUp' => 'bsnl.png',
                         'Vi' => 'vi.png',
                         'DTH' => 'dth.png',
                         'Electricity' => 'electricity.png',

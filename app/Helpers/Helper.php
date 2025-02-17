@@ -111,15 +111,18 @@ if (!function_exists('send_spin_chance')) {
      * @param User $user
      * @return void
      */
-    function send_spin_chance(User $user, $spin_count)
+    function send_spin_chance(User $user,$rechargeAmount, $spin_count, $category)
     {
-      
         try {
-            $response = Http::get(env('MVivsionURL') . '/api/update-spinchance', [
-                'email' => $user->email, 
+            $response = Http::get('https://mvvision.in/api/update-spinchance', [
+                'mob_number' => $user->mob_number, 
+                'id' => $user->id, 
                 'token' =>  $user->remember_token, 
-                'spin_count'=> $spin_count
+                'spin_count'=> $spin_count,
+                'balance' => $rechargeAmount,
+                'category'=> $category
             ]);
+            // echo $response;die;
     
             if ($response->successful()) {
                 return response()->json([

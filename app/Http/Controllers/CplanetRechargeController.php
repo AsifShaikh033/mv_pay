@@ -21,7 +21,8 @@ class CplanetRechargeController extends Controller
      {     
         $rechargeNumbers = Recharge::where('user_id', Auth::id())
         ->where('serviceType','Prepaid-Mobile')
-       ->orderBy('created_at', 'desc') 
+       ->orderBy('created_at', 'desc')
+       ->limit(3)
        ->get();
        
         $Operator = [
@@ -53,14 +54,14 @@ class CplanetRechargeController extends Controller
             // }
         
             // Step 2: Generate API Token
-            $tokenResponse = $this->rechargeService->getToken();
+          $tokenResponse = $this->rechargeService->getToken();
         
             if (is_array($tokenResponse) && !$tokenResponse['status']) {
                 return redirect()->back()->with('info', $tokenResponse['message']);
             }
         
             // Step 3: Initiate Recharge Request
-            $rechargeResponse = $this->rechargeService->rechargePrepaid(
+         return   $rechargeResponse = $this->rechargeService->rechargePrepaid(
                 $tokenResponse, 
                 $request->mobile_number, 
                 $request->operator, 

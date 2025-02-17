@@ -49,30 +49,47 @@
                                 <div class="col-md-6 col-lg-8">
                                 <div class="form-group">
                                 <label for="">Select Ctegory</label>
-                                <select class="form-control" required="required" name="category" id="category"> 
-                                    <option value="">Select</option>
-                                    <option value="electricity" @if($Data->category == 'electricity') selected @endif>Electricity</option>
-                                    <option value="postpaid" @if($Data->category == 'postpaid') selected @endif>Postpaid </option>
-                                    <option value="landline" @if($Data->category == 'landline') selected @endif>Landline</option>
-                                    <option value="broadband" @if($Data->category == 'broadband') selected @endif>Broadband</option>
-                                    <option value="gas_piped" @if($Data->category == 'gas_piped') selected @endif>GAS Piped</option>
-                                    <option value="insurance_service" @if($Data->category == 'insurance_service') selected @endif>Insurance Service</option>
-                                    <option value="water_service" @if($Data->category == 'water_service') selected @endif>Water Service</option>
-                                    <option value="fastag_recharge" @if($Data->category == 'fastag_recharge') selected @endif>Fastag Recharge</option>
-                                    <option value="loan_repayment" @if($Data->category == 'loan_repayment') selected @endif>Loan Repayment</option>
-                                    <option value="gas_cylinder" @if($Data->category == 'gas_cylinder') selected @endif>Gas Cylinder</option>
-                                    <option value="municipal_services" @if($Data->category == 'municipal_services') selected @endif>Municipal Services</option>
-                                    <option value="municipal_tax" @if($Data->category == 'municipal_tax') selected @endif>Municipal Tax</option>
-                                    <option value="housing_society" @if($Data->category == 'housing_society') selected @endif>Housing Society</option>
-                                    <option value="cable_tv" @if($Data->category == 'cable_tv') selected @endif>Cable TV</option>
-                                    <option value="clubs_and_associations" @if($Data->category == 'clubs_and_associations') selected @endif>Clubs and Associations</option>
-                                    <option value="education_fees" @if($Data->category == 'education_fees') selected @endif>Education Fees</option>
-                                    <option value="hospital" @if($Data->category == 'hospital') selected @endif>Hospital</option>
-                                    <option value="credit_card" @if($Data->category == 'credit_card') selected @endif>Credit Card</option>
-                                    <option value="donation" @if($Data->category == 'donation') selected @endif>Donation</option>
-                                    <option value="recurring_deposit" @if($Data->category == 'recurring_deposit') selected @endif>Recurring Deposit</option>
-                                    <option value="rental_services" @if($Data->category == 'rental_services') selected @endif>Rental Services</option>
-            
+                                <select class="form-control" required="required" name="category" id="category">
+                                        <option value="">Select</option>
+                                        <option value="Prepaid-Mobile" @if($Data->category == 'Prepaid-Mobile') selected @endif>Prepaid-Mobile</option>
+                                        <option value="Broadband" @if($Data->category == 'Broadband') selected @endif>Broadband</option>
+                                        <option value="DTH" @if($Data->category == 'DTH') selected @endif>DTH</option>
+                                        <option value="Landline-Postpaid" @if($Data->category == 'Landline-Postpaid') selected @endif>Landline Postpaid</option>
+                                        <option value="Electricity" @if($Data->category == 'Electricity') selected @endif>Electricity</option>
+                                        <option value="GAS" @if($Data->category == 'GAS') selected @endif>GAS</option>
+                                        <option value="Insurance" @if($Data->category == 'Insurance') selected @endif>Insurance</option>
+                                        <option value="DMR" @if($Data->category == 'DMR') selected @endif>DMR</option>
+                                        <option value="Water" @if($Data->category == 'Water') selected @endif>Water</option>
+                                        <option value="PAN-UTI-Token-Based" @if($Data->category == 'PAN-UTI-Token-Based') selected @endif>PAN UTI - Token Based</option>
+                                        <option value="Loan-Repayment" @if($Data->category == 'Loan-Repayment') selected @endif>Loan Repayment</option>
+                                        <option value="Education-Fees" @if($Data->category == 'Education-Fees') selected @endif>Education Fees</option>
+                                        <option value="METRO-CARD-RECHARGE" @if($Data->category == 'METRO-CARD-RECHARGE') selected @endif>METRO CARD RECHARGE</option>
+                                        <option value="CHALLAN" @if($Data->category == 'CHALLAN') selected @endif>CHALLAN</option>
+                                        <option value="Mobile-Postpaid" @if($Data->category == 'Mobile-Postpaid') selected @endif>Mobile Postpaid</option>
+                                        <option value="Municipal-Services" @if($Data->category == 'Municipal-Services') selected @endif>Municipal Services</option>
+                                        <option value="Life-Insurance" @if($Data->category == 'Life-Insurance') selected @endif>Life Insurance</option>
+                                        <option value="Housing-Society" @if($Data->category == 'Housing-Society') selected @endif>Housing Society</option>
+                                        <option value="Municipal-Taxes" @if($Data->category == 'Municipal-Taxes') selected @endif>Municipal Taxes</option>
+                                        <option value="Health-Insurance" @if($Data->category == 'Health-Insurance') selected @endif>Health Insurance</option>
+                                        <option value="LPG-Gas" @if($Data->category == 'LPG-Gas') selected @endif>LPG Gas</option>
+                                        <option value="Cable-TV" @if($Data->category == 'Cable-TV') selected @endif>Cable TV</option>
+                                        <option value="Hospital" @if($Data->category == 'Hospital') selected @endif>Hospital</option>
+                                        <option value="Subscription" @if($Data->category == 'Subscription') selected @endif>Subscription</option>
+                                        <option value="Credit-Card" @if($Data->category == 'Credit-Card') selected @endif>Credit Card</option>
+                                        <option value="PayService" @if($Data->category == 'PayService') selected @endif>PayService</option>
+                                        <option value="OTT-Subscription" @if($Data->category == 'OTT-Subscription') selected @endif>OTT Subscription</option>
+                                        <option value="IRCTC-Dongle-Based" @if($Data->category == 'IRCTC-Dongle-Based') selected @endif>IRCTC - Dongle Based</option>
+                                        <option value="Clubs-and-Associations" @if($Data->category == 'Clubs-and-Associations') selected @endif>Clubs and Associations</option>
+                                        <option value="Broadband-Postpaid" @if($Data->category == 'Broadband-Postpaid') selected @endif>Broadband Postpaid</option>
+                                        <option value="Axis-Bank-Saving-Account" @if($Data->category == 'Axis-Bank-Saving-Account') selected @endif>Axis Bank Saving A/c</option>
+                                        <option value="Fastag" @if($Data->category == 'Fastag') selected @endif>Fastag</option>
+                                        <option value="Google-Play" @if($Data->category == 'Google-Play') selected @endif>Google Play</option>
+                                        <option value="Recurring-Deposit" @if($Data->category == 'Recurring-Deposit') selected @endif>Recurring Deposit</option>
+                                        <option value="Rental" @if($Data->category == 'Rental') selected @endif>Rental</option>
+                                        <option value="Hospital-and-Pathology" @if($Data->category == 'Hospital-and-Pathology') selected @endif>Hospital and Pathology</option>
+                                        <option value="Donation" @if($Data->category == 'Donation') selected @endif>Donation</option>
+                                        <option value="NCMC-Recharge" @if($Data->category == 'NCMC-Recharge') selected @endif>NCMC Recharge</option>
+                                        <option value="Prepaid-Meter" @if($Data->category == 'Prepaid-Meter') selected @endif>Prepaid Meter</option>
                                     </select>
                                 </div>
                                 </div>

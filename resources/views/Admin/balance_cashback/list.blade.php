@@ -103,32 +103,48 @@
                    
                         <div class="form-group">
                             <label for="">Select Ctegory</label>
-                            <select class="form-control" required="required" name="category" id="category"> 
-                              <option value="">Select</option>
-                              <option value="Prepaid-Mobile">Prepaid-Mobile</option>
-                              <option value="electricity">Electricity</option>
-                              <option value="postpaid">Postpaid </option>
-                              <option value="landline">Landline</option>
-                              <option value="broadband">Broadband</option>
-                              <option value="gas_piped">GAS Piped</option>
-                              <option value="insurance_service">Insurance Service</option>
-                              <option value="water_service">Water Service</option>
-                              <option value="fastag_recharge">Fastag Recharge</option>
-                              <option value="loan_repayment">Loan Repayment</option>
-                              <option value="gas_cylinder">Gas Cylinder</option>
-                              <option value="municipal_services">Municipal Services</option>
-                              <option value="municipal_tax">Municipal Tax</option>
-                              <option value="housing_society">Housing Society</option>
-                              <option value="cable_tv">Cable TV</option>
-                              <option value="clubs_and_associations">Clubs and Associations</option>
-                              <option value="education_fees">Education Fees</option>
-                              <option value="hospital">Hospital</option>
-                              <option value="credit_card">Credit Card</option>
-                              <option value="donation">Donation</option>
-                              <option value="recurring_deposit">Recurring Deposit</option>
-                              <option value="rental_services">Rental Services</option>
-    
-                            </select>
+                            <select class="form-control" required="required" name="category" id="category">
+                                          <option value="">Select</option>
+                                          <option value="Prepaid-Mobile">Prepaid-Mobile</option>
+                                          <option value="Broadband">Broadband</option>
+                                          <option value="DTH">DTH</option>
+                                          <option value="Landline-Postpaid">Landline Postpaid</option>
+                                          <option value="Electricity">Electricity</option>
+                                          <option value="GAS">GAS</option>
+                                          <option value="Insurance">Insurance</option>
+                                          <option value="DMR">DMR</option>
+                                          <option value="Water">Water</option>
+                                          <option value="PAN-UTI-Token-Based">PAN UTI - Token Based</option>
+                                          <option value="Loan-Repayment">Loan Repayment</option>
+                                          <option value="Education-Fees">Education Fees</option>
+                                          <option value="METRO-CARD-RECHARGE">METRO CARD RECHARGE</option>
+                                          <option value="CHALLAN">CHALLAN</option>
+                                          <option value="Mobile-Postpaid">Mobile Postpaid</option>
+                                          <option value="Municipal-Services">Municipal Services</option>
+                                          <option value="Life-Insurance">Life Insurance</option>
+                                          <option value="Housing-Society">Housing Society</option>
+                                          <option value="Municipal-Taxes">Municipal Taxes</option>
+                                          <option value="Health-Insurance">Health Insurance</option>
+                                          <option value="LPG-Gas">LPG Gas</option>
+                                          <option value="Cable-TV">Cable TV</option>
+                                          <option value="Hospital">Hospital</option>
+                                          <option value="Subscription">Subscription</option>
+                                          <option value="Credit-Card">Credit Card</option>
+                                          <option value="PayService">PayService</option>
+                                          <option value="OTT-Subscription">OTT Subscription</option>
+                                          <option value="IRCTC-Dongle-Based">IRCTC - Dongle Based</option>
+                                          <option value="Clubs-and-Associations">Clubs and Associations</option>
+                                          <option value="Broadband-Postpaid">Broadband Postpaid</option>
+                                          <option value="Axis-Bank-Saving-Account">Axis Bank Saving A/c</option>
+                                          <option value="Fastag">Fastag</option>
+                                          <option value="Google-Play">Google Play</option>
+                                          <option value="Recurring-Deposit">Recurring Deposit</option>
+                                          <option value="Rental">Rental</option>
+                                          <option value="Hospital-and-Pathology">Hospital and Pathology</option>
+                                          <option value="Donation">Donation</option>
+                                          <option value="NCMC-Recharge">NCMC Recharge</option>
+                                          <option value="Prepaid-Meter">Prepaid Meter</option>
+                                      </select>
                         </div>
                    
                     <div class="form-group mb-3">
