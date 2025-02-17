@@ -59,7 +59,7 @@ a.transaction-title {
     <div class="container" style="margin-top:90px;">
      
 
-        <div id="back-gradient" class="card  shadow-sm mt-5 mx-auto">
+        <div id="back-gradient" class="card  shadow-sm mt-5 mx-auto mb-5">
             <h5 class="modal-title">Add Bank details</h5>
             <form action="{{ route('user.save.bank.details') }}" method="POST" enctype="multipart/form-data" id="withdrawalForm">
                 @csrf
@@ -71,12 +71,12 @@ a.transaction-title {
                     <input type="text" name="upi_id" id="upi_id" class="form-control text-quiz" value="{{ old('upi_id', $bankDetail->upi_id ?? '') }}" required>
                 </div>
 
-                <!-- <div class="form-group mb-3">
+                <div class="form-group mb-3">
                     <label for="account_holder_name">Account Holder Name:</label>
                     <input type="text" name="account_holder_name" id="account_holder_name" class="form-control text-quiz" value="{{ old('account_holder_name', $bankDetail->account_holder_name ?? '') }}" required>
-                </div> -->
+                </div>
 
-                <!-- <div class="form-group mb-3">
+                <div class="form-group mb-3">
                     <label for="bank_name">Bank Name:</label>
                     <input type="text" name="bank_name" id="bank_name" class="form-control text-quiz" value="{{ old('bank_name', $bankDetail->bank_name ?? '') }}" required>
                 </div>
@@ -94,7 +94,7 @@ a.transaction-title {
                 <div class="form-group mb-3">
                     <label for="account_number">Account Number:</label>
                     <input type="text" name="account_number" id="account_number" class="form-control text-quiz" value="{{ old('account_number', $bankDetail->account_number ?? '') }}" required>
-                </div> -->
+                </div>
 
                 <div class="form-group mb-3">
                     <label for="status">Status:</label>
