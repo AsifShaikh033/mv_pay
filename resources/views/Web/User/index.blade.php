@@ -160,7 +160,7 @@
           </div>
         </div>
       <div class="col-md-3 col-6">
-      <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.search.pages') }}'">
+      <div class="recharge-box mb-3 p-2"  onclick="window.location.href='{{ route('user.recharge.electricity') }}'">
       <div class=""><img src="{{ asset('assets_web/images/dashboard/postpaid.gif') }}" alt="" width="50"></div> 
         <span>Postpaid</span>
       </div>
