@@ -92,6 +92,11 @@
                 </a>
               </li>
               <li>
+                  <a href="{{ route('admin.utr.list') }}" class="{{ Request::routeIs('admin.utr.list') ? 'active' : '' }}">
+                      <span class="sub-item">UTR Number</span>
+                  </a>
+              </li>
+              <li>
                   <a href="components/gridsystem.html" class="{{ Request::is('components/gridsystem') ? 'active' : '' }}">
                       <span class="sub-item">Grid System</span>
                   </a>
