@@ -46,7 +46,7 @@
    <div class="fund-cards row gap-0">
      <div class="col-6 px-1">
 
-     <div class="card" onclick="window.location.href='{{ route('user.cash.bharatpe') }}'" style='cursor:pointer;'>
+     <div class="card" onclick="window.location.href='{{ route('user.cash.qr_code') }}'" style='cursor:pointer;'>
        <div class="icon">
        <img src="{{ asset('assets_web/images/others_services/add_fund.gif') }}" style="width:100%; height:100%;" alt="">
        </div>
