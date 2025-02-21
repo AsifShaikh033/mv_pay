@@ -13406,9 +13406,26 @@ label {
         transition: all 0.3s ease-in-out;
     }
 
+    .recharge-services-view {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
 @media only screen and (max-width: 767px) {
     .hamburger .line {
         background: #000 !important;
+    }
+    .card .icon img {
+        width: 50% !important;
+        height: 50% !important;
+    }
+   
+}
+
+@media only screen and (max-width: 380px) {
+    .recharge-services-view {
+        font-size: 11px;
     }
 }
 
