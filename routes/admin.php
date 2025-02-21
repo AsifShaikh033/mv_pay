@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\ManageUserController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Admin\BalanceCashbackController;
+use App\Http\Controllers\Admin\UtrController;
 use App\Http\Controllers\ApiFetchController;
 
 
@@ -60,7 +61,12 @@ Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function
     Route::post('/update-balance-cashback/{id}', [BalanceCashbackController::class, 'update'])->name('balance.cashback.update');
     Route::delete('/delete-balance-cashback', [BalanceCashbackController::class, 'destroy'])->name('balance.cashback.delete');
 
-
+    //Qr Payment
+    Route::get('/utr-list', [UtrController::class, 'list'])->name('utr.list');
+    Route::post('/store-Utr', [UtrController::class, 'store'])->name('storeUtr');
+    Route::get('/edit-utr/{id}', [UtrController::class, 'utr_edit'])->name('editUtr');
+    Route::post('/update-Utr/{id}', [UtrController::class, 'update'])->name('updateUtr');
+    Route::delete('/deleteUtr', [UtrController::class, 'destroy'])->name('utr_delete');
 
 
 
