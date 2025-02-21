@@ -14,7 +14,11 @@
 
     <div class="scrolling-container mb-3">
     <div class="scrolling-text">
-        <span>Welcome to my pay</span>
+    <img id="ctl00_imgCompanyLogo" src="{{ asset('storage/' . (webConfig('logo') ?? '')) }}" onerror="this.src='{{ asset('assets_web/images/mv.jpg') }}'" 
+  style="height: 20px;margin-bottom: 8px;"
+    alt="Logo"
+/>
+        <span>Welcome to mvpay</span>
        
     </div>
 </div>
@@ -139,7 +143,7 @@
 
  <!-- Recharge Options -->
  <div class="recharge-card services">
-    <div class="d-flex justify-content-between align-items-center mb-3">
+    <div class="recharge-services-view mb-3">
       <!-- <span>Loan</span> -->
 
       <div class="outPop">
@@ -185,7 +189,7 @@
 
  <!-- Recharge Options -->
  <div class="recharge-card services">
-    <div class="d-flex justify-content-between align-items-center mb-3">
+    <div class="recharge-services-view mb-3">
       <!-- <span>Loan</span> -->
 
       <div class="outPop">
@@ -224,7 +228,7 @@
 
  <!-- Loan Section -->
   <div class="recharge-card">
-    <div class="d-flex justify-content-between align-items-center mb-3">
+    <div class="recharge-services-view mb-3">
     <!-- <span class="flowing-text">Recharge</span> -->
     <div class="outPop">
   <div class="popUpWord">
@@ -330,7 +334,7 @@
 
   <!-- Insurance Section -->
   <div class="recharge-card">
-    <div class="d-flex justify-content-between align-items-center mb-3">
+    <div class="recharge-services-view mb-3">
       <!-- <span>Insurance</span> -->
         <div class="outPop">
     <div class="popUpWord">
