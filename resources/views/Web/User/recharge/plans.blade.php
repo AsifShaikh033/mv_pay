@@ -64,7 +64,7 @@ img.spin-img {
                             ? asset('assets/operators/' . $operators[$operator]) 
                             : asset('assets/operators/default.png');
                     @endphp
-                        <div class="reharge_us d-flex">
+                        <div class="reharge_us d-flex align-items-center">
                             <!-- <img src="{{ asset('path/to/logo.png') }}" width="50" height="50"> -->
                             <img src="{{ $operatorLogo }}" alt="{{ $operator }}" width="50" height="50" style="border-radius: 30px;">
                             <div class="details_user ms-3">
@@ -114,7 +114,7 @@ img.spin-img {
                             <p class="validity">{{ $plan['recharge_validity'] }}</p>
                             <p>{{ $plan['recharge_short_desc'] }}</p>
                             <!-- <p class="cashback">Cashback: ₹{{ cashback_value('Prepaid-Mobile', 'Prepaid-Mobile', $plan['recharge_amount']) }}</p> -->
-                            <div class="validity d-flex">
+                            <div class="validity d-flex align-items-center">
                                 <img src="{{ asset('assets_web/images/wallet/13.png') }}" class="spin-img" style="width:20%!important;height:20%!important;" alt="">
                                 <p class="text-success m-auto">Spin cash rewards from <br> ₹2 to ₹20</p>
                                 <!-- <button class="btn btn-sm btn-light mb-0" type="submit">show more</button> -->
