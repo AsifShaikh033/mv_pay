@@ -92,10 +92,10 @@
         <p class="mb-3 text-muted">Choose your preferred recharge method:</p>
         <div class="d-grid gap-3">
           <button class="btn btn-primary btn-lg rounded-pill" onclick="window.location.href='{{ route('user.recharge.mobile') }}'">
-            🚀 Cyrus Recharge
+            🚀 Recharge Mode 1
           </button>
           <button class="btn btn-secondary btn-lg rounded-pill" onclick="window.location.href='{{ route('user.c_recharge.mobile') }}'">
-            🌍 Planet Recharge
+            🌍 Recharge Mode 1
           </button>
         </div>
       </div>
