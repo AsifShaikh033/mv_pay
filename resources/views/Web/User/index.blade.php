@@ -50,7 +50,7 @@
    <div class="fund-cards row gap-0">
      <div class="col-6 px-1">
 
-     <div class="card" onclick="window.location.href='{{ route('user.cash.bharatpe') }}'" style='cursor:pointer;'>
+     <div class="card" onclick="window.location.href='{{ route('user.cash.qr_code') }}'" style='cursor:pointer;'>
        <div class="icon">
        <img src="{{ asset('assets_web/images/others_services/add_fund.gif') }}" style="width:100%; height:100%;" alt="">
        </div>
@@ -92,10 +92,10 @@
         <p class="mb-3 text-muted">Choose your preferred recharge method:</p>
         <div class="d-grid gap-3">
           <button class="btn btn-primary btn-lg rounded-pill" onclick="window.location.href='{{ route('user.recharge.mobile') }}'">
-            🚀 Cyrus Recharge
+            🚀 Recharge Mode 1
           </button>
           <button class="btn btn-secondary btn-lg rounded-pill" onclick="window.location.href='{{ route('user.c_recharge.mobile') }}'">
-            🌍 Planet Recharge
+            🌍 Recharge Mode 1
           </button>
         </div>
       </div>

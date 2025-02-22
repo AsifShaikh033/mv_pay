@@ -120,10 +120,11 @@ input[type="search"]:focus, textarea:focus {
                     </div>
                     <div class="solid_2">
                     
-                        <div class="search-box">
-                            <i class="fas fa-search search-icon"></i>
+                        <div class="search-box text-center">
+                            <!-- <i class="fas fa-search search-icon"></i>
                             <input type="search" id="search" placeholder="Search...">
-                            <i class="fas fa-microphone mic-icon"></i>
+                            <i class="fas fa-microphone mic-icon"></i> -->
+                            <button onclick="window.location='{{route('user.bank_details')}}'" class="btn btn-primary">Withdrawal</button>
                         </div>
                         <!-- <textarea id="text" cols="30" rows="10" placeholder="Type your text..."></textarea> -->
                         <div class='budget_img'>

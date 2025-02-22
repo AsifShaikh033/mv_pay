@@ -140,8 +140,8 @@ Route::get('/api/register-user', [UserController::class, 'registeruser']);
         Route::post('/recharge', [RechargeController::class, 'recharge'])->name('recharge.process');
 
         //Add Fund
-        Route::get('/bharatpe',[BharatpeController::class,'bharatpe'])->name('cash.bharatpe');
-        Route::post('/qr_code',[BharatpeController::class,'qr_code'])->name('cash.qr_code');
+        Route::post('/bharatpe',[BharatpeController::class,'bharatpe'])->name('cash.bharatpe');
+        Route::get('/utr-payment',[BharatpeController::class,'qr_code'])->name('cash.qr_code');
 
         //ELECTRICITY
         // Route::get('/recharge/electricity',[RechargeController::class,'electtric_f'])->name('recharge.electricity');

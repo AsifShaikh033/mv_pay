@@ -67,11 +67,11 @@ class BillController extends Controller
             $transaction->trx_type = '-';
 
 
-            if (isset($billplans['Status']) && $billplans['Status'] === "1") {
+            if (isset($billplans['Status']) && $billplans['Status'] === "FAILURE") {
                 $transaction->status = 0;
                 $transaction->payment_status = 'pending';
                 $transaction->details = 'Bill Pending for ' . $transaction->remark . ' ' . $request->circle;
-            } elseif (isset($billplans['Status']) && $billplans['Status'] === "FAILURE") {
+            } elseif (isset($billplans['Status']) && $billplans['Status'] === "1") {
                 $user->balance -= $billAmount;
                 $user->save();
         

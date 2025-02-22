@@ -158,16 +158,25 @@
 
         <button class="prepaid-button mb-3">UTR</button>
     
-    <form id="rechargeForm" action="{{ route('user.cash.qr_code') }}" method="POST">
+    <form id="rechargeForm" action="{{ route('user.cash.bharatpe') }}" method="POST">
     @csrf 
     <div class="input-section">
-    <div class="input-group_1 mb-2">
+    <!-- <div class="input-group_1 mb-2">
             <div class="input-with-icon">
                 <input type="text" id="amount" name="amount" placeholder="Enter Amount" value="{{ old('amount') }}" > 
             </div>
-        </div>
+        </div> -->
 
-        <div class="input-group_1 mb-2">
+        @foreach($utr_pay as $data)
+                <div class="text-center">
+                @if($data->image)
+                <?php //echo $data->image;die;?>
+                <img src="{{ asset('storage/' . $data->image) }}" alt="Logo" class="img-fluid" height="" width="50%"/>
+                @endif
+                </div>
+        @endforeach
+
+        <div class="input-group_1 mb-2 mt-3">
             <div class="input-with-icon">
                 <input type="text" id="utr-number" name="utr_number" placeholder="UTR number" value="{{ old('utr_number') }}" required>
                 <span class="contact-icon"><i class="fa fa-electric" aria-hidden="true"></i>
@@ -178,7 +187,7 @@
        
         <!-- Check Plans Button -->
         <div class="plans-button-container mt-4">
-            <button  type="submit" class="check-plans-btn mt-3 text-decoration-none" >Pay</button>
+            <button  type="submit" class="check-plans-btn mt-3 text-decoration-none" >Verify Payment</button>
             <!-- <button class="check-plans-btn" >Checkout Plans & Offers</button> -->
         </div>
     </div>
