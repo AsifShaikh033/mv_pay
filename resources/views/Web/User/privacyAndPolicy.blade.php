@@ -158,7 +158,7 @@
                     <div class="wthree-services-right-top" style="box-sizing: border-box;">
                       <p class="text-light" style="box-sizing: border-box; margin: 0px 0px 10px; line-height: 1.4em; color: rgb(119, 119, 119);">
                         <span >Our Privacy Policy may change every once in a while. Though, we make these changes on growing demand of consumer or to compile with Government or Industry guidelines, but we wont decrease your rights under this Privacy Policy without your voice being heard. We will post any changes in Privacy Policy over here on this page. So keep visiting this page, for getting regular updates on privacy policy.</span>
-                      </p>
+                      </p>  
                     </div>
                   </div>
                 </div>
