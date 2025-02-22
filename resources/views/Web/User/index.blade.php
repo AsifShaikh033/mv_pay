@@ -54,7 +54,7 @@
        <div class="icon">
        <img src="{{ asset('assets_web/images/others_services/add_fund.gif') }}" style="width:100%; height:100%;" alt="">
        </div>
-       <h3>Add Fund</h3>
+       <h3>Your Wallet</h3>
      </div>
      </div>
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\WebConfig;
 use App\Models\Banner;
+use App\Models\Bankdetail;
 
 class WebController extends Controller
 {
@@ -13,7 +14,6 @@ class WebController extends Controller
    {
        // Fetch active banners sorted by priority
        $banners = Banner::where('status', 1)->orderBy('priority', 'asc')->get();
-       
 
        // Example offers data (replace with a model query if you have an `Offer` model)
        $offers = [

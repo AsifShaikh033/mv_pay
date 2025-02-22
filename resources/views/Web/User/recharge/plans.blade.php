@@ -106,7 +106,7 @@ img.spin-img {
                 <div class="input-group_1 mb-2">
                     <div class="input-with-icon">
                         <input type="text" id="mobile-number" placeholder="Search or enter amount" onkeyup="filterPlans()" class="form-control me-2">
-                        <span class="contact-icon"><i class="fa fa-search"></i></span>
+                        <!-- <span class="contact-icon"><i class="fa fa-search"></i></span> -->
                     </div>
                 </div>
 
@@ -130,7 +130,7 @@ img.spin-img {
                 <!-- Dynamic Plans -->
                 <div class="row mt-3">
                 @foreach($plans as $plan)
-                    <div class="col-md-4 plan-card" data-type="{{ $plan['recharge_type'] }}">
+                    <div class="col-md-4 plan-card" data-type="{{ $plan['recharge_type'] }}" data-amount="{{ $plan['recharge_amount'] }}">
                         <div class="card p-3 mb-3">
                             <h4>₹{{ $plan['recharge_amount'] }}</h4>
                             <p class="validity">{{ $plan['recharge_validity'] }}</p>
