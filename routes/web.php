@@ -14,6 +14,7 @@ use App\Http\Controllers\RechargeApiController;
 use App\Http\Controllers\ApiFetchController;
 use App\Http\Controllers\CplanetRechargeController;
 use App\Http\Controllers\LeadGenerateController;  
+use App\Http\Controllers\User\BharatpeController;  
 
 Route::get('/api/register-user', [UserController::class, 'registeruser']);
 Route::get('/api/register-user', [UserController::class, 'registeruser']);
@@ -138,12 +139,18 @@ Route::get('/api/register-user', [UserController::class, 'registeruser']);
         
         Route::post('/recharge', [RechargeController::class, 'recharge'])->name('recharge.process');
 
-        
+        //Add Fund
+        Route::get('/bharatpe',[BharatpeController::class,'bharatpe'])->name('cash.bharatpe');
+        Route::post('/qr_code',[BharatpeController::class,'qr_code'])->name('cash.qr_code');
+
         //ELECTRICITY
         // Route::get('/recharge/electricity',[RechargeController::class,'electtric_f'])->name('recharge.electricity');
         //Bill ELECTRICITY bill_plan
         Route::get('/recharge/electricity',[BillController::class,'electtric_f'])->name('recharge.electricity');
         Route::post('/recharge/bill_plan',[BillController::class,'bill_plan'])->name('recharge.bill_plan');
+
+        //Common Function
+        Route::get('/recharge/bills',[BillController::class,'common'])->name('recharge.bills');
 
         //RECHAREGE APIS
         Route::post('/plan-fetch', [RechargeApiController::class, 'plan_fetch'])->name('plan.fetch');

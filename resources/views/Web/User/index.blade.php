@@ -14,7 +14,11 @@
 
     <div class="scrolling-container mb-3">
     <div class="scrolling-text">
-        <span>Welcome to my pay</span>
+    <img id="ctl00_imgCompanyLogo" src="{{ asset('storage/' . (webConfig('logo') ?? '')) }}" onerror="this.src='{{ asset('assets_web/images/mv.jpg') }}'" 
+  style="height: 20px;margin-bottom: 8px;"
+    alt="Logo"
+/>
+        <span>Welcome to mvpay</span>
        
     </div>
 </div>
@@ -45,13 +49,15 @@
    
    <div class="fund-cards row gap-0">
      <div class="col-6 px-1">
-     <div class="card">
+
+     <div class="card" onclick="window.location.href='{{ route('user.cash.bharatpe') }}'" style='cursor:pointer;'>
        <div class="icon">
        <img src="{{ asset('assets_web/images/others_services/add_fund.gif') }}" style="width:100%; height:100%;" alt="">
        </div>
        <h3>Add Fund</h3>
      </div>
      </div>
+
      <div class="col-6 px-1">
      <div class="card" onclick="window.location.href='{{ route('user.cash.wallet') }}'" style='cursor:pointer;'>
        <div class="icon">
@@ -137,7 +143,7 @@
 
  <!-- Recharge Options -->
  <div class="recharge-card services">
-    <div class="d-flex justify-content-between align-items-center mb-3">
+    <div class="recharge-services-view mb-3">
       <!-- <span>Loan</span> -->
 
       <div class="outPop">
@@ -160,19 +166,19 @@
           </div>
         </div>
       <div class="col-md-3 col-6">
-      <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.search.pages') }}'">
+      <div class="recharge-box mb-3 p-2"  onclick="redirectToRecharge('Mobile Postpaid')">
       <div class=""><img src="{{ asset('assets_web/images/dashboard/postpaid.gif') }}" alt="" width="50"></div> 
         <span>Postpaid</span>
       </div>
       </div>
       <div class="col-md-3 col-6">
-      <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.search.pages') }}'">
+      <div class="recharge-box mb-3 p-2" onclick="redirectToRecharge('DTH')">
         <div class=""><img src="{{ asset('assets_web/images/dashboard/dth.png') }}" alt="" width="50"></div> 
         <span>DTH</span>
       </div>
       </div>
       <div class="col-md-3 col-6">
-      <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.search.pages') }}'">
+      <div class="recharge-box mb-3 p-2" onclick="redirectToRecharge('Google Play')">
           <div class=""><img src="{{ asset('assets_web/images/dashboard/play_game.png') }}" alt="" width="50"></div>  
         <span>Google Play</span>
       </div>
@@ -183,7 +189,7 @@
 
  <!-- Recharge Options -->
  <div class="recharge-card services">
-    <div class="d-flex justify-content-between align-items-center mb-3">
+    <div class="recharge-services-view mb-3">
       <!-- <span>Loan</span> -->
 
       <div class="outPop">
@@ -198,20 +204,20 @@
 
     <div class="options-grid row gap-0">
         <div class="col-md-3 col-6">
-          <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.search.pages') }}'">
+          <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.recharge.electricity') }}'">
 
           <div class=""><img src="{{ asset('assets_web/images/wallet/electricity.png') }}" alt="" width="50"></div> 
               <span>Electricity Offline System(Manual)</span>
           </div>
         </div>
       <div class="col-md-3 col-6">
-      <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.search.pages') }}'">
+      <div class="recharge-box mb-3 p-2" onclick="redirectToRecharge('Mobile Postpaid')">
       <div class=""><img src="{{ asset('assets_web/images/dashboard/mobile.png') }}"  alt="" width="50"></div> 
         <span>Postpaid Offline System(Manual)</span>
       </div>
       </div>
       <div class="col-md-3 col-6">
-      <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.search.pages') }}'">
+      <div class="recharge-box mb-3 p-2" onclick="redirectToRecharge('Life Insurance')">	
         <div class=""><img src="{{ asset('assets_web/images/wallet/lic.png') }}" alt="" width="50"></div> 
         <span>LIC Payment Offline System(Manual)</span>
       </div>
@@ -222,7 +228,7 @@
 
  <!-- Loan Section -->
   <div class="recharge-card">
-    <div class="d-flex justify-content-between align-items-center mb-3">
+    <div class="recharge-services-view mb-3">
     <!-- <span class="flowing-text">Recharge</span> -->
     <div class="outPop">
   <div class="popUpWord">
@@ -249,7 +255,7 @@
       </div>
 
       <div class="col-md-3 col-6">
-        <div class="recharge-box mb-3 " onclick="window.location.href='{{ route('user.search.pages') }}'">
+        <div class="recharge-box mb-3 " onclick="redirectToRecharge('DTH')">
     
             <div class=""><img src="{{ asset('assets_web/images/dashboard/dth.png') }}" alt="" width="50"></div> 
             <span>DTH Recharge</span>
@@ -263,57 +269,57 @@
       </div>
     </div>
     <div class="col-md-3 col-6">
-      <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.search.pages') }}'">
+      <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.recharge.electricity') }}'">
         <div class=""><img src="{{ asset('assets_web/images/dashboard/electriity.png') }}" alt="" width="50"></div> 
         <span>Electricity Bill</span>
       </div>
       </div>
       <div class="col-md-3 col-6">
-      <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.search.pages') }}'">
+      <div class="recharge-box mb-3 p-2" onclick="redirectToRecharge('Water')">
       <div class=""><img src="{{ asset('assets_web/images/dashboard/water.png') }}" alt="" width="50"></div> 
       <span>Water Bill</span>
     </div>
   </div>
   <div class="col-md-3 col-6">
-    <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.search.pages') }}'">
+    <div class="recharge-box mb-3 p-2" onclick="redirectToRecharge('LPG Gas')">
       <div class=""><img src="{{ asset('assets_web/images/dashboard/gas.png') }}" alt="" width="50"></div> 
       <span>Gas Recharge</span>
     </div>
   </div>
   <div class="col-md-3 col-6">
-    <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.search.pages') }}'">
+    <div class="recharge-box mb-3 p-2" onclick="redirectToRecharge('Broadband')">
         <div class=""><img src="{{ asset('assets_web/images/dashboard/broadband.png') }}" alt="" width="50"></div> 
         <span>Broadband Recharge</span>
       </div>
     </div>
     <div class="col-md-3 col-6">
-      <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.search.pages') }}'">
+      <div class="recharge-box mb-3 p-2" onclick="redirectToRecharge('Fastag')">
         <div class=""><img src="{{ asset('assets_web/images/dashboard/fastag.png') }}" alt="" width="50"></div> 
         <span>Fastag Recharge</span>
       </div>
     </div>
     <div class="col-md-3 col-6">
-      <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.search.pages') }}'">
+      <div class="recharge-box mb-3 p-2" onclick="redirectToRecharge('Mobile Postpaid')">
         <div class=""><img src="{{ asset('assets_web/images/dashboard/postpaid.gif') }}" alt="" width="50"></div> 
         <span>Postpaid Bill</span>
       </div>
     </div>
         <div class="col-md-3 col-6">
-            <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.search.pages') }}'">
+            <div class="recharge-box mb-3 p-2" onclick="redirectToRecharge('Cable TV')">
                 <div class=""><img src="{{ asset('assets_web/images/dashboard/cable.png') }}" alt="" width="50">
                 </div> 
                     <span>Cable TV</span>
             </div>
         </div>
         <div class="col-md-3 col-6">
-            <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.search.pages') }}'">
+            <div class="recharge-box mb-3 p-2" onclick="redirectToRecharge('OTT Subscription')">
                 <div class=""><img src="{{ asset('assets_web/images/wallet/8.png') }}" alt="" width="50">
                 </div> 
                     <span>Ott Subscription</span>
             </div>
         </div>
         <div class="col-md-3 col-6">
-            <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.search.pages') }}'">
+            <div class="recharge-box mb-3 p-2" onclick="redirectToRecharge('Hospital')">
                 <div class=""><img src="{{ asset('assets_web/images/wallet/hospital.png') }}" alt="" width="50">
                 </div> 
                     <span>Hospital</span>
@@ -328,7 +334,7 @@
 
   <!-- Insurance Section -->
   <div class="recharge-card">
-    <div class="d-flex justify-content-between align-items-center mb-3">
+    <div class="recharge-services-view mb-3">
       <!-- <span>Insurance</span> -->
         <div class="outPop">
     <div class="popUpWord">
@@ -341,13 +347,13 @@
 </div>
 <div class="options-grid row gap-0">
   <div class="col-md-3 col-6">
-    <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.search.pages') }}'">
+    <div class="recharge-box mb-3 p-2" onclick="redirectToRecharge('Health Insurance')">
       <div class=""><img src="{{ asset('assets_web/images/dashboard/health.png') }}" alt="" width="50"></div> 
       <span>Health Insurance</span>
     </div>
   </div>
   <div class="col-md-3 col-6">
-    <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.search.pages') }}'">
+    <div class="recharge-box mb-3 p-2" onclick="redirectToRecharge('Life Insurance')">
       <div class=""><img src="{{ asset('assets_web/images/dashboard/life.png') }}" alt="" width="50"></div> 
       <span>Life Insurance</span>
     </div>
@@ -359,25 +365,25 @@
     </div>
   </div>
       <div class="col-md-3 col-6">
-        <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.search.pages') }}'">
+        <div class="recharge-box mb-3 p-2" onclick="redirectToRecharge('Housing Society')">
           <div class=""><img src="{{ asset('assets_web/images/dashboard/home-insurance.png') }}" alt="" width="50"></div> 
           <span>Home Insurance</span>
         </div>
       </div>
       <div class="col-md-3 col-6">
-        <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.search.pages') }}'">
+        <div class="recharge-box mb-3 p-2" onclick="redirectToRecharge('Loan Repayment')">
           <div class=""><img src="{{ asset('assets_web/images/wallet/6.png') }}" alt="" width="50"></div> 
           <span>Loan Repayment</span>
         </div>
       </div>
       <div class="col-md-3 col-6">
-        <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.search.pages') }}'">
+        <div class="recharge-box mb-3 p-2" onclick="redirectToRecharge('Education Fees')">
           <div class=""><img src="{{ asset('assets_web/images/wallet/education.png') }}" alt="" width="50"></div> 
           <span>Education Fees</span>
         </div>
       </div>
       <div class="col-md-3 col-6">
-        <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.search.pages') }}'">
+        <div class="recharge-box mb-3 p-2" onclick="redirectToRecharge('Municipal Taxes')">
           <div class=""><img src="{{ asset('assets_web/images/wallet/muncipial.png') }}" alt="" width="50"></div> 
           <span>Muninipal Tax</span>
         </div>
@@ -406,6 +412,12 @@ $(document).ready(function() {
     });
 });
 </script> -->
+
+<script>
+function redirectToRecharge(serviceType) {
+    window.location.href = "{{ route('user.recharge.bills') }}?serviceType=" + encodeURIComponent(serviceType);
+}
+</script>
 
 <script>
         function selectOption(option) {

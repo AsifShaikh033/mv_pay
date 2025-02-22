@@ -43,6 +43,83 @@ class WebController extends Controller
    public function other(){
         return view('Web.User.other');
    }
+   
+   public function bank_details(){
+    $bankDetail = Bankdetail::first();
+        return view('Web.User.bank.bank_details', compact('bankDetail'));
+   }
+
+
+   public function saveBankDetails(Request $request)
+{
+    $request->validate([
+        'upi_id' => 'required|string',
+        'account_holder_name' => 'required|string',
+        'bank_name' => 'required|string',
+        'branch_name' => 'required|string',
+        'ifsc_code' => 'required|string',
+        'account_number' => 'required|string',
+        'status' => 'required|boolean',
+        'barcode_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    ]);
+
+  
+    $bankDetail = BankDetail::where('user_id', $request->user_id)->first();
+
+    if ($bankDetail) {
+        
+        $bankDetail->user_id = $request->user_id;
+        $bankDetail->upi_id = $request->upi_id;
+        $bankDetail->account_holder_name = $request->account_holder_name;
+        $bankDetail->bank_name = $request->bank_name;
+        $bankDetail->branch_name = $request->branch_name;
+        $bankDetail->ifsc_code = $request->ifsc_code;
+        $bankDetail->account_number = $request->account_number;
+        $bankDetail->status = $request->status;
+
+       
+        if ($request->hasFile('barcode_image')) {
+            $folderPath = 'uploads/user/profile';
+
+           
+            if ($bankDetail->barcode && \Storage::disk('public')->exists($bankDetail->barcode)) {
+                \Storage::disk('public')->delete($bankDetail->barcode);
+            }
+
+         
+            $imagePath = $request->file('barcode_image')->store($folderPath, 'public');
+            $bankDetail->barcode = $imagePath; 
+        }
+
+        $bankDetail->save();
+
+        return redirect()->back()->with('success', 'Bank details updated successfully!');
+    } else {
+       
+        $bankDetail = new BankDetail();
+        $bankDetail->user_id = $request->user_id;
+        $bankDetail->upi_id = $request->upi_id;
+        $bankDetail->account_holder_name = $request->account_holder_name;
+        $bankDetail->bank_name = $request->bank_name;
+        $bankDetail->branch_name = $request->branch_name;
+        $bankDetail->ifsc_code = $request->ifsc_code;
+        $bankDetail->account_number = $request->account_number;
+        $bankDetail->status = $request->status;
+
+        if ($request->hasFile('barcode_image')) {
+            $folderPath = 'uploads/user/profile';
+
+            $imagePath = $request->file('barcode_image')->store($folderPath, 'public');
+            $bankDetail->barcode = $imagePath; 
+        }
+        $bankDetail->save();
+
+        return redirect()->back()->with('success', 'Bank details added successfully!');
+    }
+}
+
+
+
    public function reports(){
         return view('Web.User.reports');
    }

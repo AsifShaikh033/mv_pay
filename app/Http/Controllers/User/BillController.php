@@ -149,4 +149,23 @@ class BillController extends Controller
         // return  $Operator;
             return view('Web.User.bills.electric_bill',compact('circle', 'Operator', 'billNumbers'));
         }
+
+
+        public function common(Request $request)
+            {
+                $serviceType = $request->query('serviceType');
+// echo "<pre>";print_r($serviceType);die;
+                $Operator = $serviceType ? Operator::where('ServiceTypeName', $serviceType)->get() : [];
+                
+                $circle = Circle::all();
+                
+                $billNumbers = Recharge::where('user_id', Auth::id())
+                    ->where('serviceType', 'Prepaid-Mobile')
+                    ->orderBy('created_at', 'desc')
+                    ->limit(3)
+                    ->get();
+
+                return view('Web.User.common.common_bill', compact('circle', 'Operator', 'billNumbers', 'serviceType'));
+            }
+
 }

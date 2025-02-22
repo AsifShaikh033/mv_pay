@@ -31,7 +31,7 @@
     font-size: 24px;
     font-weight: bold;
     color: white;
-    background: linear-gradient(to bottom, red, darkred);
+    background: linear-gradient(to bottom, #1919ff, darkred);
     border: 2px solid gold;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
     cursor: pointer;
