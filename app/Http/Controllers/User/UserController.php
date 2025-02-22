@@ -161,6 +161,15 @@ if($subscriptionStatus == true){
         return view('Web.User.member_list', compact('users', 'users_list'));
     }
 
+    public function payment_list()
+    {
+        $users = User::where('referred_by', Auth::id())->get(); 
+
+        $users_list = User::whereIn('id', $users->pluck('id'))->get();
+        
+        return view('Web.User.payment_status', compact('users', 'users_list'));
+    }
+
 
     public function commission_report()
     {

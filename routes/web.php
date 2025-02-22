@@ -128,6 +128,7 @@ Route::get('/api/register-user', [UserController::class, 'registeruser']);
 
         //Member Others
         Route::get('/member-list', [UserController::class, 'member_refer_list'])->name('memberlist');
+        Route::get('/payment-list', [UserController::class, 'payment_list'])->name('paymentlist');
         Route::get('/commission-report', [UserController::class, 'commission_report'])->name('commissionreport');
         Route::get('/fund-transaction', [UserController::class, 'fund_transaction'])->name('fundtransaction');
 
