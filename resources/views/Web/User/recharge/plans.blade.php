@@ -81,12 +81,12 @@ img.spin-img {
             </div>
 
             <div class="col-12 text-center">
-                <!-- <div class="input-group_1 mb-2">
+                <div class="input-group_1 mb-2">
                     <div class="input-with-icon">
                         <input type="text" id="mobile-number" placeholder="Search or enter amount">
                         <span class="contact-icon"><i class="fa fa-search"></i></span>
                     </div>
-                </div> -->
+                </div>
 
                 <!-- Recharge Categories -->
                 <div class="plan_choose">
@@ -210,5 +210,22 @@ document.querySelectorAll('.spin-img').forEach(img => {
     });
 });
 </script>
+
+
+<!-- <script>
+function filterPlans() {
+    let input = document.getElementById('mobile-number').value.toLowerCase();
+    let plans = document.getElementsByClassName('plan-card');
+
+    for (let i = 0; i < plans.length; i++) {
+        let amount = plans[i].getAttribute('data-amount');
+        if (amount.includes(input)) {
+            plans[i].style.display = "block";
+        } else {
+            plans[i].style.display = "none";
+        }
+    }
+}
+</script> -->
 
 @endsection

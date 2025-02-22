@@ -42,6 +42,29 @@ class ApiFetchController extends Controller
         }
       
     }
+
+    public function billfetchOperatorCircle(Request $request)
+    {
+        $billNumber = $request->bill_number;
+
+        $plans = $this->rechargeService->billoperatorfetch($billNumber);
+        
+        if (isset($plans['error'])) {
+            return response()->json(['error' => $plans['error']], 400);
+        }
+        if (isset($plans['Status']) && $plans['Status'] == "1") {
+            return response()->json(['error' => $plans['ErrorDescription']], 400);
+        }elseif(isset($plans['Status']) && $plans['Status'] == "0"){
+            return response()->json([
+                'status' => 1,
+                'operator' => $plans['OperatorCode'],
+                'circle' => $plans['CircleCode'],
+            ]);
+        }else{
+            return response()->json(['error' => $plans], 400);
+        }
+      
+    }
  
     public function circle_api()
     {

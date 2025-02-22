@@ -84,6 +84,19 @@ class RechargeService
     }
 
 
+    public function billoperatorfetch($billNumber)
+    {
+       
+        $response = Http::get($this->apiBaseUrl . 'API/BillFetch_Cyrus_BA.aspx', [
+            'APIID'         => $this->Bill_Pay_MEMBER_ID,
+            'PASSWORD'      => $this->PR_MOBILE_FETCH, 
+            'BILLNUMBER' => $billNumber,
+        ]);
+return $response;
+        return $response->json();
+    }
+
+
 
     /**
      * Fetch Recharge Plans
