@@ -63,7 +63,8 @@
 }
 
         .dashboard {
-    background: linear-gradient(to bottom, blue, darkblue);
+    /* background: linear-gradient(to bottom, blue, darkblue); */
+    background: linear-gradient(to bottom, #1919ff, darkred);
     margin-bottom: 10px;
     border:2px solid gold;
 }
