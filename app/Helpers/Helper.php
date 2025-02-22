@@ -85,7 +85,7 @@ if (!function_exists('SetToken')) {
             if ($response->successful()) {
                 return response()->json([
                     'message' => 'Login successful and token sent to mvpay.',
-                    'token' => $randomToken,
+                   
                 ]);
             } else {
                 return response()->json([

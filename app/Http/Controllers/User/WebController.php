@@ -5,9 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\WebConfig;
-use App\Models\Bankdetail;
 use App\Models\Banner;
-use Illuminate\Support\Facades\Storage;
 
 class WebController extends Controller
 {
@@ -124,5 +122,9 @@ class WebController extends Controller
 
    public function reports(){
         return view('Web.User.reports');
+   }
+
+   public function paymentStatus(){
+    echo 1020;die;
    }
 }

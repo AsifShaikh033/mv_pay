@@ -2,11 +2,11 @@
 @section('content')
 <div class="content-body">
   <!-- row -->
-    <div class="card" style="margin-top:6rem;">
+    <div class="card back_colorful" style="margin-top:6rem;">
       <div class="card-header">
-        <h3>Terms & Conditions</h3>
+        <h3 class="text-info">Terms & Conditions</h3>
       </div>
-      <div class="card-body">
+      <div class="card-body text-left">
         <div class="row">
           <div>
             <p> Terms &amp; Conditions &ndash; Company</p>
