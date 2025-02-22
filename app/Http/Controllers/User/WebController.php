@@ -15,7 +15,6 @@ class WebController extends Controller
        // Fetch active banners sorted by priority
        $banners = Banner::where('status', 1)->orderBy('priority', 'asc')->get();
 
-
        // Example offers data (replace with a model query if you have an `Offer` model)
        $offers = [
            (object)[
