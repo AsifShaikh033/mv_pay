@@ -221,3 +221,7 @@
       -webkit-background-clip: text;
       color: transparent;
   }
+
+  span#togglePassword {
+    cursor: pointer;
+}
