@@ -5,10 +5,32 @@
     .choose_plan-container {
     margin-top: 100px!important;
 }
-.details_user{
-    color:white;
+.details_user {
+    color: white;
+    text-align: left;
+}
+.reharge_us {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: space-between;
 }
 
+.validity {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-content: flex-start;
+}
+@media screen and (max-width: 500px) {
+    .details_user {
+        font-size: x-small;
+    }
+    .validity_desc {
+    font-size: small;
+    text-align: left;
+}
+}
     .jio-logo { width: 100px; margin-bottom: 20px; }
     .plan-card { border-radius: 5px; padding: 20px; margin-bottom: 20px; text-align: center; }
     .plan-card h4 { font-size: 24px; margin-bottom: 10px; font-weight: bold; }
@@ -42,7 +64,7 @@ img.spin-img {
         <div class="row mt-5">
             <div class="col-12 text-center mb-3">
                 <div class="card_top">
-                    <div class="card_heading p-2 d-flex justify-content-between">
+                    <div class="card_heading p-2 reharge_us">
                     @php
                         $operators = [
                             'Airtel' => 'airtel.png',
@@ -64,7 +86,7 @@ img.spin-img {
                             ? asset('assets/operators/' . $operators[$operator]) 
                             : asset('assets/operators/default.png');
                     @endphp
-                        <div class="reharge_us d-flex align-items-center">
+                        <div class="reharge_us">
                             <!-- <img src="{{ asset('path/to/logo.png') }}" width="50" height="50"> -->
                             <img src="{{ $operatorLogo }}" alt="{{ $operator }}" width="50" height="50" style="border-radius: 30px;">
                             <div class="details_user ms-3">
@@ -112,7 +134,7 @@ img.spin-img {
                         <div class="card p-3 mb-3">
                             <h4>₹{{ $plan['recharge_amount'] }}</h4>
                             <p class="validity">{{ $plan['recharge_validity'] }}</p>
-                            <p>{{ $plan['recharge_short_desc'] }}</p>
+                            <p class="validity_desc">{{ $plan['recharge_short_desc'] }}</p>
                             <!-- <p class="cashback">Cashback: ₹{{ cashback_value('Prepaid-Mobile', 'Prepaid-Mobile', $plan['recharge_amount']) }}</p> -->
                             <div class="validity d-flex align-items-center">
                                 <img src="{{ asset('assets_web/images/wallet/13.png') }}" class="spin-img" style="width:20%!important;height:20%!important;" alt="">

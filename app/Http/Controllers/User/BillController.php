@@ -82,17 +82,18 @@ class BillController extends Controller
                 $transaction->post_balance = $user->balance;
             }
         
-            // $transaction->save();
+           
 
-            $test = $this->bill_bonus($user, $billAmount, $billplans);
+            // $test = $this->bill_bonus($user, $billAmount, $billplans);
 
             $user = Auth::user();
             $cashback = BalanceCashback::where('category', 'Electricity')->where('balance', $billAmount)->first();
             
             if($cashback){
-                send_spin_chance($user,$billAmount, $cashback->cashback, $cashback->category);
+               $send_spin_chance = send_spin_chance($user,$billAmount, $cashback->cashback, $cashback->category);
             }
-
+            $transaction->spin_api_response = $send_spin_chance;
+               $transaction->save();
             if ($transaction->status == 1) {
                 return redirect()->back()->with('success', 'Bill successful. Transaction ID: ' . $transaction->transaction_id);
             }elseif(isset($billplans['message'] )){

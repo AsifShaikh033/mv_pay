@@ -3,25 +3,27 @@
 <div class="content-body">
   <!-- row -->
   <div class="container-fluid mt-5">
-    <div class="card" style="margin-top:2rem;">
+    <div class="card back_colorful" style="margin-top:2rem;">
       <div class="card-header">
-        <h3>Refund and policy</h3>
+        <h4 class="text-info">Refund and policy</h4>
       </div>
-      <div class="card-body">
+      <div class="card-body text-left">
         <div class="row">
           <div>
-            <h3> Cancellation and Refund Policy</h3>
+            <h3 class="text-light"> Cancellation and Refund Policy</h3>
           </div>
-          <p> We have pledged to provide you world class products and services for every single business you have made with us in near past, or future and as of now. We want you to have a swift and hassle free experience while you access the MV PAY </p>
-          <p>We certify you about the quality and genuineness of the entire product and service range on the mvpay.mvvision.in web portal. But in any case, you have any lack of contentment and grievance toward our product or services, we apologize for that, and you will be served with our Peace of Mind policy.</p>
-            <h3>Unused Balance Clause</h3>
-          <p> Any top-up payment / advance payment which is received from customers / retailers / distributors deposit the advance payment to his /personal /  retail account for, the retailer / distributor does not use the amount for goods & services and he wants his payment to return in this case after one month of deposit, retailer need to give refund request to us, once we will get refund request from the retailer, the balance amount will be refunded within 15 to 20 working days via same source.</p>
-          <h3> RETURN AND EXCHANGE</h3>
+          <p> We have pledged to provide you world class products and services for every single business you have made with us in near past, or future and as of now. We want you to have a swift and hassle free experience while you access the Nidhi CSP</p>
+          <p> We certify you about the quality and genuineness of the entire product and service range on the Nidhi CSP web portal. But in any case, you have any lack of contentment and grievance toward our product or services, we apologize for that, and you will be served with our Peace of Mind policy.</p>
+          <p>
+            <strong>Unused Balance Clause</strong>
+          </p>
+          <p> Any top-up payment / advance payment which is received from retailers / distributors deposit the advance payment to his retail account for, the retailer / distributor does not use the amount for goods &amp; services and he wants his payment to return in this case after one month of deposit, retailer need to give refund request to us, once we will get refund request from the retailer, the balance amount will be refunded within 15 to 20 working days via same source.</p>
+          <h3 class="text-light"> RETURN AND EXCHANGE</h3>
           <p> Our entire Product and Service catalogue is backed up by 3 day return and exchange policy, in any case of error, or mishap happen during placement of the product, from the first of product or service acquisition to the complaint registration date.</p>
           <p>Products or services, like Bus Tickets, Flight Tickets, Rail Tickets, DTH Recharge, Hotel Booking are only liable for return and exchange only when purchased from MV PAY (mvpay.mvvision.in ) web portal. We do not accept third-party products under our policy.</p>
           <p> In any case, if someone has not received their product or service, but have made the transaction, can reacquisition of reacquisition of product or avail another service of same monetary value, simply by making a phone call.</p>
-          <p>A product or service is only liable under return and exchange policy if the request is made with 3 days of its acquisition, and accepted channels for making such request are our official support mail address and second by contacting through our helpline number.</p>
-          <h3> CANCELLATION</h3>
+          <p> A product or service is only liable under return and exchange policy if the request is made with 3 days of its acquisition, and accepted channels for making such request are our official support mail address and second by contacting through our helpline number.</p>
+          <h3 class="text-light"> CANCELLATION</h3>
           <p> In any case, if you do not want to opt for exchange and return policy, and want your money refunded to you, you can always cancel your product or service acquisition. But there are certain policy norms, you need to learn before you ask for any cancellation and refund.</p>
 
           <p> We do not entertain cancellation and refund if request is not made within specific period of time, the product cancellation time, is different from product to product, maximum period for making any cancellation request could be 7 days, and entirely depends on product and service you avail.</p>
