@@ -88,7 +88,7 @@
                 </div>
 
                 <!-- Payment Status -->
-                <div class="card " style="cursor: pointer;" onclick="window.location=''">
+                <div class="card " style="cursor: pointer;" onclick="window.location='{{route('user.paymentlist')}}'">
                     <div class="other_icon"><img src="{{ asset('assets_web/images/dashboard/payment status.png') }}" width="100px" height="100px" alt=""></div>
                     <h5 class="card-title">Payment Status</h5>
                 </div>

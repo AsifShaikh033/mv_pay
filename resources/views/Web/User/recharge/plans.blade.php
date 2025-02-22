@@ -105,7 +105,7 @@ img.spin-img {
             <div class="col-12 text-center">
                 <div class="input-group_1 mb-2">
                     <div class="input-with-icon">
-                        <input type="text" id="mobile-number" placeholder="Search or enter amount">
+                        <input type="text" id="mobile-number" placeholder="Search or enter amount" onkeyup="filterPlans()" class="form-control me-2">
                         <span class="contact-icon"><i class="fa fa-search"></i></span>
                     </div>
                 </div>
@@ -138,7 +138,8 @@ img.spin-img {
                             <!-- <p class="cashback">Cashback: ₹{{ cashback_value('Prepaid-Mobile', 'Prepaid-Mobile', $plan['recharge_amount']) }}</p> -->
                             <div class="validity d-flex align-items-center">
                                 <img src="{{ asset('assets_web/images/wallet/13.png') }}" class="spin-img" style="width:20%!important;height:20%!important;" alt="">
-                                <p class="text-success m-auto">Spin cash rewards from <br> ₹2 to ₹20</p>
+                                <!-- <p class="text-success m-auto">Spin cash rewards from <br> ₹2 to ₹20</p> -->
+                                <p class="text-success m-auto">RECEIVE LUCKY SPIN CHANCE TO COLLECT UPTO 200₹ IN YOUR BANK ON EVERY RECHARGE OR BILL PAYMENT.</p>
                                 <!-- <button class="btn btn-sm btn-light mb-0" type="submit">show more</button> -->
                             </div>
                             <form id="rechargeForm" action="{{ route('user.recharge.process') }}" method="POST">
@@ -234,20 +235,24 @@ document.querySelectorAll('.spin-img').forEach(img => {
 </script>
 
 
-<!-- <script>
+<script>
 function filterPlans() {
     let input = document.getElementById('mobile-number').value.toLowerCase();
     let plans = document.getElementsByClassName('plan-card');
 
+    console.log("Search input:", input); // Check input value
+
     for (let i = 0; i < plans.length; i++) {
         let amount = plans[i].getAttribute('data-amount');
-        if (amount.includes(input)) {
+        console.log("Plan amount:", amount); // See if data-amount exists
+        
+        if (amount && amount.toLowerCase().includes(input)) {
             plans[i].style.display = "block";
         } else {
             plans[i].style.display = "none";
         }
     }
 }
-</script> -->
+</script>
 
 @endsection

@@ -18,7 +18,7 @@
   style="height: 20px;margin-bottom: 8px;"
     alt="Logo"
 />
-        <span>Welcome to mvpay</span>
+        <span>Welcome to MV PAY. We are dedicated to give you best service so that you can get good earnings from us. Keep on saving your money by using MV PAY and MV VISION. Stay tuned, keep supporting</span>
        
     </div>
 </div>
