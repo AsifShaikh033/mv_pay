@@ -86,13 +86,13 @@ class RechargeService
 
     public function billoperatorfetch($billNumber)
     {
-       
+        echo $this->PR_MOBILE_FETCH;die;
         $response = Http::get($this->apiBaseUrl . 'API/BillFetch_Cyrus_BA.aspx', [
             'APIID'         => $this->Bill_Pay_MEMBER_ID,
             'PASSWORD'      => $this->PR_MOBILE_FETCH, 
-            'BILLNUMBER' => $billNumber,
+            'RequestData' => $billNumber,
         ]);
-return $response;
+        
         return $response->json();
     }
 
@@ -117,7 +117,7 @@ return $response;
     /**
      * Fetch Electricity Bill Plans
      */
-    public function fetchBillPlans($billNumber, $operatorCode, $circleCode, $billAmount, $transaction_id)
+    public function fetchBillPlans($billNumber, $operatorCode, $circleCode, $rechargeAmount, $transaction_id)
     {
         $response = Http::get($this->apiBaseUrl . 'services_cyapi/recharge_cyapi.aspx', [
             'memberid'         => $this->Bill_Pay_MEMBER_ID,
@@ -125,7 +125,7 @@ return $response;
             'number'           => $billNumber, 
             'operator'         => $operatorCode,
             'circle'          => $circleCode,
-            'amount'          => $billAmount,
+            'amount'          => $rechargeAmount,
             'usertx'          => $transaction_id,
             'format'           => 'json',
             'RechargeMode'     => 1
