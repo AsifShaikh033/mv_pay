@@ -46,7 +46,7 @@ class BillController extends Controller
             $billNumber = $request->input('bill_number');
             $operatorCode = $request->input('operator');
             $circleCode = $request->input('circle');
-            $billAmount = $request->input('amount');
+            $rechargeAmount = $request->input('amount');
             $transaction_id = rand(1000000000, 99999999999);
 
             $billplans = $this->rechargeService->fetchBillPlans(
@@ -54,25 +54,25 @@ class BillController extends Controller
                 $billNumber,
                 $operatorCode,
                 $circleCode,
-                $billAmount,
+                $rechargeAmount,
                 $transaction_id
             );
 
             $transaction = new Transaction;
             $transaction->user_id = $user->id;
-            $transaction->amount = $billAmount;
+            $transaction->amount = $rechargeAmount;
             $transaction->transaction_id = $billplans['transaction_id'] ?? $transaction_id;
             $transaction->response_api_msg = json_encode($billplans);
             $transaction->remark = 'electricity_bill';
             $transaction->trx_type = '-';
 
 
-            if (isset($billplans['Status']) && $billplans['Status'] === "FAILURE") {
+            if (isset($billplans['Status']) && $billplans['Status'] === "1") {
                 $transaction->status = 0;
                 $transaction->payment_status = 'pending';
                 $transaction->details = 'Bill Pending for ' . $transaction->remark . ' ' . $request->circle;
-            } elseif (isset($billplans['Status']) && $billplans['Status'] === "1") {
-                $user->balance -= $billAmount;
+            } elseif (isset($billplans['Status']) && $billplans['Status'] === "FAILURE") {
+                $user->balance -= $rechargeAmount;
                 $user->save();
         
                 $transaction->status = 1; 
@@ -84,15 +84,19 @@ class BillController extends Controller
         
            
 
-            // $test = $this->bill_bonus($user, $billAmount, $billplans);
+            // $this->bill_bonus($user, $rechargeAmount, $billplans);
 
             $user = Auth::user();
-            $cashback = BalanceCashback::where('category', 'Electricity')->where('balance', $billAmount)->first();
-            
+            $cashback = BalanceCashback::where('category', 'Electricity')->where('balance', $rechargeAmount)->first();
+
+            // $send_spin_chance = null;
+
             if($cashback){
-               $send_spin_chance = send_spin_chance($user,$billAmount, $cashback->cashback, $cashback->category);
+                $spin_count = 1;
+               $send_spin_chance = send_spin_chance($user,$rechargeAmount, $cashback->cashback, $spin_count, $cashback->category);
             }
-            $transaction->spin_api_response = $send_spin_chance;
+            // $transaction->spin_api_response = $send_spin_chance;
+            
                $transaction->save();
             if ($transaction->status == 1) {
                 return redirect()->back()->with('success', 'Bill successful. Transaction ID: ' . $transaction->transaction_id);
@@ -105,7 +109,7 @@ class BillController extends Controller
         }
 
 
-        public function bill_bonus($user, $billAmount, $billplans) {
+        public function bill_bonus($user, $rechargeAmount, $billplans) {
             
             $authUser = Auth::user();
             
@@ -117,7 +121,7 @@ class BillController extends Controller
                     
                     Transaction::create([
                         'user_id'         => $referrer->id,
-                        'amount'          => $billAmount, 
+                        'amount'          => $rechargeAmount, 
                         'transaction_id'  => rand(1000000000, 99999999999),
                         'charge'          => 0.00,
                         'trx_type'        => '+',
