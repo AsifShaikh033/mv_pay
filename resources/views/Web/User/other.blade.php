@@ -138,7 +138,7 @@
                             <i class="fa fa-university"></i> <!-- Bank icon -->
                         </div>
                         <h5 class="card-title">Open Bank Account</h5>
-                    </div>
+                </div>
 
             </div>
         </section>

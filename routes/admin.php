@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Admin\BalanceCashbackController;
 use App\Http\Controllers\Admin\UtrController;
 use App\Http\Controllers\ApiFetchController;
+use App\Http\Controllers\LeadGenerationController;
 
 
 
@@ -68,8 +69,9 @@ Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function
     Route::post('/update-Utr/{id}', [UtrController::class, 'update'])->name('updateUtr');
     Route::delete('/deleteUtr', [UtrController::class, 'destroy'])->name('utr_delete');
 
+    // lead generation
 
-
+    Route::get('/lead-generation', [LeadGenerationController::class, 'index'])->name('lead_generation.index');
 
 });
 

@@ -204,6 +204,22 @@
                 </div>
               </li>
               <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#leads_generation">
+                  <i class="fas fa-th-list"></i>
+                  <p>Leads Generation</p>
+                  <span class="caret"></span>
+                </a>
+                <div class="collapse" id="leads_generation">
+                  <ul class="nav nav-collapse">
+                    <li>
+                      <a href="{{route('admin.lead_generation.index')}}">
+                        <span class="sub-item">Lead list</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item">
                 <a data-bs-toggle="collapse" href="#forms">
                   <i class="fas fa-pen-square"></i>
                   <p>Forms</p>
