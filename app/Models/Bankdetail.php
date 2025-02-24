@@ -21,4 +21,10 @@ class Bankdetail extends Model
         'barcode',
         'status',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }

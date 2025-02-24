@@ -2,108 +2,100 @@
 
 @section('content')
 
-<style>
-    .service-cards {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-}
-
-/* Card Styling */
-.card {
-    width: calc(33.333% - 20px); /* Default width for larger screens */
-    border-radius: 10px;
-    text-align: center;
-    padding: 20px;
-    transition: transform 0.3s ease;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-}
-
-/* Image Icon */
-.other_icon {
-    font-size: 3rem;
-    margin-bottom: 15px;
-}
-
-.other_icon img {
-    width: 100px;
-    height: 100px;
-}
-
-/* Headings */
-.card-title {
-    font-size: 1.2rem;
-    font-weight: bold;
-}
-
-.card-text {
-    font-size: 1rem;
-}
-
-/* Mobile Responsiveness */
-@media (max-width: 992px) { 
-    .card {
-        width: calc(50% - 20px); /* 2 cards per row on tablets */
-    }
-}
-
-@media (max-width: 768px) {
-    .card {
-        width: calc(100% - 20px); /* Full width for smaller screens */
-    }
-}
-
-@media (max-width: 480px) {
-    .other_icon {
-        font-size: 2rem;
-        margin-bottom: 5px;
-    }
-
-    .other_icon img {
-        width: 80px;
-        height: 80px;
-    }
-
-    .card-title {
-        font-size: 1rem;
-    }
-
-    .card-text {
-        font-size: 0.9rem;
-    }
-}
-
-</style>
-
 <div class="content-body">
-    <div class="container-fluid">
-        <section class="services">
-        <h2 class="text-light text-center mt-5">Member Refer List</h2>
-            
-            @if($users_list->isEmpty())
-                <p class="text-center text-white">No Member Refer List found for this report.</p>
-            @else
-                <div class="service-cards">
-                    @foreach($users_list as $recharge)
-                        <div class="card" style="cursor: pointer;" onclick="window.location=''">
-                            <div class="other_icon">
-                                <img src="{{ $recharge->identity_image ? url('storage/app/public/' . $recharge->identity_image) : asset('assets_web/images/profile/default.png') }}" width="100px" height="100px" alt="" style="border-radius: 30px;">
-                            </div>
-                            <div class="text-center">
-                                <p class="card-title mb-1"><strong>Name:</strong> {{ ucfirst($recharge->name) }}</p>
-                                <p class="card-text mb-0"><strong>Phone Number:</strong> {{ $recharge->mob_number }}</p>
-                                <p class="card-text"><strong>Date:</strong> {{ $recharge->created_at ? $recharge->created_at->format('d-m-y') : 'N/A' }}</p>
-                            </div>
-                        </div>
-                    @endforeach
+    <!-- Referral Program Section -->
+    <div class="mt-5">
+        <div class="card shadow-lg border-0 rounded-3">
+            <div class="card-header bg-gradient text-white text-center">
+                <h4><i class="fas fa-share-alt"></i> Referral Program</h4>
+            </div>
+            <div class="card-body">
+                <!-- Referral Code Section -->
+                @if($subcription)
+                <div class="mb-4 text-center">
+                    <h5 class="mb-3 text-primary"><i class="fas fa-link"></i> Your Referral Code</h5>
+                    <div class="input-group justify-content-center">
+                        <input 
+                            type="text" 
+                            id="referralCode" 
+                            class="form-control w-75 text-center fs-5" 
+                            value="{{ route('register', ['referral_code' => $referralCode]) }}" 
+                            readonly>
+                    </div>
+                    <small class="text-muted mt-2 d-block">Share this link with your friends and earn rewards!</small>
                 </div>
-            @endif
-        </section>
+
+                <!-- Social Media Share Buttons -->
+                <div class="text-center mt-4">
+                    <h5 class="text-primary"><i class="fas fa-share-alt"></i> Share on Social Media</h5>
+                    <div class="d-flex justify-content-center gap-3 mt-3">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(route('register', ['referral_code' => $referralCode])) }}" 
+                           target="_blank" class="btn btn-facebook rounded-pill shadow-sm">
+                            <i class="fab fa-facebook-f"></i> Facebook
+                        </a>
+                        <a href="https://twitter.com/intent/tweet?url={{ urlencode(route('register', ['referral_code' => $referralCode])) }}" 
+                           target="_blank" class="btn btn-twitter rounded-pill shadow-sm">
+                            <i class="fab fa-twitter"></i> Twitter
+                        </a>
+                        <a href="https://wa.me/?text={{ urlencode(route('register', ['referral_code' => $referralCode])) }}" 
+                           target="_blank" class="btn btn-whatsapp rounded-pill shadow-sm">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <!-- List of Referred Users -->
+                <div class="mt-4">
+                    <h5 class="text-primary"><i class="fas fa-users"></i> Referred Users</h5>
+                    @if($referredUsers->isEmpty())
+                        <div class="alert alert-warning mt-3 text-center">
+                            <i class="fas fa-exclamation-circle"></i> No users have registered using your referral code yet.
+                        </div>
+                    @else
+                        <div class="table-responsive">
+                            <table class="table table-hover table-bordered">
+                                <thead class="bg-primary text-white">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Name</th>
+                                        <th>Image</th>
+                                        <th>Email</th>
+                                        <th>Mobile Number</th>
+                                        <th>Registration Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($referredUsers as $key => $referredUser)
+                                        <tr>
+                                            <td>{{ $key + 1 }}</td>
+                                            <td>{{ $referredUser->name }}</td>
+                                            <td>
+                                                <img src="{{ $referredUser->identity_image ? url('storage/app/public/' . $referredUser->identity_image) : asset('assets_web/images/profile/default.png') }}" width="100px" height="100px" alt="{{ $referredUser->name }}" style="border-radius: 30px;">
+                                            </td>
+                                            <td>{{ $referredUser->email }}</td>
+                                            <td>{{ $referredUser->mob_number }}</td>
+                                            <td>{{ $referredUser->created_at->format('d M Y') }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    @endif
+                </div>
+                @else
+                <div class="mb-4 text-center">
+                   
+                   
+                    <div class="alert alert-warning mt-3 text-center">
+                        <i class="fas fa-exclamation-circle"></i> You don't have any subscription plan so subscribe first then see your referral link.
+                    </div>
+                    
+                </div>
+                @endif
+            </div>
+        </div>
     </div>
 </div>
 
 @endsection
+

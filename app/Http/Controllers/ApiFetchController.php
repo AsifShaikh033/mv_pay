@@ -48,7 +48,7 @@ class ApiFetchController extends Controller
         $billNumber = $request->bill_number;
 
         $plans = $this->rechargeService->billoperatorfetch($billNumber);
-        
+        return $plans;
         if (isset($plans['error'])) {
             return response()->json(['error' => $plans['error']], 400);
         }

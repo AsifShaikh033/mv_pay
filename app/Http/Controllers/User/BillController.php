@@ -47,6 +47,16 @@ class BillController extends Controller
             $operatorCode = $request->input('operator');
             $circleCode = $request->input('circle');
             $rechargeAmount = $request->input('amount');
+
+            $user = auth()->user();
+         $userBalance = $user->balance ?? 0;
+    
+        if ($userBalance < $rechargeAmount) { 
+            return redirect()->route('user.recharge.electricity')->with([
+                'error' => 'User Balance Not sufficient.'
+            ])->withInput();
+        }
+
             $transaction_id = rand(1000000000, 99999999999);
 
             $billplans = $this->rechargeService->fetchBillPlans(
