@@ -230,55 +230,53 @@
 <script>
 $(document).ready(function() {
 
-    $('.recent-number span').on('click', function() {
-    let selectedNumber = $(this).data('number');
-    $('#bill-number').val(selectedNumber).trigger('input');
-    fetchOperatorAndCircle(selectedNumber);
-   // console.log(selectedNumber);
+$('.recent-number span').on('click', function() {
+let selectedNumber = $(this).data('number');
+$('#bill-number').val(selectedNumber).trigger('input');
+fetchOperatorAndCircle(selectedNumber);
+// console.log(selectedNumber);
 
 });
 
 
-// function fetchOperatorAndCircle(billNumber) {
-//         $.ajax({
-//             url: "{{ route('fetch.operator.circle') }}",
-//             type: "POST",
-//             data: {
-//                 bill_number: billNumber,
-//                 _token: "{{ csrf_token() }}"
-//             },
-//             success: function(response) {
-//                 if (response.status === 1) {
-//                     $('#operator').val(response.operator).change();
-//                     $('#circle').val(response.circle).change();
-//                 }
-//             },
-//             error: function(xhr) {
-//                 if (xhr.responseJSON && xhr.responseJSON.error) {
-//                     toastr.error(xhr.responseJSON.error.replace('mobile', 'Bill'), 'Error Alert', { timeOut: 8000 });
-//                 } else {
-//                     toastr.error('Invalid Bill number', 'Error', { timeOut: 8000 });
-//                 }
-//             }
-
-//         });
-// }
-
-// Bind to keyup
-// $('#bill-number').on('keyup', function() {
-//     fetchOperatorAndCircle($(this).val());
-// });
+function fetchOperatorAndCircle(billNumber, operator) {
+    $.ajax({
+        url: "{{ route('dthfetch.operator.circle') }}",
+        type: "POST",
+        data: {
+            bill_number: billNumber,
+            operator: operator,
+            _token: "{{ csrf_token() }}"
+        },
+        success: function(response) {
+            if (response.status === 1) {
+                $('#operator').val(response.operator).change();
+                $('#circle').val(response.circle).change();
+                $('#amount').val(response.amount);
+            }
+        },
+        error: function(xhr) {
+            if (xhr.responseJSON && xhr.responseJSON.error) {
+                let errorMsg = xhr.responseJSON.error.records?.msg || 'Unknown error occurred';
+                toastr.error(errorMsg, 'Error Alert', { timeOut: 8000 });
+            } else {
+                toastr.error('Issue in Fetch Mobile details', 'Error', { timeOut: 8000 });
+            }
+        }
+    });
+}
 
 
 $('#bill-number').on('keyup', function() {
-        let billNumber = $(this).val();
+let billNumber = $(this).val();
+let operator = $('#operator').val();
+if (billNumber === "" || operator === "") {
+    return;
+}
 
-        if (billNumber === "") {
-            return;
-        }
+fetchOperatorAndCircle(billNumber, operator);
+});
 
-        fetchOperatorAndCircle(billNumber);
-    });
 
 });
 </script>

@@ -49,13 +49,13 @@ class BillController extends Controller
             $rechargeAmount = $request->input('amount');
 
             $user = auth()->user();
-         $userBalance = $user->balance ?? 0;
-    
-        if ($userBalance < $rechargeAmount) { 
-            return redirect()->route('user.recharge.electricity')->with([
-                'error' => 'User Balance Not sufficient.'
-            ])->withInput();
-        }
+            $userBalance = $user->balance ?? 0;
+        
+            if ($userBalance < $rechargeAmount) { 
+                return redirect()->route('user.recharge.electricity')->with([
+                    'error' => 'User Balance Not sufficient.'
+                ])->withInput();
+            }
 
             $transaction_id = rand(1000000000, 99999999999);
 
@@ -168,7 +168,7 @@ class BillController extends Controller
         public function common(Request $request)
             {
                 $serviceType = $request->query('serviceType');
-// echo "<pre>";print_r($serviceType);die;
+
                 $Operator = $serviceType ? Operator::where('ServiceTypeName', $serviceType)->get() : [];
                 
                 $circle = Circle::all();

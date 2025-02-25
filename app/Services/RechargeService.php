@@ -84,42 +84,85 @@ class RechargeService
     }
 
 
-    public function billoperatorfetch($operator)
-{
-    try {
-        $response = Http::asForm()->post($this->apiBaseUrl . 'api/BillFetch_Cyrus_BA.aspx', [
-            'memberid'   => $this->Bill_Pay_MEMBER_ID,
-            'pin'        => $this->Bill_Pay,
-            'methodname' => 'get_billerinfo',
-            'operator'   => $operator,
-        ]);
+    public function billoperatorfetch($operator, $billNumber)
+    {
+        try {
+            $response = Http::asForm()->post($this->apiBaseUrl . 'api/BillFetch_Cyrus_BA.aspx', [
+                'memberid'    => $this->CYRUS_MEMBER_ID,
+                'pin'         => $this->BILL_FECTH_API,
+                'methodname'  => 'get_billfetch',
+                'operator'    => $operator,
+                'RequestData' => json_encode([
+                    'Request' => [
+                        [
+                            'Key'        => 'Customer Number',
+                            'Value'      => $billNumber,
+                            'isOptional' => 'False'
+                        ]
+                    ]
+                ]),
+                'format'      => 'json',
+            ]);
+            
+            if ($response->failed()) {
+                return ['error' => 'Failed to connect to API', 'status' => $response->status()];
+            }
 
-        if ($response->failed()) {
-            return ['error' => 'Failed to connect to API', 'status' => $response->status()];
+            $rawResponse = $response->body();
+
+            if (empty($rawResponse)) {
+                return ['error' => 'Empty response from API'];
+            }
+
+            $data = json_decode($rawResponse, true);
+
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                return ['error' => 'Invalid JSON response from API', 'raw' => $rawResponse];
+            }
+
+            if (!isset($data['statuscode']) || $data['statuscode'] !== 'TXN') {
+                return ['error' => $data['status'] ?? 'Unknown error', 'raw' => $rawResponse];
+            }
+
+            return $data;
+        } catch (\Exception $e) {
+            return ['error' => $e->getMessage()];
         }
-
-        $rawResponse = $response->body();
-
-        if (empty($rawResponse)) {
-            return ['error' => 'Empty response from API'];
-        }
-
-        $data = json_decode($rawResponse, true);
-
-        if (json_last_error() !== JSON_ERROR_NONE) {
-            return ['error' => 'Invalid JSON response from API', 'raw' => $rawResponse];
-        }
-
-        // Check if response contains expected data
-        if (!isset($data['Request']) || empty($data['Request'])) {
-            return ['error' => 'Invalid or empty response from API', 'raw' => $rawResponse];
-        }
-
-        return $data;
-    } catch (\Exception $e) {
-        return ['error' => $e->getMessage()];
     }
-}
+
+    public function dthoperatorfetch($operator, $billNumber)
+    {
+        try {
+            $response = Http::asForm()->get($this->apiBaseUrl . 'api/CyrusROfferAPI.aspx', [
+                'MerchantID'    => $this->CYRUS_MEMBER_ID,
+                'MerchantKey'         => $this->OFFERS_DTH_Info,
+                'MethodName'  => 'dthinfo',
+                'operator'    => $operator,
+                 'mobile' => $billNumber,
+                'offer' => 'roffer'
+            ]);
+            // echo "<pre>";print_r($response);die;
+            if ($response->failed()) {
+                return ['error' => 'Failed to connect to API', 'status' => $response->status()];
+            }
+
+            $rawResponse = $response->body();
+
+            if (empty($rawResponse)) {
+                return ['error' => 'Empty response from API'];
+            }
+
+            $data = json_decode($rawResponse, true);
+
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                return ['error' => 'Invalid JSON response from API', 'raw' => $rawResponse];
+            }
+
+            return $data;
+        } catch (\Exception $e) {
+            return ['error' => $e->getMessage()];
+        }
+    }
 
 
 

@@ -95,7 +95,7 @@
             🚀 Recharge Mode 1
           </button>
           <button class="btn btn-secondary btn-lg rounded-pill" onclick="window.location.href='{{ route('user.c_recharge.mobile') }}'">
-            🌍 Recharge Mode 1
+            🌍 Recharge Mode 2
           </button>
         </div>
       </div>
