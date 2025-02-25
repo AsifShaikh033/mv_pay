@@ -84,17 +84,43 @@ class RechargeService
     }
 
 
-    public function billoperatorfetch($billNumber)
-    {
-        echo $this->PR_MOBILE_FETCH;die;
-        $response = Http::get($this->apiBaseUrl . 'API/BillFetch_Cyrus_BA.aspx', [
-            'APIID'         => $this->Bill_Pay_MEMBER_ID,
-            'PASSWORD'      => $this->PR_MOBILE_FETCH, 
-            'RequestData' => $billNumber,
+    public function billoperatorfetch($operator)
+{
+    try {
+        $response = Http::asForm()->post($this->apiBaseUrl . 'api/BillFetch_Cyrus_BA.aspx', [
+            'memberid'   => $this->Bill_Pay_MEMBER_ID,
+            'pin'        => $this->Bill_Pay,
+            'methodname' => 'get_billerinfo',
+            'operator'   => $operator,
         ]);
-        
-        return $response->json();
+
+        if ($response->failed()) {
+            return ['error' => 'Failed to connect to API', 'status' => $response->status()];
+        }
+
+        $rawResponse = $response->body();
+
+        if (empty($rawResponse)) {
+            return ['error' => 'Empty response from API'];
+        }
+
+        $data = json_decode($rawResponse, true);
+
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            return ['error' => 'Invalid JSON response from API', 'raw' => $rawResponse];
+        }
+
+        // Check if response contains expected data
+        if (!isset($data['Request']) || empty($data['Request'])) {
+            return ['error' => 'Invalid or empty response from API', 'raw' => $rawResponse];
+        }
+
+        return $data;
+    } catch (\Exception $e) {
+        return ['error' => $e->getMessage()];
     }
+}
+
 
 
 
