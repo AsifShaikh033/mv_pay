@@ -86,6 +86,7 @@ Route::get('/api/register-user', [UserController::class, 'registeruser']);
 
     Route::post('/fetch-operator-circle', [ApiFetchController::class, 'fetchOperatorCircle'])->name('fetch.operator.circle');
     Route::post('/billfetch-operator-circle', [ApiFetchController::class, 'billfetchOperatorCircle'])->name('billfetch.operator.circle');
+    Route::post('/dthfetch-operator-circle', [ApiFetchController::class, 'dthfetchOperatorCircle'])->name('dthfetch.operator.circle');
 
 
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
