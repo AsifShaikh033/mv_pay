@@ -199,6 +199,11 @@
 
             </div>
         </div>
+        <div class="validity d-flex align-items-center">
+                                <img src="{{ asset('assets_web/images/wallet/13.png') }}" class="spin-img" style="width:10%!important;height:10%!important;" alt="">
+                                <p class="text-success m-auto fs-6">Spin cash rewards from <br> ₹2 to ₹20</p>
+                                <!-- <button class="btn btn-sm btn-light mb-0" type="submit">show more</button> -->
+                            </div>
         <!-- Check Plans Button -->
         <div class="plans-button-container mt-4">
             <button  type="submit" class="check-plans-btn mt-3 text-decoration-none" >Checkout Plans & Offers</button>

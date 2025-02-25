@@ -128,6 +128,9 @@ img.spin-img {
                                 <input type="hidden" name="operatorCode" value="{{ $operatorCode }}">
                                 <input type="hidden" name="recharge_amount" value="{{ $plan['recharge_amount'] }}">
                                 <input type="hidden" name="recharge_validity" value="{{ $plan['recharge_validity'] }}">
+                                @if($planId)
+                                    <input type="hidden" name="plan_id" value="{{ $planId }}">
+                                @endif
                                 <button type="submit" class="btn btn-recharge">Recharge</button>
                             </form>
 
