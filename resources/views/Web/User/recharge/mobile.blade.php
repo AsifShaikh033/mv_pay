@@ -171,6 +171,10 @@
     
     <form id="rechargeForm" action="{{ route('user.recharge.plan') }}" method="POST">
     @csrf 
+    
+    @if($planId)
+        <input type="hidden" name="plan_id" value="{{ $planId }}">
+    @endif
     <div class="input-section">
         <div class="input-group_1 mb-2">
             <div class="input-with-icon">

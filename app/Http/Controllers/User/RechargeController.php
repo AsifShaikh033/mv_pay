@@ -23,6 +23,7 @@ class RechargeController extends Controller
     }
     public function mobile(Request $request)
     {       
+        $planId = $request->query('plan_id', null);
           $type = $request->query('type', 'Prepaid-Mobile');
             if ($type === 'postpaid_mob') {
                 $type = 'Postpaid-Mobile';
@@ -43,13 +44,14 @@ class RechargeController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->limit(3)
                 ->get();
-            return view('Web.User.recharge.mobile',compact('circle', 'Operator','rechargeNumbers'));
+            return view('Web.User.recharge.mobile',compact('circle', 'Operator','rechargeNumbers', 'planId'));
         }
 
  
 
     public function plan(Request $request)
 {
+    
     $request->validate([
         'mobile_number' => 'required|digits:10',
         'operator' => 'required',
@@ -63,7 +65,11 @@ class RechargeController extends Controller
     $mobileNumber = $request->input('mobile_number');
     $operatorCode = $request->input('operator');
     $circleCode = $request->input('circle');
-
+    if ($request->has('plan_id')) {
+        $planId = $request->input('plan_id');
+    }else{
+        $planId = 0;
+    }
     $operator = Operator::where('OperatorCode', $operatorCode)->value('OperatorName');
 
     if (!$operator) {
@@ -118,7 +124,7 @@ class RechargeController extends Controller
         // $circle = $request->input('circle');
         // $plans = $this->rechargeService->fetchPlans($mobileNumber, $operatorCode, $circleCode);
         return view('Web.User.recharge.plans', compact('mobileNumber', 'circle',
-        'operatorCode', 'circleCode', 'filteredPlans', 'operator', 'plans'));
+        'operatorCode', 'circleCode', 'filteredPlans', 'operator', 'plans','planId'));
     }
 
 
@@ -129,6 +135,7 @@ class RechargeController extends Controller
     
     public function recharge(Request $request)
     {
+        $planId = $request->input('plan_id', null); 
         $mobileNumber = $request->input('mobileNumber');
         $circle = $request->input('circle');
         $circleCode = $request->input('circleCode');
