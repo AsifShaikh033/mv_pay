@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Transaction;
+use App\Models\Bankdetail;
 use Illuminate\Support\Str;
 
 class UserController extends Controller
@@ -154,20 +155,41 @@ if($subscriptionStatus == true){
 
     public function member_refer_list()
     {
-        $users = User::where('referred_by', Auth::id())->get(); 
+        $users = User::where('referred_by', Auth::id())->get();
+        
+        $user = auth()->user();
+        
+        $referralCode = $user->referral_code;
+
+        if($user->referral_code === null){
+            $user->referral_code = $this->generateUniqueReferralCode();
+            $user->save();
+        }
+
+        $subcription = false;
+
+        $subscriptionStatus = checkSubcription($user);
+
+        if($subscriptionStatus == true){
+            $subcription = true;
+        }
+
+        $referredUsers = User::where('referred_by', $user->id)->get(); 
 
         $users_list = User::whereIn('id', $users->pluck('id'))->get();
         
-        return view('Web.User.member_list', compact('users', 'users_list'));
+        return view('Web.User.member_list', compact('users', 'users_list', 'referralCode', 'referredUsers', 'subcription'));
     }
+
 
     public function payment_list()
     {
-        $users = User::where('referred_by', Auth::id())->get(); 
-
-        $users_list = User::whereIn('id', $users->pluck('id'))->get();
+        $fund = Bankdetail::with('user')
+        ->where('user_id', auth()->id())
+        ->orderBy('created_at', 'desc')
+        ->get();
         
-        return view('Web.User.payment_status', compact('users', 'users_list'));
+        return view('Web.User.payment_status', compact('fund'));
     }
 
 
@@ -189,6 +211,7 @@ if($subscriptionStatus == true){
     {
 
         $fund = Transaction::with('user')
+        ->where('user_id', auth()->id())
         ->orderBy('created_at', 'desc')
         ->get();
         return view('Web.User.fund_transaction', compact('fund'));
