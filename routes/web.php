@@ -14,7 +14,8 @@ use App\Http\Controllers\RechargeApiController;
 use App\Http\Controllers\ApiFetchController;
 use App\Http\Controllers\CplanetRechargeController;
 use App\Http\Controllers\LeadGenerateController;  
-use App\Http\Controllers\User\BharatpeController;  
+use App\Http\Controllers\User\BharatpeController; 
+use App\Http\Controllers\WithdrawalController; 
 
 Route::get('/api/register-user', [UserController::class, 'registeruser']);
 Route::get('/api/register-user', [UserController::class, 'registeruser']);
@@ -162,7 +163,10 @@ Route::get('/api/register-user', [UserController::class, 'registeruser']);
         //CREDIT CARD AND BANK ACCOUNT APiS
         Route::get('/credit-card-apply', [LeadGenerateController::class, 'credit_card_link'])->name('credit_card');
         Route::get('/axis-bank-apply', [LeadGenerateController::class, 'axic_account'])->name('axic_bank');
-       
+        //Widhrawal
+        Route::get('/withdrawal', [WithdrawalController::class, 'withdrawal'])->name('withdrawal');
+        Route::post('/withdrawalrequest', [WithdrawalController::class, 'requestWithdrawal']);
+      
     });
 
 
