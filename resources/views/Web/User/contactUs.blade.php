@@ -11,18 +11,32 @@
         <div class="contact-info text-center">
 
           <div class="company-details">
-            <h5><i class="fa fa-building"></i> Company Name</h5>
-            <p>MV PAY</p>
+            <h5 class="text-black"><i class="fa fa-building btn-whatsapp rounded-pill shadow-sm bg-info text-white p-2"></i> Company Name</h5>
+            <b class="text-primary">MV PAY</b>
 
-            <h5><i class="fa fa-map-marker"></i> Address</h5>
-            <p>Balod , block & district - balod , pin code 491226 , state Chhattisgarh, India</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=Balod,+Chhattisgarh,+India" target="_blank" style="text-decoration: none;">
+            <h5 class="text-black mt-3"><i class="fa fa-map-marker btn-whatsapp rounded-pill shadow-sm bg-primary text-white p-2"></i> Address</h5>
+            </a>
+            <b class="text-primary">Balod , block & district - balod , pin code 491226 , state Chhattisgarh, India</b>
 
-            <h5><i class="fa fa-phone"></i> Mobile</h5>
-            <p>9238711395</p>
-            <p>799954471</p>
+            <a href="https://wa.me/7999544712" target="_blank" style="text-decoration: none;">
+              <h5 class="text-black mt-3"><i class="fab fa-whatsapp btn-whatsapp rounded-pill shadow-sm bg-success text-white p-2"></i> Call Us</h5>
+            </a>
+            <span><b class="text-primary">9238711395</b>
+            <b class="text-primary">7999544712</b></span>
 
-            <h5><i class="fa fa-envelope"></i> Email</h5>
-            <p>mvvision.in@gmail.com</p>
+            <a href="mailto:mvvision.in@gmail.com" target="_blank" style="text-decoration: none;">
+            <h5 class="text-black mt-3"><i class="fa fa-envelope btn-whatsapp rounded-pill shadow-sm bg-warning text-white p-2"></i> Email</h5>
+            </a>
+            <b class="text-primary">mvvision.in@gmail.com</b>
+
+
+            <a href="https://t.me/7999544712" target="_blank" style="text-decoration: none;">
+              <h5 class="text-black mt-3">
+                  <i class="fab fa-telegram-plane btn-whatsapp rounded-pill shadow-sm bg-info text-white p-2"  aria-hidden="true"></i> Telegram
+              </h5>
+          </a>
+          <b class="text-primary">7999544712</b>
           </div>
         </div>
       </div>

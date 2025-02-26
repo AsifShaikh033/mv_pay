@@ -70,7 +70,8 @@
 }
 
         .logout {
-            background: none;
+            /* background: none; */
+            background: linear-gradient(to bottom, #1919ff, darkred);
             color: gold;
             border: 2px solid gold;
             margin-bottom: 10px;
