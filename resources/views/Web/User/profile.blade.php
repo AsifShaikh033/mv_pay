@@ -60,9 +60,25 @@
 
 
 
+                    {{-- <div class="mb-3 box_store">
+                        <label for="password" class="form-label d-block text-start">{{ __('Password') }}</label>
+                        <input type="password" id="password" name="password" value="{{$data->mob_number}}" class="form-control @error('password') is-invalid @enderror" >
+                        <span class="input-group-text" id="togglePassword">
+                            <i class="bi bi-eye-slash" id="eyeIcon"></i> 
+                        </span>
+                        @error('password')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div> --}}
+
                     <div class="mb-3 box_store">
                         <label for="password" class="form-label d-block text-start">{{ __('Password') }}</label>
-                        <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror" >
+                        <div class="input-group">
+                            <input type="password" id="password" name="password" value="{{$data->mob_number}}"  class="form-control @error('password') is-invalid @enderror" >
+                            <span class="input-group-text" id="togglePassword">
+                                <i class="bi bi-eye-slash" id="eyeIcon"></i>
+                            </span>
+                        </div>
                         @error('password')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -88,5 +104,21 @@
         };
         reader.readAsDataURL(event.target.files[0]);
     }
+</script>
+
+<script>
+    const togglePassword = document.getElementById('togglePassword');
+    const passwordInput = document.getElementById('password');
+    const eyeIcon = document.getElementById('eyeIcon');
+
+    togglePassword.addEventListener('click', function () {
+        // Toggle the password visibility
+        const type = passwordInput.type === 'password' ? 'text' : 'password';
+        passwordInput.type = type;
+
+        // Toggle the eye icon
+        eyeIcon.classList.toggle('bi-eye');  // Change to 'eye' icon
+        eyeIcon.classList.toggle('bi-eye-slash');  // Change to 'eye-slash' icon
+    });
 </script>
 @endsection

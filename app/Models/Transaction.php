@@ -24,6 +24,7 @@ class Transaction extends Model
         'transaction_id',
         'response_msg',
         'response_api_msg',
+        'spin_api_response',
     ];
 
     // The attributes that should be cast to native types.

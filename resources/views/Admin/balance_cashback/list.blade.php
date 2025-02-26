@@ -29,7 +29,7 @@
                                 <thead>
                                     <tr>
                                         <th>Balance</th>
-                                        <th>Cashback</th>
+                                        <th>Spin Count</th>
                                         <th>Category</th>
                                         <th>Status</th>
                                         <th style="width: 10%">Action</th>
@@ -97,8 +97,8 @@
                         <input type="number" name="balance" id="bannerImage" class="form-control" placeholder="Enter Balance">
                     </div>
                     <div class="form-group mb-3">
-                        <label for="priority" class="form-label">Cashback</label>
-                        <input type="number" name="cashback" id="cashback" class="form-control" placeholder="Enter Cashback">
+                        <label for="priority" class="form-label">Spin Count</label>
+                        <input type="number" name="cashback" id="cashback" class="form-control" placeholder="Enter Spin Count">
                     </div>
                    
                         <div class="form-group">

@@ -42,6 +42,64 @@ class ApiFetchController extends Controller
         }
       
     }
+
+    public function billfetchOperatorCircle(Request $request)
+        {
+            $billNumber = $request->bill_number;
+            $operator = $request->operator;
+
+            if (empty($operator) || empty($billNumber)) {
+                return response()->json(['error' => 'Both operator and bill number are required'], 400);
+            }
+
+            $plans = $this->rechargeService->billoperatorfetch($operator, $billNumber);
+
+            if (isset($plans['error'])) {
+                return response()->json(['error' => $plans['error']], 400);
+            }
+
+            if (isset($plans['Status']) && $plans['Status'] == "1") {
+                return response()->json(['error' => $plans['ErrorDescription']], 400);
+            } elseif (isset($plans['Status']) && $plans['Status'] == "0") {
+                return response()->json([
+                    'status' => 1,
+                    'operator' => $plans['OperatorCode'],
+                    'circle' => $plans['CircleCode'],
+                ]);
+            } else {
+                return response()->json(['error' => $plans], 400);
+            }
+        }
+
+
+        public function dthfetchOperatorCircle(Request $request)
+        {
+            $billNumber = $request->bill_number;
+            $operator = $request->operator;
+
+            if (empty($operator) || empty($billNumber)) {
+                return response()->json(['error' => 'Both operator and number are required'], 400);
+            }
+
+            $plans = $this->rechargeService->dthoperatorfetch($operator, $billNumber);
+
+            if (isset($plans['error'])) {
+                return response()->json(['error' => $plans['error']], 400);
+            }
+
+            if (isset($plans['Status']) && $plans['Status'] == "1") {
+                return response()->json(['error' => $plans['ErrorDescription']], 400);
+            } elseif (isset($plans['Status']) && $plans['Status'] == "0") {
+                return response()->json([
+                    'status' => 1,
+                    'operator' => $plans['OperatorCode'],
+                    'circle' => $plans['CircleCode'],
+                ]);
+            } else {
+                return response()->json(['error' => $plans], 400);
+            }
+        }
+
  
     public function circle_api()
     {

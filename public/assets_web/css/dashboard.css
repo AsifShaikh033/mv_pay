@@ -15,12 +15,24 @@
     font-weight: bold;
   }
    */
+   .text-left{
+    text-align: left;
+   }
   header .search-bar input {
     padding: 10px;
     width: 250px;
     border-radius: 5px;
     border: 1px solid #ddd;
   }
+
+  .text-manage{
+    font-size:25px;
+  }
+
+  .back_colorful {
+    background-image: linear-gradient(90deg, rgba(22, 25, 49, 1) 0%, rgba(33, 36, 100, 1) 50%, rgba(22, 25, 49, 1) 100%) !important;
+    color: white! important;
+}
   
   header .auth-links button {
     margin-left: 15px;

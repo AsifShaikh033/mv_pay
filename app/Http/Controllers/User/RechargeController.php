@@ -180,7 +180,7 @@ class RechargeController extends Controller
         $plans = $this->rechargeService->recharge_prepaid($mobileNumber, $operatorCode, $circleCode, $rechargeAmount, $transaction_id);
         // echo "<pre>";print_r($plans['Status']);die;
 
-        if (isset($plans['Status']) && $plans['Status'] === "FAILURE") {
+        if (isset($plans['Status']) && $plans['Status'] === "1") {
 
             $Transaction->post_balance = $user->balance;
             $Transaction->status = 0;
@@ -195,7 +195,7 @@ class RechargeController extends Controller
             return redirect()->route('user.recharge.mobile')->with([
                 'error' => $plans['ErrorMessage'],
             ])->withInput();
-        }elseif (isset($plans['Status']) && $plans['Status'] === "1") {
+        }elseif (isset($plans['Status']) && $plans['Status'] === "FAILURE") {
         
             // return   $plans;
         $user->balance -= $rechargeAmount;

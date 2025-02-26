@@ -63,13 +63,15 @@
 }
 
         .dashboard {
-    background: linear-gradient(to bottom, blue, darkblue);
+    /* background: linear-gradient(to bottom, blue, darkblue); */
+    background: linear-gradient(to bottom, #1919ff, darkred);
     margin-bottom: 10px;
     border:2px solid gold;
 }
 
         .logout {
-            background: none;
+            /* background: none; */
+            background: linear-gradient(to bottom, #1919ff, darkred);
             color: gold;
             border: 2px solid gold;
             margin-bottom: 10px;

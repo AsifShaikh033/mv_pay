@@ -14,7 +14,8 @@ use App\Http\Controllers\RechargeApiController;
 use App\Http\Controllers\ApiFetchController;
 use App\Http\Controllers\CplanetRechargeController;
 use App\Http\Controllers\LeadGenerateController;  
-use App\Http\Controllers\User\BharatpeController;  
+use App\Http\Controllers\User\BharatpeController; 
+use App\Http\Controllers\WithdrawalController; 
 
 Route::get('/api/register-user', [UserController::class, 'registeruser']);
 Route::get('/api/register-user', [UserController::class, 'registeruser']);
@@ -85,6 +86,8 @@ Route::get('/api/register-user', [UserController::class, 'registeruser']);
     });
 
     Route::post('/fetch-operator-circle', [ApiFetchController::class, 'fetchOperatorCircle'])->name('fetch.operator.circle');
+    Route::post('/billfetch-operator-circle', [ApiFetchController::class, 'billfetchOperatorCircle'])->name('billfetch.operator.circle');
+    Route::post('/dthfetch-operator-circle', [ApiFetchController::class, 'dthfetchOperatorCircle'])->name('dthfetch.operator.circle');
 
 
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
@@ -127,6 +130,7 @@ Route::get('/api/register-user', [UserController::class, 'registeruser']);
 
         //Member Others
         Route::get('/member-list', [UserController::class, 'member_refer_list'])->name('memberlist');
+        Route::get('/payment-list', [UserController::class, 'payment_list'])->name('paymentlist');
         Route::get('/commission-report', [UserController::class, 'commission_report'])->name('commissionreport');
         Route::get('/fund-transaction', [UserController::class, 'fund_transaction'])->name('fundtransaction');
 
@@ -140,8 +144,8 @@ Route::get('/api/register-user', [UserController::class, 'registeruser']);
         Route::post('/recharge', [RechargeController::class, 'recharge'])->name('recharge.process');
 
         //Add Fund
-        Route::get('/bharatpe',[BharatpeController::class,'bharatpe'])->name('cash.bharatpe');
-        Route::post('/qr_code',[BharatpeController::class,'qr_code'])->name('cash.qr_code');
+        Route::post('/bharatpe',[BharatpeController::class,'bharatpe'])->name('cash.bharatpe');
+        Route::get('/utr-payment',[BharatpeController::class,'qr_code'])->name('cash.qr_code');
 
         //ELECTRICITY
         // Route::get('/recharge/electricity',[RechargeController::class,'electtric_f'])->name('recharge.electricity');
@@ -160,7 +164,10 @@ Route::get('/api/register-user', [UserController::class, 'registeruser']);
         //CREDIT CARD AND BANK ACCOUNT APiS
         Route::get('/credit-card-apply', [LeadGenerateController::class, 'credit_card_link'])->name('credit_card');
         Route::get('/axis-bank-apply', [LeadGenerateController::class, 'axic_account'])->name('axic_bank');
-       
+        //Widhrawal
+        Route::get('/withdrawal', [WithdrawalController::class, 'withdrawal'])->name('withdrawal');
+        Route::post('/withdrawalrequest', [WithdrawalController::class, 'requestWithdrawal']);
+      
     });
 
 

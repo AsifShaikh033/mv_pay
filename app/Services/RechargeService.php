@@ -84,6 +84,88 @@ class RechargeService
     }
 
 
+    public function billoperatorfetch($operator, $billNumber)
+    {
+        try {
+            $response = Http::asForm()->post($this->apiBaseUrl . 'api/BillFetch_Cyrus_BA.aspx', [
+                'memberid'    => $this->CYRUS_MEMBER_ID,
+                'pin'         => $this->BILL_FECTH_API,
+                'methodname'  => 'get_billfetch',
+                'operator'    => $operator,
+                'RequestData' => json_encode([
+                    'Request' => [
+                        [
+                            'Key'        => 'Customer Number',
+                            'Value'      => $billNumber,
+                            'isOptional' => 'False'
+                        ]
+                    ]
+                ]),
+                'format'      => 'json',
+            ]);
+            
+            if ($response->failed()) {
+                return ['error' => 'Failed to connect to API', 'status' => $response->status()];
+            }
+
+            $rawResponse = $response->body();
+
+            if (empty($rawResponse)) {
+                return ['error' => 'Empty response from API'];
+            }
+
+            $data = json_decode($rawResponse, true);
+
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                return ['error' => 'Invalid JSON response from API', 'raw' => $rawResponse];
+            }
+
+            if (!isset($data['statuscode']) || $data['statuscode'] !== 'TXN') {
+                return ['error' => $data['status'] ?? 'Unknown error', 'raw' => $rawResponse];
+            }
+
+            return $data;
+        } catch (\Exception $e) {
+            return ['error' => $e->getMessage()];
+        }
+    }
+
+    public function dthoperatorfetch($operator, $billNumber)
+    {
+        try {
+            $response = Http::asForm()->get($this->apiBaseUrl . 'api/CyrusROfferAPI.aspx', [
+                'MerchantID'    => $this->CYRUS_MEMBER_ID,
+                'MerchantKey'         => $this->OFFERS_DTH_Info,
+                'MethodName'  => 'dthinfo',
+                'operator'    => $operator,
+                 'mobile' => $billNumber,
+                'offer' => 'roffer'
+            ]);
+            // echo "<pre>";print_r($response);die;
+            if ($response->failed()) {
+                return ['error' => 'Failed to connect to API', 'status' => $response->status()];
+            }
+
+            $rawResponse = $response->body();
+
+            if (empty($rawResponse)) {
+                return ['error' => 'Empty response from API'];
+            }
+
+            $data = json_decode($rawResponse, true);
+
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                return ['error' => 'Invalid JSON response from API', 'raw' => $rawResponse];
+            }
+
+            return $data;
+        } catch (\Exception $e) {
+            return ['error' => $e->getMessage()];
+        }
+    }
+
+
+
 
     /**
      * Fetch Recharge Plans
@@ -104,7 +186,7 @@ class RechargeService
     /**
      * Fetch Electricity Bill Plans
      */
-    public function fetchBillPlans($billNumber, $operatorCode, $circleCode, $billAmount, $transaction_id)
+    public function fetchBillPlans($billNumber, $operatorCode, $circleCode, $rechargeAmount, $transaction_id)
     {
         $response = Http::get($this->apiBaseUrl . 'services_cyapi/recharge_cyapi.aspx', [
             'memberid'         => $this->Bill_Pay_MEMBER_ID,
@@ -112,7 +194,7 @@ class RechargeService
             'number'           => $billNumber, 
             'operator'         => $operatorCode,
             'circle'          => $circleCode,
-            'amount'          => $billAmount,
+            'amount'          => $rechargeAmount,
             'usertx'          => $transaction_id,
             'format'           => 'json',
             'RechargeMode'     => 1

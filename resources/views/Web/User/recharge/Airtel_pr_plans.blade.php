@@ -283,7 +283,8 @@
                        
                             <div class="validity">
                                 <img src="{{ asset('assets_web/images/wallet/13.png') }}"  style="width:10%!important;" alt="">
-                                <p>Spin cash rewards from ₹2 to ₹20</p>
+                                <p>Spin UPTO ₹200</p>
+                                <!-- <p>RECEIVE LUCKY SPIN CHANCE TO COLLECT UPTO 200₹ IN YOUR BANK ON EVERY RECHARGE OR BILL PAYMENT.</p> -->
                                 <button class="btn btn-sm btn-light mb-0" type="submit">show more</button>
                             </div>
                         </div>

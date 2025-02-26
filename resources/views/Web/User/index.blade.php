@@ -18,7 +18,7 @@
   style="height: 20px;margin-bottom: 8px;"
     alt="Logo"
 />
-        <span>Welcome to mvpay</span>
+        <span>Welcome to MV PAY. We are dedicated to give you best service so that you can get good earnings from us. Keep on saving your money by using MV PAY and MV VISION. Stay tuned, keep supporting</span>
        
     </div>
 </div>
@@ -50,11 +50,11 @@
    <div class="fund-cards row gap-0">
      <div class="col-6 px-1">
 
-     <div class="card" onclick="window.location.href='{{ route('user.cash.bharatpe') }}'" style='cursor:pointer;'>
+     <div class="card" onclick="window.location.href='{{ route('user.cash.qr_code') }}'" style='cursor:pointer;'>
        <div class="icon">
        <img src="{{ asset('assets_web/images/others_services/add_fund.gif') }}" style="width:100%; height:100%;" alt="">
        </div>
-       <h3>Add Fund</h3>
+       <h3>Your Wallet</h3>
      </div>
      </div>
 
@@ -100,10 +100,10 @@
           </div>
         <!-- <div class="d-grid gap-3">
           <button class="btn btn-primary btn-lg rounded-pill" onclick="window.location.href='{{ route('user.recharge.mobile') }}'">
-            🚀 Cyrus Recharge
+            🚀 Recharge Mode 1
           </button>
           <button class="btn btn-secondary btn-lg rounded-pill" onclick="window.location.href='{{ route('user.c_recharge.mobile') }}'">
-            🌍 Planet Recharge
+            🌍 Recharge Mode 2
           </button>
         </div> -->
       </div>
