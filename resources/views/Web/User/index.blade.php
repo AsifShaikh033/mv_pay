@@ -90,14 +90,22 @@
       </div>
       <div class="modal-body text-center py-4">
         <p class="mb-3 text-muted">Choose your preferred recharge method:</p>
-        <div class="d-grid gap-3">
+          <div class="d-grid gap-3">
+            <button class="btn btn-primary btn-lg rounded-pill" onclick="handleRecharge('cyrus')">
+                🚀 Recharge Mode 1
+            </button>
+            <button class="btn btn-secondary btn-lg rounded-pill" onclick="handleRecharge('planet')">
+                🌍 Recharge Mode 2
+            </button>
+          </div>
+        <!-- <div class="d-grid gap-3">
           <button class="btn btn-primary btn-lg rounded-pill" onclick="window.location.href='{{ route('user.recharge.mobile') }}'">
             🚀 Recharge Mode 1
           </button>
           <button class="btn btn-secondary btn-lg rounded-pill" onclick="window.location.href='{{ route('user.c_recharge.mobile') }}'">
             🌍 Recharge Mode 2
           </button>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -417,6 +425,19 @@ $(document).ready(function() {
 function redirectToRecharge(serviceType) {
     window.location.href = "{{ route('user.recharge.bills') }}?serviceType=" + encodeURIComponent(serviceType);
 }
+</script>
+<script>
+    function handleRecharge(rechargeType) {
+        let route;
+
+        if (rechargeType === 'planet') {
+            route = '{{ route('user.recharge.mobile') }}' + '?plan_id=1'; 
+        } else {
+           
+            route = '{{ route('user.recharge.mobile') }}';
+        }
+       window.location.href = route;
+    }
 </script>
 
 <script>

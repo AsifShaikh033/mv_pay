@@ -397,8 +397,8 @@ border-radius: 15px;
     padding: 10px 20px; /* Reduced padding */
   }
   .d-flex {
-    flex-direction: column;
-    gap: 8px; /* Reduced gap between buttons */
+    /* flex-direction: column;
+    gap: 8px; */
   }
 
   .btn-facebook, .btn-twitter, .btn-whatsapp {
