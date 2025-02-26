@@ -166,7 +166,8 @@ Route::get('/api/register-user', [UserController::class, 'registeruser']);
         Route::get('/axis-bank-apply', [LeadGenerateController::class, 'axic_account'])->name('axic_bank');
         //Widhrawal
         Route::get('/withdrawal', [WithdrawalController::class, 'withdrawal'])->name('withdrawal');
-        Route::post('/withdrawalrequest', [WithdrawalController::class, 'requestWithdrawal']);
+        Route::post('/withdrawalrequest', [WithdrawalController::class, 'requestWithdrawal'])->name('requestWithdrawal');
+
       
     });
 
