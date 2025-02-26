@@ -105,7 +105,7 @@ a.transaction-title {
             </form>
         </div>
         <h4 class="text-center text-white">Withdrawal History</h4>
-        <table class="styled-table">
+        <table class="styled-table table table-striped table-hover table-bordered">
     <thead>
         <tr>
             <th>ID</th>
@@ -118,7 +118,7 @@ a.transaction-title {
     </thead>
     <tbody>
         @foreach($withdrawals as $withdrawal)
-            <tr class="bg-white">
+            <tr>
                 <td>{{ $withdrawal->id }}</td>
                 <td>{{ $withdrawal->user->name ?? 'N/A' }}</td>
                 <td>{{ $withdrawal->amount }}</td>
