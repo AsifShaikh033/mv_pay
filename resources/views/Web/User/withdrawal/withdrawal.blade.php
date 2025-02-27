@@ -105,7 +105,7 @@ a.transaction-title {
             </form>
         </div>
         <h4 class="text-center text-white">Withdrawal History</h4>
-        <table class="styled-table table table-striped table-hover table-bordered">
+        <table class="styled-table table table-striped table-bordered">
     <thead>
         <tr>
             <th>ID</th>

@@ -96,7 +96,11 @@
                       <span class="sub-item">UTR Number</span>
                   </a>
               </li>
-             
+              <li>
+                  <a href="{{ route('admin.withdrawal.list') }}" class="{{ Request::routeIs('admin.withdrawal.list') ? 'active' : '' }}">
+                      <span class="sub-item">Withdrawal History</span>
+                  </a>
+              </li>
     
               <li>
                   <a href="components/notifications.html" class="{{ Request::is('components/notifications') ? 'active' : '' }}">

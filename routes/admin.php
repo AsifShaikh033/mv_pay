@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Admin\BalanceCashbackController;
 use App\Http\Controllers\Admin\UtrController;
 use App\Http\Controllers\ApiFetchController;
+use App\Http\Controllers\WithdrawalController;
 use App\Http\Controllers\LeadGenerationController;
 
 
@@ -68,6 +69,10 @@ Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function
     Route::get('/edit-utr/{id}', [UtrController::class, 'utr_edit'])->name('editUtr');
     Route::post('/update-Utr/{id}', [UtrController::class, 'update'])->name('updateUtr');
     Route::delete('/deleteUtr', [UtrController::class, 'destroy'])->name('utr_delete');
+
+
+    //Withdrawal History
+    Route::get('/[withdrawal-list', [WithdrawalController::class, 'list'])->name('withdrawal.list');
 
     // lead generation
 
