@@ -77,7 +77,7 @@ input[type="search"]:focus, textarea:focus {
     background-position: center; 
 }
 .solid_2 {
-    padding: 50px;
+    padding: 15px 50px;
     background-image:  url('{{ asset('assets_web/images/wallet/back_3.gif') }}');
     background-size: cover;
     background-position: center;
@@ -100,6 +100,87 @@ input[type="search"]:focus, textarea:focus {
     width: 100% !important;
     padding: 50px;
 }
+.amount-overlay {
+    position: absolute;
+    top: 54%;
+    left: 54%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+.amount1-overlay {
+    position: absolute;
+    top: 54%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+.amount2-overlay {
+    position: absolute;
+    top: 69%;
+    left: 62%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+/* Mobile responsiveness */
+@media screen and (max-width: 768px) {
+    .amount-overlay, .amount1-overlay, .amount2-overlay {
+        font-size: 14px;
+        padding: 8px 15px;
+    }
+
+    .amount-overlay {
+        top: 50%;
+        left: 50%;
+    }
+
+    .amount1-overlay {
+        top: 50%;
+        left: 65%;
+    }
+
+    .amount2-overlay {
+        top: 65%;
+        left: 55%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .amount-overlay, .amount1-overlay, .amount2-overlay {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+
+    .amount-overlay {
+        top: 56%;
+        left: 29%;
+    }
+
+    .amount1-overlay {
+        top: 56%;
+        left: 68%;
+    }
+
+    .amount2-overlay {
+        top: 74%;
+        left: 50%;
+    }
+}
+
 </style>
 
 <div class="content-body">
@@ -116,7 +197,9 @@ input[type="search"]:focus, textarea:focus {
                     </div>
                     <div class="solid_1">
                         <img src="{{ asset('assets_web/images/wallet/3a.png') }}"  style="width:50%!important; height;100px;!important" alt="">
+                        <div class="amount-overlay">1.00</div>
                         <img src="{{ asset('assets_web/images/wallet/4a.png') }}"  style="width:50%!important; height;100px;!important" alt="">
+                        <div class="amount1-overlay">0.50</div>
                     </div>
                     <div class="solid_2">
                     
@@ -129,6 +212,7 @@ input[type="search"]:focus, textarea:focus {
                         <!-- <textarea id="text" cols="30" rows="10" placeholder="Type your text..."></textarea> -->
                         <div class='budget_img'>
                         <img src="{{ asset('assets_web/images/wallet/15.png') }}"   alt="">
+                        <div class="amount2-overlay">Total: 1.50</div>
                         </div>
 
                         <!-- <img src="{{ asset('assets_web/images/wallet/7.png') }}" class="card-img" style="width:100px!important; height;100px;!important" alt=""> -->

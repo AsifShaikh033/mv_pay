@@ -41,6 +41,10 @@
                            target="_blank" class="btn btn-whatsapp rounded-pill shadow-sm">
                             <i class="fab fa-whatsapp"></i> WhatsApp
                         </a>
+                        <a href="https://t.me/share/url?url={{ urlencode(route('register', ['referral_code' => $referralCode])) }}" 
+                           target="_blank" class="btn btn-telegram rounded-pill shadow-sm">
+                            <i class="fab fa-telegram-plane"></i> Telegram
+                        </a>
                     </div>
                 </div>
 

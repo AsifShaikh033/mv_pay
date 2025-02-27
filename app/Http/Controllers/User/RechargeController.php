@@ -137,10 +137,8 @@ class RechargeController extends Controller
     {
         $planId = $request->input('plan_id', null);
         $user = auth()->user();
-
-                
+        
         if ($planId) {
-            
             $mobileNumber = $request->input('mobileNumber');
             $circle = $request->input('circle');
             $circleCode = $request->input('circleCode');
@@ -150,36 +148,64 @@ class RechargeController extends Controller
             $rechargeValidity = $request->input('recharge_validity');
             $serviceType = $request->input('serviceType') ?? 'Prepaid-Mobile';
 
+
+            $operatorMapping = [
+                'AT' => 1,
+                'VI' => 2,
+                'JIO' => 3,
+                'BSNL' => 4,
+            ];
+
+            $mappedCode = $operatorMapping[$operatorCode] ?? null;
+            
+            $operators = [
+                ['OperatorCode' => 1, 'Operator' => 'AIRTEL'],
+                ['OperatorCode' => 2, 'Operator' => 'VI'],
+                ['OperatorCode' => 3, 'Operator' => 'JIO'],
+                ['OperatorCode' => 4, 'Operator' => 'BSNL'],
+            ];
+            
+            // dd(collect($operators)->pluck('OperatorCode')->toArray());
+
+            $operator = collect($operators)->firstWhere('OperatorCode', $mappedCode)['Operator'] ?? null;
+            
+            if (!$operator) {
+                return redirect()->route('user.recharge.mobile', ['plan_id' => 1])->with([
+                    'error' => 'Invalid operator selected.'
+                ])->withInput();
+            }
+            
+            
             if (empty($rechargeAmount)) {
                 return redirect()->route('user.recharge.mobile', ['plan_id' => 1])->with([
                     'error' => 'Recharge amount is missing.'
                 ])->withInput();
             }
-
+        
             if ($user->balance < $rechargeAmount) {
-                return redirect()->route('user.recharge.mobile')->with([
+                return redirect()->route('user.recharge.mobile', ['plan_id' => 1])->with([
                     'error' => 'User Balance Not sufficient.'
                 ])->withInput();
             }
-
+        
             $transaction_id = $request->input('transaction_id') ?? rand(1000000000, 99999999999);
-
+        
             $rechargeResponse = $this->rechargeService->recharge_prepaid(
                 $request->input('mobileNumber'),
-                $request->input('operator_code'),
+                $request->input('operatorCode'),
                 $request->input('circle_code'),
                 $rechargeAmount,
                 $transaction_id
             );
-
+        
             $transaction = new Transaction;
             $transaction->user_id = $user->id;
             $transaction->amount = $rechargeAmount;
-            $transaction->transaction_id = $transaction_id; 
+            $transaction->transaction_id = $transaction_id;
             $transaction->response_api_msg = json_encode($rechargeResponse);
             $transaction->remark = 'recharge_deduct';
             $transaction->trx_type = '-';
-
+        
             $recharge = new Recharge();
             $recharge->user_id = $user->id;
             $recharge->number = $mobileNumber;
@@ -189,7 +215,7 @@ class RechargeController extends Controller
             $recharge->amount = $rechargeAmount;
             $recharge->user_tx = $transaction_id;
             $recharge->format = 'json';
-
+        
             if (is_array($rechargeResponse) && isset($rechargeResponse['Status']) && $rechargeResponse['Status'] === '1') {
                 $transaction->status = 0;
                 $transaction->payment_status = 'failed';
@@ -198,25 +224,26 @@ class RechargeController extends Controller
             } else {
                 $user->balance -= $rechargeAmount;
                 $user->save();
-    
+        
                 $transaction->status = 1;
                 $transaction->payment_status = 'success';
                 $transaction->details = 'Recharge successful for ' . $request->input('mobileNumber');
                 $transaction->post_balance = $user->balance;
-    
+        
                 $recharge->status = 'success';
                 $this->recharge_bonus($user, $rechargeAmount, $rechargeResponse);
-    
+        
                 $cashback = BalanceCashback::where('category', 'Prepaid-Mobile')->where('balance', $rechargeAmount)->first();
+                
                 if ($cashback) {
                     send_spin_chance($user, $rechargeAmount, $cashback->cashback, $cashback->category);
                 }
             }
-    
+        
             $transaction->save();
             $recharge->api_response = json_encode($rechargeResponse);
             $recharge->save();
-    
+        
             if ($transaction->status == 1) {
                 return redirect()->route('user.recharge.mobile', ['plan_id' => 1])->with([
                     'success' => 'Recharge successful. Transaction ID: ' . $transaction->transaction_id
@@ -227,6 +254,7 @@ class RechargeController extends Controller
                 ])->withInput();
             }
         }
+        
 
         $mobileNumber = $request->input('mobileNumber');
         $circle = $request->input('circle');
@@ -326,7 +354,8 @@ public function recharge_bonus($user, $rechargeAmount, $plans) {
         $referrer = User::where('id', $authUser->referred_by)->first();
 
         if ($referrer) {
-            $referrer->balance += 1;
+            $cashbackInPaise = (1 / 100) * 50;
+            $referrer->balance += $cashbackInPaise;
           
             Transaction::create([
                 'user_id'         => $referrer->id,

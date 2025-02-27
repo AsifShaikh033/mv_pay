@@ -384,6 +384,14 @@ border-radius: 15px;
   transition: transform 0.3s ease-in-out, background-color 0.3s ease;
 }
 
+.btn-telegram {
+  background-color: #0088cc !important;
+  color: white!important;
+  font-size: 16px;
+  padding: 12px 30px;
+  transition: transform 0.3s ease-in-out, background-color 0.3s ease;
+}
+
 @media (max-width: 768px) {
   .btn-facebook, .btn-twitter, .btn-whatsapp {
     font-size: 14px;
@@ -421,6 +429,12 @@ border-radius: 15px;
 .btn-whatsapp:hover {
   transform: scale(1.1);
   background-color: #25d366;
+}
+
+.btn-telegram:hover { 
+  transform: scale(1.1);
+  background-color: #0088cc;
+  color: #fff;
 }
 
 /* Gradient Header */
