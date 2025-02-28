@@ -11,7 +11,7 @@
 </style>
 <div class="content-body">
     <div class="container py-4">
-        <h2 class="text-light text-center mb-4 mt-2">{{ $reportTitle }}</h2>
+        <h2 class="text-light text-center mb-4 mt-3">{{ $reportTitle }}</h2>
 
         @if($recharges->isEmpty())
             <p class="text-center text-white">No Recharges found for this report.</p>

@@ -105,7 +105,7 @@ input[type="search"]:focus, textarea:focus {
     top: 54%;
     left: 54%;
     transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0.6);
+    background: #31a3d1;
     color: #fff;
     padding: 10px 20px;
     border-radius: 10px;
@@ -115,9 +115,9 @@ input[type="search"]:focus, textarea:focus {
 .amount1-overlay {
     position: absolute;
     top: 54%;
-    left: 70%;
+    left: 71%;
     transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0.6);
+    background: #fd3f61;
     color: #fff;
     padding: 10px 20px;
     border-radius: 10px;
@@ -129,7 +129,7 @@ input[type="search"]:focus, textarea:focus {
     top: 69%;
     left: 62%;
     transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0.6);
+    background: #d3d33b;
     color: #fff;
     padding: 10px 20px;
     border-radius: 10px;
