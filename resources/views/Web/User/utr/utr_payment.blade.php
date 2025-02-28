@@ -156,7 +156,7 @@
 <div class="content-body">
 <div class="mobile-recharge-container ">
 
-        <button class="prepaid-button mb-3">Your Wallet</button>
+        <button class="prepaid-button mb-3">Add Fund</button>
     
     <form id="rechargeForm" action="{{ route('user.cash.bharatpe') }}" method="POST">
     @csrf 

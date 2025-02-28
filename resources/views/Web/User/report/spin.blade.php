@@ -60,6 +60,11 @@
                         </div>
                     </div>
                         <div>
+                            
+                        <span id="copy-message" style="display: none; color: limegreen;">Link copied successfully!</span>
+                            <p class="card-text mb-0"><strong>Spin Redirect Link:</strong><a href="https://mvvision.in/student/spin-mv-pay" target="_blank" id="spin-link"> https://mvvision.in/student/spin-mv-pay</a>
+                            <button onclick="copyLink()" class="btn btn-sm btn-info btn-outline-primary ms-2">Copy Link</button>  
+                        </p>
                             <p class="card-text mb-0"><strong>Post Balance:</strong> {{ $transaction->post_balance }}</p>
                         </div>
                     
@@ -98,5 +103,16 @@
         @endif
     </div>
 </div>
-
+<script>
+    function copyLink() {
+        const link = document.getElementById('spin-link').getAttribute('href');
+        navigator.clipboard.writeText(link)
+            .then(() => {
+                const message = document.getElementById('copy-message');
+                message.style.display = 'inline';
+                setTimeout(() => { message.style.display = 'none'; }, 2000);
+            })
+            .catch(err => console.error('Failed to copy link:', err));
+    }
+</script>
 @endsection
