@@ -337,11 +337,10 @@ class RechargeController extends Controller
         if($cashback){
             send_spin_chance($user,$rechargeAmount, $cashback->cashback, $cashback->category);
         }
-       
                
 
         return redirect()->route('user.recharge.mobile')->with([
-            'success' => 'Recharge successfully completed.'
+            'success' => "Recharge successfully completed. Transaction ID: $transaction_id"
         ]);
     
     }
@@ -377,6 +376,39 @@ public function recharge_bonus($user, $rechargeAmount, $plans) {
     }
 }
 
+public function showRechargeForm(Request $request)
+{
+    $operatorCode = $request->input('operatorCode');
+    $circleCode = $request->input('circleCode');
+    $mobileNumber = $request->input('mobileNumber');
+
+    $Operator = Operator::all();
+    $plans = $this->rechargeService->fetchPlans($mobileNumber, $operatorCode, $circleCode);
+
+    $operator = $request->input('operator');
+    $rechargeAmount = $request->input('recharge_amount');
+
+    return view('Web.User.recharge.recharge', compact('plans', 'Operator', 'operator', 'rechargeAmount'));
+}
+
+public function saveRechargePin(Request $request)
+    {
+        $request->validate([
+            'recharge_pin' => 'required'
+        ]);
+
+        $user = Auth::user();
+        $user->recharge_pin = $request->recharge_pin;
+        $user->save();
+
+        return redirect()->route('user.recharge.final_recharge')->with('success', 'Recharge PIN set successfully!');
+    }
+
+    public function finalRecharge()
+{
+    return view('Web.User.recharge.final_recharge');
+}
+
 
 public function electtric_f(){
 
@@ -385,12 +417,27 @@ public function electtric_f(){
    // ->whereIn('OperatorCode', ['AT', 'BSNL', 'VI', 'JIO'])
     ->get();
 
-// return  $Operator;
     return view('Web.User.bills.electric_bill',compact('circle', 'Operator'));
 }
 
 public function wallet(){
-return view('Web.User.recharge.wallet');
+    $userId = auth()->id();
+    $authUser = Auth::user();
+
+    $spinWinTotal = Transaction::where('user_id', $userId)
+        ->where('remark', 'spin_win')
+        ->where('status', 1)
+        ->count();
+
+        $user = User::find($userId);
+        $referredUser = User::find($authUser->referred_by);
+        $referredBalance = $referredUser ? $referredUser->balance : 0.00;
+
+        $total = $spinWinTotal + $referredBalance;
+
+        $userBalance = $user->balance;
+
+    return view('Web.User.recharge.wallet', compact('spinWinTotal', 'referredBalance', 'total', 'userBalance'));
 }
 
 public function pages(){
