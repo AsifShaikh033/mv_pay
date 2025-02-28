@@ -143,6 +143,12 @@ Route::get('/api/register-user', [UserController::class, 'registeruser']);
         
         Route::post('/recharge', [RechargeController::class, 'recharge'])->name('recharge.process');
 
+        Route::get('/recharge-form', [RechargeController::class, 'showRechargeForm'])->name('recharge.form');
+        Route::post('/save-recharge-pin', [RechargeController::class, 'saveRechargePin'])->name('save.recharge.pin');
+        Route::post('/save-recharge-pin', [RechargeController::class, 'saveRechargePin'])->name('save.recharge.pin');
+        Route::get('/final-recharge', [RechargeController::class, 'finalRecharge'])->name('recharge.final_recharge');
+
+
         //Add Fund
         Route::post('/bharatpe',[BharatpeController::class,'bharatpe'])->name('cash.bharatpe');
         Route::get('/utr-payment',[BharatpeController::class,'qr_code'])->name('cash.qr_code');

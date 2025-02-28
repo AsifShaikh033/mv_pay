@@ -23,6 +23,7 @@ class User extends Authenticatable
         'password',
         'status',
         'balance',
+        'recharge_pin',
         'spin_amount',
         'last_name',
         'address',

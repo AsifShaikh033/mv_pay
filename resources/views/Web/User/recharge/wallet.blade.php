@@ -136,6 +136,18 @@ input[type="search"]:focus, textarea:focus {
     font-size: 18px;
     font-weight: bold;
 }
+.user-balance-overlay {
+    position: absolute;
+    margin-bottom: 181px;
+    left: 71%;
+    transform: translate(-50%, -50%);
+    background: #111195;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
 /* Mobile responsiveness */
 @media screen and (max-width: 768px) {
     .amount-overlay, .amount1-overlay, .amount2-overlay {
@@ -179,6 +191,19 @@ input[type="search"]:focus, textarea:focus {
         top: 74%;
         left: 50%;
     }
+
+    
+    .user-balance-overlay {
+    /* right: 5%; */
+    transform: translate(0, -102%);
+    padding: 8px 16px;
+    font-size: 12px;
+    top: 16%;
+    margin-bottom: 100px;
+    border-radius: 8px;
+    left: 27%;
+}
+
 }
 
 </style>
@@ -194,12 +219,13 @@ input[type="search"]:focus, textarea:focus {
                     <div class="solid">
                         <img src="{{ asset('assets_web/images/wallet/1.png') }}"  style="width:50%!important; height;100px;!important" alt="">
                         <img src="{{ asset('assets_web/images/wallet/2.png') }}" style="width: 30%!important;height: 200px;" alt="">
+                        <div class="user-balance-overlay">User Balance: {{ number_format($userBalance, 2) }}</div>
                     </div>
                     <div class="solid_1">
                         <img src="{{ asset('assets_web/images/wallet/3a.png') }}"  style="width:50%!important; height;100px;!important" alt="">
-                        <div class="amount-overlay">1.00</div>
+                        <div class="amount-overlay">{{ number_format($spinWinTotal, 2) }}</div>
                         <img src="{{ asset('assets_web/images/wallet/4a.png') }}"  style="width:50%!important; height;100px;!important" alt="">
-                        <div class="amount1-overlay">0.50</div>
+                        <div class="amount1-overlay">{{ number_format($referredBalance, 2) }}</div>
                     </div>
                     <div class="solid_2">
                     
@@ -212,7 +238,7 @@ input[type="search"]:focus, textarea:focus {
                         <!-- <textarea id="text" cols="30" rows="10" placeholder="Type your text..."></textarea> -->
                         <div class='budget_img'>
                         <img src="{{ asset('assets_web/images/wallet/15.png') }}"   alt="">
-                        <div class="amount2-overlay">Total: 1.50</div>
+                        <div class="amount2-overlay">Total: {{ number_format($total, 2) }}</div>
                         </div>
 
                         <!-- <img src="{{ asset('assets_web/images/wallet/7.png') }}" class="card-img" style="width:100px!important; height;100px;!important" alt=""> -->
@@ -222,10 +248,6 @@ input[type="search"]:focus, textarea:focus {
         </div>
     </div>
 </div>
-
-
-
-
 
 </div>
 @endsection
