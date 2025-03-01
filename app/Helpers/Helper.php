@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\Http;
 use App\Models\Operator;
 use App\Models\BalanceCashback;
+use Illuminate\Support\Facades\Log;
+
 
 
 
@@ -113,6 +115,7 @@ if (!function_exists('send_spin_chance')) {
      */
     function send_spin_chance(User $user,$rechargeAmount, $spin_count, $category)
     {
+        Log::info('send_spin_chance', ['send_spin_chance' => $spin_count]);
         try {
             $response = Http::get('https://mvvision.in/api/update-spinchance', [
                 'mob_number' => $user->mob_number, 
@@ -122,6 +125,7 @@ if (!function_exists('send_spin_chance')) {
                 'balance' => $rechargeAmount,
                 'category'=> $category
             ]);
+            Log::info('mv-vision response', ['response' => $response]);
     
             if ($response->successful()) {
                 return response()->json([
