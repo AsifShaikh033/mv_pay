@@ -25,13 +25,13 @@
                                 <div class="row align-items-center">
                                     <!-- User Info -->
                                     <div class=" col-6">
-                                    @if(isset($transaction->barcode))
+                                    <!-- @if(isset($transaction->barcode))
                                         <img 
                                             src="{{ $transaction->barcode ? url('storage/app/public/' . $transaction->barcode) : asset('assets_web/images/profile/default.png') }}"
                                             alt="Barcode Image" 
                                             class="img-fluid" width="100px" height="100px" style="border-radius: 30px;">
 
-                                        @endif
+                                        @endif -->
                                         <div>
                                             <h5 class="card-title mb-1">{{ ucfirst($transaction->user->name) }}</h5>
                                             <strong>UPI ID:</strong> 
