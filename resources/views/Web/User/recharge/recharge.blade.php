@@ -105,6 +105,7 @@
                 <input type="hidden" name="recharge_amount" value="{{ $data['rechargeAmount'] }}">
                 <input type="hidden" name="recharge_validity" value="{{ $data['rechargeValidity'] }}">
                 <input type="hidden" name="serviceType" value="{{ $data['serviceType'] }}">
+                <input type="hidden" name="plan_id" value="{{ $data['plan_id'] ?? '' }}">
 
                 <div class="pin-spin">
                     <img src="{{ asset('assets_web/images/wallet/13.png') }}" class="spin-img" style="width:25px!important;height:25px!important;margin-left: 13px;" alt="">

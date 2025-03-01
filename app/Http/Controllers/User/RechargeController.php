@@ -217,7 +217,7 @@ class RechargeController extends Controller
             $recharge->user_tx = $transaction_id;
             $recharge->format = 'json';
         
-            if (is_array($rechargeResponse) && isset($rechargeResponse['Status']) && $rechargeResponse['Status'] === '1') {
+            if (is_array($rechargeResponse) && isset($rechargeResponse['Status']) && $rechargeResponse['Status'] == 'FAILURE') {
                 $transaction->status = 0;
                 $transaction->payment_status = 'failed';
                 $transaction->details = 'Recharge failed for ' . $request->input('mobileNumber');
@@ -317,33 +317,33 @@ class RechargeController extends Controller
             ])->withInput();
         }elseif (isset($plans['Status']) && $plans['Status'] === "1") {
         
-            // return   $plans;
-        $user->balance -= $rechargeAmount;
-       
-        $Recharge->status = 'success';
-        $Recharge->format = 'json';
-        $Recharge->api_response = json_encode($plans);
+                // return   $plans;
+            $user->balance -= $rechargeAmount;
+        
+            $Recharge->status = 'success';
+            $Recharge->format = 'json';
+            $Recharge->api_response = json_encode($plans);
 
-        $Transaction->post_balance = $user->balance;
-        $Transaction->status = 1;
-        $Transaction->payment_status = 'success';
-        $Transaction->save();
-        $Recharge->save();
-        $user->save();
-        //recharge bonus
-        $this->recharge_bonus($user, $rechargeAmount, $plans);
-        //spin bonus
-        $user = Auth::user();
-        $cashback = BalanceCashback::where('category', 'Prepaid-Mobile')->where('balance', $rechargeAmount)->first();
-        Log::warning('BalanceCashback', ['BalanceCashback' => $cashback]);
-        if($cashback){
-            send_spin_chance($user,$rechargeAmount, $cashback->cashback, $cashback->category);
-        }
-               
+            $Transaction->post_balance = $user->balance;
+            $Transaction->status = 1;
+            $Transaction->payment_status = 'success';
+            $Transaction->save();
+            $Recharge->save();
+            $user->save();
+            //recharge bonus
+            $this->recharge_bonus($user, $rechargeAmount, $plans);
+            //spin bonus
+            $user = Auth::user();
+            $cashback = BalanceCashback::where('category', 'Prepaid-Mobile')->where('balance', $rechargeAmount)->first();
+            Log::warning('BalanceCashback', ['BalanceCashback' => $cashback]);
+            if($cashback){
+                send_spin_chance($user,$rechargeAmount, $cashback->cashback, $cashback->category);
+            }
+                
 
-        return redirect()->route('user.recharge.mobile')->with([
-            'success' => "Recharge successfully completed. Transaction ID: $transaction_id"
-        ]);
+            return redirect()->route('user.recharge.mobile')->with([
+                'success' => "Recharge successfully completed. Transaction ID: $transaction_id"
+            ]);
     
     }
 }
@@ -390,6 +390,7 @@ public function showRechargeForm(Request $request)
     $data['rechargeAmount'] = $request->input('recharge_amount');
     $data['rechargeValidity'] = $request->input('recharge_validity');
     $data['serviceType'] = $request->input('serviceType') ?? 'Prepaid-Mobile';
+    $data['plan_id'] = $request->input('plan_id');
 
 
     $operatorCode = $request->input('operatorCode');
@@ -419,6 +420,8 @@ public function saveRechargePin(Request $request)
     $data['rechargeAmount'] = $request->input('recharge_amount');
     $data['rechargeValidity'] = $request->input('recharge_validity');
     $data['serviceType'] = $request->input('serviceType') ?? 'Prepaid-Mobile';
+    $data['plan_id'] = $request->input('plan_id');
+
 
         $authUser = Auth::user();
         $checkPin =  User::where('id', $authUser->id)->first();
