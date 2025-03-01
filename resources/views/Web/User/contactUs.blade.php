@@ -17,7 +17,7 @@
     flex-direction: column;
     align-items: center;
   }
-
+  
   .support-item {
     display: flex;
     align-items: center;
@@ -71,13 +71,13 @@
     margin: 0px 60px;
 }
 
-  .img_size { width: 100%; height: 250px; }
-  .img_size_1 { width: 100%; height: 350px; }
-  .small_img { width: 50px; height: 50px; }
+  .img_size { width: 100%; }
+  .img_size_1 { width: 100%; }
+  .small_img { width: 50px;  }
 
   @media (max-width: 500px) {
-    .img_size { height: 150px; }
-    .img_size_1 { height: 250px; }
+    /* .img_size { height: 150px; }
+    .img_size_1 { height: 250px; } */
     .small_img { height: 40px; }
     .btn { padding: 5px 10px; font-size: 12px; }
     button.btn.btn-outline-light.badge {
@@ -103,10 +103,10 @@
         </div>
         <div>
           <img src="{{ asset('assets_web/images/others_services/r_3.png') }}" alt="Service Image" class="small_img float-end">
-          <img src="{{ asset('assets_web/images/others_services/4.gif') }}" alt="Service Image" class="img_size_1">
+          <img src="{{ asset('assets_web/images/others_services/ghj.png') }}" alt="Service Image" class="img_size_1">
         </div>
       </div>
-      <div class="container">
+      <div class="container mt-0">
         <div class="row">
           <div class="col-6">
             <div class="support-item">
