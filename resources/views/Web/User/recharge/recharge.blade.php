@@ -7,9 +7,14 @@
         margin: auto;
         text-align: center;
         padding: 20px;
+        background: linear-gradient(to right, black, blue);
+        border-radius: 25px;
+        text-align: center;
+        margin-top: 105px;
     }
     .info-box {
-        background: #e8f5e9;
+        background: linear-gradient(to right, #000000, #0000ff, #000099);
+        border: 2px solid white;
         padding: 10px;
         border-radius: 8px;
         margin-bottom: 20px;
@@ -20,12 +25,24 @@
     }
     .pin-input {
         display: flex;
-        justify-content: center;
-        gap: 10px;
+        /* justify-content: center; */
+        /* gap: 10px; */
+        gap: 18px;
     }
+
+    .pin-spin {
+        display: flex;
+        /* justify-content: center; */
+        /* gap: 10px; */
+        gap: 44px;
+        margin-bottom: 10px;
+    }
+
     .pin-input input {
-        width: 40px;
-        height: 40px;
+        /* width: 40px; */
+        width: 63px;
+        /* height: 40px; */
+        height: 35px;
         text-align: center;
         font-size: 18px;
         border: 1px solid #ccc;
@@ -38,14 +55,27 @@
         margin-top: 20px;
     }
     .numpad button {
-        padding: 15px;
+        /* padding: 15px; */
         font-size: 18px;
-        background: #2e7d32;
+        /* background: #2e7d32; */
         color: #fff;
         border: none;
-        border-radius: 8px;
+        /* border-radius: 8px; */
+        
+        background:linear-gradient(45deg, #05004a, #0c00b3, #040040);
+    border-radius: 54px;
+    width: 69px;
+    padding: 6px;
+    border: 2px solid white;
     }
     .hidden { display: none; }
+    .pin_title{
+        border: 2px solid white;
+    width: 293px;
+    height: 38px;
+    border-radius: 15px;
+    color: #fff !important;
+    }
 
 
 </style>
@@ -53,15 +83,21 @@
     <div class="container choose_plan-container mt-5">
         <div class="recharge-container">
             <div class="info-box">
-                <p><strong>Paid To:</strong>{{ $operator ?? 'N/A' }}</p>
-                <p><strong>Amount:</strong>  ₹{{ $rechargeAmount ?? '0.00' }}</p>
+                <p class="text-white"><strong class="text-white">Paid To:  </strong>{{ $operator ?? 'N/A' }}</p>
+                <p class="text-white"><strong class="text-white">Amount:  </strong>  ₹{{ $rechargeAmount ?? '0.00' }}</p>
             </div>
-            <p class="text-success">Enter 4 digits T-PIN</p>
-
+            <h4 class="text-success pin_title m-auto">Enter 4 Digits MV-PIN</h4>
+<div class="ms-3 mt-3">
             <form method="POST" action="{{ route('user.save.recharge.pin') }}" onsubmit="submitPin(event)">
                 @csrf
                 <input type="hidden" name="recharge_pin" id="recharge_pin" value="">
 
+                <div class="pin-spin">
+                    <img src="{{ asset('assets_web/images/wallet/13.png') }}" class="spin-img" style="width:25px!important;height:25px!important;margin-left: 13px;" alt="">
+                    <img src="{{ asset('assets_web/images/wallet/13.png') }}" class="spin-img" style="width:25px!important;height:25px!important;margin-left: 13px;" alt="">
+                    <img src="{{ asset('assets_web/images/wallet/13.png') }}" class="spin-img" style="width:25px!important;height:25px!important;margin-left: 13px;" alt="">
+                    <img src="{{ asset('assets_web/images/wallet/13.png') }}" class="spin-img" style="width:25px!important;height:25px!important;margin-left: 13px;" alt="">
+                </div>
                 <div class="pin-input">
                     <input type="password" maxlength="1" oninput="moveToNext(this, 0)">
                     <input type="password" maxlength="1" oninput="moveToNext(this, 1)">
@@ -84,6 +120,7 @@
                     <button type="submit">Enter</button>
                 </div>
             </form>
+        </div>
         </div>
     </div>
 </div>
