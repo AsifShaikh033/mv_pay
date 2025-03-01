@@ -53,16 +53,49 @@
     <div class="container choose_plan-container mt-5">
     <div class="recharge-container">
         <span class="close-btn">&times;</span>
+        @php
+            $operators = [
+                'Airtel' => 'airtel.png',
+                'Idea' => 'idea.png',
+                'Reliance Jio' => 'jio.png',
+                'BSNL TopUp' => 'bsnl.png',
+                'VI' => 'vi.png',
+                'DTH' => 'dth.png',
+                'Electricity' => 'electricity.png',
+                'Hospital' => 'hospital.png',
+                'Loan Repayment' => 'loan.png',
+                'LPG Gas' => 'lpg.png',
+                'Municipal Services' => 'municipal.png',
+                'Municipal Taxes' => 'municipal.png',
+                'Education Fees' => 'education.png'
+            ];
+
+            $operatorLogo = isset($operators[$operator]) 
+                ? asset('assets/operators/' . $operators[$operator]) 
+                : asset('assets/operators/default.png');
+        @endphp
+        <form id="rechargeForm" action="{{ route('user.recharge.process') }}" method="POST">
+        @csrf
+                <input type="hidden" name="mobileNumber" value="{{ $rechargeData['mobileNumber'] }}">
+                <input type="hidden" name="circle" value="{{ $rechargeData['circle'] }}">
+                <input type="hidden" name="circleCode" value="{{ $rechargeData['circleCode'] }}">
+                <input type="hidden" name="operator" value="{{ $rechargeData['operator'] }}">
+                <input type="hidden" name="operatorCode" value="{{ $rechargeData['operatorCode'] }}">
+                <input type="hidden" name="recharge_amount" value="{{ $rechargeData['rechargeAmount'] }}">
+                <input type="hidden" name="recharge_validity" value="{{ $rechargeData['recharge_validity'] ?? '' }}">
+                @if($planId)
+                    <input type="hidden" name="plan_id" value="{{ $planId }}">
+                @endif
         <div class="operator-logo">
-            <!-- <img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Jio_Logo.png" alt="Jio Logo"> -->
+        <img src="{{ $operatorLogo }}" alt="{{ $operator }}" width="50" height="50" style="border-radius: 30px;">
         </div>
-        <div class="phone-number">+91 9340029158</div>
-        <div class="amount">&#8377; 249</div>
+        <div class="phone-number">{{ $rechargeData['mobileNumber'] ?? '' }}</div>
+        <div class="amount">&#8377;  {{ $rechargeData['rechargeAmount'] ?? '0.00' }}</div>
         <div class="confirmation-text">
             Please confirm the prepaid recharge details, including balance, validity, and available offers, with the operator once.
         </div>
         <button class="recharge-btn">Recharge</button>
-        
+        </form>
     </div>
     </div>
 </div>
