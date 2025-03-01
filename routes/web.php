@@ -16,7 +16,7 @@ use App\Http\Controllers\CplanetRechargeController;
 use App\Http\Controllers\LeadGenerateController;  
 use App\Http\Controllers\User\BharatpeController; 
 use App\Http\Controllers\WithdrawalController; 
-
+use App\Http\Controllers\WebhookController;
 Route::get('/api/register-user', [UserController::class, 'registeruser']);
 Route::get('/api/register-user', [UserController::class, 'registeruser']);
 
@@ -41,12 +41,12 @@ Route::get('/api/register-user', [UserController::class, 'registeruser']);
         Route::get('/run-migrations-and-seeder', function () {
             $key = request()->query('key'); 
         
-            if ($key !== env('MIGRATION_KEY')) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Unauthorized access!',
-                ], 403);
-            }
+            // if ($key !== env('MIGRATION_KEY')) {
+            //     return response()->json([
+            //         'success' => false,
+            //         'message' => 'Unauthorized access!',
+            //     ], 403);
+            // }
         
             try {
                 // Run migrations
@@ -84,6 +84,10 @@ Route::get('/api/register-user', [UserController::class, 'registeruser']);
             ], 500);
         }
     });
+
+
+    //WEBHOOK START
+    Route::get('/recharge_callback', [WebhookController::class, 'recharge_webhook']);
 
     Route::post('/fetch-operator-circle', [ApiFetchController::class, 'fetchOperatorCircle'])->name('fetch.operator.circle');
     Route::post('/billfetch-operator-circle', [ApiFetchController::class, 'billfetchOperatorCircle'])->name('billfetch.operator.circle');
@@ -171,6 +175,9 @@ Route::get('/api/register-user', [UserController::class, 'registeruser']);
         Route::get('/axis-bank-apply', [LeadGenerateController::class, 'axic_account'])->name('axic_bank');
         //Widhrawal
         Route::get('/withdrawal', [WithdrawalController::class, 'withdrawal'])->name('withdrawal');
+
+        Route::get('/failed_page', [WithdrawalController::class, 'failed_page'])->name('failed_page');
+
         Route::post('/withdrawalrequest', [WithdrawalController::class, 'requestWithdrawal'])->name('requestWithdrawal');
 
       

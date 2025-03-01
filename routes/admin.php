@@ -32,7 +32,8 @@ Route::prefix('admin')->group(function () {
 
 
 Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function () {
-
+     //WEBHOOKS
+     Route::get('/webhooks', [WebConfigController::class, 'show_webhook'])->name('webhook.list');
     //WEB CONFIF
     Route::get('/edit-web', [WebConfigController::class, 'edit'])->name('webconfig.edit');
     Route::post('/web-update', [WebConfigController::class, 'update'])->name('web_config.update');

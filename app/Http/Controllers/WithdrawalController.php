@@ -97,10 +97,14 @@ class WithdrawalController extends Controller
         return response()->json(['message' => 'Withdrawal rejected']);
     }
 
+    public function failed_page(){
+        return view('web.user.failed.rechargefailedModal');
+    }
     public function list()
     {
         $withdrawals = Withdrawal::get();
         return view('Admin.withdrawal.list', compact('withdrawals'));
+
     }
 
 }

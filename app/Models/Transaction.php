@@ -25,6 +25,8 @@ class Transaction extends Model
         'response_msg',
         'response_api_msg',
         'spin_api_response',
+        'api_trans_id',
+        'webhook_api_response',
     ];
 
     // The attributes that should be cast to native types.

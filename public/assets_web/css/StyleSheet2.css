@@ -195,12 +195,12 @@ input[type=text] {
     justify-content: space-between;
 }
 
-    .footer_icons > li > a {
-        /* padding: 10px; */
-        /* font-size: 25px; */
-        text-align: center;
-        color: var(--primary);
-    }
+.footer_icons > li > a {
+    /* padding: 10px; */
+    /* font-size: 25px; */
+    text-align: center;
+    color: #235bff;
+}
 
 /*.cls_f_home {
     position: relative;
