@@ -17,7 +17,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-title">Form Elements</div>
+                        <div class="card-title">Information</div>
                     </div>
                     <div class="card-body">
                         <form action="{{ route('admin.web_config.update') }}" method="POST" enctype="multipart/form-data">
@@ -76,7 +76,7 @@
                                 </div>
 
                                 <!-- Colors -->
-                                <div class="col-md-6 col-lg-6">
+                                <!-- <div class="col-md-6 col-lg-6">
                                     <div class="form-group">
                                         <label for="color_primary">Primary Color</label>
                                         <input type="text" name="color_primary" class="form-control" id="color_primary" value="{{ $config->color_primary ?? '' }}" placeholder="Enter Primary Color">
@@ -87,7 +87,7 @@
                                         <label for="color_secondary">Secondary Color</label>
                                         <input type="text" name="color_secondary" class="form-control" id="color_secondary" value="{{ $config->color_secondary ?? '' }}" placeholder="Enter Secondary Color">
                                     </div>
-                                </div>
+                                </div> -->
 
                                 <!-- Logo and Favicon -->
                                 <div class="col-md-6 col-lg-6">
@@ -124,7 +124,7 @@
                                 </div>
 
                                 <!-- Terms and Privacy -->
-                                <div class="col-md-12">
+                                <!-- <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="privacy_policy">Privacy Policy</label>
                                         <textarea name="privacy_policy" class="form-control" id="privacy_policy" rows="3" placeholder="Enter Privacy Policy">{{ $config->privacy_policy ?? '' }}</textarea>
@@ -135,7 +135,7 @@
                                         <label for="terms_conditions">Terms & Conditions</label>
                                         <textarea name="terms_conditions" class="form-control" id="terms_conditions" rows="3" placeholder="Enter Terms and Conditions">{{ $config->terms_conditions ?? '' }}</textarea>
                                     </div>
-                                </div>
+                                </div> -->
 
                                 <!-- SMTP Settings -->
                                 <div class="col-md-6 col-lg-6">
@@ -164,7 +164,7 @@
                                 </div>
 
                                 <!-- Appearance Settings -->
-                                <div class="col-md-6 col-lg-6">
+                                <!-- <div class="col-md-6 col-lg-6">
                                     <div class="form-group">
                                         <label for="font_family">Font Family</label>
                                         <input type="text" name="font_family" class="form-control" id="font_family" value="{{ $config->font_family ?? '' }}" placeholder="Enter Font Family">
@@ -175,7 +175,7 @@
                                         <label for="background_color">Background Color</label>
                                         <input type="text" name="background_color" class="form-control" id="background_color" value="{{ $config->background_color ?? '' }}" placeholder="Enter Background Color">
                                     </div>
-                                </div>
+                                </div> -->
 
                                 <!-- SEO Settings -->
                                 <div class="col-md-6 col-lg-6">
@@ -192,7 +192,7 @@
                                 </div>
 
                                 <!-- Other Configuration -->
-                                <div class="col-md-6 col-lg-6 d-none">
+                                <!-- <div class="col-md-6 col-lg-6 d-none">
                                     <div class="form-group">
                                         <label for="timezone">Timezone</label>
                                         <input type="text" name="timezone" class="form-control" id="timezone" value="{{ $config->timezone ?? '' }}" placeholder="Enter Timezone">
@@ -203,12 +203,12 @@
                                         <label for="currency">Currency</label>
                                         <input type="text" name="currency" class="form-control" id="currency" value="{{ $config->currency ?? '' }}" placeholder="Enter Currency">
                                     </div>
-                                </div>
-                                <div class="form-group">
+                                </div> -->
+                                <!-- <div class="form-group">
                                     <label for="maintenance_mode">Maintenance Mode</label>
                                     <input type="checkbox" name="maintenance_mode" id="maintenance_mode" value="1" 
                                         {{ !empty($config->maintenance_mode) ? 'checked' : '' }}>
-                                </div>
+                                </div> -->
 
 
 

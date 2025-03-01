@@ -54,6 +54,31 @@ a.transaction-title {
 #back-gradient .modal-header h4 {
     color: white;
 }
+.styled-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    .styled-table th, .styled-table td {
+        padding: 12px 15px;
+        text-align: left;
+    }
+    .styled-table thead {
+        background: linear-gradient(45deg, #6a57b1, #3f43c0);
+        color: #ffffff;
+    }
+    .styled-table tbody tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    .styled-table tbody tr:hover {
+        background-color: #ddd;
+    }
+    .status-pending { color: orange; }
+    .status-success { color: green; }
+    .status-rejected { color: red; }
 </style>
 <div class="content-body">
     <div class="container" style="margin-top:90px;">
@@ -61,7 +86,7 @@ a.transaction-title {
 
         <div id="back-gradient" class="card  shadow-sm mt-5 mx-auto mb-5">
             <h5 class="modal-title">Add Bank details</h5>
-            <form action="{{ route('user.bank_details') }}" method="POST" enctype="multipart/form-data" id="withdrawalForm">
+            <form action="{{ route('user.requestWithdrawal') }}" method="POST" enctype="multipart/form-data" id="withdrawalForm">
                 @csrf
                 <input type="hidden" name="user_id" id="user_id" class="form-control text-quiz" value="{{ old('user_id', Auth::id()) }}" required>
 
@@ -71,14 +96,39 @@ a.transaction-title {
                     <input type="text" name="amount" id="amount" class="form-control text-quiz" value="{{ old('amount') }}" required>
                 </div>
     
-</div>
+                </div>
 
 
             <div class="form-group">
-                <button type="submit" class="btn btn-danger btn-sm btn-block py-2">Save</button>
+                <button type="submit" class="btn btn-danger btn-sm btn-block py-2">withdrawal</button>
             </div>
             </form>
         </div>
+        <h4 class="text-center text-white">Withdrawal History</h4>
+        <table class="styled-table table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>User Name</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Transaction ID</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($withdrawals as $withdrawal)
+            <tr>
+                <td>{{ $withdrawal->id }}</td>
+                <td>{{ $withdrawal->user->name ?? 'N/A' }}</td>
+                <td>{{ $withdrawal->amount }}</td>
+                <td class="status-{{ strtolower($withdrawal->status) }}">{{ ucfirst($withdrawal->status) }}</td>
+                <td>{{ $withdrawal->transaction_id }}</td>
+                <td>{{ $withdrawal->created_at->format('Y-m-d') }}</td>
+            </tr>
+        @endforeach
+    </tbody>
+</table>
     </div>
 </div>
 

@@ -81,7 +81,7 @@ class ReportController extends Controller
                 'Housing Society', 'Life Insurance', 'Municipal Services', 'CHALLAN', 'METRO CARD RECHARGE',
                 'Education Fees'
             ])
-            ->orWhereNotIn('recharges.operator', ['Airtel', 'Idea', 'Jio', 'BSNL', 'Vi', 'BSNL TopUp']);
+            ->orWhereNotIn('recharges.operator', ['Airtel', 'Idea', 'Jio', 'BSNL', 'Vi', 'BSNL TopUp', 'Reliance Jio']) ->whereNull('recharges.operator');
         });
     
         $transactions = Transaction::with(['user' => function ($query) {

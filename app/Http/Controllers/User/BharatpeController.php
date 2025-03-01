@@ -26,8 +26,8 @@ class BharatpeController extends Controller
             // return response()->json(['error' => 'This UTR is already used.'], 400);
         }
 
-        // $fromDate = now()->subDays(2)->format('Y-m-d');
-        // $toDate = now()->format('Y-m-d');
+        $fromDate = now()->subDays(5)->format('Y-m-d');
+        $toDate = now()->format('Y-m-d');
 
         $merchantId = '54323241';
         $token = '86d76b2f5da041e0933c3a6990a800d8';
@@ -38,8 +38,8 @@ class BharatpeController extends Controller
         ])->get("https://payments-tesseract.bharatpe.in/api/v1/merchant/transactions", [
             'module' => 'PAYMENT_QR',
             'merchantId' => $merchantId,
-            'sDate' => '2025-02-17',
-            'eDate' => '2025-02-19',
+            'sDate' => $fromDate,
+            'eDate' => $toDate,
         ]);
 
         if ($response->failed()) {

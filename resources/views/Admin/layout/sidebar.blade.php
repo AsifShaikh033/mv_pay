@@ -66,12 +66,18 @@
               </li>
    <li class="nav-item">  
             <a data-bs-toggle="collapse" href="#base"  
-            aria-expanded="{{ Request::routeIs('admin.webconfig.edit') || Request::routeIs('admin.banner.list') || Request::routeIs('admin.balance.cashback.list') ? 'true' : 'false' }}">
+            aria-expanded="{{ Request::routeIs('admin.webconfig.edit')
+             || Request::routeIs('admin.banner.list') 
+              || Request::routeIs('admin.webhook.list') 
+            || Request::routeIs('admin.balance.cashback.list') ? 'true' : 'false' }}">
             <i class="fas fa-layer-group"></i>
             <p>Configuration</p>
             <span class="caret"></span>
           </a>
-    <div class="collapse {{ Request::routeIs('admin.webconfig.edit') || Request::routeIs('admin.banner.list') || Request::routeIs('admin.balance.cashback.list') ? 'show' : '' }}" id="base">
+    <div class="collapse {{ Request::routeIs('admin.webconfig.edit')
+     || Request::routeIs('admin.banner.list') 
+      || Request::routeIs('admin.webhook.list') ||
+      Request::routeIs('admin.balance.cashback.list') ? 'show' : '' }}" id="base">
         <ul class="nav nav-collapse">
               <li>
                   <a href="{{ route('admin.webconfig.edit') }}" class="{{ Request::routeIs('admin.webconfig.edit') ? 'active' : '' }}">
@@ -96,11 +102,15 @@
                       <span class="sub-item">UTR Number</span>
                   </a>
               </li>
-             
+              <li>
+                  <a href="{{ route('admin.withdrawal.list') }}" class="{{ Request::routeIs('admin.withdrawal.list') ? 'active' : '' }}">
+                      <span class="sub-item">Withdrawal History</span>
+                  </a>
+              </li>
     
               <li>
-                  <a href="components/notifications.html" class="{{ Request::is('components/notifications') ? 'active' : '' }}">
-                      <span class="sub-item">Notifications</span>
+                  <a href="{{ route('admin.webhook.list') }}" class="{{ Request::routeIs('admin.webhook.list') ? 'active' : '' }}">
+                      <span class="sub-item">Webhook</span>
                   </a>
               </li>
           </ul>

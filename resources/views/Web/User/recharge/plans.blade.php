@@ -142,7 +142,8 @@ img.spin-img {
                                 <!-- <p class="text-success m-auto">RECEIVE LUCKY SPIN CHANCE TO COLLECT UPTO 200₹ IN YOUR BANK ON EVERY RECHARGE OR BILL PAYMENT.</p> -->
                                 <!-- <button class="btn btn-sm btn-light mb-0" type="submit">show more</button> -->
                             </div>
-                            <form id="rechargeForm" action="{{ route('user.recharge.process') }}" method="POST">
+                            <!-- <form id="rechargeForm" action="{{ route('user.recharge.process') }}" method="POST"> -->
+                            <form id="rechargeForm" action="{{ route('user.recharge.form') }}" method="GET">
                                 @csrf
                                 <input type="hidden" name="mobileNumber" value="{{ $mobileNumber }}">
                                 <input type="hidden" name="circle" value="{{ $circle }}">
