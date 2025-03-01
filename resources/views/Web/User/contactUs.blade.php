@@ -177,7 +177,7 @@
               </div>
             <div>
             <img src="{{ asset('assets_web/images/others_services/r_3.png') }}" alt="Service Image" class="small_img float-end">
-            <img src="{{ asset('assets_web/images/others_services/4.gif') }}" alt="Service Image"class="img_size_1" >
+            <img src="{{ asset('assets_web/images/others_services/ghj.png') }}" alt="Service Image"class="img_size_1" >
             </div>
           
           </div>
