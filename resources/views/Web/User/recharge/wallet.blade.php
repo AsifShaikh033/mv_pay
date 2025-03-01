@@ -195,10 +195,10 @@ input[type="search"]:focus, textarea:focus {
     
     .user-balance-overlay {
     /* right: 5%; */
-    transform: translate(0, -102%);
+    transform: translate(0, 29%);
     padding: 8px 16px;
     font-size: 12px;
-    top: 16%;
+    top: 30%;
     margin-bottom: 100px;
     border-radius: 8px;
     left: 27%;

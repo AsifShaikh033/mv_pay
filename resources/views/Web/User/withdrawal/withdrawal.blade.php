@@ -11,7 +11,11 @@
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
 }
-
+.table-responsive {
+    width: 100%;
+    overflow-x: auto; /* Allows horizontal scrolling on small screens */
+    -webkit-overflow-scrolling: touch; /* Adds smooth scrolling on iOS devices */
+}
 .text-quiz:focus {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow when focused */
     border-radius: 5px; /* Ensure border-radius remains the same on focus */
@@ -105,6 +109,7 @@ a.transaction-title {
             </form>
         </div>
         <h4 class="text-center text-white">Withdrawal History</h4>
+        <div class="table-responsive">
         <table class="styled-table table table-striped table-bordered">
     <thead>
         <tr>
