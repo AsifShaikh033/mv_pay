@@ -13,6 +13,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\Models\BalanceCashback;
+use Log;
 
 class RechargeController extends Controller
 {
@@ -197,7 +198,7 @@ class RechargeController extends Controller
                 $rechargeAmount,
                 $transaction_id
             );
-        
+            Log::warning('Call the c planet service', ['rechargeResponse' => $rechargeResponse]);
             $transaction = new Transaction;
             $transaction->user_id = $user->id;
             $transaction->amount = $rechargeAmount;
@@ -234,7 +235,7 @@ class RechargeController extends Controller
                 $this->recharge_bonus($user, $rechargeAmount, $rechargeResponse);
         
                 $cashback = BalanceCashback::where('category', 'Prepaid-Mobile')->where('balance', $rechargeAmount)->first();
-                
+                Log::warning('BalanceCashback', ['cashback' => $cashback]);
                 if ($cashback) {
                     send_spin_chance($user, $rechargeAmount, $cashback->cashback, $cashback->category);
                 }
@@ -298,7 +299,7 @@ class RechargeController extends Controller
     
         // Call the recharge service
         $plans = $this->rechargeService->recharge_prepaid($mobileNumber, $operatorCode, $circleCode, $rechargeAmount, $transaction_id);
-
+        Log::warning('Call the recharge service', ['plans' => $plans]);
         if (isset($plans['Status']) && $plans['Status'] === "FAILURE") {
 
             $Transaction->post_balance = $user->balance;
@@ -334,6 +335,7 @@ class RechargeController extends Controller
         //spin bonus
         $user = Auth::user();
         $cashback = BalanceCashback::where('category', 'Prepaid-Mobile')->where('balance', $rechargeAmount)->first();
+        Log::warning('BalanceCashback', ['BalanceCashback' => $cashback]);
         if($cashback){
             send_spin_chance($user,$rechargeAmount, $cashback->cashback, $cashback->category);
         }
@@ -348,10 +350,10 @@ class RechargeController extends Controller
 
 public function recharge_bonus($user, $rechargeAmount, $plans) {
     $authUser = Auth::user();
-
+    Log::warning('recharge_bonus', ['user' => $authUser]);
     if (!empty($authUser->referred_by)) {
         $referrer = User::where('id', $authUser->referred_by)->first();
-
+        Log::warning('referrer', ['referrer' => $referrer]);
         if ($referrer) {
             $cashbackInPaise = (1 / 100) * 50;
             $referrer->balance += $cashbackInPaise;
@@ -372,6 +374,7 @@ public function recharge_bonus($user, $rechargeAmount, $plans) {
 
 
             $referrer->save();
+            Log::warning('recharge bones given', ['referrer' => $referrer]);
         }
     }
 }
