@@ -421,7 +421,8 @@ public function saveRechargePin(Request $request)
         $checkPin =  User::where('id', $authUser->id)->first();
 
         if($request->forget_pin == 0 && $checkPin->recharge_pin != $request->recharge_pin){
-            return redirect()->route('user.recharge.form')->with('error', 'Recharge PIN is not match!');
+            return redirect()->back()->with('error', 'Recharge PIN is not match!');
+            // return redirect()->back()->with(['error' => 'Invalid response received from the API.'])->withInput();
         }
 
         
@@ -449,6 +450,9 @@ public function saveRechargePin(Request $request)
     public function finalRecharge(Request $request)
     {
         $rechargeData = session('rechargeData');
+        if(empty($rechargeData)){
+            return redirect()->back();
+        }
         
         $operatorCode = $request->input('operatorCode');
         $circleCode = $request->input('circleCode');
