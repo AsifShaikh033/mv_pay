@@ -167,6 +167,7 @@ Route::get('/api/register-user', [UserController::class, 'registeruser']);
         //Widhrawal
         Route::get('/withdrawal', [WithdrawalController::class, 'withdrawal'])->name('withdrawal');
         Route::post('/withdrawalrequest', [WithdrawalController::class, 'requestWithdrawal']);
+        Route::get('/failed_page', [WithdrawalController::class, 'failed_page'])->name('failed_page');
       
     });
 

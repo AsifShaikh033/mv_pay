@@ -52,4 +52,8 @@ class WithdrawalController extends Controller
         return response()->json(['message' => 'Withdrawal rejected']);
     }
 
+    public function failed_page(){
+        return view('web.user.failed.rechargefailedModal');
+    }
+
 }
