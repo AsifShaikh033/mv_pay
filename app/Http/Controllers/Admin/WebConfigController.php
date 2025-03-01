@@ -13,6 +13,11 @@ class WebConfigController extends Controller
         $config = WebConfig::first();
         return view('Admin.web_config.edit', compact('config'));
     }
+    public function show_webhook()
+    {
+        $config = WebConfig::first();
+        return view('Admin.web_config.webhook', compact('config'));
+    }
 
     function update(Request $request)
     {

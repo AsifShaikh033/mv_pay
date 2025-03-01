@@ -86,11 +86,25 @@
                 <p class="text-white"><strong class="text-white">Paid To:  </strong>{{ $operator ?? 'N/A' }}</p>
                 <p class="text-white"><strong class="text-white">Amount:  </strong>  ₹{{ $rechargeAmount ?? '0.00' }}</p>
             </div>
+            <p class="text-success message-box">Enter 4 digits T-PIN</p>
+
             <h4 class="text-success pin_title m-auto">Enter 4 Digits MV-PIN</h4>
 <div class="ms-3 mt-3">
             <form method="POST" action="{{ route('user.save.recharge.pin') }}" onsubmit="submitPin(event)">
                 @csrf
                 <input type="hidden" name="recharge_pin" id="recharge_pin" value="">
+                <input type="hidden" name="forget_pin" id="forget_pin" value="0">
+                <input type="hidden" name="operator" value="{{ $operator }}">
+                <input type="hidden" name="recharge_amount" value="{{ $rechargeAmount }}">
+
+                <input type="hidden" name="mobileNumber" value="{{ $data['mobileNumber'] }}">
+                <input type="hidden" name="circle" value="{{ $data['circle'] }}">
+                <input type="hidden" name="circleCode" value="{{ $data['circleCode'] }}">
+                <input type="hidden" name="operator" value="{{ $data['operator'] }}">
+                <input type="hidden" name="operatorCode" value="{{ $data['operatorCode'] }}">
+                <input type="hidden" name="recharge_amount" value="{{ $data['rechargeAmount'] }}">
+                <input type="hidden" name="recharge_validity" value="{{ $data['rechargeValidity'] }}">
+                <input type="hidden" name="serviceType" value="{{ $data['serviceType'] }}">
 
                 <div class="pin-spin">
                     <img src="{{ asset('assets_web/images/wallet/13.png') }}" class="spin-img" style="width:25px!important;height:25px!important;margin-left: 13px;" alt="">
@@ -104,6 +118,9 @@
                     <input type="password" maxlength="1" oninput="moveToNext(this, 2)">
                     <input type="password" maxlength="1" oninput="moveToNext(this, 3)">
                 </div>
+                <p class="text-success message-box d-none">Enter New PIN</p>
+                <a href="javascript:void(0)" class="text-danger" onclick=showMessage()>Forgot PIN</a>
+
 
                 <div class="numpad">
                     <button type="button" onclick="addDigit(1)">1</button>
@@ -155,19 +172,27 @@
     function updateHiddenPin() {
         const pin = Array.from(inputs).map(input => input.value).join('');
         document.getElementById('recharge_pin').value = pin;
-        console.log('Updated PIN:', pin); // Debugging line
+        console.log('Updated PIN:', pin);
     }
 
     function submitPin(event) {
-        updateHiddenPin(); // Ensure the latest value is set
+        updateHiddenPin();
         const pin = document.getElementById('recharge_pin').value;
         if (!/^\d{4}$/.test(pin)) {
             event.preventDefault();
             alert('Please enter a 4-digit PIN');
         } else {
-            console.log('PIN submitted:', pin); // Debugging line
+            console.log('PIN submitted:', pin);
         }
     }
+
+  function showMessage() {
+
+        $('.message-box').removeClass('d-none');
+        $('#forget_pin').val('1');
+        
+    };
+
 </script>
 
 

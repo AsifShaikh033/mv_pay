@@ -22,15 +22,16 @@ class UserSeeder extends Seeder
             'password' => Hash::make('123456'),
             //'status' => 'System Architect',
             'address' => 'Edinburgh',
+            'referral_code' => 'dfsadrfh',
         ]);
 
-        User::create([
-            'name' => 'John Doe',
-            'email' => 'john@example.com',
-            'password' => Hash::make('password123'),
-           // 'position' => 'Software Engineer',
-            'address' => 'New York',
-        ]);
+        // User::create([
+        //     'name' => 'John Doe',
+        //     'email' => 'john@example.com',
+        //     'password' => Hash::make('password123'),
+        //    // 'position' => 'Software Engineer',
+        //     'address' => 'New York',
+        // ]);
 
     }
 }
