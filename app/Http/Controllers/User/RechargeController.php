@@ -299,7 +299,7 @@ class RechargeController extends Controller
         // Call the recharge service
         $plans = $this->rechargeService->recharge_prepaid($mobileNumber, $operatorCode, $circleCode, $rechargeAmount, $transaction_id);
 
-        if (isset($plans['Status']) && $plans['Status'] === "FAILURE") {
+        if (isset($plans['Status']) && $plans['Status'] === "1") {
 
             $Transaction->post_balance = $user->balance;
             $Transaction->status = 0;
@@ -314,7 +314,7 @@ class RechargeController extends Controller
             return redirect()->route('user.recharge.mobile')->with([
                 'error' => $plans['ErrorMessage'],
             ])->withInput();
-        }elseif (isset($plans['Status']) && $plans['Status'] === "1") {
+        }elseif (isset($plans['Status']) && $plans['Status'] === "FAILURE") {
         
             // return   $plans;
         $user->balance -= $rechargeAmount;
@@ -378,28 +378,17 @@ public function recharge_bonus($user, $rechargeAmount, $plans) {
 
 public function showRechargeForm(Request $request)
 {
-
-    $data['mobileNumber'] = $request->input('mobileNumber');
-    $data['circle'] = $request->input('circle');
-    $data['circleCode'] = $request->input('circleCode');
-    $data['operator'] = $request->input('operator');
-    $data['operatorCode'] = $request->input('operatorCode');
-    $data['rechargeAmount'] = $request->input('recharge_amount');
-    $data['rechargeValidity'] = $request->input('recharge_validity');
-    $data['serviceType'] = $request->input('serviceType') ?? 'Prepaid-Mobile';
-
-
     $operatorCode = $request->input('operatorCode');
     $circleCode = $request->input('circleCode');
     $mobileNumber = $request->input('mobileNumber');
 
     $Operator = Operator::all();
     $plans = $this->rechargeService->fetchPlans($mobileNumber, $operatorCode, $circleCode);
-    
+
     $operator = $request->input('operator');
     $rechargeAmount = $request->input('recharge_amount');
 
-    return view('Web.User.recharge.recharge', compact('plans', 'Operator', 'operator', 'rechargeAmount', 'data'));
+    return view('Web.User.recharge.recharge', compact('plans', 'Operator', 'operator', 'rechargeAmount'));
 }
 
 public function saveRechargePin(Request $request)
@@ -408,68 +397,17 @@ public function saveRechargePin(Request $request)
             'recharge_pin' => 'required'
         ]);
 
-    $data['mobileNumber'] = $request->input('mobileNumber');
-    $data['circle'] = $request->input('circle');
-    $data['circleCode'] = $request->input('circleCode');
-    $data['operator'] = $request->input('operator');
-    $data['operatorCode'] = $request->input('operatorCode');
-    $data['rechargeAmount'] = $request->input('recharge_amount');
-    $data['rechargeValidity'] = $request->input('recharge_validity');
-    $data['serviceType'] = $request->input('serviceType') ?? 'Prepaid-Mobile';
+        $user = Auth::user();
+        $user->recharge_pin = $request->recharge_pin;
+        $user->save();
 
-        $authUser = Auth::user();
-        $checkPin =  User::where('id', $authUser->id)->first();
-
-        if($request->forget_pin == 0 && $checkPin->recharge_pin != $request->recharge_pin){
-            return redirect()->route('user.recharge.form')->with('error', 'Recharge PIN is not match!');
-        }
-
-        
-        if($checkPin->recharge_pin && ($checkPin->recharge_pin == $request->recharge_pin
-        )){
-            // return redirect()->route('user.recharge.final_recharge')->with('success', 'Recharge PIN set successfully!');
-            return redirect()->route('user.recharge.final_recharge')
-    ->with('success', 'Recharge PIN set successfully!')
-    ->with('rechargeData', $data);
-
-        }elseif(empty($checkPin->recharge_pin) || $request->forget_pin == 1){
-            $user = Auth::user();
-            $user->recharge_pin = $request->recharge_pin;
-            $user->save();
-            // return redirect()->route('user.recharge.final_recharge')->with('success', 'Recharge PIN set successfully!');
-            return redirect()->route('user.recharge.final_recharge')
-    ->with('success', 'Recharge PIN set successfully!')
-    ->with('rechargeData', $data);
-
-        }
-
-        
+        return redirect()->route('user.recharge.final_recharge')->with('success', 'Recharge PIN set successfully!');
     }
 
-    public function finalRecharge(Request $request)
-    {
-        $rechargeData = session('rechargeData');
-        
-        $operatorCode = $request->input('operatorCode');
-        $circleCode = $request->input('circleCode');
-        $mobileNumber = $request->input('mobileNumber');
-    
-        
-    
-        $Operator = Operator::all();
-        $plans = $this->rechargeService->fetchPlans($mobileNumber, $operatorCode, $circleCode);
-    
-        $operator = $request->input('operator');
-        $rechargeAmount = $request->input('recharge_amount');
-        $circle = $request->input('circle');
-        $planId = $request->input('plan_id');
-    
-        return view('Web.User.recharge.final_recharge', compact(
-            'plans', 'Operator', 'operator', 'rechargeAmount',
-            'mobileNumber', 'circle', 'circleCode', 'operatorCode', 'planId','rechargeData'
-        ));
-    }
-    
+    public function finalRecharge()
+{
+    return view('Web.User.recharge.final_recharge');
+}
 
 
 public function electtric_f(){
