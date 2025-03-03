@@ -83,13 +83,13 @@
     <div class="container choose_plan-container mt-5">
         <div class="recharge-container">
            
-            <p class="text-success message-box">Enter 4 digits T-PIN</p>
+           
 
             <h4 class="text-success pin_title m-auto">Enter 4 Digits MV-PIN</h4>
 <div class="ms-3 mt-3">
             <form method="POST" action="{{ route('user.save.new.pin') }}" onsubmit="submitPin(event)">
                 @csrf
-               
+                <input type="hidden" name="recharge_pin" id="recharge_pin" value="">
 
                 <div class="pin-spin">
                     <img src="{{ asset('assets_web/images/wallet/13.png') }}" class="spin-img" style="width:25px!important;height:25px!important;margin-left: 13px;" alt="">

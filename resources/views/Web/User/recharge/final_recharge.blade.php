@@ -87,6 +87,8 @@
                 <input type="hidden" name="operatorCode" value="{{ $rechargeData['operatorCode'] }}">
                 <input type="hidden" name="recharge_amount" value="{{ $rechargeData['rechargeAmount'] }}">
                 <input type="hidden" name="recharge_validity" value="{{ $rechargeData['recharge_validity'] ?? '' }}">
+                <input type="hidden" name="plan_id" value="{{ $rechargeData['plan_id'] ?? '' }}">
+            
                 @if($planId)
                     <input type="hidden" name="plan_id" value="{{ $planId }}">
                 @endif

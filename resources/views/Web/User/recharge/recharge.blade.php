@@ -86,7 +86,7 @@
                 <p class="text-white"><strong class="text-white">Paid To:  </strong>{{ $operator ?? 'N/A' }}</p>
                 <p class="text-white"><strong class="text-white">Amount:  </strong>  ₹{{ $rechargeAmount ?? '0.00' }}</p>
             </div>
-            <p class="text-success message-box">Enter 4 digits T-PIN</p>
+            
 
             <h4 class="text-success pin_title m-auto">Enter 4 Digits MV-PIN</h4>
 <div class="ms-3 mt-3">
@@ -105,6 +105,7 @@
                 <input type="hidden" name="recharge_amount" value="{{ $data['rechargeAmount'] }}">
                 <input type="hidden" name="recharge_validity" value="{{ $data['rechargeValidity'] }}">
                 <input type="hidden" name="serviceType" value="{{ $data['serviceType'] }}">
+                <input type="hidden" name="plan_id" value="{{ $data['plan_id'] ?? '' }}">
 
                 <div class="pin-spin">
                     <img src="{{ asset('assets_web/images/wallet/13.png') }}" class="spin-img" style="width:25px!important;height:25px!important;margin-left: 13px;" alt="">
@@ -119,7 +120,7 @@
                     <input type="password" maxlength="1" oninput="moveToNext(this, 3)">
                 </div>
                 <p class="text-success message-box d-none">Enter New PIN</p>
-                <a href="javascript:void(0)" class="text-danger" onclick=showMessage()>Forgot PIN</a>
+                
 
 
                 <div class="numpad">
