@@ -391,6 +391,12 @@ public function showRechargeForm(Request $request)
     return view('Web.User.recharge.recharge', compact('plans', 'Operator', 'operator', 'rechargeAmount'));
 }
 
+public function addPinForm(Request $request)
+{
+
+    return view('Web.User.recharge.add_pin');
+}
+
 public function saveRechargePin(Request $request)
     {
         $request->validate([

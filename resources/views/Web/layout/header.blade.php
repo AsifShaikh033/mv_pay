@@ -173,6 +173,15 @@
                 </a>
              
             </li>
+
+            <li >
+              <a class="dash_changes"  href="{{route('user.add.pin')}}">
+                  <i class="basecolor flaticon-381-more"></i> 
+                  <span class="nav-text">Add Pin</span>
+                  </a>
+               
+              </li>
+
             <li >
             <a class="dash_changes" href="{{route('user.reports')}}">
             <i class="basecolor flaticon-381-list-1"></i>
