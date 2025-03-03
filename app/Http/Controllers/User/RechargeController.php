@@ -8,6 +8,7 @@ use App\Models\Circle;
 use App\Models\Operator;
 use App\Models\Transaction;
 use App\Services\RechargeService;
+use App\Services\CplanetService;
 use App\Models\Recharge;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -191,7 +192,7 @@ class RechargeController extends Controller
         
             $transaction_id = $request->input('transaction_id') ?? rand(1000000000, 99999999999);
         
-            $rechargeResponse = $this->rechargeService->recharge_prepaid(
+            $rechargeResponse = $this->CplanetService->rechargePrepaid(
                 $request->input('mobileNumber'),
                 $request->input('operatorCode'),
                 $request->input('circle_code'),
@@ -217,7 +218,7 @@ class RechargeController extends Controller
             $recharge->user_tx = $transaction_id;
             $recharge->format = 'json';
         
-            if (is_array($rechargeResponse) && isset($rechargeResponse['Status']) && $rechargeResponse['Status'] == 'FAILURE') {
+            if (is_array($rechargeResponse) && isset($rechargeResponse['Status']) && $rechargeResponse['Status'] == '0') {
                 $transaction->status = 0;
                 $transaction->payment_status = 'failed';
                 $transaction->details = 'Recharge failed for ' . $request->input('mobileNumber');
@@ -315,7 +316,7 @@ class RechargeController extends Controller
             return redirect()->route('user.recharge.mobile')->with([
                 'error' => $plans['ErrorMessage'],
             ])->withInput();
-        }elseif (isset($plans['Status']) && $plans['Status'] === "1") {
+        }elseif (isset($plans['Status']) && $plans['Status'] === "Success") {
         
                 // return   $plans;
             $user->balance -= $rechargeAmount;
