@@ -102,12 +102,7 @@
                       <span class="sub-item">UTR Number</span>
                   </a>
               </li>
-              <li>
-                  <a href="{{ route('admin.withdrawal.list') }}" class="{{ Request::routeIs('admin.withdrawal.list') ? 'active' : '' }}">
-                      <span class="sub-item">Withdrawal History</span>
-                  </a>
-              </li>
-    
+             
               <li>
                   <a href="{{ route('admin.webhook.list') }}" class="{{ Request::routeIs('admin.webhook.list') ? 'active' : '' }}">
                       <span class="sub-item">Webhook</span>
@@ -137,19 +132,26 @@
              
                 
                 <li class="nav-item">
-                    <a data-bs-toggle="collapse" href="#tables" 
-                      aria-expanded="{{ Request::routeIs('admin.transaction.list') ? 'true' : 'false' }}">
+                    <a data-bs-toggle="collapse" href="#transaction" 
+                      aria-expanded="{{ Request::routeIs('admin.transaction.list')
+                       || Request::routeIs('admin.withdrawal.list')  ? 'true' : 'false' }}">
                       <i class="fas fa-th-list"></i>
                       <p>Transactions</p>
                         <span class="caret"></span>
                     </a>
-                    <div class="collapse {{ Request::routeIs('admin.transaction.list') ? 'show' : '' }}" id="tables">
+                    <div class="collapse {{ Request::routeIs('admin.transaction.list') 
+                       || Request::routeIs('admin.withdrawal.list')? 'show' : '' }}" id="transaction">
                         <ul class="nav nav-collapse">
                             <li>
                                 <a href="{{ route('admin.transaction.list') }}" class="{{ Request::routeIs('admin.transaction.list') ? 'active' : '' }}">
                                     <span class="sub-item">Transaction List</span>
                                 </a>
                             </li>
+                            <li>
+                              <a href="{{ route('admin.withdrawal.list') }}" class="{{ Request::routeIs('admin.withdrawal.list') ? 'active' : '' }}">
+                                  <span class="sub-item">Withdrawal History</span>
+                              </a>
+                          </li>
                         </ul>
                     </div>
                 </li>

@@ -13,19 +13,11 @@
                     <div class="card-header">
                         <div class="d-flex align-items-center">
                             <h4 class="card-title">List</h4>
-                            <!-- <button
-                        class="btn btn-primary btn-round ms-auto"
-                         id="addBannerButton"
-                      >
-                        <i class="fa fa-plus"></i>
-                        Add Withdrawal History
-                      </button> -->
                         </div>
-                        
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table id="add-row" class="display table table-striped table-hover">
+                            <table id="" class="display table table-striped table-hover">
                                 <thead>
                                 <tr>
                                     <th>ID</th>
@@ -34,35 +26,41 @@
                                     <th>Status</th>
                                     <th>Transaction ID</th>
                                     <th>Date</th>
+                                    <th>Actions</th>
                                 </tr>
                                 </thead>
-                                <body>
+                                <tbody>
                                 @foreach($withdrawals as $withdrawal)
                                     <tr>
+                                        <td>{{ $withdrawal->id }}</td>
+                                        <td>{{ $withdrawal->user->name ?? 'N/A' }}</td>
+                                        <td>{{ $withdrawal->amount }}</td>
                                         <td>
-                                        {{ $withdrawal->id }}
+                                            @if($withdrawal->status == 'success')
+                                                <span class="badge bg-success">Success</span>
+                                            @elseif($withdrawal->status == 'rejected')
+                                                <span class="badge bg-danger">Rejected</span>
+                                            @elseif($withdrawal->status == 'pending')
+                                                <span class="badge bg-warning">Pending</span>
+                                            @endif
                                         </td>
+                                        <td>{{ $withdrawal->transaction_id }}</td>
+                                        <td>{{ $withdrawal->created_at->format('Y-m-d') }}</td>
                                         <td>
-                                        {{ $withdrawal->user->name ?? 'N/A' }}
+                                            @if($withdrawal->status == 'pending')
+                                                <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#approveModal" data-id="{{ $withdrawal->id }}">Approve</button>
+                                                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#rejectModal" data-id="{{ $withdrawal->id }}">Reject</button>
+                                            @endif
+                                            @if($withdrawal->status == 'rejected')
+                                            <span class="badge bg-danger">{{ $withdrawal->details }}</span>
+                                            @endif
+                                            @if($withdrawal->status == 'success')
+                                            <span class="badge bg-success">{{ $withdrawal->details }}</span>
+                                            @endif
                                         </td>
-                                        <td>
-                                        {{ $withdrawal->amount }}
-                                        </td>
-                                        <td>
-                                     @if($withdrawal->status == 'success')
-                                            <span class="badge bg-success">Success</span>
-                                        @elseif($withdrawal->status == 'rejected')
-                                            <span class="badge bg-danger">Rejected</span>
-                                        @elseif($withdrawal->status == 'pending')
-                                        <span class="badge bg-warning">Pending</span>
-                                    @endif
-                                    </td>
-                                    <td>{{ $withdrawal->transaction_id }}</td>
-                                    <td>{{ $withdrawal->created_at->format('Y-m-d') }}</td>
-                                       
                                     </tr>
-                                    @endforeach
-                                </body>
+                                @endforeach
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -72,130 +70,67 @@
     </div>
 </div>
 
-<!-- ADD BANNER MODEL -->
-<div class="modal fade" id="addBannerModal" tabindex="-1" aria-labelledby="addBannerModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <form method="POST" action="{{ route('admin.balance.cashback.store') }}" enctype="multipart/form-data">
-                @csrf
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addBannerModalLabel">Add Withdrawal History</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group mb-3">
-                        <label for="bannerImage" class="form-label">Balance</label>
-                        <input type="number" name="balance" id="bannerImage" class="form-control" placeholder="Enter Balance">
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="priority" class="form-label">Spin Count</label>
-                        <input type="number" name="cashback" id="cashback" class="form-control" placeholder="Enter Spin Count">
-                    </div>
-                   
-                        <div class="form-group">
-                            <label for="">Select Ctegory</label>
-                            <select class="form-control" required="required" name="category" id="category">
-                                          <option value="">Select</option>
-                                          <option value="Prepaid-Mobile">Prepaid-Mobile</option>
-                                          <option value="Broadband">Broadband</option>
-                                          <option value="DTH">DTH</option>
-                                          <option value="Landline-Postpaid">Landline Postpaid</option>
-                                          <option value="Electricity">Electricity</option>
-                                          <option value="GAS">GAS</option>
-                                          <option value="Insurance">Insurance</option>
-                                          <option value="DMR">DMR</option>
-                                          <option value="Water">Water</option>
-                                          <option value="PAN-UTI-Token-Based">PAN UTI - Token Based</option>
-                                          <option value="Loan-Repayment">Loan Repayment</option>
-                                          <option value="Education-Fees">Education Fees</option>
-                                          <option value="METRO-CARD-RECHARGE">METRO CARD RECHARGE</option>
-                                          <option value="CHALLAN">CHALLAN</option>
-                                          <option value="Mobile-Postpaid">Mobile Postpaid</option>
-                                          <option value="Municipal-Services">Municipal Services</option>
-                                          <option value="Life-Insurance">Life Insurance</option>
-                                          <option value="Housing-Society">Housing Society</option>
-                                          <option value="Municipal-Taxes">Municipal Taxes</option>
-                                          <option value="Health-Insurance">Health Insurance</option>
-                                          <option value="LPG-Gas">LPG Gas</option>
-                                          <option value="Cable-TV">Cable TV</option>
-                                          <option value="Hospital">Hospital</option>
-                                          <option value="Subscription">Subscription</option>
-                                          <option value="Credit-Card">Credit Card</option>
-                                          <option value="PayService">PayService</option>
-                                          <option value="OTT-Subscription">OTT Subscription</option>
-                                          <option value="IRCTC-Dongle-Based">IRCTC - Dongle Based</option>
-                                          <option value="Clubs-and-Associations">Clubs and Associations</option>
-                                          <option value="Broadband-Postpaid">Broadband Postpaid</option>
-                                          <option value="Axis-Bank-Saving-Account">Axis Bank Saving A/c</option>
-                                          <option value="Fastag">Fastag</option>
-                                          <option value="Google-Play">Google Play</option>
-                                          <option value="Recurring-Deposit">Recurring Deposit</option>
-                                          <option value="Rental">Rental</option>
-                                          <option value="Hospital-and-Pathology">Hospital and Pathology</option>
-                                          <option value="Donation">Donation</option>
-                                          <option value="NCMC-Recharge">NCMC Recharge</option>
-                                          <option value="Prepaid-Meter">Prepaid Meter</option>
-                                      </select>
-                        </div>
-                   
-                    <div class="form-group mb-3">
-                        <label for="status" class="form-label">Status</label>
-                        <select name="status" id="status" class="form-control">
-                            <option value="1">Active</option>
-                            <option value="0">Inactive</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Save</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<!-- Delete Confirmation Modal -->
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+<!-- Approve Confirmation Modal -->
+<div class="modal fade" id="approveModal" tabindex="-1" aria-labelledby="approveModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="deleteModalLabel">Confirm Deletion</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title">Confirm Approval</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-            <div class="modal-body">
-                Are you sure you want to delete this Banner? This action cannot be undone.
-            </div>
+            <div class="modal-body">Are you sure you want to approve this withdrawal?</div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <form id="deleteForm" method="POST" action="{{ route('admin.balance.cashback.delete') }}" style="display:inline;">
-                            @csrf
-                            @method('DELETE') <!-- Use DELETE method for the destroy route -->
-                            <input type="hidden" name="id" id="banner_id"> <!-- Change 'user_id' to 'id' -->
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
-
+                <form method="POST" action="" id="approveForm">
+                    @csrf
+                    <button type="submit" class="btn btn-success">Approve</button>
+                </form>
             </div>
         </div>
     </div>
 </div>
 
+<!-- Reject Confirmation Modal -->
+<div class="modal fade" id="rejectModal" tabindex="-1" aria-labelledby="rejectModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Reject Withdrawal</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <textarea id="rejectReason" class="form-control" placeholder="Enter reason for rejection"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <form method="POST" action="" id="rejectForm">
+                    @csrf
+                    <input type="hidden" name="reason" id="reasonInput">
+                    <button type="submit" class="btn btn-danger">Reject</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 @push('scripts')
 <script>
-  
     $(document).ready(function() {
-        $('#deleteModal').on('show.bs.modal', function (e) {
-            var userId = $(e.relatedTarget).data('id'); 
-            $(this).find('#banner_id').val(userId); 
+        $('#approveModal').on('show.bs.modal', function(e) {
+            let id = $(e.relatedTarget).data('id');
+            $('#approveForm').attr('action', `{{ url('admin/withdrawal') }}/${id}/approve`);
         });
-        $('#addBannerButton').on('click', function () {
-            $('#addBannerModal').modal('show'); 
+
+        $('#rejectModal').on('show.bs.modal', function(e) {
+            let id = $(e.relatedTarget).data('id');
+            $('#rejectForm').attr('action', `{{ url('admin/withdrawal') }}/${id}/reject`);
+        });
+
+        $('#rejectForm').submit(function() {
+            $('#reasonInput').val($('#rejectReason').val());
         });
     });
 </script>
 @endpush
 
-
-
 @endsection
-

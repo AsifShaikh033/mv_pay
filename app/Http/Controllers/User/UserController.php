@@ -184,7 +184,11 @@ if($subscriptionStatus == true){
 
     public function payment_list()
     {
-        $fund = Bankdetail::with('user')
+        // $fund = Bankdetail::with('user')
+        // ->where('user_id', auth()->id())
+        // ->orderBy('created_at', 'desc')
+        // ->get();
+        $fund = Transaction::with('user')
         ->where('user_id', auth()->id())
         ->orderBy('created_at', 'desc')
         ->get();
