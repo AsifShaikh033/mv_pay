@@ -89,7 +89,7 @@ a.transaction-title {
      
 
         <div id="back-gradient" class="card  shadow-sm mt-5 mx-auto mb-5">
-            <h5 class="modal-title">Add Bank details</h5>
+            <h5 class="modal-title"> Withdrawal</h5>
             <form action="{{ route('user.requestWithdrawal') }}" method="POST" enctype="multipart/form-data" id="withdrawalForm">
                 @csrf
                 <input type="hidden" name="user_id" id="user_id" class="form-control text-quiz" value="{{ old('user_id', Auth::id()) }}" required>
@@ -119,6 +119,7 @@ a.transaction-title {
             <th>Status</th>
             <th>Transaction ID</th>
             <th>Date</th>
+            <th>Details</th>
         </tr>
     </thead>
     <tbody>
@@ -130,6 +131,18 @@ a.transaction-title {
                 <td class="status-{{ strtolower($withdrawal->status) }}">{{ ucfirst($withdrawal->status) }}</td>
                 <td>{{ $withdrawal->transaction_id }}</td>
                 <td>{{ $withdrawal->created_at->format('Y-m-d') }}</td>
+                <td>
+                    @if($withdrawal->status == 'pending')
+                    <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#approveModal" data-id="{{ $withdrawal->id }}">Approve</button>
+                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#rejectModal" data-id="{{ $withdrawal->id }}">Reject</button>
+                @endif
+                @if($withdrawal->status == 'rejected')
+                <span class="badge bg-danger">{{ $withdrawal->details }}</span>
+                @endif
+                @if($withdrawal->status == 'success')
+                <span class="badge bg-success">{{ $withdrawal->details }}</span>
+                @endif
+                </td>
             </tr>
         @endforeach
     </tbody>

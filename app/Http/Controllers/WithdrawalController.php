@@ -12,7 +12,8 @@ class WithdrawalController extends Controller
 
     public function withdrawal() {
         $user = Auth::user();
-        $withdrawals = Withdrawal::where('user_id', Auth::id())->get();
+        $withdrawals = Withdrawal::where('user_id', Auth::id())->orderBy('created_at', 'desc')->get();
+
         return view('Web.User.withdrawal.withdrawal', compact('withdrawals', 'user'));
     }
     
@@ -38,7 +39,7 @@ class WithdrawalController extends Controller
         ])->withInput();
     }
 
-        $transactionId = rand(1000000000, 99999999999);
+        $transactionId = 'TXN' . uniqid();
 
         Withdrawal::create([
             'user_id' => $user->id,
@@ -73,36 +74,85 @@ class WithdrawalController extends Controller
     }
 
 
+   
+    // public function approveWithdrawal($id)
+    // {
+    //     $withdrawal = Withdrawal::findOrFail($id);
+
+    //     $withdrawal->update([
+    //         'status' => 'success',
+    //        // 'transaction_id' => 'TXN' . uniqid(),
+    //         'details' => 'Withdrawal approved by admin',
+    //     ]);
+
+    //    return redirect()->back()->with(['success' => 'Withdrawal approved.'])->withInput();
+    // }
+
+    // public function rejectWithdrawal(Request $request, $id)
+    // {
+    //     $withdrawal = Withdrawal::findOrFail($id);
+    
+    //     // Update withdrawal status
+    //     $withdrawal->update([
+    //         'status' => 'rejected',
+    //         'details' => $request->reason,
+    //     ]);
+    
+    //     // Add amount back to user balance
+    //     $user = $withdrawal->user;
+    //     $user->balance += $withdrawal->amount;
+    //     $user->save();
+    
+    //     return redirect()->back()->with(['success' => 'Withdrawal rejected and amount added back to user balance.'])->withInput();
+    // }
     public function approveWithdrawal($id)
-    {
-        $withdrawal = Withdrawal::findOrFail($id);
+{
+    $withdrawal = Withdrawal::findOrFail($id);
 
-        $withdrawal->update([
-            'status' => 'success',
-            'transaction_id' => 'TXN'.uniqid(),
-            'details' => 'Withdrawal approved by admin',
-        ]);
+    $withdrawal->update([
+        'status' => 'success',
+        'details' => 'Withdrawal approved by admin',
+    ]);
 
-        return response()->json(['message' => 'Withdrawal approved']);
-    }
-    public function rejectWithdrawal($id)
-    {
-        $withdrawal = Withdrawal::findOrFail($id);
+    // Update the transaction table
+    Transaction::where('transaction_id', $withdrawal->transaction_id)->update([
+        'status' => 1,
+        'payment_status' => 'success',
+        'details' => 'Withdrawal approved by admin'
+    ]);
 
-        $withdrawal->update([
-            'status' => 'failed',
-            'comment' => 'Insufficient balance or other issue',
-        ]);
+    return redirect()->back()->with(['success' => 'Withdrawal approved.'])->withInput();
+}
 
-        return response()->json(['message' => 'Withdrawal rejected']);
-    }
+public function rejectWithdrawal(Request $request, $id)
+{
+    $withdrawal = Withdrawal::findOrFail($id);
 
+    $withdrawal->update([
+        'status' => 'rejected',
+        'details' => $request->reason,
+    ]);
+
+    // Add amount back to user balance
+    $user = $withdrawal->user;
+    $user->balance += $withdrawal->amount;
+    $user->save();
+    Transaction::where('transaction_id', $withdrawal->transaction_id)->update([
+        'status' => 3,
+        'payment_status' => 'rejected',
+        'details' => $request->reason
+    ]);
+
+    return redirect()->back()->with(['success' => 'Withdrawal rejected and amount added back to user balance.'])->withInput();
+}
+
+    
     public function failed_page(){
         return view('web.user.failed.rechargefailedModal');
     }
     public function list()
     {
-        $withdrawals = Withdrawal::get();
+        $withdrawals = Withdrawal::orderBy('created_at', 'desc')->get();
         return view('Admin.withdrawal.list', compact('withdrawals'));
 
     }
