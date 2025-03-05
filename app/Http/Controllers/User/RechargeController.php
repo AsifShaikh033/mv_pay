@@ -258,9 +258,13 @@ class RechargeController extends Controller
                     'error' => $rechargeResponse['ErrorMessage'] ?? 'Recharge failed. Please try again.'
                 ])->withInput();
             }
-        }
-        
 
+
+        }else{
+
+            return 'cyrus api working';
+
+        //cyrus
         $mobileNumber = $request->input('mobileNumber');
         $circle = $request->input('circle');
         $circleCode = $request->input('circleCode');
@@ -350,6 +354,8 @@ class RechargeController extends Controller
             ]);
     
     }
+   }
+        
 }
 
 public function recharge_bonus($user, $rechargeAmount, $plans) {
