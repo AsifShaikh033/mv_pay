@@ -19,10 +19,13 @@ use Log;
 class RechargeController extends Controller
 {
     protected $rechargeService;
-    public function __construct(RechargeService $rechargeService)
+    protected $cplanetService;
+    public function __construct(RechargeService $rechargeService, CplanetService $cplanetService)
     {
         $this->rechargeService = $rechargeService;
+        $this->cplanetService = $cplanetService;
     }
+   
     public function mobile(Request $request)
     {       
         $planId = $request->query('plan_id', null);
@@ -192,7 +195,7 @@ class RechargeController extends Controller
         
             $transaction_id = $request->input('transaction_id') ?? rand(1000000000, 99999999999);
         
-            $rechargeResponse = $this->CplanetService->rechargePrepaid(
+            $rechargeResponse = $this->cplanetService->rechargePrepaid(
                 $request->input('mobileNumber'),
                 $request->input('operatorCode'),
                 $request->input('circle_code'),
