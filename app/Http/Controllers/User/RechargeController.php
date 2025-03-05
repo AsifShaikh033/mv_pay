@@ -466,7 +466,6 @@ public function saveRechargePin(Request $request)
     public function finalRecharge(Request $request)
     {
 
-        return 'ok';
         $rechargeData = session('rechargeData');
         if(empty($rechargeData)){
             return redirect()->back();
