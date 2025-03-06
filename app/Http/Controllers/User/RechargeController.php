@@ -194,14 +194,30 @@ class RechargeController extends Controller
             }
         
             $transaction_id = $request->input('transaction_id') ?? rand(1000000000, 99999999999);
+
+            $tokenResponse = $this->cplanetService->getToken();
         
+            if (is_array($tokenResponse) && !$tokenResponse['status']) {
+              
+                return redirect('user/recharge/mobile?plan_id=1')->with('info', $tokenResponse['message']);
+            }
+        
+            // Step 3: Initiate Recharge Request
+      
+            Log::warning('c planet token ', ['token' => $tokenResponse]);
             $rechargeResponse = $this->cplanetService->rechargePrepaid(
                 $request->input('mobileNumber'),
                 $request->input('operatorCode'),
                 $request->input('circle_code'),
                 $rechargeAmount,
-                $transaction_id
+                $tokenResponse
             );
+            Log::warning('Call the c planet service', ['rechargeResponse' => $rechargeResponse]);
+            if (isset($rechargeResponse['status']) && $rechargeResponse['status'] === false) {
+                $errorMessage = $rechargeResponse['data']['message'] ?? 'Unknown error occurred.';
+                return redirect('user/recharge/mobile?plan_id=1')->with('error', $errorMessage);
+            }
+    
             Log::warning('Call the c planet service', ['rechargeResponse' => $rechargeResponse]);
             $transaction = new Transaction;
             $transaction->user_id = $user->id;
@@ -250,19 +266,26 @@ class RechargeController extends Controller
             $recharge->save();
         
             if ($transaction->status == 1) {
-                return redirect()->route('user.recharge.mobile', ['plan_id' => 1])->with([
-                    'success' => 'Recharge successful. Transaction ID: ' . $transaction->transaction_id
-                ]);
+                // return redirect()->route('user.recharge.mobile', ['plan_id' => 1])->with([
+                //     'success' => 'Recharge successful. Transaction ID: ' . $transaction->transaction_id
+                // ]);
+                $transaction = Transaction::where('transaction_id', $transaction_id)->latest()->first();
+                $transactionId = $transaction_id;
+                return view('Web.User.failed.rechargesuccessModal', compact('transaction','transactionId'));
+                
             } else {
-                return redirect()->route('user.recharge.mobile', ['plan_id' => 1])->with([
-                    'error' => $rechargeResponse['ErrorMessage'] ?? 'Recharge failed. Please try again.'
-                ])->withInput();
+                // return redirect()->route('user.recharge.mobile', ['plan_id' => 1])->with([
+                //     'error' => $rechargeResponse['ErrorMessage'] ?? 'Recharge failed. Please try again.'
+                // ])->withInput();
+                $transaction = Transaction::where('transaction_id', $transaction_id)->latest()->first();
+                $transactionId = $transaction_id;
+                return view('Web.User.failed.rechargefailedModal', compact('transaction','transactionId'));
             }
 
 
         }else{
 
-            return 'cyrus api working';
+            // return 'cyrus api working';
          
         //cyrus
         $mobileNumber = $request->input('mobileNumber');
@@ -320,9 +343,12 @@ class RechargeController extends Controller
             $Recharge->api_response = json_encode($plans);
             $Recharge->save();
             
-            return redirect()->route('user.recharge.mobile')->with([
-                'error' => $plans['ErrorMessage'],
-            ])->withInput();
+            // return redirect()->route('user.recharge.mobile')->with([
+            //     'error' => $plans['ErrorMessage'],
+            // ])->withInput();
+            $transaction = Transaction::where('transaction_id', $transaction_id)->latest()->first();
+                $transactionId = $transaction_id;
+                return view('Web.User.failed.rechargefailedModal', compact('transaction','transactionId'));
         }elseif (isset($plans['Status']) && $plans['Status'] === "Success") {
         
                 // return   $plans;
@@ -349,9 +375,12 @@ class RechargeController extends Controller
             }
                 
 
-            return redirect()->route('user.recharge.mobile')->with([
-                'success' => "Recharge successfully completed. Transaction ID: $transaction_id"
-            ]);
+            // return redirect()->route('user.recharge.mobile')->with([
+            //     'success' => "Recharge successfully completed. Transaction ID: $transaction_id"
+            // ]);
+            $transaction = Transaction::where('transaction_id', $transaction_id)->latest()->first();
+            $transactionId = $transaction_id;
+            return view('Web.User.failed.rechargesuccessModal', compact('transaction','transactionId'));
     
     }
    }

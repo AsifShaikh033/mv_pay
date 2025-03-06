@@ -19,6 +19,7 @@ use App\Http\Controllers\WithdrawalController;
 use App\Http\Controllers\WebhookController;
 Route::get('/api/register-user', [UserController::class, 'registeruser']);
 Route::get('/api/register-user', [UserController::class, 'registeruser']);
+Route::get('/recharge-get', [RechargeController::class, 'recharge']);
 
         Route::get('/run-storage-link', function () {
             try {
