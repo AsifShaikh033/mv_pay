@@ -151,6 +151,11 @@ Route::get('/api/register-user', [UserController::class, 'registeruser']);
         Route::post('/save-recharge-pin', [RechargeController::class, 'saveRechargePin'])->name('save.recharge.pin');
         Route::get('/final-recharge', [RechargeController::class, 'finalRecharge'])->name('recharge.final_recharge');
 
+        //Add Pin
+        Route::get('/add-pin', [RechargeController::class, 'addPinForm'])->name('add.pin');
+        Route::post('/save-new-pin', [RechargeController::class, 'saveNewPin'])->name('save.new.pin');
+
+
 
         //Add Fund
         Route::post('/bharatpe',[BharatpeController::class,'bharatpe'])->name('cash.bharatpe');

@@ -48,9 +48,13 @@
             color: #4CAF50;
             cursor: pointer;
         }
+        .choose_plan-container {
+    display: flex;
+    justify-content: center;
+}
 </style>
 <div class="content-body">
-    <div class="container choose_plan-container mt-5">
+    <div class="container choose_plan-container pt-5 mt-5">
     <div class="recharge-container">
         <span class="close-btn">&times;</span>
         @php
@@ -101,5 +105,6 @@
     </div>
     </div>
 </div>
+
 
 @endsection

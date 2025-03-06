@@ -409,12 +409,39 @@ public function showRechargeForm(Request $request)
 
     $Operator = Operator::all();
     $plans = $this->rechargeService->fetchPlans($mobileNumber, $operatorCode, $circleCode);
-    
+
     $operator = $request->input('operator');
     $rechargeAmount = $request->input('recharge_amount');
 
-    return view('Web.User.recharge.recharge', compact('plans', 'Operator', 'operator', 'rechargeAmount', 'data'));
+    return view('Web.User.recharge.recharge', compact('plans', 'Operator', 'operator', 'rechargeAmount','data'));
 }
+
+public function addPinForm(Request $request)
+{
+
+    return view('Web.User.recharge.add_pin');
+}
+
+public function saveNewPin(Request $request)
+    {
+        $request->validate([
+            'recharge_pin' => 'required'
+        ]);
+
+   
+
+            $user = Auth::user();
+            $user->recharge_pin = $request->recharge_pin;
+            $user->save();
+           
+            return redirect()->route('user.add.pin')
+    ->with('success', 'Recharge PIN set successfully!');
+    
+
+       
+
+        
+    }
 
 public function saveRechargePin(Request $request)
     {

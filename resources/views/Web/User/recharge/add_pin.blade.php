@@ -82,30 +82,14 @@
 <div class="content-body">
     <div class="container choose_plan-container mt-5">
         <div class="recharge-container">
-            <div class="info-box">
-                <p class="text-white"><strong class="text-white">Paid To:  </strong>{{ $operator ?? 'N/A' }}</p>
-                <p class="text-white"><strong class="text-white">Amount:  </strong>  ₹{{ $rechargeAmount ?? '0.00' }}</p>
-            </div>
-            
+           
+           
 
             <h4 class="text-success pin_title m-auto">Enter 4 Digits MV-PIN</h4>
 <div class="ms-3 mt-3">
-            <form method="POST" action="{{ route('user.save.recharge.pin') }}" onsubmit="submitPin(event)">
+            <form method="POST" action="{{ route('user.save.new.pin') }}" onsubmit="submitPin(event)">
                 @csrf
                 <input type="hidden" name="recharge_pin" id="recharge_pin" value="">
-                <input type="hidden" name="forget_pin" id="forget_pin" value="0">
-                <input type="hidden" name="operator" value="{{ $operator }}">
-                <input type="hidden" name="recharge_amount" value="{{ $rechargeAmount }}">
-
-                <input type="hidden" name="mobileNumber" value="{{ $data['mobileNumber'] }}">
-                <input type="hidden" name="circle" value="{{ $data['circle'] }}">
-                <input type="hidden" name="circleCode" value="{{ $data['circleCode'] }}">
-                <input type="hidden" name="operator" value="{{ $data['operator'] }}">
-                <input type="hidden" name="operatorCode" value="{{ $data['operatorCode'] }}">
-                <input type="hidden" name="recharge_amount" value="{{ $data['rechargeAmount'] }}">
-                <input type="hidden" name="recharge_validity" value="{{ $data['rechargeValidity'] }}">
-                <input type="hidden" name="serviceType" value="{{ $data['serviceType'] }}">
-                <input type="hidden" name="plan_id" value="{{ $data['plan_id'] ?? '' }}">
 
                 <div class="pin-spin">
                     <img src="{{ asset('assets_web/images/wallet/13.png') }}" class="spin-img" style="width:25px!important;height:25px!important;margin-left: 13px;" alt="">
@@ -119,8 +103,7 @@
                     <input type="password" maxlength="1" oninput="moveToNext(this, 2)">
                     <input type="password" maxlength="1" oninput="moveToNext(this, 3)">
                 </div>
-                <p class="text-success message-box d-none">Enter New PIN</p>
-                
+              
 
 
                 <div class="numpad">
