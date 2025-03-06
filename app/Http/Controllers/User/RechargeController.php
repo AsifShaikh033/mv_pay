@@ -368,7 +368,11 @@ class RechargeController extends Controller
             $this->recharge_bonus($user, $rechargeAmount, $plans);
             //spin bonus
             $user = Auth::user();
-            $cashback = BalanceCashback::where('category', 'Prepaid-Mobile')->where('balance', $rechargeAmount)->first();
+            // $cashback = BalanceCashback::where('category', 'Prepaid-Mobile')->where('balance', $rechargeAmount)->first();
+            $cashback = BalanceCashback::where('category', 'Prepaid-Mobile')
+            ->where('balance', '<=', $rechargeAmount)
+            ->orderBy('balance', 'desc') 
+            ->first();
             Log::warning('BalanceCashback', ['BalanceCashback' => $cashback]);
             if($cashback){
                 send_spin_chance($user,$rechargeAmount, $cashback->cashback, $cashback->category);
