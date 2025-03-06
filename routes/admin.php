@@ -79,8 +79,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function
 
     Route::get('/lead-generation', [LeadGenerationController::class, 'index'])->name('lead_generation.index');
     //WITHDRAWAL
-    Route::post('/withdrawal/{id}/approve', [WithdrawalController::class, 'approveWithdrawal']);
-    Route::post('/withdrawal/{id}/reject', [WithdrawalController::class, 'rejectWithdrawal']);
+    Route::post('/withdrawal/{id}/approve', [WithdrawalController::class, 'approveWithdrawal'])->name('withdrawal.approve');
+    Route::post('/withdrawal/{id}/reject', [WithdrawalController::class, 'rejectWithdrawal'])->name('withdrawal.reject');
 });
 
 
