@@ -52,41 +52,42 @@ class CplanetService
 
 
          public function rechargePrepaid($token, $mobileNumber, $operatorCode, $amount)
-        {
-            $url = "https://planetctechnology.in/planetcapi/api/rechargeApi";
-
-            $postData = [
-                "clientReferenceNo" => "PLCT" . time(),
-                "customer_mobile"   => (string) $mobileNumber,
-                "opCode"            => (string) $operatorCode,
-                "amount"            => (int) $amount,
-                "token_key"         => "7a3e2c8bf54ee573396efcb881529747"
-            ];
-
-            $curl = curl_init();
-
-            curl_setopt_array($curl, [
-                CURLOPT_URL => $url,
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_POST => true,
-                CURLOPT_POSTFIELDS => $postData,
-                CURLOPT_HTTPHEADER => [
-                    "Authorization: $token"
-                ]
-            ]);
-
-            $response = curl_exec($curl);
-            $err = curl_error($curl);
-
-            curl_close($curl);
-
-            if ($err) {
-                return ["status" => false, "message" => "cURL Error: $err"];
-            }
-
-            return json_decode($response, true);
-        }
-
+         {
+             $url = "https://planetctechnology.in/planetcapi/api/rechargeApi";
+         
+             $postData = json_encode([
+                 "clientReferenceNo" => "PLCT" . time(),
+                 "customer_mobile"   => (string) $mobileNumber,
+                 "opCode"            => (string) $operatorCode,
+                 "amount"            => (int) $amount,
+                 "token_key"         => "7a3e2c8bf54ee573396efcb881529747"
+             ]);
+         
+             $curl = curl_init();
+         
+             curl_setopt_array($curl, [
+                 CURLOPT_URL => $url,
+                 CURLOPT_RETURNTRANSFER => true,
+                 CURLOPT_POST => true,
+                 CURLOPT_POSTFIELDS => $postData,
+                 CURLOPT_HTTPHEADER => [
+                     "Content-Type: application/json",
+                     "Authorization: $token"
+                 ]
+             ]);
+         
+             $response = curl_exec($curl);
+             $err = curl_error($curl);
+         
+             curl_close($curl);
+         
+             if ($err) {
+                 return ["status" => false, "message" => "cURL Error: $err"];
+             }
+         
+             return json_decode($response, true);
+         }
+         
          
          
 
