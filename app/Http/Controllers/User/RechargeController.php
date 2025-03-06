@@ -329,7 +329,7 @@ class RechargeController extends Controller
       
     
         // Call the recharge service
-     //   $plans = $this->rechargeService->recharge_prepaid($mobileNumber, $operatorCode, $circleCode, $rechargeAmount, $transaction_id);
+       $plans = $this->rechargeService->recharge_prepaid($mobileNumber, $operatorCode, $circleCode, $rechargeAmount, $transaction_id);
         Log::warning('Call the recharge service', ['plans' => $plans]);
         if (isset($plans['Status']) && $plans['Status'] === "FAILURE") {
 
