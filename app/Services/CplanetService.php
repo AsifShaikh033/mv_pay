@@ -51,23 +51,22 @@ class CplanetService
          }
 
 
-      
          public function rechargePrepaid($token, $mobileNumber, $operatorCode, $amount)
          {
              $url = "https://planetctechnology.in/planetcapi/api/rechargeApi";
          
              $postData = [
-                 "clientReferenceNo" => "PLCT" . time(),
+                 "clientReferenceNo" => "PLCT",
                  "customer_mobile"   => (string) $mobileNumber,
                  "opCode"            => (string) $operatorCode,
                  "amount"            => (int) $amount,
-                 "token_key"         => '7a3e2c8bf54ee573396efcb881529747'
+                 "token_key"         => "7a3e2c8bf54ee573396efcb881529747"
              ];
          
-             $response = Http::asForm()->withHeaders([
-                "Authorization" => $token
-            ])->post($url, $postData);
-            
+             $response = Http::withHeaders([
+                 "Content-Type"  => "application/json",
+                 "Authorization" => $token
+             ])->post($url, json_encode($postData));
          
              return $response->json();
          }
