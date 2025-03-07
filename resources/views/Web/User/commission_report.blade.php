@@ -58,9 +58,9 @@
                            
                         </div>
                     </div>
-                        <div>
+                        <!-- <div>
                             <p class="card-text mb-0"><strong>Post Balance:</strong> {{ $transaction->post_balance }}</p>
-                        </div>
+                        </div> -->
                     
     <!-- Status (Right) -->
                         <div>
@@ -86,7 +86,7 @@
                     <div class="d-flex justify-content-between" style="flex-direction: row;">
                         <p class="card-text me-4"><strong>Details:</strong> {{ $transaction->details }}</p>
                         <p class="card-text me-4"><strong>Remark:</strong> {{ ucfirst(str_replace('_', ' ', $transaction->remark)) }}</p>
-                        <p class="card-text"><strong>Response Msg:</strong> {{ $transaction->response_msg }}</p>
+                        <!-- <p class="card-text"><strong>Response Msg:</strong> {{ $transaction->response_msg }}</p> -->
                     </div>
 
                             
