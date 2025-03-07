@@ -71,7 +71,7 @@
                             <p class="card-text mb-0"><strong>Spin Redirect Link:</strong><a href="https://mvvision.in/student/spin-mv-pay" target="_blank" id="spin-link"> https://mvvision.in/student/spin-mv-pay</a>
                             <button onclick="copyLink()" class="btn btn-sm btn-info btn-outline-primary ms-2">Copy Link</button>  
                         </p> -->
-                            <p class="card-text mb-0"><strong>Post Balance:</strong> {{ $transaction->post_balance }}</p>
+                            <!-- <p class="card-text mb-0"><strong>Post Balance:</strong> {{ $transaction->post_balance }}</p> -->
                         </div>
                     
     <!-- Status (Right) -->
@@ -98,7 +98,7 @@
                     <div class="d-flex justify-content-between" style="flex-direction: row;">
                         <p class="card-text me-4"><strong>Details:</strong> {{ $transaction->details }}</p>
                         <p class="card-text me-4"><strong>Remark:</strong> {{ $transaction->remark }}</p>
-                        <p class="card-text"><strong>Response Msg:</strong> {{ $transaction->response_msg }}</p>
+                        <!-- <p class="card-text"><strong>Response Msg:</strong> {{ $transaction->response_msg }}</p> -->
                     </div>
 
                             
