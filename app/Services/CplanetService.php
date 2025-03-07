@@ -58,7 +58,7 @@ class CplanetService
                 'customer_mobile' => $mobileNumber,
                 'opCode' => $operatorCode,
                 'clientReferenceNo' => $clientReferenceNo,
-                'token_key' => 'ca6f5a5aef39b5ec157b9c0c906ec5d905'
+                'token_key' => '44e0f68839b7498febd8bbb12b996ea5'
             ];
     
             curl_setopt_array($response, [
