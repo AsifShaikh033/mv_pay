@@ -49,44 +49,81 @@ class CplanetService
                  'message' => $data,
              ];
          }
+         public function rechargePrepaid($mobileNumber, $operatorCode, $circleCode, $rechargeAmount, $tokenResponse) {
+            $clientReferenceNo = uniqid('PLCT');
+            $response = curl_init();
+    
+            $postData = [
+                'amount' => $rechargeAmount,
+                'customer_mobile' => $mobileNumber,
+                'opCode' => $operatorCode,
+                'clientReferenceNo' => $clientReferenceNo,
+                'token_key' => 'ca6f5a5aef39b5ec157b9c0c906ec5d905'
+            ];
+    
+            curl_setopt_array($response, [
+                CURLOPT_URL => 'https://planetctechnology.in/planetcapi/api/rechargeApi',
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_POST => true,
+                CURLOPT_POSTFIELDS => $postData,
+                CURLOPT_HTTPHEADER => [
+                    'Authorization: ' . $tokenResponse
+                   
+                ]
+            ]);
+    
+            $apiResponse = curl_exec($response);
+            $httpCode = curl_getinfo($response, CURLINFO_HTTP_CODE);
+            curl_close($response);
+    
+            if ($httpCode !== 200) {
+                return ['status' => false, 'message' => 'API request failed with status code ' . $httpCode];
+            }
+    
+            $decodedResponse = json_decode($apiResponse, true);
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                return ['status' => false, 'message' => 'Invalid JSON response'];
+            }
+    
+            return $decodedResponse;
+        }
 
-
-         public function rechargePrepaid($token, $mobileNumber, $operatorCode, $amount)
-         {
-             $url = "https://planetctechnology.in/planetcapi/api/rechargeApi";
+        //  public function rechargePrepaid($token, $mobileNumber, $operatorCode, $amount)
+        //  {
+        //      $url = "https://planetctechnology.in/planetcapi/api/rechargeApi";
          
-             $postData = json_encode([
-                 "clientReferenceNo" => "PLCT" . time(),
-                 "customer_mobile"   => (string) $mobileNumber,
-                 "opCode"            => (string) $operatorCode,
-                 "amount"            => (int) $amount,
-                 "token_key"         => "7a3e2c8bf54ee573396efcb881529747"
-             ]);
+        //      $postData = json_encode([
+        //          "clientReferenceNo" => "PLCT" . time(),
+        //          "customer_mobile"   => (string) $mobileNumber,
+        //          "opCode"            => (string) $operatorCode,
+        //          "amount"            => (int) $amount,
+        //          "token_key"         => "7a3e2c8bf54ee573396efcb881529747"
+        //      ]);
          
-             $curl = curl_init();
+        //      $curl = curl_init();
          
-             curl_setopt_array($curl, [
-                 CURLOPT_URL => $url,
-                 CURLOPT_RETURNTRANSFER => true,
-                 CURLOPT_POST => true,
-                 CURLOPT_POSTFIELDS => $postData,
-                 CURLOPT_HTTPHEADER => [
-                     "Content-Type: application/json",
-                     "Authorization: $token"
-                 ]
-             ]);
+        //      curl_setopt_array($curl, [
+        //          CURLOPT_URL => $url,
+        //          CURLOPT_RETURNTRANSFER => true,
+        //          CURLOPT_POST => true,
+        //          CURLOPT_POSTFIELDS => $postData,
+        //          CURLOPT_HTTPHEADER => [
+        //              "Content-Type: application/json",
+        //              "Authorization: $token"
+        //          ]
+        //      ]);
          
-             $response = curl_exec($curl);
-             $err = curl_error($curl);
+        //      $response = curl_exec($curl);
+        //      $err = curl_error($curl);
          
-             curl_close($curl);
+        //      curl_close($curl);
          
-             if ($err) {
-                 return ["status" => false, "message" => "cURL Error: $err"];
-             }
+        //      if ($err) {
+        //          return ["status" => false, "message" => "cURL Error: $err"];
+        //      }
          
-             return json_decode($response, true);
-         }
+        //      return json_decode($response, true);
+        //  }
          
          
          

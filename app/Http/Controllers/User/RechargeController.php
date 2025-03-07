@@ -213,7 +213,11 @@ class RechargeController extends Controller
                 $tokenResponse
             );
             Log::warning('Call the c planet service', ['rechargeResponse' => $rechargeResponse]);
-            if (isset($rechargeResponse['status']) && $rechargeResponse['status'] === false) {
+            // if (isset($rechargeResponse['status']) && $rechargeResponse['status'] === false) {
+            //     $errorMessage = $rechargeResponse['data']['message'] ?? 'Unknown error occurred.';
+            //     return redirect('user/recharge/mobile?plan_id=1')->with('error', $errorMessage);
+            // }
+            if (!isset($rechargeResponse['status']) || $rechargeResponse['status'] !== true || $rechargeResponse['data']['status'] !== 'success') {
                 $errorMessage = $rechargeResponse['data']['message'] ?? 'Unknown error occurred.';
                 return redirect('user/recharge/mobile?plan_id=1')->with('error', $errorMessage);
             }
@@ -237,51 +241,44 @@ class RechargeController extends Controller
             $recharge->user_tx = $transaction_id;
             $recharge->format = 'json';
         
-            if (is_array($rechargeResponse) && isset($rechargeResponse['Status']) && $rechargeResponse['Status'] == '0') {
-                $transaction->status = 0;
-                $transaction->payment_status = 'failed';
-                $transaction->details = 'Recharge failed for ' . $request->input('mobileNumber');
-                $recharge->status = 'failed';
-            } else {
+           
+            if ($rechargeResponse['data']['status'] === 'success') {
                 $user->balance -= $rechargeAmount;
                 $user->save();
-        
+
                 $transaction->status = 1;
                 $transaction->payment_status = 'success';
                 $transaction->details = 'Recharge successful for ' . $request->input('mobileNumber');
                 $transaction->post_balance = $user->balance;
-        
+
                 $recharge->status = 'success';
                 $this->recharge_bonus($user, $rechargeAmount, $rechargeResponse);
-        
+
                 $cashback = BalanceCashback::where('category', 'Prepaid-Mobile')->where('balance', $rechargeAmount)->first();
                 Log::warning('BalanceCashback', ['cashback' => $cashback]);
                 if ($cashback) {
                     send_spin_chance($user, $rechargeAmount, $cashback->cashback, $cashback->category);
                 }
-            }
-        
-            $transaction->save();
-            $recharge->api_response = json_encode($rechargeResponse);
-            $recharge->save();
-        
+                } else {
+                    $transaction->status = 0;
+                    $transaction->payment_status = 'failed';
+                    $transaction->details = 'Recharge failed for ' . $request->input('mobileNumber');
+                    $recharge->status = 'failed';
+                }
+
+                $transaction->save();
+                $recharge->api_response = json_encode($rechargeResponse);
+                $recharge->save();
+
             if ($transaction->status == 1) {
-                // return redirect()->route('user.recharge.mobile', ['plan_id' => 1])->with([
-                //     'success' => 'Recharge successful. Transaction ID: ' . $transaction->transaction_id
-                // ]);
                 $transaction = Transaction::where('transaction_id', $transaction_id)->latest()->first();
                 $transactionId = $transaction_id;
                 return view('Web.User.failed.rechargesuccessModal', compact('transaction','transactionId'));
-                
             } else {
-                // return redirect()->route('user.recharge.mobile', ['plan_id' => 1])->with([
-                //     'error' => $rechargeResponse['ErrorMessage'] ?? 'Recharge failed. Please try again.'
-                // ])->withInput();
                 $transaction = Transaction::where('transaction_id', $transaction_id)->latest()->first();
                 $transactionId = $transaction_id;
                 return view('Web.User.failed.rechargefailedModal', compact('transaction','transactionId'));
             }
-
 
         }else{
 
