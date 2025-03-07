@@ -203,11 +203,11 @@ class RechargeController extends Controller
             }
         
             // Step 3: Initiate Recharge Request
-      
+            Log::warning('operator', ['operator' => $operator]);
             Log::warning('c planet token ', ['token' => $tokenResponse]);
             $rechargeResponse = $this->cplanetService->rechargePrepaid(
                 $request->input('mobileNumber'),
-                $request->input('operatorCode'),
+                $operator,
                 $request->input('circle_code'),
                 $rechargeAmount,
                 $tokenResponse
