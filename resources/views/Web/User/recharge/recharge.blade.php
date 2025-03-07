@@ -77,11 +77,143 @@
     color: #fff !important;
     }
 
+.design_plan{
+    display:none;
+}
+
+    .reachrge_banner {
+            width: 300px;
+            background: #0000ff;
+            color: #fff;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        .header_banner_new {
+            text-align: center;
+            border: 2px solid #fff;
+            border-radius: 13px;
+            padding: 12px 0;
+            margin: 0;
+            margin-bottom: 5px;
+        }
+        .header_banner_new img {
+            width: 100%;
+        }
+        .header_banner_new h2, .header_banner_new h3, .header_banner_new h4 {
+            margin-bottom: 2px;
+            font-size: 20px;
+            color: #fff;
+            text-align: left;
+        }
+        .box_banner_new {
+            color: #fff;
+            margin: 5px 0;
+            border-radius: 7px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 2px solid #fff;
+            padding: 5px 10px;
+            text-align: left;
+            margin-top: 5px;
+            font-weight: 600;
+        }
+        .benefits {
+            font-size: 14px;
+        }
+        .wallet_banner {
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .highlight {
+            background: #8fff00;
+            font-weight: bold;
+            color: #000;
+        }
+        .button_confirm_new {
+            background: #01ff85;
+            text-align: center;
+            padding: 7px 12px;
+            margin: 10px 0;
+            cursor: pointer;
+            font-size: 19px;
+            color: #000;
+            text-decoration: none;
+            border-radius: 20px;
+        }
+        
 
 </style>
 <div class="content-body">
     <div class="container choose_plan-container mt-5">
-        <div class="recharge-container">
+
+
+
+    @php
+                    $operators = [
+                        'Airtel' => 'airtel.png',
+                        'AIRTEL' => 'airtel.png',
+                        'Idea' => 'idea.png',
+                        'Jio' => 'jio.png',
+                        'JIO' => 'jio.png',
+                        'BSNL TopUp' => 'bsnl.png',
+                        'BSNL' => 'bsnl.png',
+                        'Vi' => 'vi.png',
+                        'VI' => 'vi.png',
+                        'DTH' => 'dth.png',
+                        'Electricity' => 'electricity.png',
+                        'Hospital' => 'hospital.png',
+                        'Loan Repayment' => 'loan.png',
+                        'LPG Gas' => 'lpg.png',
+                        'Municipal Services' => 'municipal.png',
+                        'Municipal Taxes' => 'municipal.png',
+                        'Education Fees' => 'education.png'
+                    ];
+                    
+                    $operatorLogo = isset($operators[$data['operator']]) 
+                        ? asset('assets/operators/' . $operators[$data['operator']]) 
+                        : asset('assets/operators/default.png');
+                        
+                @endphp
+              
+
+
+        <div class="recharge-container banner_design">
+           <div class="">
+                <div class="header_banner_new row align-items-center">
+                    <div class="col-4"><img src="{{  $operatorLogo }}" alt="Jio Logo"></div>
+                    <div class="col-8 ps-0">  <h2>{{ $data['mobileNumber'] }}</h2>
+                        <h3>{{ $data['circle'] }}</h3>
+                        <h4>{{ $data['operator'] }} </h4>
+                    </div>
+                </div>
+                <div class="box_banner_new font-bold">
+                    <span>Recharge Amount</span>
+                    <span> {{ $data['rechargeAmount'] }} RS</span>
+                </div>
+                <div class="box_banner_new benefits">
+                    Benefits: 1. UNLIMITED DATA - 42 GB (1.5GB/Day) 2. UNLIMITED Voice Calls 3. 100 SMS/Day 4. Subscription to JioApps and JioSaavn Pro COMBO - 28 days No- To activate jiosavan Pro COMBO- 28 subscription ,Download app & Login with your jio number . https://jiosaa.vn/89b57oac.
+                </div>
+                <div class="box_banner_new wallet_banner d-block">
+                    <p class="d-flex justify-content-around align-items-center mb-1"><span> Wallet Balance</span><span> {{ Auth::user()->balance }} RS</span></p>
+                    <p class="d-flex justify-content-around align-items-center mb-1"><span> Recharge Amount</span><span> -{{ $data['rechargeAmount'] }}  RS</span></p>
+                </div>
+
+                <div class="box_banner_new  highlight justify-content-around">
+                    <span >  Payable Amount</span> <span>- {{ $data['rechargeAmount'] }}  RS</span>
+                </div>
+
+                <div class="box_banner_new" style="border:0;">
+                    <span> <img src="{{ asset('assets_web/images/wallet/13.png') }}" class="spin-img" height="25" width="25"  alt=""> Spin & Earn </span> <span>Upto 200 Rs</span>
+                </div>
+                <a href="javascript:void(0);" class="button_confirm_new">Confirm to Pay</a>
+             
+            </div>
+        </div>
+
+
+        <div class="recharge-container design_plan">
             <div class="info-box">
                 <p class="text-white"><strong class="text-white">Paid To:  </strong>{{ $operator ?? 'N/A' }}</p>
                 <p class="text-white"><strong class="text-white">Amount:  </strong>  ₹{{ $rechargeAmount ?? '0.00' }}</p>
@@ -89,7 +221,7 @@
             
 
             <h4 class="text-success pin_title m-auto">Enter 4 Digits MV-PIN</h4>
-<div class="ms-3 mt-3">
+            <div class="ms-3 mt-3">
             <form method="POST" action="{{ route('user.save.recharge.pin') }}" onsubmit="submitPin(event)">
                 @csrf
                 <input type="hidden" name="recharge_pin" id="recharge_pin" value="">
@@ -191,8 +323,20 @@
 
         $('.message-box').removeClass('d-none');
         $('#forget_pin').val('1');
-        
+
     };
+
+    document.addEventListener('DOMContentLoaded', function() {
+    const button = document.querySelector('.button_confirm_new');
+    const banner = document.querySelector('.banner_design');
+    const designPlan = document.querySelector('.design_plan');
+
+    button.addEventListener('click', function() {
+        designPlan.style.display = 'block';
+        banner.style.display = 'none';
+    });
+});
+
 
 </script>
 
