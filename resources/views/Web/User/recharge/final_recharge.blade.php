@@ -74,8 +74,8 @@
                 'Education Fees' => 'education.png'
             ];
 
-            $operatorLogo = isset($operators[$operator]) 
-                ? asset('assets/operators/' . $operators[$operator]) 
+            $operatorLogo = isset($operators[$rechargeData['operator']]) 
+                ? asset('assets/operators/' . $operators[$rechargeData['operator']]) 
                 : asset('assets/operators/default.png');
         @endphp
         <form id="rechargeForm" action="{{ route('user.recharge.process') }}" method="POST">
