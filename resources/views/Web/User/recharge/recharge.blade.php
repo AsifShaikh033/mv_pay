@@ -24,36 +24,38 @@
         font-size: 18px;
     }
     .pin-input {
-        display: flex;
-        /* justify-content: center; */
-        /* gap: 10px; */
-        gap: 18px;
-    }
+    display: flex;
+    justify-content: center;
+    /* gap: 10px; */
+    gap: 18px;
+}
 
-    .pin-spin {
-        display: flex;
-        /* justify-content: center; */
-        /* gap: 10px; */
-        gap: 44px;
-        margin-bottom: 10px;
-    }
+.pin-spin {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 10px;
+    gap: 31px;
+    margin-bottom: 10px;
+}
 
-    .pin-input input {
-        /* width: 40px; */
-        width: 63px;
-        /* height: 40px; */
-        height: 35px;
-        text-align: center;
-        font-size: 18px;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-    }
+.pin-input input {
+    /* width: 40px; */
+    width: 100%;
+    /* height: 40px; */
+    height: 35px;
+    text-align: center;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
     .numpad {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
-        margin-top: 20px;
-    }
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+    align-items: center;
+    justify-items: center;
+}
     .numpad button {
         /* padding: 15px; */
         font-size: 18px;
@@ -240,10 +242,10 @@
                 <input type="hidden" name="plan_id" value="{{ $data['plan_id'] ?? '' }}">
 
                 <div class="pin-spin">
-                    <img src="{{ asset('assets_web/images/wallet/13.png') }}" class="spin-img" style="width:25px!important;height:25px!important;margin-left: 13px;" alt="">
-                    <img src="{{ asset('assets_web/images/wallet/13.png') }}" class="spin-img" style="width:25px!important;height:25px!important;margin-left: 13px;" alt="">
-                    <img src="{{ asset('assets_web/images/wallet/13.png') }}" class="spin-img" style="width:25px!important;height:25px!important;margin-left: 13px;" alt="">
-                    <img src="{{ asset('assets_web/images/wallet/13.png') }}" class="spin-img" style="width:25px!important;height:25px!important;margin-left: 13px;" alt="">
+                    <img src="{{ asset('assets_web/images/wallet/13.png') }}" class="spin-img" style="width:25px!important;height:25px!important;" alt="">
+                    <img src="{{ asset('assets_web/images/wallet/13.png') }}" class="spin-img" style="width:25px!important;height:25px!important;" alt="">
+                    <img src="{{ asset('assets_web/images/wallet/13.png') }}" class="spin-img" style="width:25px!important;height:25px!important;" alt="">
+                    <img src="{{ asset('assets_web/images/wallet/13.png') }}" class="spin-img" style="width:25px!important;height:25px!important;" alt="">
                 </div>
                 <div class="pin-input">
                     <input type="password" maxlength="1" oninput="moveToNext(this, 0)">
