@@ -90,9 +90,9 @@
                                 <!-- </div>
 
                                 <div class="row"> -->
-                                <div class="col-lg-4 col-md-6 col-6">
+                                <!-- <div class="col-lg-4 col-md-6 col-6">
                                         <p class="small"><strong>Post Balance:</strong> ₹{{ $transaction->post_balance }}</p>
-                                    </div>
+                                    </div> -->
                                     <div class="col-lg-4 col-md-6 col-6">
                                         <p class="small"><strong>Date:</strong> {{ $transaction->created_at ? $transaction->created_at->format('d-m-y') : 'N/A' }}</p>
                                     </div>
@@ -104,7 +104,7 @@
                                 <div class="mt-2">
                                     <!-- <p class="small"><strong>Details:</strong> {{ $transaction->details }}</p>
                                     <p class="small"><strong>Remark:</strong> {{ $transaction->remark }}</p> -->
-                                    <p class="small"><strong>Response Msg:</strong> {{ $transaction->response_msg }}</p>
+                                    <!-- <p class="small"><strong>Response Msg:</strong> {{ $transaction->response_msg }}</p> -->
                                 </div>
                             </div>
                         </div>
