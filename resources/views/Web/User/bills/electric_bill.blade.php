@@ -158,8 +158,8 @@
 
         <button class="prepaid-button mb-3">Bills</button>
     
-    <form id="rechargeForm" action="{{ route('user.recharge.bill_fetch') }}" method="POST">
-    @csrf 
+    <form id="rechargeForm" action="{{ route('user.recharge.bill_fetch') }}" method="GET">
+ 
     <div class="input-section">
         
         <div class="input-group_1 mb-2">

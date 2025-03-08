@@ -158,33 +158,35 @@
 
         <button class="prepaid-button mb-3">Bills</button>
     
-    <form id="rechargeForm" action="{{ route('user.recharge.bill_details') }}" method="POST">
-    @csrf 
-    <div class="input-section">
-        <div class="input-group_1 mb-2">
-            <div class="input-with-icon">
-                <input type="text" id="bill-number" name="bill_number" placeholder="Enter Bill number" value="{{ old('bill_number') }}" required>
-                <span class="contact-icon"><i class="fa fa-electric" aria-hidden="true"></i>
-                </span>
+        <form id="rechargeForm" action="{{ route('user.recharge.bill_details_by_number') }}" method="GET">
+
+        <div class="input-section">
+            <div class="input-group_1 mb-2">
+                <div class="input-with-icon">
+                    <input type="text" id="bill-number" name="bill_number" placeholder="Enter Bill number" value="{{ old('bill_number') }}" required>
+                    <span class="contact-icon"><i class="fa fa-electric" aria-hidden="true"></i>
+                    </span>
+                </div>
+            </div>
+
+            <input type="hidden" name="Key" value="{{ $KEY }}">  
+            <input type="hidden" name="Key" value="{{ $KEY }}">  
+            <input type="hidden" name="operatorCode" value="{{ $operatorCode }}">  
+
+            <input type="hidden" name="isOptional" value="False">        
+
+            <div class="validity d-flex align-items-center">
+                                    <img src="{{ asset('assets_web/images/wallet/13.png') }}" class="spin-img" style="width:10%!important;height:10%!important;" alt="">
+                                    <p class="text-success m-auto fs-6">Spin And Earn Upto ₹20</p>
+                                    <!-- <button class="btn btn-sm btn-light mb-0" type="submit">show more</button> -->
+                                </div>
+            <!-- Check Plans Button -->
+            <div class="plans-button-container mt-4">
+                <button  type="submit" class="check-plans-btn mt-3 text-decoration-none" >Bill Pay</button>
+                <!-- <button class="check-plans-btn" >Checkout Plans & Offers</button> -->
             </div>
         </div>
-
-        <input type="hidden" name="Key" value="{{ $KEY }}">  
-
-        <input type="hidden" name="isOptional" value="False">        
-
-        <div class="validity d-flex align-items-center">
-                                <img src="{{ asset('assets_web/images/wallet/13.png') }}" class="spin-img" style="width:10%!important;height:10%!important;" alt="">
-                                <p class="text-success m-auto fs-6">Spin And Earn Upto ₹20</p>
-                                <!-- <button class="btn btn-sm btn-light mb-0" type="submit">show more</button> -->
-                            </div>
-        <!-- Check Plans Button -->
-        <div class="plans-button-container mt-4">
-            <button  type="submit" class="check-plans-btn mt-3 text-decoration-none" >Bill Pay</button>
-            <!-- <button class="check-plans-btn" >Checkout Plans & Offers</button> -->
-        </div>
-    </div>
-    </form>
+        </form>
 
 </div>
 </div>

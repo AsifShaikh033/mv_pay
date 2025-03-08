@@ -203,8 +203,8 @@ class RechargeController extends Controller
             }
         
             // Step 3: Initiate Recharge Request
-            Log::warning('operator', ['operator' => $mappedCode]);
-            Log::warning('c planet token ', ['token' => $tokenResponse]);
+          //  Log::warning('operator', ['operator' => $mappedCode]);
+           // Log::warning('c planet token ', ['token' => $tokenResponse]);
             $rechargeResponse = $this->cplanetService->rechargePrepaid(
                 $request->input('mobileNumber'),
                 $mappedCode,
@@ -262,7 +262,8 @@ class RechargeController extends Controller
                 Log::warning('BalanceCashback', ['BalanceCashback' => $cashback]);
 
                 if ($cashback) {
-                    send_spin_chance($user, $rechargeAmount, $cashback->cashback, $cashback->category);
+                  $send_spin_chance =  send_spin_chance($user, $rechargeAmount, $cashback->cashback, $cashback->category);
+                    $transaction->spin_api_response = $send_spin_chance;
                 }
                 } else {
                     $transaction->status = 0;
@@ -377,7 +378,8 @@ class RechargeController extends Controller
             ->first();
             Log::warning('BalanceCashback', ['BalanceCashback' => $cashback]);
             if($cashback){
-                send_spin_chance($user,$rechargeAmount, $cashback->cashback, $cashback->category);
+              $send_spin_chance=  send_spin_chance($user,$rechargeAmount, $cashback->cashback, $cashback->category);
+                $transaction->spin_api_response = $send_spin_chance;
             }
                 
 
