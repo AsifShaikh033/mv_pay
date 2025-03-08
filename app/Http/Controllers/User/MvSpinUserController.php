@@ -76,9 +76,9 @@ class MvSpinUserController extends Controller
         $user = User::where('mob_number', $request->phone)->first();
 // echo "<pre>"; print_r($user);die;
         if ($user) {
-            if ($user->remember_token !== $request->random_token) {
-                return response()->json(['error' => 'Invalid token.'], 403);
-            }
+            // if ($user->remember_token !== $request->random_token) {
+            //     return response()->json(['error' => 'Invalid token.'], 403);
+            // }
         
             // Update user balance
             $user->balance += $request->amount;
@@ -94,7 +94,7 @@ class MvSpinUserController extends Controller
             $transaction->trx_type = '+';
             $transaction->status = 1;
             $transaction->payment_status = 'paid';
-            $transaction->remark = 'spin_direct_winn';
+            $transaction->remark = 'spin_win';
             $transaction->details = 'You have plan ' . $request->recharge_plan . ' so you have won ' . $request->amount . ' amount from your spin';
             $transaction->save();
         

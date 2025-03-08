@@ -166,12 +166,6 @@ class BillController extends Controller
 
         public function bill_FORM_FETCH(Request $request)
         {
-            $request->validate([
-                'operator' => 'required'
-            ], [
-                'operator.required' => 'Please select an operator.'
-            ]);
-
             $response = $this->rechargeService->bill_FORM_FETCH(
                 $request->input('operator')
             );
@@ -185,22 +179,22 @@ class BillController extends Controller
 
         public function bill_details(Request $request)
         {
-            $request->validate([
-                'bill_number' => 'required',
-                'operator' => 'required'
-            ], [
-                'bill_number.required' => 'Bill number is required.',
-                'operator.required' => 'Operator is required.'
-            ]);
-        
             $billNumber = $request->input('bill_number');
-            $operatorCode = $request->input('operator');
+            $operatorCode = $request->input('operatorCode');
+            $key = $request->input('Key');
         
-            $fetchResponse = $this->rechargeService->billoperatorfetch($operatorCode, $billNumber);
+            $fetchResponse = $this->rechargeService->billoperatorfetch($operatorCode, $billNumber, $key);
         
-            if (isset($fetchResponse['error'])) {
-                return redirect()->back()->with('error', $fetchResponse['error']);
+            // Decode response if it's a JSON string
+            if (is_string($fetchResponse)) {
+                $fetchResponse = json_decode($fetchResponse, true);
             }
+        
+            // Check if the response contains an error
+            if (isset($fetchResponse['statuscode']) && $fetchResponse['statuscode'] === 'ERR') {
+                return redirect()->back()->with('error', $fetchResponse['status']);
+            }
+        
         
             $customerDetails = [
                 'customer_name' => trim($fetchResponse['CustomerName'] ?? 'N/A'),
