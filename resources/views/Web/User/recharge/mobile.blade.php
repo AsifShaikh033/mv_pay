@@ -199,10 +199,9 @@ button.prepaid-button {
     background: white;
     font-weight: bolder;
     border-radius: 10px;
-    padding: 3px 15px 3px 15px;
+    padding: 0px 10px 1px 10px;
     font-size: 30px;
     font-family: 'Flaticon';
-    letter-spacing: 2px;
 }
 
 .validity {
