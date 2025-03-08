@@ -83,6 +83,43 @@ class RechargeService
         return $response->json();
     }
 
+    public function bill_FORM_FETCH($operator)
+    {
+        try {
+            $response = Http::asForm()->post($this->apiBaseUrl . 'api/BillFetch_Cyrus_BA.aspx', [
+                'memberid'    => $this->CYRUS_MEMBER_ID,
+                'pin'         => $this->BILL_FECTH_API,
+                'methodname'  => 'get_billerinfo',
+                'operator'    => $operator,
+            ]);
+
+            if ($response->failed()) {
+                return ['error' => 'Failed to connect to API', 'status' => $response->status()];
+            }
+
+            $rawResponse = $response->body();
+
+            if (empty($rawResponse)) {
+                return ['error' => 'Empty response from API'];
+            }
+
+            $data = json_decode($rawResponse, true);
+
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                return ['error' => 'Invalid JSON response from API', 'raw' => $rawResponse];
+            }
+
+            if (!isset($data['Request']) || !is_array($data['Request'])) {
+                return ['error' => 'Invalid API response structure', 'raw' => $rawResponse];
+            }
+
+            return $data['Request'];
+        } catch (\Exception $e) {
+            return ['error' => $e->getMessage()];
+        }
+    }
+    
+
 
     public function billoperatorfetch($operator, $billNumber)
     {

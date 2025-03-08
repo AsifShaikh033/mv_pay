@@ -177,7 +177,7 @@
             <li >
               <a class="dash_changes"  href="{{route('user.add.pin')}}">
                   <i class="basecolor flaticon-381-more"></i> 
-                  <span class="nav-text">Add Pin</span>
+                  <span class="nav-text">Set Pin</span>
                   </a>
                
               </li>
