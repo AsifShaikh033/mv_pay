@@ -158,48 +158,20 @@
 
         <button class="prepaid-button mb-3">Bills</button>
     
-    <form id="rechargeForm" action="{{ route('user.recharge.bill_fetch') }}" method="POST">
+    <form id="rechargeForm" action="{{ route('user.recharge.bill_details') }}" method="POST">
     @csrf 
     <div class="input-section">
-        
         <div class="input-group_1 mb-2">
-            <div class="input-with-icon">
-            <select name="operator" id="operator" class="form-control" required>
-                <option value="">Select Operator</option>
-                @foreach($Operator as $op)
-                <option value="{{ $op->OperatorCode }}" {{ old('operator') == $op->OperatorCode ? 'selected' : '' }}>
-                    {{ $op->OperatorName }}
-                </option>
-                @endforeach
-            </select>
-            </div>
-        </div>
-
-    <!-- <div class="input-group_1 mb-2">   
-       
             <div class="input-with-icon">
                 <input type="text" id="bill-number" name="bill_number" placeholder="Enter Bill number" value="{{ old('bill_number') }}" required>
                 <span class="contact-icon"><i class="fa fa-electric" aria-hidden="true"></i>
                 </span>
             </div>
-        </div> -->
+        </div>
 
-        <!-- <div class="input-group_1 mb-2">
-            <div class="input-with-icon">
-                <input type="text" id="amount" name="amount" placeholder="Enter Amount" value="{{ old('amount') }}" > 
-            </div>
-        </div> -->
+        <input type="hidden" name="Key" value="{{ $KEY }}">  
 
-        <!-- <div class="input-group_1 mb-2">
-            <div class="input-with-icon">
-            <select name="circle" id="circle" class="form-control" required>
-                    <option value="">Select Circle</option>
-                    @foreach($circle as $c)
-                        <option value="{{ $c->circlecode }}" {{ old('circle') == $c->circlecode ? 'selected' : '' }}>{{ $c->circlename }}</option>
-                    @endforeach
-                </select>
-            </div>
-        </div> -->
+        <input type="hidden" name="isOptional" value="False">        
 
         <div class="validity d-flex align-items-center">
                                 <img src="{{ asset('assets_web/images/wallet/13.png') }}" class="spin-img" style="width:10%!important;height:10%!important;" alt="">
@@ -208,7 +180,7 @@
                             </div>
         <!-- Check Plans Button -->
         <div class="plans-button-container mt-4">
-            <button  type="submit" class="check-plans-btn mt-3 text-decoration-none" >Next</button>
+            <button  type="submit" class="check-plans-btn mt-3 text-decoration-none" >Bill Pay</button>
             <!-- <button class="check-plans-btn" >Checkout Plans & Offers</button> -->
         </div>
     </div>
@@ -217,66 +189,6 @@
 </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-$(document).ready(function() {
-
-    $('.recent-number span').on('click', function() {
-    let selectedNumber = $(this).data('number');
-    $('#bill-number').val(selectedNumber).trigger('input');
-    fetchOperatorAndCircle(selectedNumber);
-   // console.log(selectedNumber);
-
-});
-
-
-function fetchOperatorAndCircle(billNumber, operator) {
-    $.ajax({
-        url: "{{ route('billfetch.operator.circle') }}",
-        type: "POST",
-        data: {
-            bill_number: billNumber,
-            operator: operator,
-            _token: "{{ csrf_token() }}"
-        },
-        success: function(response) {
-            if (response.status === 1) {
-                $('#operator').val(response.operator).change();
-                $('#circle').val(response.circle).change();
-                $('#amount').val(response.amount);
-            }
-        },
-        error: function(xhr) {
-            if (xhr.responseJSON && xhr.responseJSON.error) {
-                toastr.error(xhr.responseJSON.error, 'Error Alert', { timeOut: 8000 });
-            } else {
-                toastr.error('Issue in Fetch Mobile details', 'Error', { timeOut: 8000 });
-            }
-        }
-    });
-}
-
-
-
-// Bind to keyup
-// $('#bill-number').on('keyup', function() {
-//     fetchOperatorAndCircle($(this).val());
-// });
-
-
-$('#bill-number').on('keyup', function() {
-    let billNumber = $(this).val();
-    let operator = $('#operator').val();
-    if (billNumber === "" || operator === "") {
-        return;
-    }
-
-    fetchOperatorAndCircle(billNumber, operator);
-});
-
-
-});
-</script>
 @endsection
 
 @section('styles')

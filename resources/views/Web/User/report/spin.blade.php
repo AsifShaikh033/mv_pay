@@ -2,89 +2,161 @@
 
 @section('content')
 <style>
-    @media (max-width: 767px) { 
-    .mobile-h-25 {
-        height: 25% !important;
+    @media (max-width: 767px) {
+        .mobile-h-25 {
+            height: 25% !important;
+        }
     }
+</style>
+<style>
+      
+        
+        /* Main section */
+        .snow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border-radius: 10px;
+    background: linear-gradient(to right, black, blue);
+    text-align: center;
 }
 
-</style>
+        /* Trophy section */
+        .shows img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 10px;
+        }
+
+        /* Cashback section */
+        .showss {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .showss h2 {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .showss h1 {
+            font-size: 40px;
+            font-weight: bold;
+            color: #FFD700;
+        }
+
+        .showss img {
+            margin-bottom: 10px;
+        }
+
+        .showss a {
+            color: white;
+            text-decoration: underline;
+            font-weight: bold;
+        }
+        .trophy{
+            width:50%;
+            height:50%;
+        }
+    </style>
 <div class="content-body">
-    <div class="container py-4">
-        <h2 class="text-light text-center mb-4 mt-2">{{ $reportTitle }}</h2>
+    <div class="container py-4 ">
+        <h2 class="text-light text-center mb-4 mt-5">{{ $reportTitle }}</h2>
+
+        <div class="container">
+        <div class="snow">
+        
+                <img src="{{ asset('assets_web/images/others_services/trophy.png') }}" class="trophy" alt="Trophy">
+      
+            <div class="showss">
+                <img src="{{ asset('assets_web/images/others_services/spin.png') }}" width="80px" height="80px" alt="Spin Wheel">
+                <h2>Click here to get cashback</h2>
+                <p><a href="#">link... url</a></p>
+                <h3>You have received</h3>
+                <h1>5 Rs</h1>
+            </div>
+
+        </div>
+    </div>
+
 
         @if($transactions->isEmpty())
-            <p class="text-center text-white">No Transactions found for this report.</p>
+        <p class="text-center text-white">No Transactions found for this report.</p>
         @else
-            <div class="d-flex flex-wrap justify-content-center">
-                @php
-                    $operators = [
-                        'Airtel' => 'airtel.png',
-                        'Idea' => 'idea.png',
-                        'Jio' => 'jio.png',
-                        'BSNL TopUp' => 'bsnl.png',
-                        'Vi' => 'vi.png',
-                        'DTH' => 'dth.png',
-                        'Electricity' => 'electricity.png',
-                        'Hospital' => 'hospital.png',
-                        'Loan Repayment' => 'loan.png',
-                        'LPG Gas' => 'lpg.png',
-                        'Municipal Services' => 'municipal.png',
-                        'Municipal Taxes' => 'municipal.png',
-                        'Municipal Taxes' => 'municipal.png',
-                        'Education Fees' => 'education.png'
-                    ];
-                @endphp
-                @foreach($transactions as $transaction)
-                
-                    @php
-                        $operatorLogo = isset($operators[$transaction->operator]) 
-                            ? asset('assets/operators/' . $operators[$transaction->operator]) 
-                            : asset('assets/operators/default.png');
-                    @endphp
-                    <div class="card w-100 h-25 mb-1 shadow-lg border-0 rounded-lg mobile-h-25">
-                    <span id="copy-message" style="display: none; color: limegreen;">Link copied successfully!</span>
-                            <span class="card-text mb-0" style="
+        <div class="d-flex flex-wrap justify-content-center">
+            @php
+            $operators = [
+            'Airtel' => 'airtel.png',
+            'Idea' => 'idea.png',
+            'Jio' => 'jio.png',
+            'BSNL TopUp' => 'bsnl.png',
+            'Vi' => 'vi.png',
+            'DTH' => 'dth.png',
+            'Electricity' => 'electricity.png',
+            'Hospital' => 'hospital.png',
+            'Loan Repayment' => 'loan.png',
+            'LPG Gas' => 'lpg.png',
+            'Municipal Services' => 'municipal.png',
+            'Municipal Taxes' => 'municipal.png',
+            'Municipal Taxes' => 'municipal.png',
+            'Education Fees' => 'education.png'
+            ];
+            @endphp
+            @foreach($transactions as $transaction)
+
+            @php
+            $operatorLogo = isset($operators[$transaction->operator])
+            ? asset('assets/operators/' . $operators[$transaction->operator])
+            : asset('assets/operators/default.png');
+            @endphp
+            <div class="card w-100 h-25 mb-1 shadow-lg border-0 rounded-lg mobile-h-25">
+                <span id="copy-message" style="display: none; color: limegreen;">Link copied successfully!</span>
+                <span class="card-text mb-0" style="
     border: var(--bs-border-width) solid var(--bs-border-color);
 "><strong>Spin Redirect Link:</strong><a href="https://mvvision.in/student/spin-mv-pay" target="_blank" id="spin-link"> https://mvvision.in/student/spin-mv-pay</a>
-                            <button onclick="copyLink()" class="btn btn-sm btn-info btn-outline-primary ms-2">Copy Link</button>  
+                    <button onclick="copyLink()" class="btn btn-sm btn-info btn-outline-primary ms-2">Copy Link</button>
                 </span>
-                        <div class="card-body">
-                        <div class="d-flex align-items-center justify-content-between" style="flex-direction: row;">
-                    <!-- Logo & User Info (Left) -->
-                    <div class="d-flex align-items-center" style="flex-direction: row;">
-                        <!-- <img src="{{ $operatorLogo }}" alt="{{ $transaction->operator }}" width="50" style="border-radius: 30px;"> -->
-                        <div>
-                            <h5 class="card-title mb-1">{{ ucfirst($transaction->user_name) }}</h5>
-                            <strong>TRX Type:</strong> 
-                            @if($transaction->trx_type == '+')
+                <div class="card-body">
+                    <div class="d-flex align-items-center justify-content-between" style="flex-direction: row;">
+                        <!-- Logo & User Info (Left) -->
+                        <div class="d-flex align-items-center" style="flex-direction: row;">
+                            <!-- <img src="{{ $operatorLogo }}" alt="{{ $transaction->operator }}" width="50" style="border-radius: 30px;"> -->
+                            <div>
+                                <h5 class="card-title mb-1">{{ ucfirst($transaction->user_name) }}</h5>
+                                <strong>TRX Type:</strong>
+                                @if($transaction->trx_type == '+')
                                 <span class="badge bg-success">+</span>
-                            @elseif($transaction->trx_type == '-')
-                                <span class="badge bg-danger">-</span> 
-                            @endif
-                           
+                                @elseif($transaction->trx_type == '-')
+                                <span class="badge bg-danger">-</span>
+                                @endif
+
+                            </div>
                         </div>
-                    </div>
                         <div>
-                            
-                        <!-- <span id="copy-message" style="display: none; color: limegreen;">Link copied successfully!</span>
+
+                            <!-- <span id="copy-message" style="display: none; color: limegreen;">Link copied successfully!</span>
                             <p class="card-text mb-0"><strong>Spin Redirect Link:</strong><a href="https://mvvision.in/student/spin-mv-pay" target="_blank" id="spin-link"> https://mvvision.in/student/spin-mv-pay</a>
                             <button onclick="copyLink()" class="btn btn-sm btn-info btn-outline-primary ms-2">Copy Link</button>  
                         </p> -->
                             <!-- <p class="card-text mb-0"><strong>Post Balance:</strong> {{ $transaction->post_balance }}</p> -->
                         </div>
-                    
-    <!-- Status (Right) -->
+
+                        <!-- Status (Right) -->
                         <div>
-                        <strong>Status:</strong>
+                            <strong>Status:</strong>
                             @if($transaction->status == '1')
-                                <span class="badge bg-success">Success</span>
+                            <span class="badge bg-success">Success</span>
                             @elseif($transaction->status == '0')
-                                <span class="badge bg-warning">Pending</span>
+                            <span class="badge bg-warning">Pending</span>
                             @elseif($transaction->status == '2')
-                                <span class="badge bg-danger">Failed</span>
-                             @elseif($transaction->status == '3')
-                             <span class="badge bg-danger">Rejected</span>   
+                            <span class="badge bg-danger">Failed</span>
+                            @elseif($transaction->status == '3')
+                            <span class="badge bg-danger">Rejected</span>
                             @endif
                         </div>
                     </div>
@@ -101,11 +173,11 @@
                         <!-- <p class="card-text"><strong>Response Msg:</strong> {{ $transaction->response_msg }}</p> -->
                     </div>
 
-                            
-                        </div>
-                    </div>
-                @endforeach
+
+                </div>
             </div>
+            @endforeach
+        </div>
         @endif
     </div>
 </div>
@@ -116,7 +188,9 @@
             .then(() => {
                 const message = document.getElementById('copy-message');
                 message.style.display = 'inline';
-                setTimeout(() => { message.style.display = 'none'; }, 2000);
+                setTimeout(() => {
+                    message.style.display = 'none';
+                }, 2000);
             })
             .catch(err => console.error('Failed to copy link:', err));
     }
