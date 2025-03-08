@@ -164,6 +164,63 @@ class BillController extends Controller
             return view('Web.User.bills.electric_bill',compact('circle', 'Operator', 'billNumbers'));
         }
 
+        public function bill_FORM_FETCH(Request $request)
+        {
+            $request->validate([
+                'operator' => 'required'
+            ], [
+                'operator.required' => 'Please select an operator.'
+            ]);
+
+            $KEY= $this->rechargeService->fetchBillPlans(
+                // $tokenResponse,  
+                $request->input('operator')
+               
+            );
+
+
+
+            $operatorCode = $request->input('operator');
+            return view('Web.User.bills.bill_fetch', compact('operatorCode', 'KEY'));
+        }
+
+
+        public function bill_details(Request $request)
+        {
+            $request->validate([
+                'bill_number' => 'required',
+                'operator' => 'required'
+            ], [
+                'bill_number.required' => 'Bill number is required.',
+                'operator.required' => 'Operator is required.'
+            ]);
+        
+            $billNumber = $request->input('bill_number');
+            $operatorCode = $request->input('operator');
+        
+            $fetchResponse = $this->rechargeService->billoperatorfetch($operatorCode, $billNumber);
+        
+            if (isset($fetchResponse['error'])) {
+                return redirect()->back()->with('error', $fetchResponse['error']);
+            }
+        
+            $customerDetails = [
+                'customer_name' => trim($fetchResponse['CustomerName'] ?? 'N/A'),
+                'due_amount' => $fetchResponse['DueAmount'] ?? 'N/A',
+                'due_date' => $fetchResponse['DueDate'] ?? 'N/A',
+                'bill_number' => $fetchResponse['BillNumber'] ?? 'N/A',
+                'bill_date' => $fetchResponse['BillDate'] ?? 'N/A',
+                'bill_period' => $fetchResponse['BillPeriod'] ?? 'N/A'
+            ];
+        
+            $circle = Circle::all();
+            $Operator = Operator::where('ServiceTypeName', 'Electricity')->get();
+        
+            return view('Web.User.bills.bill_details', compact('circle', 'Operator', 'customerDetails'));
+        }
+                
+
+
 
         public function common(Request $request)
             {
