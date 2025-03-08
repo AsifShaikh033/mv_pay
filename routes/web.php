@@ -167,7 +167,7 @@ Route::get('/recharge-get', [RechargeController::class, 'recharge']);
         //Bill ELECTRICITY bill_plan
         Route::get('/recharge/electricity',[BillController::class,'electtric_f'])->name('recharge.electricity');
         Route::post('/recharge/bill_plan',[BillController::class,'bill_plan'])->name('recharge.bill_plan');
-        Route::post('/recharge/bill_fetch',[BillController::class,'bill_fetch'])->name('recharge.bill_fetch');
+        Route::post('/recharge/bill_fetch',[BillController::class,'bill_FORM_FETCH'])->name('recharge.bill_fetch');
         Route::post('/recharge/bill_details',[BillController::class,'bill_details'])->name('recharge.bill_details');
 
         //Common Function

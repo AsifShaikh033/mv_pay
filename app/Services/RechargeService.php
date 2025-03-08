@@ -92,28 +92,28 @@ class RechargeService
                 'methodname'  => 'get_billerinfo',
                 'operator'    => $operator,
             ]);
-    
+
             if ($response->failed()) {
                 return ['error' => 'Failed to connect to API', 'status' => $response->status()];
             }
-    
+
             $rawResponse = $response->body();
-    
+
             if (empty($rawResponse)) {
                 return ['error' => 'Empty response from API'];
             }
-    
+
             $data = json_decode($rawResponse, true);
-    
+
             if (json_last_error() !== JSON_ERROR_NONE) {
                 return ['error' => 'Invalid JSON response from API', 'raw' => $rawResponse];
             }
-    
-            if (!isset($data['statuscode']) || $data['statuscode'] !== 'TXN') {
-                return ['error' => $data['status'] ?? 'Unknown error', 'raw' => $rawResponse];
+
+            if (!isset($data['Request']) || !is_array($data['Request'])) {
+                return ['error' => 'Invalid API response structure', 'raw' => $rawResponse];
             }
-            $keys = array_map(fn($item) => $item['Key'], $data['Request']);
-            return $keys;
+
+            return $data['Request'];
         } catch (\Exception $e) {
             return ['error' => $e->getMessage()];
         }

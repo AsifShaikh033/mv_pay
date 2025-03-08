@@ -161,20 +161,6 @@
     <form id="rechargeForm" action="{{ route('user.recharge.bill_fetch') }}" method="POST">
     @csrf 
     <div class="input-section">
-        <!-- <div class="input-group_1 mb-2">
-       
-            <div class="input-with-icon">
-                <input type="text" id="bill-number" name="bill_number" placeholder="Enter Bill number" value="{{ old('bill_number') }}" required>
-                <span class="contact-icon"><i class="fa fa-electric" aria-hidden="true"></i>
-                </span>
-            </div>
-        </div> -->
-
-        <!-- <div class="input-group_1 mb-2">
-            <div class="input-with-icon">
-                <input type="text" id="amount" name="amount" placeholder="Enter Amount" value="{{ old('amount') }}" > 
-            </div>
-        </div> -->
         
         <div class="input-group_1 mb-2">
             <div class="input-with-icon">
@@ -188,6 +174,21 @@
             </select>
             </div>
         </div>
+
+    <!-- <div class="input-group_1 mb-2">   
+       
+            <div class="input-with-icon">
+                <input type="text" id="bill-number" name="bill_number" placeholder="Enter Bill number" value="{{ old('bill_number') }}" required>
+                <span class="contact-icon"><i class="fa fa-electric" aria-hidden="true"></i>
+                </span>
+            </div>
+        </div> -->
+
+        <!-- <div class="input-group_1 mb-2">
+            <div class="input-with-icon">
+                <input type="text" id="amount" name="amount" placeholder="Enter Amount" value="{{ old('amount') }}" > 
+            </div>
+        </div> -->
 
         <!-- <div class="input-group_1 mb-2">
             <div class="input-with-icon">
@@ -212,22 +213,6 @@
         </div>
     </div>
     </form>
-
-    <div class="recent-recharges">
-    <p>Recent or Personal Bill Recharges</p>
-    <div class="recharge-history mt-3">
-        <h6 class="fw-bold">Recent Bill Numbers</h6>
-        <ul class="list-unstyled">
-    @foreach($billNumbers as $number)
-        <li class="d-flex align-items-center gap-2 recent-number">
-            <i class="fa fa-mobile" aria-hidden="true"></i>
-            <span data-number="{{ $number->number }}">{{ $number->number }}</span>
-        </li>
-    @endforeach
-</ul>
-
-    </div>
-</div>
 
 </div>
 </div>

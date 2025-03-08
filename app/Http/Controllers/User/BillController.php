@@ -172,15 +172,13 @@ class BillController extends Controller
                 'operator.required' => 'Please select an operator.'
             ]);
 
-            $KEY= $this->rechargeService->fetchBillPlans(
-                // $tokenResponse,  
+            $response = $this->rechargeService->bill_FORM_FETCH(
                 $request->input('operator')
-               
             );
 
-
-
             $operatorCode = $request->input('operator');
+            $KEY = $response[0]['Key'] ?? null;
+
             return view('Web.User.bills.bill_fetch', compact('operatorCode', 'KEY'));
         }
 
