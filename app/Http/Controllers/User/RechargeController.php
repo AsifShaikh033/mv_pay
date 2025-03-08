@@ -254,8 +254,13 @@ class RechargeController extends Controller
                 $recharge->status = 'success';
                 $this->recharge_bonus($user, $rechargeAmount, $rechargeResponse);
 
-                $cashback = BalanceCashback::where('category', 'Prepaid-Mobile')->where('balance', $rechargeAmount)->first();
-                Log::warning('BalanceCashback', ['cashback' => $cashback]);
+                // $cashback = BalanceCashback::where('category', 'Prepaid-Mobile')->where('balance', $rechargeAmount)->first();
+                $cashback = BalanceCashback::where('category', 'Prepaid-Mobile')
+                ->where('balance', '<=', $rechargeAmount)
+                ->orderBy('balance', 'desc') 
+                ->first();
+                Log::warning('BalanceCashback', ['BalanceCashback' => $cashback]);
+
                 if ($cashback) {
                     send_spin_chance($user, $rechargeAmount, $cashback->cashback, $cashback->category);
                 }
