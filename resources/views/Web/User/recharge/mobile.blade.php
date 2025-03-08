@@ -9,6 +9,7 @@
     margin: 100px auto;
     padding: 20px;
     border-radius: 20px;
+    border: 1px solid #ff66c4;
     background: linear-gradient(to right, black 0%, black 5%, blue 50%, black 95%, black 100%);
 }
 
@@ -54,6 +55,7 @@
     width: 100%;
     padding: 10px;
     font-size: 16px;
+    color: white;
     border: 2px solid white;
     border-radius: 10px;
     background: linear-gradient(to right, black 0%, black 0%, blue 50%, black 100%, black 100%);
@@ -143,12 +145,12 @@
 .prepaid-button {
     padding: 10px 20px;
     font-size: 18px;
-    background-color: transparent; /* Make background transparent */
-    border: none; /* Remove default border */
-    border-bottom: 2px solid blue; /* Add a 2px solid blue bottom border */
-    color: blue; /* Set the text color to blue */
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid blue;
+    color: blue;
     cursor: pointer;
-    outline: none; /* Remove outline on focus */
+    outline: none;
     transition: all 0.3s ease; 
 }
 
@@ -197,7 +199,7 @@ button.prepaid-button {
     background: white;
     font-weight: bolder;
     border-radius: 10px;
-    padding: 5px 35px 5px 35px;
+    padding: 3px 15px 3px 15px;
     font-size: 30px;
     font-family: 'Flaticon';
     letter-spacing: 2px;
@@ -217,8 +219,8 @@ button.prepaid-button {
 }
 
 hr {
-    height: 3px !important;
-    background: linear-gradient(to right, #ffea00, #ffc107);
+    height: 5px !important;
+    background:  #ffde59;
 }
 </style>
 
