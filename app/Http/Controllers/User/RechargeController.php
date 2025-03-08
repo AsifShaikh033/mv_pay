@@ -142,6 +142,13 @@ class RechargeController extends Controller
     {
         $planId = $request->input('plan_id', null);
         $user = auth()->user();
+
+        $request->validate([
+            'recharge_pin' => 'required'
+        ]);
+        if($user->recharge_pin != $request->recharge_pin){
+            return redirect()->back()->with('error', 'Recharge PIN is not match!');
+        }
         
         if ($planId) {
             $mobileNumber = $request->input('mobileNumber');
@@ -438,6 +445,7 @@ public function showRechargeForm(Request $request)
     $data['rechargeValidity'] = $request->input('recharge_validity');
     $data['serviceType'] = $request->input('serviceType') ?? 'Prepaid-Mobile';
     $data['plan_id'] = $request->input('plan_id');
+    $data['recharge_short_desc'] = $request->input('recharge_short_desc');
 
 
     $operatorCode = $request->input('operatorCode');

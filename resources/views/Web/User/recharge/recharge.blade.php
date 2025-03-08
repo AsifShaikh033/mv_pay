@@ -195,7 +195,14 @@
                     <span> {{ $data['rechargeAmount'] }} RS</span>
                 </div>
                 <div class="box_banner_new benefits">
-                    Benefits: 1. UNLIMITED DATA - 42 GB (1.5GB/Day) 2. UNLIMITED Voice Calls 3. 100 SMS/Day 4. Subscription to JioApps and JioSaavn Pro COMBO - 28 days No- To activate jiosavan Pro COMBO- 28 subscription ,Download app & Login with your jio number . https://jiosaa.vn/89b57oac.
+                @php
+                    $description = $data['recharge_short_desc'];
+                    $shortDescription = Str::words($description, 30, '...');
+                @endphp
+                <span id="short-desc">{{ $shortDescription }}
+                    <span  onclick="toggleReadMore()" id="read-more-text">Read more</span>
+                </span>
+                <span id="full-desc" style="display: none;">{{ $description }}</span>
                 </div>
                 <div class="box_banner_new wallet_banner d-block">
                     <p class="d-flex justify-content-around align-items-center mb-1"><span> Wallet Balance</span><span> {{ Auth::user()->balance }} RS</span></p>
@@ -224,7 +231,7 @@
 
             <h4 class="text-success pin_title m-auto">Enter 4 Digits MV-PIN</h4>
             <div class="ms-3 mt-3">
-            <form method="POST" action="{{ route('user.save.recharge.pin') }}" onsubmit="submitPin(event)">
+            <form method="POST" action="{{ route('user.recharge.process') }}" onsubmit="submitPin(event)">
                 @csrf
                 <input type="hidden" name="recharge_pin" id="recharge_pin" value="">
                 <input type="hidden" name="forget_pin" id="forget_pin" value="0">
@@ -340,6 +347,23 @@
 });
 
 
+</script>
+<script>
+    function toggleReadMore() {
+        const shortDesc = document.getElementById('short-desc');
+        const fullDesc = document.getElementById('full-desc');
+        const readMoreText = document.getElementById('read-more-text');
+
+        if (shortDesc.style.display === 'none') {
+            shortDesc.style.display = 'inline';
+            fullDesc.style.display = 'none';
+            readMoreText.textContent = 'Read more';
+        } else {
+            shortDesc.style.display = 'none';
+            fullDesc.style.display = 'inline';
+            readMoreText.textContent = 'Read less';
+        }
+    }
 </script>
 
 
