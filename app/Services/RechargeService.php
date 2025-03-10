@@ -245,9 +245,9 @@ class RechargeService
             'circle'          => $circleCode,
             'amount'          => $amount,
             'usertx'          => $transaction_id,
-            'account'         => '2715500000356',
-            'othervalue'      => 'Other_Values',
-            'othervalue1'     => 'Other_Values', 
+           // 'account'         => '2715500000356',
+           // 'othervalue'      => 'Other_Values',
+           // 'othervalue1'     => 'Other_Values', 
             'format'           => 'json',
             'RechargeMode'     => 1
         ]);
