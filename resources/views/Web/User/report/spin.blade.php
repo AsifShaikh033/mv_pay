@@ -14,7 +14,7 @@
         /* Main section */
         .snow {
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     justify-content: center;
     padding: 20px;
     border-radius: 10px;
@@ -59,10 +59,30 @@
             text-decoration: underline;
             font-weight: bold;
         }
-        .trophy{
-            width:50%;
-            height:50%;
+        .trophy {
+    width: 50%;
+    /* height: 50%; */
+}
+        .showss img{
+            width:30%;
+           
         }
+
+        @media (max-width: 400px) {
+            .showss img {
+                    width: 30%;
+                }
+            .showss h2 {
+                font-size: 15px;
+            }
+            .showss h3 {
+                font-size: 15px;
+            }
+            .showss p {
+                font-size: 10px;
+            }
+
+    }
     </style>
 <div class="content-body">
     <div class="container py-4 ">
@@ -74,7 +94,7 @@
                 <img src="{{ asset('assets_web/images/others_services/trophy.png') }}" class="trophy" alt="Trophy">
       
             <div class="showss">
-                <img src="{{ asset('assets_web/images/others_services/spin.png') }}" width="80px" height="80px" alt="Spin Wheel">
+                <img src="{{ asset('assets_web/images/others_services/spin.png') }}" alt="Spin Wheel">
                 <h2>Click here to get cashback</h2>
                 <p><a href="#">link... url</a></p>
                 <h3>You have received</h3>
