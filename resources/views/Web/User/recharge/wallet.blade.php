@@ -198,10 +198,10 @@ input[type="search"]:focus, textarea:focus {
     transform: translate(0, 29%);
     padding: 8px 16px;
     font-size: 12px;
-    top: 30%;
+    top: 33%;
     margin-bottom: 100px;
     border-radius: 8px;
-    left: 27%;
+    left: 31%;
 }
 
 }

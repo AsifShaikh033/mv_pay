@@ -138,7 +138,7 @@
             
         <li>
             <a id="ctl00_lnkServices" class="dashboard" href="{{ route('index') }}">
-            <i class="basecolor flaticon-381-user-2"></i>
+            <i class="basecolor fa-solid fa-gauge"></i>
             <span class="nav-text">Dashboard</span>
             </a>
         </li>
@@ -161,7 +161,7 @@
             @if(Auth::check())  
             <li>
                 <a class="dash_changes" href="{{ route('user.profile') }}">
-                <i class="basecolor flaticon-381-user-2"></i>
+                <i class="basecolor flaticon-user"></i>
                 <span class="nav-text">My account</span>
                 </a>
           </li>
@@ -176,8 +176,11 @@
 
             <li >
               <a class="dash_changes"  href="{{route('user.add.pin')}}">
-                  <i class="basecolor flaticon-381-more"></i> 
+
+                  <i class="basecolor fa-solid fa-thumbtack"></i> 
+
                   <span class="nav-text">Set Pin</span>
+
                   </a>
                
               </li>
