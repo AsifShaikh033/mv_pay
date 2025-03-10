@@ -74,14 +74,17 @@
             .showss img {
                     width: 30%;
                 }
-            .showss h2 {
-                font-size: 15px;
-            }
+                .showss h2 a {
+                    font-size: 15px;
+                }        
             .showss h3 {
                 font-size: 15px;
             }
             .showss p {
                 font-size: 10px;
+            }
+            .showss h1 {
+                font-size: 20px !important;
             }
 
     }
@@ -119,7 +122,7 @@
 
     .trophy {
         width: 50%;
-        height: 50%;
+        /* height: 50%; */
     }
 </style>
 
