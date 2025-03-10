@@ -4,7 +4,7 @@
 
 <div class="content-body">
     <!-- Referral Program Section -->
-    <div class="mt-5">
+    <div class="mt-5 pt-5">
         <div class="card shadow-lg border-0 rounded-3">
             <div class="card-header bg-gradient text-white text-center">
                 <h4><i class="fas fa-share-alt"></i> Referral Program</h4>

@@ -16,7 +16,12 @@
     justify-content: space-between;
 }
 
-
+.validity {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-content: flex-start;
+}
 @media screen and (max-width: 500px) {
     .details_user {
         font-size: x-small;
@@ -27,36 +32,19 @@
 }
 }
     .jio-logo { width: 100px; margin-bottom: 20px; }
-    .plan-card { border-radius: 5px; padding: 20px;text-align: center; }
+    .plan-card { border-radius: 5px; padding: 20px; margin-bottom: 20px; text-align: center; }
     .plan-card h4 { font-size: 24px; margin-bottom: 10px; font-weight: bold; }
     .plan-card p { margin-bottom: 5px; font-size: 16px; }
-    .plan-card .validity { color: #555; font-size: 14px; }
-    .card { color:white; border-radius: 15px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);  background: linear-gradient(to right, #030303, #004bff, #000000);}
-    .btn-recharge { background: linear-gradient(to right, #00c6ff, #004bff, #ff3131); color: white; font-size: 1.1rem; border-radius: 25px; padding: 10px 30px; margin-top: 20px; }
+    .plan-card .validity { color: #555; font-size: 14px; margin-bottom: 10px; }
+    .card { border-radius: 15px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); margin-top: 20px; }
+    .btn-recharge { background-color: #28a745; color: white; font-size: 1.1rem; border-radius: 25px; padding: 10px 30px; margin-top: 20px; }
     .btn-recharge:hover { background-color: #218838; }
     .card_top { padding: 20px; background: radial-gradient(circle at left, black, #000033, #000099, #0000cc, #0000ff); border-radius: 20px; }
     .validity_1 p { font-size: 20px; font-weight: 600; color: #ffffff; margin-bottom: 0px; }
     .plan_choose { overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; }
     .scroll-right { display: flex; gap: 10px; }
     .btn-group .btn.active, .btn-group .btn:focus, .btn-group .btn:hover { background-color: #007bff; color: white; }
-    .desc {
-    padding: 4px;
-    border: 1px solid white;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    text-align: left;
-}
-.header_1 {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-}
-.validity_1 {
-    background: linear-gradient(to right, #00c6ff, #004bff, #ff3131);
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-weight: bold;
-}
+
     @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
@@ -68,10 +56,6 @@
 
 img.spin-img {
     cursor: pointer;
-}
-.btn-gradient{
-    background: linear-gradient(45deg, #00ffd2, #001c44, #0876ff);
-    color:white;
 }
 </style>
 
@@ -129,12 +113,12 @@ img.spin-img {
                 <!-- Recharge Categories -->
                 <div class="plan_choose">
                     <div class="btn-group scroll-right" role="group">
-                        <button type="button" class="btn btn-gradient filter-btn active" data-type="ALL">All</button>
+                        <button type="button" class="btn btn-primary filter-btn active" data-type="ALL">All</button>
                         @php
                             $rechargeTypes = collect($plans)->pluck('recharge_type')->unique();
                         @endphp
                         @foreach($rechargeTypes as $type)
-                            <button type="button" class="btn btn-gradient filter-btn" data-type="{{ $type }}">{{ $type }}</button>
+                            <button type="button" class="btn btn-primary filter-btn" data-type="{{ $type }}">{{ $type }}</button>
                         @endforeach
                         <!-- @foreach(['TOPUP', 'PlanVoucher', 'FULLTT ', 'DATA','STV'] as $type)
                             <button type="button" class="btn btn-primary filter-btn" data-type="{{ $type }}">{{ $type }}</button>
@@ -147,37 +131,27 @@ img.spin-img {
                 <div class="row mt-3">
                 @foreach($plans as $plan)
                     <div class="col-md-4 plan-card" data-type="{{ $plan['recharge_type'] }}" data-amount="{{ $plan['recharge_amount'] }}">
-                        <div class="card p-3 ">
-                        <div class="header_1">
-                            <div>
-                                <label style="font-size:10px;">Validity</label>
-                                <div class="validity_1">₹{{ $plan['recharge_amount'] }}</div>
-                            </div>
-                        <!-- <div>
-                            <label style="font-size:10px;" for="">Data</label>
-                            <div class="data">1 GB/Day</div>
-                        </div> -->
-                        <div>
-                            <label style="font-size:10px;" for="">Amount</label>
-                            <div class="validity_1">{{ $plan['recharge_validity'] }}</div>
-                        </div>
-                        </div>
-                            <!-- <h4>₹{{ $plan['recharge_amount'] }}</h4>
-                            <p class="validity">{{ $plan['recharge_validity'] }}</p> -->
+                        <div class="card p-3 mb-3">
+                            <h4>₹{{ $plan['recharge_amount'] }}</h4>
+                            <p class="validity">{{ $plan['recharge_validity'] }}</p>
                             @php
                                  $planDescription = $plan['recharge_short_desc'];
                                  $planShortDescription = Str::words($planDescription, 30, '...');
                         @endphp
-                        <span id="short-desc-{{ $loop->index }}" class="desc">{{ $planShortDescription }}
+                        <span id="short-desc-{{ $loop->index }}">{{ $planShortDescription }}
                             @if(Str::wordCount($planDescription) > 30)
                                 <span onclick="togglePlanReadMore({{ $loop->index }})" id="read-more-text-{{ $loop->index }}">Read more</span>
                             @endif
                         </span>
                         <span id="full-desc-{{ $loop->index }}" style="display: none;">{{ $planDescription }}</span>
-                          <div class="validity d-flex align-items-center gap-4">
-                                <img src="{{ asset('assets_web/images/wallet/13.png') }}" class="spin-img" style="width:15%!important;height: 15%!important;" alt="">
-                                <p class="text-light">Spin UPTO ₹200</p>
-                              </div>
+                            <!-- <p class="validity_desc">{{ $plan['recharge_short_desc'] }}</p> -->
+                            <!-- <p class="cashback">Cashback: ₹{{ cashback_value('Prepaid-Mobile', 'Prepaid-Mobile', $plan['recharge_amount']) }}</p> -->
+                            <div class="validity d-flex align-items-center">
+                                <img src="{{ asset('assets_web/images/wallet/13.png') }}" class="spin-img" style="width:20%!important;height:20%!important;" alt="">
+                                <p class="text-success m-auto">Spin UPTO ₹200</p>
+                                <!-- <p class="text-success m-auto">RECEIVE LUCKY SPIN CHANCE TO COLLECT UPTO 200₹ IN YOUR BANK ON EVERY RECHARGE OR BILL PAYMENT.</p> -->
+                                <!-- <button class="btn btn-sm btn-light mb-0" type="submit">show more</button> -->
+                            </div>
                             <!-- <form id="rechargeForm" action="{{ route('user.recharge.process') }}" method="POST"> -->
                             <form id="rechargeForm" action="{{ route('user.recharge.form') }}" method="GET">
                                 @csrf
@@ -192,7 +166,7 @@ img.spin-img {
                                 @if($planId)
                                     <input type="hidden" name="plan_id" value="{{ $planId }}">
                                 @endif
-                                <button type="submit" class="btn btn-recharge m-0">Recharge</button>
+                                <button type="submit" class="btn btn-recharge">Recharge</button>
                             </form>
 
                             <!-- <a href="{{ route('user.recharge.process', ['mobileNumber' => $mobileNumber, 'circle' => $circle, 'operator' => $operator]) }}">
