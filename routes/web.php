@@ -94,7 +94,6 @@ Route::get('/recharge-get', [RechargeController::class, 'recharge']);
     Route::post('/billfetch-operator-circle', [ApiFetchController::class, 'billfetchOperatorCircle'])->name('billfetch.operator.circle');
     Route::post('/dthfetch-operator-circle', [ApiFetchController::class, 'dthfetchOperatorCircle'])->name('dthfetch.operator.circle');
 
-
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
     Route::post('/login-user', [AuthController::class, 'loginuser_auth'])->name('loginuser');
     Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register');
