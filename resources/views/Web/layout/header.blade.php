@@ -176,8 +176,11 @@
 
             <li >
               <a class="dash_changes"  href="{{route('user.add.pin')}}">
+
                   <i class="basecolor fa-solid fa-thumbtack"></i> 
-                  <span class="nav-text">Add Pin</span>
+
+                  <span class="nav-text">Set Pin</span>
+
                   </a>
                
               </li>

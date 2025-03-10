@@ -158,23 +158,9 @@
 
         <button class="prepaid-button mb-3">Bills</button>
     
-    <form id="rechargeForm" action="{{ route('user.recharge.bill_plan') }}" method="POST">
-    @csrf 
+    <form id="rechargeForm" action="{{ route('user.recharge.bill_fetch') }}" method="GET">
+ 
     <div class="input-section">
-        <div class="input-group_1 mb-2">
-       
-            <div class="input-with-icon">
-                <input type="text" id="bill-number" name="bill_number" placeholder="Enter Bill number" value="{{ old('bill_number') }}" required>
-                <span class="contact-icon"><i class="fa fa-electric" aria-hidden="true"></i>
-                </span>
-            </div>
-        </div>
-
-        <div class="input-group_1 mb-2">
-            <div class="input-with-icon">
-                <input type="text" id="amount" name="amount" placeholder="Enter Amount" value="{{ old('amount') }}" > 
-            </div>
-        </div>
         
         <div class="input-group_1 mb-2">
             <div class="input-with-icon">
@@ -188,7 +174,23 @@
             </select>
             </div>
         </div>
-        <div class="input-group_1 mb-2">
+
+    <!-- <div class="input-group_1 mb-2">   
+       
+            <div class="input-with-icon">
+                <input type="text" id="bill-number" name="bill_number" placeholder="Enter Bill number" value="{{ old('bill_number') }}" required>
+                <span class="contact-icon"><i class="fa fa-electric" aria-hidden="true"></i>
+                </span>
+            </div>
+        </div> -->
+
+        <!-- <div class="input-group_1 mb-2">
+            <div class="input-with-icon">
+                <input type="text" id="amount" name="amount" placeholder="Enter Amount" value="{{ old('amount') }}" > 
+            </div>
+        </div> -->
+
+        <!-- <div class="input-group_1 mb-2">
             <div class="input-with-icon">
             <select name="circle" id="circle" class="form-control" required>
                     <option value="">Select Circle</option>
@@ -196,9 +198,9 @@
                         <option value="{{ $c->circlecode }}" {{ old('circle') == $c->circlecode ? 'selected' : '' }}>{{ $c->circlename }}</option>
                     @endforeach
                 </select>
-
             </div>
-        </div>
+        </div> -->
+
         <div class="validity d-flex align-items-center">
                                 <img src="{{ asset('assets_web/images/wallet/13.png') }}" class="spin-img" style="width:10%!important;height:10%!important;" alt="">
                                 <p class="text-success m-auto fs-6">Spin And Earn Upto ₹20</p>
@@ -206,27 +208,11 @@
                             </div>
         <!-- Check Plans Button -->
         <div class="plans-button-container mt-4">
-            <button  type="submit" class="check-plans-btn mt-3 text-decoration-none" >Bill Pay</button>
+            <button  type="submit" class="check-plans-btn mt-3 text-decoration-none" >Next</button>
             <!-- <button class="check-plans-btn" >Checkout Plans & Offers</button> -->
         </div>
     </div>
     </form>
-
-    <div class="recent-recharges">
-    <p>Recent or Personal Bill Recharges</p>
-    <div class="recharge-history mt-3">
-        <h6 class="fw-bold">Recent Bill Numbers</h6>
-        <ul class="list-unstyled">
-    @foreach($billNumbers as $number)
-        <li class="d-flex align-items-center gap-2 recent-number">
-            <i class="fa fa-mobile" aria-hidden="true"></i>
-            <span data-number="{{ $number->number }}">{{ $number->number }}</span>
-        </li>
-    @endforeach
-</ul>
-
-    </div>
-</div>
 
 </div>
 </div>

@@ -58,7 +58,12 @@ class UserController extends Controller
     public function registeruser(Request $request)
     {
         $user = User::where('mob_number', $request->mob_number)->first();
-                
+        if ($user) {
+            $user->remember_token = $request->token;
+            $user->save();
+        
+            return response()->json(['message' => 'Token updated successfully.']);
+        }      
         
 
         if(!$user){ 
@@ -75,6 +80,7 @@ class UserController extends Controller
                 'password' => $request->password,
                 'mob_number' => $request->mob_number,
                 'remember_token' => $request->token,
+                'referral_code' =>  $this->generateUniqueReferralCode(),
             ]);
 
             return response()->json(['success' => 'User Register Success.'], 200);

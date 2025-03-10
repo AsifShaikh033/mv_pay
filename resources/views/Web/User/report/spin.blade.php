@@ -6,6 +6,7 @@
         .mobile-h-25 {
             height: 25% !important;
         }
+
     }
 </style>
 <style>
@@ -29,30 +30,31 @@
             margin-bottom: 10px;
         }
 
-        /* Cashback section */
-        .showss {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: white;
+
+        .d-flex {
+            flex-direction: column !important;
         }
 
-        .showss h2 {
-            font-size: 24px;
-            font-weight: bold;
-            margin: 10px 0;
+        .card-text {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
-        .showss h1 {
-            font-size: 40px;
-            font-weight: bold;
-            color: #FFD700;
+        .justify-content-between {
+            justify-content-center !important;
         }
+    }
 
-        .showss img {
-            margin-bottom: 10px;
-        }
+    .snow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        border-radius: 10px;
+        background: linear-gradient(to right, black, blue);
+        text-align: center;
+    }
+
 
         .showss a {
             color: white;
@@ -83,26 +85,73 @@
             }
 
     }
-    </style>
+  
+
+    .showss {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: white;
+    }
+
+    .showss h2 {
+        font-size: 24px;
+        font-weight: bold;
+        margin: 10px 0;
+    }
+
+    .showss h1 {
+        font-size: 40px;
+        font-weight: bold;
+        color: #FFD700;
+    }
+
+    .showss img {
+        margin-bottom: 10px;
+    }
+
+    .showss a {
+        color: white;
+        text-decoration: underline;
+        font-weight: bold;
+    }
+
+    .trophy {
+        width: 50%;
+        height: 50%;
+    }
+</style>
+
 <div class="content-body">
-    <div class="container py-4 ">
-        <h2 class="text-light text-center mb-4 mt-5">{{ $reportTitle }}</h2>
+<div class="container py-4">
+    <h2 class="text-light text-center mb-4 mt-5">{{ $reportTitle }}</h2>
 
-        <div class="container">
+    <div class="container">
         <div class="snow">
-        
-                <img src="{{ asset('assets_web/images/others_services/trophy.png') }}" class="trophy" alt="Trophy">
-      
-            <div class="showss">
-                <img src="{{ asset('assets_web/images/others_services/spin.png') }}" alt="Spin Wheel">
-                <h2>Click here to get cashback</h2>
-                <p><a href="#">link... url</a></p>
-                <h3>You have received</h3>
-                <h1>5 Rs</h1>
-            </div>
+            <img src="{{ asset('assets_web/images/others_services/trophy.png') }}" class="trophy" alt="Trophy">
 
+            <div class="showss">
+
+
+                <img src="{{ asset('assets_web/images/others_services/spin.png') }}" alt="Spin Wheel">
+                <h2>
+                    <a href="https://mvvision.in/student/spin-mv-pay" target="_blank">
+                        Click here to get cashback
+                    </a>
+                </h2>
+                <p>
+                    <a href="https://mvvision.in/student/spin-mv-pay" target="_blank">
+                        https://mvvision.in/student/spin-mv-pay
+                    </a>
+                </p>
+
+                <h3>You have received</h3>
+                <h1>Spin Cashback</h1>
+            </div>
         </div>
     </div>
+</div>
 
 
         @if($transactions->isEmpty())
@@ -123,7 +172,6 @@
             'LPG Gas' => 'lpg.png',
             'Municipal Services' => 'municipal.png',
             'Municipal Taxes' => 'municipal.png',
-            'Municipal Taxes' => 'municipal.png',
             'Education Fees' => 'education.png'
             ];
             @endphp
@@ -136,16 +184,12 @@
             @endphp
             <div class="card w-100 h-25 mb-1 shadow-lg border-0 rounded-lg mobile-h-25">
                 <span id="copy-message" style="display: none; color: limegreen;">Link copied successfully!</span>
-                <span class="card-text mb-0" style="
-    border: var(--bs-border-width) solid var(--bs-border-color);
-"><strong>Spin Redirect Link:</strong><a href="https://mvvision.in/student/spin-mv-pay" target="_blank" id="spin-link"> https://mvvision.in/student/spin-mv-pay</a>
+                <span class="card-text mb-0" style="border: var(--bs-border-width) solid var(--bs-border-color);"><strong>Spin Redirect Link:</strong><a href="https://mvvision.in/student/spin-mv-pay" target="_blank" id="spin-link"> https://mvvision.in/student/spin-mv-pay</a>
                     <button onclick="copyLink()" class="btn btn-sm btn-info btn-outline-primary ms-2">Copy Link</button>
                 </span>
                 <div class="card-body">
                     <div class="d-flex align-items-center justify-content-between" style="flex-direction: row;">
-                        <!-- Logo & User Info (Left) -->
                         <div class="d-flex align-items-center" style="flex-direction: row;">
-                            <!-- <img src="{{ $operatorLogo }}" alt="{{ $transaction->operator }}" width="50" style="border-radius: 30px;"> -->
                             <div>
                                 <h5 class="card-title mb-1">{{ ucfirst($transaction->user_name) }}</h5>
                                 <strong>TRX Type:</strong>
@@ -157,16 +201,7 @@
 
                             </div>
                         </div>
-                        <div>
 
-                            <!-- <span id="copy-message" style="display: none; color: limegreen;">Link copied successfully!</span>
-                            <p class="card-text mb-0"><strong>Spin Redirect Link:</strong><a href="https://mvvision.in/student/spin-mv-pay" target="_blank" id="spin-link"> https://mvvision.in/student/spin-mv-pay</a>
-                            <button onclick="copyLink()" class="btn btn-sm btn-info btn-outline-primary ms-2">Copy Link</button>  
-                        </p> -->
-                            <!-- <p class="card-text mb-0"><strong>Post Balance:</strong> {{ $transaction->post_balance }}</p> -->
-                        </div>
-
-                        <!-- Status (Right) -->
                         <div>
                             <strong>Status:</strong>
                             @if($transaction->status == '1')
@@ -181,19 +216,11 @@
                         </div>
                     </div>
 
-                    <div class="d-flex justify-content-between" style="flex-direction: row;">
+                    <div class="d-flex justify-content-between">
                         <p class="card-text me-4"><strong>Amount:</strong> ₹{{ $transaction->amount }}</p>
                         <p class="card-text me-4"><strong>Transaction ID:</strong> {{ $transaction->transaction_id }}</p>
                         <p class="card-text"><strong>Date:</strong> {{ $transaction->created_at ? $transaction->created_at->format('d-m-y') : 'N/A' }}</p>
                     </div>
-
-                    <div class="d-flex justify-content-between" style="flex-direction: row;">
-                        <p class="card-text me-4"><strong>Details:</strong> {{ $transaction->details }}</p>
-                        <p class="card-text me-4"><strong>Remark:</strong> {{ $transaction->remark }}</p>
-                        <!-- <p class="card-text"><strong>Response Msg:</strong> {{ $transaction->response_msg }}</p> -->
-                    </div>
-
-
                 </div>
             </div>
             @endforeach

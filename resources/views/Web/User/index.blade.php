@@ -2,6 +2,32 @@
 
 @section('content')
 <style>
+.scrolling-container {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+.scrolling-text {
+  display: inline-block;
+  animation: scroll 20s linear infinite;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+@keyframes scroll {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+@media (max-width: 500px) {
+  .scrolling-text {
+    font-size: 14px;
+    line-height: 1.2;
+  }
+}
+
 @media (min-width: 500px) {
   .w-100{
     height:350px !important;

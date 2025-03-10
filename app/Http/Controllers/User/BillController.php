@@ -164,6 +164,55 @@ class BillController extends Controller
             return view('Web.User.bills.electric_bill',compact('circle', 'Operator', 'billNumbers'));
         }
 
+        public function bill_FORM_FETCH(Request $request)
+        {
+            $response = $this->rechargeService->bill_FORM_FETCH(
+                $request->input('operator')
+            );
+
+            $operatorCode = $request->input('operator');
+            $KEY = $response[0]['Key'] ?? null;
+
+            return view('Web.User.bills.bill_fetch', compact('operatorCode', 'KEY'));
+        }
+
+
+        public function bill_details(Request $request)
+        {
+            $billNumber = $request->input('bill_number');
+            $operatorCode = $request->input('operatorCode');
+            $key = $request->input('Key');
+        
+            $fetchResponse = $this->rechargeService->billoperatorfetch($operatorCode, $billNumber, $key);
+        
+            // Decode response if it's a JSON string
+            if (is_string($fetchResponse)) {
+                $fetchResponse = json_decode($fetchResponse, true);
+            }
+        
+            // Check if the response contains an error
+            if (isset($fetchResponse['statuscode']) && $fetchResponse['statuscode'] === 'ERR') {
+                return redirect()->back()->with('error', $fetchResponse['status']);
+            }
+        
+        
+            $customerDetails = [
+                'customer_name' => trim($fetchResponse['CustomerName'] ?? 'N/A'),
+                'due_amount' => $fetchResponse['DueAmount'] ?? 'N/A',
+                'due_date' => $fetchResponse['DueDate'] ?? 'N/A',
+                'bill_number' => $fetchResponse['BillNumber'] ?? 'N/A',
+                'bill_date' => $fetchResponse['BillDate'] ?? 'N/A',
+                'bill_period' => $fetchResponse['BillPeriod'] ?? 'N/A'
+            ];
+        
+            $circle = Circle::all();
+            $Operator = Operator::where('ServiceTypeName', 'Electricity')->get();
+        
+            return view('Web.User.bills.bill_details', compact('circle', 'Operator', 'customerDetails'));
+        }
+                
+
+
 
         public function common(Request $request)
             {

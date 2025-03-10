@@ -8,9 +8,9 @@
     max-width: 500px;
     margin: 100px auto;
     padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #f9f9f9;
+    border-radius: 20px;
+    border: 1px solid #ff66c4;
+    background: linear-gradient(to right, black 0%, black 5%, blue 50%, black 95%, black 100%);
 }
 
 .prepaid-button-container {
@@ -29,11 +29,15 @@
 }
 
 .prepaid-button:hover {
-    background-color: #45a049;
+    background: linear-gradient(to right, #ff0033, #ff0066);
+    color: white;
 }
 
 .input-section {
     margin-bottom: 20px;
+    border-radius: 20px;
+    padding: 15px;
+    border: 2px solid white;
 }
 
 
@@ -51,9 +55,20 @@
     width: 100%;
     padding: 10px;
     font-size: 16px;
-    border: 1px solid transparent;
+    color: white;
+    border: 2px solid white;
     border-radius: 10px;
-    background-color: #cfcbcb57;
+    background: linear-gradient(to right, black 0%, black 0%, blue 50%, black 100%, black 100%);
+}
+
+.input-with-icon select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid white;
+    border-radius: 10px;
+    background: linear-gradient(to right, black 0%, black 0%, blue 50%, black 100%, black 100%);
+    color: white;
 }
 
 .contact-icon {
@@ -71,7 +86,7 @@
 .check-plans-btn {
     padding: 12px 30px;
     font-size: 16px;
-    background-color: #4c5985;
+    background: linear-gradient(to right, #00ccff, #ff0066);
     color: white;
     border: none;
     border-radius: 13px;
@@ -80,7 +95,7 @@
 }
 
 .check-plans-btn:hover {
-    background-color: #81014fc9;
+    background: linear-gradient(to right, #ff0033, #ff0066);
     color: white;
 }
 
@@ -130,12 +145,12 @@
 .prepaid-button {
     padding: 10px 20px;
     font-size: 18px;
-    background-color: transparent; /* Make background transparent */
-    border: none; /* Remove default border */
-    border-bottom: 2px solid blue; /* Add a 2px solid blue bottom border */
-    color: blue; /* Set the text color to blue */
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid blue;
+    color: blue;
     cursor: pointer;
-    outline: none; /* Remove outline on focus */
+    outline: none;
     transition: all 0.3s ease; 
 }
 
@@ -156,19 +171,63 @@
 }
 
 .recharge-history li {
-    background: #f8f9fa;
+    border: 1px solid white;
+    background: linear-gradient(to right, black 0%, black 0%, blue 50%, black 100%, black 100%);
+    color: white;
     padding: 8px 12px;
     border-radius: 5px;
     margin-bottom: 5px;
 }
 
+.history-btn {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(to right, #ff0033, #ff0066);
+    color: white;
+    border: 2px solid white;
+    padding: 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.history-btn i {
+    margin-right: 10px;
+}
+
+button.prepaid-button {
+    background: white;
+    font-weight: bolder;
+    border-radius: 10px;
+    padding: 0px 10px 1px 10px;
+    font-size: 30px;
+    font-family: 'Flaticon';
+}
+
+.validity {
+    display: flex;
+    align-items: center;
+    border: 2px solid white;
+    background: black;
+    color: white;
+    border-radius: 10px;
+}
+
+.input-with-icon input::placeholder {
+    color: white;
+}
+
+hr {
+    height: 5px !important;
+    background:  #ffde59;
+}
 </style>
 
 <div class="content-body">
 <div class="mobile-recharge-container ">
   
-        <button class="prepaid-button mb-3">Prepaid</button>
-    
+        <button class="prepaid-button ms-5">Prepaid</button>
+    <hr>
     <form id="rechargeForm" action="{{ route('user.recharge.plan') }}" method="POST">
     @csrf 
     
@@ -179,7 +238,7 @@
         <div class="input-group_1 mb-2">
             <div class="input-with-icon">
                 <input type="text" id="mobile-number" name="mobile_number" placeholder="Enter mobile number" value="{{ old('mobile_number') }}" required>
-                <span class="contact-icon"><i class="fa fa-address-book" aria-hidden="true"></i></span>
+                <span class="contact-icon"><i class="fa fa-address-book text-white" aria-hidden="true"></i></span>
             </div>
         </div>
         
@@ -204,7 +263,10 @@
                 </select>
             </div>
         </div>
-
+        <div class="validity">
+            <img src="{{ asset('assets_web/images/wallet/13.png') }}" class="spin-img ms-3" style="width:10%!important;" alt="">
+            <p class="m-auto fw-bold" style="word-spacing: 8px;">Spin & Earn upto ₹200</p>
+        </div>
         <!-- Check Plans Button -->
         <div class="plans-button-container mt-4">
             <button type="submit" class="check-plans-btn mt-3 text-decoration-none">Checkout Plans & Offers</button>
@@ -213,9 +275,9 @@
 </form>
 
 <div class="recent-recharges">
-    <p>Recent or Personal Recharges</p>
+    <!-- <p>Recent or Personal Recharges</p> -->
     <div class="recharge-history mt-3">
-        <h6 class="fw-bold">Recent Numbers</h6>
+        <a href="#" class="history-btn mb-2"><i class="fa fa-address-book" aria-hidden="true"></i> Recent Numbers <i class="fa fa-download ms-2"></i></a>
         <ul class="list-unstyled">
     <li class="d-flex align-items-center gap-2 recent-number">
         <i class="fa fa-mobile" aria-hidden="true"></i>

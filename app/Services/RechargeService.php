@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use Illuminate\Support\Facades\Http;
+use Log;
 
 class RechargeService
 {
@@ -83,27 +84,16 @@ class RechargeService
         return $response->json();
     }
 
-
-    public function billoperatorfetch($operator, $billNumber)
+    public function bill_FORM_FETCH($operator)
     {
         try {
             $response = Http::asForm()->post($this->apiBaseUrl . 'api/BillFetch_Cyrus_BA.aspx', [
                 'memberid'    => $this->CYRUS_MEMBER_ID,
                 'pin'         => $this->BILL_FECTH_API,
-                'methodname'  => 'get_billfetch',
+                'methodname'  => 'get_billerinfo',
                 'operator'    => $operator,
-                'RequestData' => json_encode([
-                    'Request' => [
-                        [
-                            'Key'        => 'Customer Number',
-                            'Value'      => $billNumber,
-                            'isOptional' => 'False'
-                        ]
-                    ]
-                ]),
-                'format'      => 'json',
             ]);
-            
+
             if ($response->failed()) {
                 return ['error' => 'Failed to connect to API', 'status' => $response->status()];
             }
@@ -120,15 +110,74 @@ class RechargeService
                 return ['error' => 'Invalid JSON response from API', 'raw' => $rawResponse];
             }
 
-            if (!isset($data['statuscode']) || $data['statuscode'] !== 'TXN') {
-                return ['error' => $data['status'] ?? 'Unknown error', 'raw' => $rawResponse];
+            if (!isset($data['Request']) || !is_array($data['Request'])) {
+                return ['error' => 'Invalid API response structure', 'raw' => $rawResponse];
             }
 
-            return $data;
+            return $data['Request'];
         } catch (\Exception $e) {
             return ['error' => $e->getMessage()];
         }
     }
+    
+
+
+    public function billoperatorfetch($operator, $billNumber, $key)
+    {
+        try {
+            $url = $this->apiBaseUrl . 'api/BillFetch_Cyrus_BA.aspx';
+    
+            $postData = [
+                'memberid'    => $this->CYRUS_MEMBER_ID,
+                'pin'         => $this->BILL_FECTH_API,
+                'methodname'  => 'get_billfetch',
+                'operator'    => $operator,
+                'RequestData' => json_encode([
+                    'Request' => [
+                        [
+                            'Key'        => $key,
+                            'Value'      => $billNumber,
+                            'isOptional' => 'False'
+                        ]
+                    ]
+                ]),
+                'format'      => 'json',
+            ];
+    
+            $ch = curl_init();
+    
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                'Content-Type: multipart/form-data'
+            ]);
+    
+            $response = curl_exec($ch);
+            $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    
+            if (curl_errno($ch)) {
+                $error = curl_error($ch);
+                Log::error('cURL Error', ['error' => $error]);
+                return ['error' => 'cURL Error: ' . $error];
+            }
+    
+            curl_close($ch);
+    
+            Log::info('API Response', ['response' => $response]);
+    
+            if ($httpCode !== 200) {
+                return ['error' => 'API request failed with status ' . $httpCode];
+            }
+    
+            return json_decode($response, true);
+        } catch (\Exception $e) {
+            Log::error('API Exception', ['message' => $e->getMessage()]);
+            return ['error' => 'An error occurred: ' . $e->getMessage()];
+        }
+    }
+    
 
     public function dthoperatorfetch($operator, $billNumber)
     {

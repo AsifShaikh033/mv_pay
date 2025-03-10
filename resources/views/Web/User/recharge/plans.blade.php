@@ -134,7 +134,17 @@ img.spin-img {
                         <div class="card p-3 mb-3">
                             <h4>₹{{ $plan['recharge_amount'] }}</h4>
                             <p class="validity">{{ $plan['recharge_validity'] }}</p>
-                            <p class="validity_desc">{{ $plan['recharge_short_desc'] }}</p>
+                            @php
+                                 $planDescription = $plan['recharge_short_desc'];
+                                 $planShortDescription = Str::words($planDescription, 30, '...');
+                        @endphp
+                        <span id="short-desc-{{ $loop->index }}">{{ $planShortDescription }}
+                            @if(Str::wordCount($planDescription) > 30)
+                                <span onclick="togglePlanReadMore({{ $loop->index }})" id="read-more-text-{{ $loop->index }}">Read more</span>
+                            @endif
+                        </span>
+                        <span id="full-desc-{{ $loop->index }}" style="display: none;">{{ $planDescription }}</span>
+                            <!-- <p class="validity_desc">{{ $plan['recharge_short_desc'] }}</p> -->
                             <!-- <p class="cashback">Cashback: ₹{{ cashback_value('Prepaid-Mobile', 'Prepaid-Mobile', $plan['recharge_amount']) }}</p> -->
                             <div class="validity d-flex align-items-center">
                                 <img src="{{ asset('assets_web/images/wallet/13.png') }}" class="spin-img" style="width:20%!important;height:20%!important;" alt="">
@@ -152,6 +162,7 @@ img.spin-img {
                                 <input type="hidden" name="operatorCode" value="{{ $operatorCode }}">
                                 <input type="hidden" name="recharge_amount" value="{{ $plan['recharge_amount'] }}">
                                 <input type="hidden" name="recharge_validity" value="{{ $plan['recharge_validity'] ?? '' }}">
+                                <input type="hidden" name="recharge_short_desc" value="{{ $plan['recharge_short_desc'] ?? '' }}">
                                 @if($planId)
                                     <input type="hidden" name="plan_id" value="{{ $planId }}">
                                 @endif
@@ -173,6 +184,22 @@ img.spin-img {
 </div>
 
 <script>
+      function togglePlanReadMore(index) {
+        const shortDesc = document.getElementById(`short-desc-${index}`);
+        const fullDesc = document.getElementById(`full-desc-${index}`);
+        const readMoreText = document.getElementById(`read-more-text-${index}`);
+
+        if (shortDesc.style.display === 'none') {
+            shortDesc.style.display = 'inline';
+            fullDesc.style.display = 'none';
+            readMoreText.textContent = 'Read more';
+        } else {
+            shortDesc.style.display = 'none';
+            fullDesc.style.display = 'inline';
+            readMoreText.textContent = 'Read less';
+        }
+    }
+
 document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', function() {
         let type = this.dataset.type;
