@@ -52,7 +52,7 @@ class BillController extends Controller
             $operatorCode = Operator::where('ServiceTypeName', 'Electricity')
             ->where('OperatorCode', 'CEB')
             ->value('OperatorCode');
-            
+
             $circleCode = '27';
 
             $billplans = $this->rechargeService->electricityBillPay(
@@ -72,7 +72,8 @@ class BillController extends Controller
             $transaction = new Transaction;
             $transaction->user_id = $user->id;
             $transaction->amount = $amount;
-            $transaction->transaction_id = $billplans['ApiTransID'] ?? $transaction_id;
+            // $transaction->transaction_id = $billplans['ApiTransID'] ?? $transaction_id;
+            $transaction->transaction_id = $transaction_id;
             $transaction->response_api_msg = json_encode($billplans);
             $transaction->remark = 'electricity_bill';
             $transaction->trx_type = '-';
