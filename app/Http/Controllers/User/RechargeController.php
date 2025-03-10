@@ -57,86 +57,86 @@ class RechargeController extends Controller
  
 
     public function plan(Request $request)
-{
-    
-    $request->validate([
-        'mobile_number' => 'required|digits:10',
-        'operator' => 'required',
-        'circle' => 'required',
-    ], [
-        'mobile_number.digits' => 'Please enter a valid 10-digit mobile number.',
-        'operator.required' => 'Please select an operator.',
-        'circle.required' => 'Please select a circle.',
-    ]);
-
-    $mobileNumber = $request->input('mobile_number');
-    $operatorCode = $request->input('operator');
-    $circleCode = $request->input('circle');
-    if ($request->has('plan_id')) {
-        $planId = $request->input('plan_id');
-    }else{
-        $planId = 0;
-    }
-    $operator = Operator::where('OperatorCode', $operatorCode)->value('OperatorName');
-
-    if (!$operator) {
-        return redirect()->back()->with(['error' => 'Invalid Operator selected.'])->withInput();
-    }
-
-    $circle = Circle::where('CircleCode', $circleCode)->value('CircleName');
-
-    if (!$circle) {
-        return redirect()->back()->with(['error' => 'Invalid Circle selected.'])->withInput();
-    }
-
-    $plans = $this->rechargeService->fetchPlans($mobileNumber, $operatorCode, $circleCode);
-// return $plans;
-    // Ensure that processing continues only if $plans is received
-    if (isset($plans['Status']) && $plans['Status'] === "1") {
-        return redirect()->back()->with(['error' => $plans['ErrorDescription']])->withInput();
-    } elseif (isset($plans['Status']) && $plans['Status'] === "0") {
-        $plans = $plans['PlanDescription'] ?? [];
+    {
         
-        // $planVouchers = array_filter($plans, function ($plan) {
-        //     return isset($plan['recharge_type']) && in_array($plan['recharge_type'], ["PlanVoucher", "FULLTT", "DATA", "TOPUP","STV","3G/4G"]);
-        // });
+        $request->validate([
+            'mobile_number' => 'required|digits:10',
+            'operator' => 'required',
+            'circle' => 'required',
+        ], [
+            'mobile_number.digits' => 'Please enter a valid 10-digit mobile number.',
+            'operator.required' => 'Please select an operator.',
+            'circle.required' => 'Please select a circle.',
+        ]);
+
+        $mobileNumber = $request->input('mobile_number');
+        $operatorCode = $request->input('operator');
+        $circleCode = $request->input('circle');
+        if ($request->has('plan_id')) {
+            $planId = $request->input('plan_id');
+        }else{
+            $planId = 0;
+        }
+        $operator = Operator::where('OperatorCode', $operatorCode)->value('OperatorName');
+
+        if (!$operator) {
+            return redirect()->back()->with(['error' => 'Invalid Operator selected.'])->withInput();
+        }
+
+        $circle = Circle::where('CircleCode', $circleCode)->value('CircleName');
+
+        if (!$circle) {
+            return redirect()->back()->with(['error' => 'Invalid Circle selected.'])->withInput();
+        }
+
+        $plans = $this->rechargeService->fetchPlans($mobileNumber, $operatorCode, $circleCode);
+    // return $plans;
+        // Ensure that processing continues only if $plans is received
+        if (isset($plans['Status']) && $plans['Status'] === "1") {
+            return redirect()->back()->with(['error' => $plans['ErrorDescription']])->withInput();
+        } elseif (isset($plans['Status']) && $plans['Status'] === "0") {
+            $plans = $plans['PlanDescription'] ?? [];
+            
+            // $planVouchers = array_filter($plans, function ($plan) {
+            //     return isset($plan['recharge_type']) && in_array($plan['recharge_type'], ["PlanVoucher", "FULLTT", "DATA", "TOPUP","STV","3G/4G"]);
+            // });
 
 
-        $operatorRechargeTypes = [
-            'Jio' => ['PlanVoucher', 'FULLTT', 'DATA', 'JioPhone', 'JioPhoneDataAddon', 'JioBharatPhone', 'ISD', 'Value', 'IRWiFiCalling', 'InFlightPacks', 'Annual Plans', 'Entertainment', 'TrueUnlimitedUpgrade', 'True Unlimited Upgrade', 'Plan Extension', 'International Roaming'],
-            'BSNL' => ['FULLTT', 'TOPUP', '3G/4G', 'COMBO', 'Romaing'],
-            'Airtel' => ['PlanVoucher', 'COMBO', 'Annual Plans', 'Roaming', 'Value', 'Entertainment'],
-            'VI' => ['TOPUP', 'STV', 'TrueUnlimitedUpgrade', 'IRWiFiCalling', 'InFlightPacks'],
-        ];
+            $operatorRechargeTypes = [
+                'Jio' => ['PlanVoucher', 'FULLTT', 'DATA', 'JioPhone', 'JioPhoneDataAddon', 'JioBharatPhone', 'ISD', 'Value', 'IRWiFiCalling', 'InFlightPacks', 'Annual Plans', 'Entertainment', 'TrueUnlimitedUpgrade', 'True Unlimited Upgrade', 'Plan Extension', 'International Roaming'],
+                'BSNL' => ['FULLTT', 'TOPUP', '3G/4G', 'COMBO', 'Romaing'],
+                'Airtel' => ['PlanVoucher', 'COMBO', 'Annual Plans', 'Roaming', 'Value', 'Entertainment'],
+                'VI' => ['TOPUP', 'STV', 'TrueUnlimitedUpgrade', 'IRWiFiCalling', 'InFlightPacks'],
+            ];
 
-        $operatorKey = null;
-        foreach ($operatorRechargeTypes as $key => $types) {
-            if (stripos($operator, $key) !== false) {
-                $operatorKey = $key;
-                break;
+            $operatorKey = null;
+            foreach ($operatorRechargeTypes as $key => $types) {
+                if (stripos($operator, $key) !== false) {
+                    $operatorKey = $key;
+                    break;
+                }
             }
-        }
-        
-        if (!$operatorKey) {
-            return redirect()->back()->with(['error' => 'Unsupported operator selected.'])->withInput();
-        }
-        
-        $allowedRechargeTypes = $operatorRechargeTypes[$operatorKey] ?? [];
+            
+            if (!$operatorKey) {
+                return redirect()->back()->with(['error' => 'Unsupported operator selected.'])->withInput();
+            }
+            
+            $allowedRechargeTypes = $operatorRechargeTypes[$operatorKey] ?? [];
 
-        $filteredPlans = array_filter($plans, function ($plan) use ($allowedRechargeTypes) {
-            return isset($plan['recharge_type']) && in_array($plan['recharge_type'], $allowedRechargeTypes);
-        });
+            $filteredPlans = array_filter($plans, function ($plan) use ($allowedRechargeTypes) {
+                return isset($plan['recharge_type']) && in_array($plan['recharge_type'], $allowedRechargeTypes);
+            });
 
-        // $operator = $request->input('operator');
-        // $circle = $request->input('circle');
-        // $plans = $this->rechargeService->fetchPlans($mobileNumber, $operatorCode, $circleCode);
-        return view('Web.User.recharge.plans', compact('mobileNumber', 'circle',
-        'operatorCode', 'circleCode', 'filteredPlans', 'operator', 'plans','planId'));
+            // $operator = $request->input('operator');
+            // $circle = $request->input('circle');
+            // $plans = $this->rechargeService->fetchPlans($mobileNumber, $operatorCode, $circleCode);
+            return view('Web.User.recharge.plans', compact('mobileNumber', 'circle',
+            'operatorCode', 'circleCode', 'filteredPlans', 'operator', 'plans','planId'));
+        }
+
+
+        return redirect()->back()->with(['error' => 'Invalid response received from the API.'])->withInput();
     }
-
-
-    return redirect()->back()->with(['error' => 'Invalid response received from the API.'])->withInput();
-}
     
             private function digitalRecharge($number, $amount, $providerId)
             {
