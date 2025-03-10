@@ -3,7 +3,7 @@
     <div class="content-body">
       <!-- row -->
       <div class="container-fluid mt-5">
-      <div class="card" style="margin-top:2rem;">
+      <div class="card" style="margin-top:2rem;background: linear-gradient(to right, black, blue);font-weight: bold;">
           <div class="card-header">
             <h3>About Us</h3>
           </div>
