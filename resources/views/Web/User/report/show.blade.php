@@ -21,9 +21,11 @@
                     $operators = [
                         'Airtel' => 'airtel.png',
                         'AIRTEL' => 'airtel.png',
+                        'AT' => 'airtel.png',
                         'Idea' => 'idea.png',
                         'Jio' => 'jio.png',
                         'JIO' => 'jio.png',
+                        'Reliance Jio' => 'jio.png',
                         'BSNL TopUp' => 'bsnl.png',
                         'BSNL' => 'bsnl.png',
                         'Vi' => 'vi.png',

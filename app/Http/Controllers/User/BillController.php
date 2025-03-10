@@ -49,7 +49,10 @@ class BillController extends Controller
 
             $transaction_id = rand(1000000000, 99999999999);
 
-            $operatorCode = 'CEB';
+            $operatorCode = Operator::where('ServiceTypeName', 'Electricity')
+            ->where('OperatorCode', 'CEB')
+            ->value('OperatorCode');
+            
             $circleCode = '27';
 
             $billplans = $this->rechargeService->electricityBillPay(
