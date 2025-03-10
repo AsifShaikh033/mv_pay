@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Transaction; 
 use App\Models\User;
 use Log;
+use App\Models\Recharge;
 
 class WebhookController extends Controller
 {
@@ -72,11 +73,13 @@ class WebhookController extends Controller
         }
     
         Log::info('Transaction found', ['transaction' => $transaction]);
-    
+        $Recharge = Recharge::where('user_tx', $data['client_id'])->first();
+
         if ($transaction->status === 2) {
             if ($data['status'] === 'success') {
                 $transaction->status = 1; 
                 $transaction->payment_status = 'success';
+                $Recharge->status = 'success'; 
             } else {
                 $user = User::find($transaction->user_id);
                 if ($user) {
@@ -85,9 +88,11 @@ class WebhookController extends Controller
                 }
                 $transaction->status = 0; 
                 $transaction->payment_status = 'failed';
-                $transaction->refund_status = 'Payment Refunded'; 
+                $transaction->details = 'Payment Refunded'; 
+                $Recharge->status = 'failed'; 
             }
             $transaction->save();
+            $Recharge->save();
         } else {
             Log::info('Transaction already processed', ['transaction' => $transaction]);
         }

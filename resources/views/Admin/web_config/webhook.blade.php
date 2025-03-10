@@ -39,6 +39,7 @@
                                 </div>
 
                             </div>
+                            <div class="col-md-6 col-lg-6">
                             <div class="form-group">
                                     <label for="webhook_url">Webhook For Digital Pay </label>
                                     <div style="display: flex; align-items: center; gap: 10px;">
@@ -56,8 +57,9 @@
                                             Copy
                                         </button>
                                     </div>
-                                    <small class="form-text text-muted">Copy this and add it in your Cyrus settings</small>
+                                    <small class="form-text text-muted">Copy this and add it in your Digital settings</small>
                                 </div>
+                        </div>
                         </div>
                         <!-- New section for displaying API response details -->
                         <div class="row mt-4">

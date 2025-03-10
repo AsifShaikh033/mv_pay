@@ -94,14 +94,14 @@ class BillController extends Controller
 
             $cashback = BalanceCashback::where('category', 'Electricity')->where('balance', $amount)->first();
 
-            if ($cashback) {
-                $spin_count = 1;
-                $send_spin_chance = send_spin_chance($user, $amount, $cashback->cashback, $spin_count, $cashback->category);
-            }
-
             $transaction->save();
 
             if ($transaction->status == 1) {
+                if ($cashback) {
+                    $spin_count = 1;
+                    $send_spin_chance = send_spin_chance($user, $amount, $cashback->cashback, $cashback->category);
+                }
+                
                 return redirect()->back()->with('success', 'Bill successful. Transaction ID: ' . $transaction->transaction_id);
             } elseif (isset($billplans['ErrorMessage'])) {
                 return redirect()->back()->with('info', $billplans['ErrorMessage']);
