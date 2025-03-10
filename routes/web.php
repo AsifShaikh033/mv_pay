@@ -88,6 +88,7 @@ Route::get('/recharge-get', [RechargeController::class, 'recharge']);
 
     //WEBHOOK START
     Route::get('/recharge_callback', [WebhookController::class, 'recharge_webhook']);
+    Route::get('/digital_webhook', [WebhookController::class, 'digital_recharge_webhook']);
 
     Route::post('/fetch-operator-circle', [ApiFetchController::class, 'fetchOperatorCircle'])->name('fetch.operator.circle');
     Route::post('/billfetch-operator-circle', [ApiFetchController::class, 'billfetchOperatorCircle'])->name('billfetch.operator.circle');
