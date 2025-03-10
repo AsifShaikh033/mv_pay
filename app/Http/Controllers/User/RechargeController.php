@@ -138,10 +138,11 @@ class RechargeController extends Controller
         return redirect()->back()->with(['error' => 'Invalid response received from the API.'])->withInput();
     }
     
-            private function digitalRecharge($number, $amount, $providerId)
+            private function digitalRecharge($number, $amount, $providerId,$transaction_id)
             {
                 $apiToken = '1NJ6PJcDDrhsmz14HRanN8jD3Nhy6yVXv9S7KDs0FsxHvcM02gvQfT22LHMc';
-                $clientId = rand(1000000000, 99999999999);
+                // $clientId = rand(1000000000, 99999999999);
+                $clientId = $transaction_id;
 
                 $url = "https://merchant.digitalonlinepays.com/api/telecom/v1/payment?api_token=$apiToken&number=$number&amount=$amount&provider_id=$providerId&client_id=$clientId";
 
@@ -200,6 +201,8 @@ class RechargeController extends Controller
 
                 $recharge->status = 'success';
             } elseif ($status === 'pending') {
+                $user->balance -= $amount;
+                $user->save();
                 $transaction->status = 2;
                 $transaction->payment_status = 'pending';
                 $transaction->details = 'Recharge pending for ' . $mobileNumber;
@@ -228,6 +231,8 @@ class RechargeController extends Controller
                   $send_spin_chance =  send_spin_chance($user, $amount, $cashback->cashback, $cashback->category);
                 }
                 return view('Web.User.failed.rechargesuccessModal', compact('transaction', 'transaction_id'));
+            }elseif($transaction->status == 2){
+                return view('Web.User.failed.rechargependingModal', compact('transaction', 'transaction_id'));
             } else {
                 return view('Web.User.failed.rechargefailedModal', compact('transaction', 'transaction_id'));
             }
@@ -277,7 +282,7 @@ class RechargeController extends Controller
                     'IDEA' => 3
                 ];
                 $operatorCode = $operatorCodes[$operatorCode] ?? $operatorCode;
-                $digitalResponse = $this->digitalRecharge($mobileNumber, $rechargeAmount, $operatorCode);
+                $digitalResponse = $this->digitalRecharge($mobileNumber, $rechargeAmount, $operatorCode,$transaction_id);
                 Log::warning('Call the c digitalResponse service', ['digitalResponse' => $digitalResponse]);
                 return $this->handleDigitalResponse($digitalResponse, $mobileNumber, $rechargeAmount, $transaction_id, $user, $circleCode, $serviceType);
             }
