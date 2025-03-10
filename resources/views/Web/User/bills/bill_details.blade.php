@@ -2,179 +2,323 @@
 
 @section('content')
 <style>
-    .mobile-recharge-container {
-        max-width: 500px;
-        margin: 100px auto;
+    .recharge-container {
+        max-width: 400px;
+        margin: auto;
+        text-align: center;
         padding: 20px;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        background-color: #f9f9f9;
-    }
-
-    .prepaid-button-container {
+        background: linear-gradient(to right, black, blue);
+        border-radius: 25px;
         text-align: center;
-        margin-bottom: 20px;
+        margin-top: 105px;
     }
-
-    .prepaid-button {
-        padding: 10px 20px;
-        font-size: 18px;
-        background-color: transparent;
-        border: none;
-        border-bottom: 2px solid blue;
-        color: blue;
-        cursor: pointer;
-        outline: none;
-        transition: all 0.3s ease;
-    }
-
-    .input-section {
-        margin-bottom: 20px;
-    }
-
-    .input-with-icon {
-        position: relative;
-        margin-bottom: 10px;
-    }
-
-    .input-with-icon input {
-        width: 100%;
+    .info-box {
+        background: linear-gradient(to right, #000000, #0000ff, #000099);
+        border: 2px solid white;
         padding: 10px;
-        font-size: 16px;
-        border: 1px solid transparent;
-        border-radius: 10px;
-        background-color: #cfcbcb57;
+        border-radius: 8px;
+        margin-bottom: 20px;
     }
-
-    .contact-icon {
-        position: absolute;
-        top: 50%;
-        right: 10px;
-        transform: translateY(-50%);
-        font-size: 20px;
+    .info-box p {
+        margin: 5px 0;
+        font-size: 18px;
     }
+    .pin-input {
+    display: flex;
+    justify-content: center;
+    /* gap: 10px; */
+    gap: 18px;
+}
 
-    .plans-button-container {
-        text-align: center;
-    }
+.pin-spin {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 10px;
+    gap: 31px;
+    margin-bottom: 10px;
+}
 
-    .check-plans-btn {
-        padding: 12px 30px;
-        font-size: 16px;
-        background-color: #4c5985;
-        color: white;
+.pin-input input {
+    /* width: 40px; */
+    width: 100%;
+    /* height: 40px; */
+    height: 35px;
+    text-align: center;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+    .numpad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+    align-items: center;
+    justify-items: center;
+}
+    .numpad button {
+        /* padding: 15px; */
+        font-size: 18px;
+        /* background: #2e7d32; */
+        color: #fff;
         border: none;
-        border-radius: 13px;
-        cursor: pointer;
-        width: 100%;
+        /* border-radius: 8px; */
+        
+        background:linear-gradient(45deg, #05004a, #0c00b3, #040040);
+    border-radius: 54px;
+    width: 69px;
+    padding: 6px;
+    border: 2px solid white;
+    }
+    .hidden { display: none; }
+    .pin_title{
+        border: 2px solid white;
+    width: 293px;
+    height: 38px;
+    border-radius: 15px;
+    color: #fff !important;
     }
 
-    .check-plans-btn:hover {
-        background-color: #81014fc9;
-        color: white;
-    }
+.design_plan{
+    display:none;
+}
+
+    .reachrge_banner {
+            width: 300px;
+            background: #0000ff;
+            color: #fff;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        .header_banner_new {
+            text-align: center;
+            border: 2px solid #fff;
+            border-radius: 13px;
+            padding: 12px 0;
+            margin: 0;
+            margin-bottom: 5px;
+        }
+        .header_banner_new img {
+            width: 100%;
+        }
+        .header_banner_new h2, .header_banner_new h3, .header_banner_new h4 {
+            margin-bottom: 2px;
+            font-size: 20px;
+            color: #fff;
+            text-align: left;
+        }
+        .box_banner_new {
+            color: #fff;
+            margin: 5px 0;
+            border-radius: 7px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 2px solid #fff;
+            padding: 5px 10px;
+            text-align: left;
+            margin-top: 5px;
+            font-weight: 600;
+        }
+        .benefits {
+            font-size: 14px;
+        }
+        .wallet_banner {
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .highlight {
+            background: #8fff00;
+            font-weight: bold;
+            color: #000;
+        }
+        .button_confirm_new {
+            background: #01ff85;
+            text-align: center;
+            padding: 7px 12px;
+            margin: 10px 0;
+            cursor: pointer;
+            font-size: 19px;
+            color: #000;
+            text-decoration: none;
+            border-radius: 20px;
+        }
+        
+
 </style>
-
 <div class="content-body">
-    <div class="mobile-recharge-container">
-        <button class="prepaid-button mb-3">Bills</button>
+    <div class="container choose_plan-container mt-5">
+              
 
-        <form id="rechargeForm" action="{{ route('user.recharge.bill_fetch') }}" method="POST">
-            @csrf
-            <div class="input-section"> 
-                <div class="input-with-icon">
-                    <input type="text" id="customer-name" name="customer_name" placeholder="Customer Name" value="{{ old('customer_name') }}" required>
-                    <span class="contact-icon"><i class="fa fa-electric" aria-hidden="true"></i></span>
+
+        <div class="recharge-container banner_design">
+           <div class="">
+                <div class="header_banner_new row align-items-center">
+                    <div class="col-4"><img src="{{ asset('assets/operators/electricity.png') }}" alt="Electricity Logo"></div>
+                    <div class="col-8 ps-0">  <h2>{{ $customerDetails['bill_number'] ?? old('bill_number') }}</h2>
+                        <h3>{{ $data['operator'] ?? 'N/A' }}</h3>
+                        <h4>{{ $data['serviceType'] ?? 'N/A' }}</h4>
+                    </div>
+                </div>
+                <div class="box_banner_new font-bold">
+                    <span>Bill Amount</span>
+                    <span> {{ $customerDetails['due_amount'] ?? old('due_amount') }} RS</span>
+                </div>
+                <div class="box_banner_new wallet_banner d-block">
+                     <p class="d-flex justify-content-around align-items-center mb-1"><span> Customer Name</span><span> {{ $customerDetails['customer_name'] ?? old('customer_name') }} </span></p>
+                    <p class="d-flex justify-content-around align-items-center mb-1"><span> Wallet Balance</span><span> {{ Auth::user()->balance }} RS</span></p>
+                    <p class="d-flex justify-content-around align-items-center mb-1"><span> Bill Date</span><span> {{ $customerDetails['bill_date'] ?? old('bill_date') }} </span></p>
+                    <p class="d-flex justify-content-around align-items-center mb-1"><span> Due Date</span><span> {{ $customerDetails['due_date'] ?? old('due_date') }} </span></p>
+                    <p class="d-flex justify-content-around align-items-center mb-1"><span> Bill Period</span><span> {{ $customerDetails['bill_period'] ?? old('bill_period') }} </span></p>
                 </div>
 
-                <div class="input-with-icon">
-                    <input type="text" id="due-amount" name="due_amount" placeholder="Due Amount" value="{{ old('due_amount') }}" required>
-                    <span class="contact-icon"><i class="fa fa-electric" aria-hidden="true"></i></span>
+                <div class="box_banner_new  highlight justify-content-around">
+                    <span >  Payable Amount</span> <span>= {{ $customerDetails['due_amount'] ?? old('due_amount') }}  RS</span>
                 </div>
 
-                <div class="input-with-icon">
-                    <input type="text" id="due-date" name="due_date" placeholder="Due Date" value="{{ old('due_date') }}" required>
-                    <span class="contact-icon"><i class="fa fa-electric" aria-hidden="true"></i></span>
+                <div class="box_banner_new" style="border:0;">
+                    <span> <img src="{{ asset('assets_web/images/wallet/13.png') }}" class="spin-img" height="25" width="25"  alt=""> Spin & Earn </span> <span>Upto ₹20</span>
                 </div>
-
-                <div class="input-with-icon">
-                    <input type="text" id="bill-number" name="bill_number" placeholder="Bill Number" value="{{ old('bill_number') }}">
-                </div>
-
-                <div class="input-with-icon">
-                    <input type="text" id="bill-date" name="bill_date" placeholder="Bill Date" value="{{ old('bill_date') }}">
-                </div>
-
-                <div class="input-with-icon">
-                    <input type="text" id="bill-period" name="bill_period" placeholder="Bill Period" value="{{ old('bill_period') }}">
-                </div>
+                <a href="javascript:void(0);" class="button_confirm_new">Confirm to Pay</a>
+             
             </div>
+        </div>
 
-            <div class="plans-button-container mt-4">
-                <button type="submit" class="check-plans-btn mt-3">Pay Bill</button>
-            </div>
-        </form>
 
-        <div class="recent-recharges">
-            <p>Recent or Personal Bill Recharges</p>
-            <div class="recharge-history mt-3">
-                <h6 class="fw-bold">Recent Bill Numbers</h6>
-                <ul class="list-unstyled">
-                    @foreach($billNumbers as $number)
-                        <li class="d-flex align-items-center gap-2 recent-number">
-                            <i class="fa fa-mobile" aria-hidden="true"></i>
-                            <span data-number="{{ $number->number }}">{{ $number->number }}</span>
-                        </li>
-                    @endforeach
-                </ul>
+        <div class="recharge-container design_plan">
+            <div class="info-box">
+                <p class="text-white"><strong class="text-white">Paid To:  </strong>{{ $data['operator'] ?? 'N/A' }}</p>
+                <p class="text-white"><strong class="text-white">Amount:  </strong>  ₹{{ $customerDetails['due_amount'] ?? '0.00' }}</p>
             </div>
+            
+
+            <h4 class="text-success pin_title m-auto">Enter 4 Digits MV-PIN</h4>
+            <div class="ms-3 mt-3">
+            <form method="POST" action="{{ route('user.recharge.bill_plan') }}" onsubmit="submitPin(event)">
+                @csrf
+                <input type="hidden" name="bill_number" value="{{ $customerDetails['bill_number'] ?? old('bill_number') }}">
+                <input type="hidden" name="circle" value="{{ $data['circle'] ?? old('circle') }}">
+                <input type="hidden" name="recharge_amount" value="{{ $customerDetails['due_amount'] ?? old('due_amount') }}">
+
+
+                <div class="pin-spin">
+                    <img src="{{ asset('assets_web/images/wallet/13.png') }}" class="spin-img" style="width:25px!important;height:25px!important;" alt="">
+                    <img src="{{ asset('assets_web/images/wallet/13.png') }}" class="spin-img" style="width:25px!important;height:25px!important;" alt="">
+                    <img src="{{ asset('assets_web/images/wallet/13.png') }}" class="spin-img" style="width:25px!important;height:25px!important;" alt="">
+                    <img src="{{ asset('assets_web/images/wallet/13.png') }}" class="spin-img" style="width:25px!important;height:25px!important;" alt="">
+                </div>
+                <div class="pin-input">
+                    <input type="password" maxlength="1" oninput="moveToNext(this, 0)">
+                    <input type="password" maxlength="1" oninput="moveToNext(this, 1)">
+                    <input type="password" maxlength="1" oninput="moveToNext(this, 2)">
+                    <input type="password" maxlength="1" oninput="moveToNext(this, 3)">
+                </div>
+                <p class="text-success message-box d-none">Enter New PIN</p>
+                
+
+
+                <div class="numpad">
+                    <button type="button" onclick="addDigit(1)">1</button>
+                    <button type="button" onclick="addDigit(2)">2</button>
+                    <button type="button" onclick="addDigit(3)">3</button>
+                    <button type="button" onclick="addDigit(4)">4</button>
+                    <button type="button" onclick="addDigit(5)">5</button>
+                    <button type="button" onclick="addDigit(6)">6</button>
+                    <button type="button" onclick="addDigit(7)">7</button>
+                    <button type="button" onclick="addDigit(8)">8</button>
+                    <button type="button" onclick="addDigit(9)">9</button>
+                    <button type="button" onclick="deleteDigit()">⌫</button>
+                    <button type="button" onclick="addDigit(0)">0</button>
+                    <button type="submit">Enter</button>
+                </div>
+            </form>
+        </div>
         </div>
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-$(document).ready(function() {
-    $('.recent-number span').on('click', function() {
-        let selectedNumber = $(this).data('number');
-        $('#bill-number').val(selectedNumber).trigger('input');
-        fetchOperatorAndCircle(selectedNumber);
-    });
+    const inputs = document.querySelectorAll('.pin-input input');
+    let currentInput = 0;
 
-    function fetchOperatorAndCircle(billNumber, operator = '') {
-        $.ajax({
-            url: "{{ route('billfetch.operator.circle') }}",
-            type: "POST",
-            data: {
-                bill_number: billNumber,
-                operator: operator,
-                _token: "{{ csrf_token() }}"
-            },
-            success: function(response) {
-                if (response.status === 1) {
-                    $('#operator').val(response.operator).change();
-                    $('#circle').val(response.circle).change();
-                    $('#amount').val(response.amount);
-                }
-            },
-            error: function(xhr) {
-                let errorMessage = xhr.responseJSON && xhr.responseJSON.error ? xhr.responseJSON.error : 'Issue in fetching mobile details';
-                toastr.error(errorMessage, 'Error', { timeOut: 8000 });
-            }
-        });
+    function addDigit(digit) {
+        if (currentInput < inputs.length) {
+            inputs[currentInput].value = digit;
+            currentInput++;
+        }
+        updateHiddenPin();
     }
 
-    $('#bill-number').on('keyup', function() {
-        let billNumber = $(this).val();
-        let operator = $('#operator').val();
-        if (billNumber && operator) {
-            fetchOperatorAndCircle(billNumber, operator);
+    function deleteDigit() {
+        if (currentInput > 0) {
+            currentInput--;
+            inputs[currentInput].value = '';
         }
+        updateHiddenPin();
+    }
+
+    function moveToNext(input, index) {
+        if (input.value && index < inputs.length - 1) {
+            inputs[index + 1].focus();
+        }
+        updateHiddenPin();
+    }
+
+    function updateHiddenPin() {
+        const pin = Array.from(inputs).map(input => input.value).join('');
+        document.getElementById('recharge_pin').value = pin;
+        console.log('Updated PIN:', pin);
+    }
+
+    function submitPin(event) {
+        updateHiddenPin();
+        const pin = document.getElementById('recharge_pin').value;
+        if (!/^\d{4}$/.test(pin)) {
+            event.preventDefault();
+            alert('Please enter a 4-digit PIN');
+        } else {
+            console.log('PIN submitted:', pin);
+        }
+    }
+
+  function showMessage() {
+
+        $('.message-box').removeClass('d-none');
+        $('#forget_pin').val('1');
+
+    };
+
+    document.addEventListener('DOMContentLoaded', function() {
+    const button = document.querySelector('.button_confirm_new');
+    const banner = document.querySelector('.banner_design');
+    const designPlan = document.querySelector('.design_plan');
+
+    button.addEventListener('click', function() {
+        designPlan.style.display = 'block';
+        banner.style.display = 'none';
     });
 });
-</script>
-@endsection
 
-@section('styles')
-    <link rel="stylesheet" href="{{ asset('css/recharge.css') }}">
+
+</script>
+<script>
+    function toggleReadMore() {
+        const shortDesc = document.getElementById('short-desc');
+        const fullDesc = document.getElementById('full-desc');
+        const readMoreText = document.getElementById('read-more-text');
+
+        if (shortDesc.style.display === 'none') {
+            shortDesc.style.display = 'inline';
+            fullDesc.style.display = 'none';
+            readMoreText.textContent = 'Read more';
+        } else {
+            shortDesc.style.display = 'none';
+            fullDesc.style.display = 'inline';
+            readMoreText.textContent = 'Read less';
+        }
+    }
+</script>
+
+
 @endsection
