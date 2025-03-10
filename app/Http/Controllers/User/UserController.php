@@ -196,6 +196,7 @@ if($subscriptionStatus == true){
         // ->get();
         $fund = Transaction::with('user')
         ->where('user_id', auth()->id())
+        ->where('remark', 'withdrawal_request')
         ->orderBy('created_at', 'desc')
         ->get();
         
