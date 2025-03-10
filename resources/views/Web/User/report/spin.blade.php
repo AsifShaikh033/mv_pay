@@ -7,6 +7,30 @@
             height: 25% !important;
         }
 
+    }
+</style>
+<style>
+      
+        
+        /* Main section */
+        .snow {
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    padding: 20px;
+    border-radius: 10px;
+    background: linear-gradient(to right, black, blue);
+    text-align: center;
+}
+
+        /* Trophy section */
+        .shows img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 10px;
+        }
+
+
         .d-flex {
             flex-direction: column !important;
         }
@@ -30,6 +54,38 @@
         background: linear-gradient(to right, black, blue);
         text-align: center;
     }
+
+
+        .showss a {
+            color: white;
+            text-decoration: underline;
+            font-weight: bold;
+        }
+        .trophy {
+    width: 50%;
+    /* height: 50%; */
+}
+        .showss img{
+            width:30%;
+           
+        }
+
+        @media (max-width: 400px) {
+            .showss img {
+                    width: 30%;
+                }
+            .showss h2 {
+                font-size: 15px;
+            }
+            .showss h3 {
+                font-size: 15px;
+            }
+            .showss p {
+                font-size: 10px;
+            }
+
+    }
+  
 
     .showss {
         display: flex;
@@ -66,6 +122,7 @@
         height: 50%;
     }
 </style>
+
 <div class="content-body">
 <div class="container py-4">
     <h2 class="text-light text-center mb-4 mt-5">{{ $reportTitle }}</h2>
@@ -75,7 +132,9 @@
             <img src="{{ asset('assets_web/images/others_services/trophy.png') }}" class="trophy" alt="Trophy">
 
             <div class="showss">
-                <img src="{{ asset('assets_web/images/others_services/spin.png') }}" width="80px" height="80px" alt="Spin Wheel">
+
+
+                <img src="{{ asset('assets_web/images/others_services/spin.png') }}" alt="Spin Wheel">
                 <h2>
                     <a href="https://mvvision.in/student/spin-mv-pay" target="_blank">
                         Click here to get cashback
@@ -86,6 +145,7 @@
                         https://mvvision.in/student/spin-mv-pay
                     </a>
                 </p>
+
                 <h3>You have received</h3>
                 <h1>Spin Cashback</h1>
             </div>
