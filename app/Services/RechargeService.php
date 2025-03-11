@@ -239,7 +239,7 @@ class RechargeService
     {
         $response = Http::get($this->apiBaseUrl . 'services_cyapi/recharge_cyapi.aspx', [
             'memberid'         => $this->Bill_Pay_MEMBER_ID,
-            'pin'              => $this->Bill_Pay, 
+            'pin'              => $this->PR_MOBILE_RECHARGE, 
             'number'           => $billNumber, 
             'operator'         => $operatorCode,
             'circle'          => $circleCode,
