@@ -184,7 +184,7 @@ input[type="search"]:focus, textarea:focus {
 
     .amount1-overlay {
         top: 56%;
-        left: 70%;
+        left: 68%;
     }
 
     .amount2-overlay {
@@ -233,7 +233,7 @@ input[type="search"]:focus, textarea:focus {
                             <!-- <i class="fas fa-search search-icon"></i>
                             <input type="search" id="search" placeholder="Search...">
                             <i class="fas fa-microphone mic-icon"></i> -->
-                            <button onclick="window.location='{{route('user.withdrawal')}}'" class="btn text-white" style="    background: linear-gradient(45deg, #00ffd2, #001c44, #0876ff);">Withdrawal</button>
+                            <button onclick="window.location='{{route('user.withdrawal')}}'" class="btn btn-primary">Withdrawal</button>
                         </div>
                         <!-- <textarea id="text" cols="30" rows="10" placeholder="Type your text..."></textarea> -->
                         <div class='budget_img'>
