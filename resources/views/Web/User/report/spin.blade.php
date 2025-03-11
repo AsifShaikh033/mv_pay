@@ -56,11 +56,7 @@
     }
 
 
-        .showss a {
-            color: white;
-            text-decoration: underline;
-            font-weight: bold;
-        }
+      
         .trophy {
     width: 50%;
     /* height: 50%; */
@@ -81,10 +77,12 @@
                 font-size: 15px;
             }
             .showss p {
-                font-size: 10px;
-            }
+    font-size: 10px;
+    margin: 0px;
+}
             .showss h1 {
                 font-size: 20px !important;
+                margin:0px;
             }
 
     }
@@ -101,7 +99,7 @@
     .showss h2 {
         font-size: 24px;
         font-weight: bold;
-        margin: 10px 0;
+       
     }
 
     .showss h1 {
@@ -110,15 +108,12 @@
         color: #FFD700;
     }
 
-    .showss img {
-        margin-bottom: 10px;
-    }
 
     .showss a {
-        color: white;
-        text-decoration: underline;
-        font-weight: bold;
-    }
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
 
     .trophy {
         width: 50%;
@@ -140,7 +135,7 @@
                 <img src="{{ asset('assets_web/images/others_services/spin.png') }}" alt="Spin Wheel">
                 <h2>
                     <a href="https://mvvision.in/student/spin-mv-pay" target="_blank">
-                        Click here to get cashback
+                        Click here
                     </a>
                 </h2>
                 <p>
