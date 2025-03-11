@@ -66,8 +66,8 @@
       </div>
       <div class="modal-body d-flex justify-content-center text-white">
                     <div class="image-container mb-3">
-                    <img src="{{ asset('assets_web/images/others_services/cash_remover.png') }}" alt="Recharge Failed" class="img-fluid">
-                    <p class="thank-you">Thank  You For Using  MV Pay.
+                    <img src="{{ asset('assets_web/images/others_services/cash.png') }}" alt="Recharge Failed" class="img-fluid">
+                    <p class="thank-you text-black">Thank  You For Using  MV Pay.
                     collect your cash from mv vision.</p>
                     </div>
                    

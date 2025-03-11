@@ -118,7 +118,7 @@
         <p class="mb-3 text-muted">Choose your preferred recharge method:</p>
           <div class="d-grid gap-3">
           <button class="btn btn-secondary btn-lg rounded-pill" style="background: linear-gradient(45deg, #00ffd2, #001c44, #0876ff);" onclick="handleRecharge('digitalonline')">
-                🌍 Recharge Mode 1
+                 💳 Recharge Mode 1
             </button>
             <button class="btn btn-primary btn-lg rounded-pill" onclick="handleRecharge('cyrus')">
                 🚀 Recharge Mode 2
