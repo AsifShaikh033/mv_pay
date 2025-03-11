@@ -90,7 +90,32 @@
     justify-content: center;
     align-items: center;
   }
+  .icons {
+    border-radius: 50%;
+    margin-right: 10px;
+    font-size: 30px;
+    padding: 9px;
+    background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.play-circle {
+    display: inline-block;
+    padding: 10px;
+    background-color: orangered;
+    border-radius: 50%;
+    color: white;
+    margin-right: 10px;
+    font-size: 24px;
+    text-align: center;
+    line-height: 1;
+}
+
+
+
 </style>
+
 @section('content')
 <div class="content-body">
   <div class="container-fluid mt-5 pt-5 d-flex justify-content-center">
@@ -110,15 +135,21 @@
         <div class="row">
           <div class="col-6">
             <div class="support-item">
-              <img class='icon' src="{{ asset('assets_web/images/others_services/s_2.png') }}" alt="Email">
+            <i class="fa fa-envelope icons"></i>
+
+
+              <!-- <img class='icon' src="{{ asset('assets_web/images/others_services/s_2.png') }}" alt="Email"> -->
               <a href="mailto:mvvision.in@gmail.com"><button class="btn btn-outline-light badge mb-0">CLICK HERE</button></a>
             </div>
             <div class="support-item">
-              <img class='icon' src="{{ asset('assets_web/images/others_services/s_3.png') }}" alt="WhatsApp">
+            <i class="fa-brands fa-whatsapp icons bg-success"></i>
+              <!-- <img class='icon' src="{{ asset('assets_web/images/others_services/s_3.png') }}" alt="WhatsApp"> -->
               <a href="https://wa.me/7999544712" target="_blank"><button class="btn btn-outline-light badge mb-0">CLICK HERE</button></a>
             </div>
             <div class="support-item">
-              <img class='icon' src="{{ asset('assets_web/images/others_services/s_1.png') }}" alt="Telegram">
+            <i class="fa fa-play play-circle"></i>
+
+              <!-- <img class='icon' src="{{ asset('assets_web/images/others_services/s_1.png') }}" alt="Telegram"> -->
               <a href="https://t.me/7999544712"><button class="btn btn-outline-light badge mb-0">CLICK HERE</button></a>
             </div>
           </div>
@@ -128,11 +159,20 @@
               <a href="tel:+9238711395"><button class="btn btn-outline-light badge mb-0">CLICK HERE</button></a>
             </div>
             <div class="support-item">
-              <img class='icon' src="{{ asset('assets_web/images/others_services/s_4.png') }}" alt="Telegram">
+            <i class='fab fa-telegram-plane' style="font-size:48px;color:skyblue;margin-right: 10px;"></i>
+
+              <!-- <img class='icon' src="{{ asset('assets_web/images/others_services/s_4.png') }}" alt="Telegram"> -->
               <a href="https://t.me/7999544712" target="_blank"><button class="btn btn-outline-light badge mb-0">CLICK HERE</button></a>
             </div>
             <div class="support-item">
-              <img class='icon' src="{{ asset('assets_web/images/others_services/s_5.png') }}" alt="Support">
+            <!-- <i class="fab fa-google-drive icons"></i> -->
+            <i class="fa fa-envelope-open icons bg-info"></i>
+
+
+           
+
+
+              <!-- <img class='icon' src="{{ asset('assets_web/images/others_services/s_5.png') }}" alt="Support"> -->
               <button class="btn btn-outline-light badge mb-0">CLICK HERE</button>
             </div>
           </div>
