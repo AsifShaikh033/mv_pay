@@ -83,6 +83,15 @@
     button.btn.btn-outline-light.badge {
     font-size: 8px!important;
 }
+.img_size_1 {
+    width: 180px;
+}
+  }
+
+  @media (max-width: 340px) {
+    .img_size_1 {
+    width: 100%;
+}
   }
 
   .display_flex {
