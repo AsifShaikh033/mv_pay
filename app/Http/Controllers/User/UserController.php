@@ -196,6 +196,7 @@ if($subscriptionStatus == true){
         // ->get();
         $fund = Transaction::with('user')
         ->where('user_id', auth()->id())
+        ->where('remark', 'withdrawal_request')
         ->orderBy('created_at', 'desc')
         ->get();
         
@@ -209,7 +210,7 @@ if($subscriptionStatus == true){
 
         $commission = Transaction::with('user')
         ->where('user_id', $userId)
-        ->where('remark', 'referral_bonus')
+        ->where('remark', 'reffrel_bonus')
         ->orderBy('created_at', 'desc')
         ->get();
         

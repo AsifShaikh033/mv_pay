@@ -235,7 +235,7 @@ class RechargeService
     /**
      * Fetch Electricity Bill Plans
      */
-    public function fetchBillPlans($billNumber, $operatorCode, $circleCode, $rechargeAmount, $transaction_id)
+    public function electricityBillPay($billNumber, $operatorCode, $circleCode, $amount, $transaction_id)
     {
         $response = Http::get($this->apiBaseUrl . 'services_cyapi/recharge_cyapi.aspx', [
             'memberid'         => $this->Bill_Pay_MEMBER_ID,
@@ -243,8 +243,11 @@ class RechargeService
             'number'           => $billNumber, 
             'operator'         => $operatorCode,
             'circle'          => $circleCode,
-            'amount'          => $rechargeAmount,
+            'amount'          => $amount,
             'usertx'          => $transaction_id,
+           // 'account'         => '2715500000356',
+           // 'othervalue'      => 'Other_Values',
+           // 'othervalue1'     => 'Other_Values', 
             'format'           => 'json',
             'RechargeMode'     => 1
         ]);

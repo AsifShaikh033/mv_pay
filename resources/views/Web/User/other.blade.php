@@ -127,12 +127,12 @@
                     </div>
                     <h5 class="card-title">Fund Transaction</h5>
                 </div>
-                <div class="card" style="cursor: pointer;" onclick="applyCreditCard()">
+                <!-- <div class="card" style="cursor: pointer;" onclick="applyCreditCard()">
                 <div class="other_icon gradient-icon">
                         <i class="fa fa-credit-card"></i>
                     </div>
                     <h5 class="card-title">Credit Card</h5>
-               </div>
+               </div> -->
                <div class="card" style="cursor: pointer;" onclick="showBankAccountModal()">
                         <div class="other_icon gradient-icon-bank">
                             <i class="fa fa-university"></i> <!-- Bank icon -->

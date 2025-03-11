@@ -117,11 +117,15 @@
       <div class="modal-body text-center py-4">
         <p class="mb-3 text-muted">Choose your preferred recharge method:</p>
           <div class="d-grid gap-3">
-            <button class="btn btn-primary btn-lg rounded-pill" onclick="handleRecharge('cyrus')">
-                🚀 Recharge Mode 1
+          <button class="btn btn-secondary btn-lg rounded-pill" style="background: linear-gradient(45deg, #00ffd2, #001c44, #0876ff);" onclick="handleRecharge('digitalonline')">
+                 💳 Recharge Mode 1
             </button>
+            <button class="btn btn-primary btn-lg rounded-pill" onclick="handleRecharge('cyrus')">
+                🚀 Recharge Mode 2
+            </button>
+           
             <button class="btn btn-secondary btn-lg rounded-pill" onclick="handleRecharge('planet')">
-                🌍 Recharge Mode 2
+                🌍 Recharge Mode 3
             </button>
           </div>
         <!-- <div class="d-grid gap-3">
@@ -458,7 +462,11 @@ function redirectToRecharge(serviceType) {
 
         if (rechargeType === 'planet') {
             route = '{{ route('user.recharge.mobile') }}' + '?plan_id=1'; 
-        } else {
+        } else if(rechargeType === 'digitalonline'){
+           
+          route = '{{ route('user.recharge.mobile') }}' + '?plan_id=2'; 
+       }
+         else {
            
             route = '{{ route('user.recharge.mobile') }}';
         }

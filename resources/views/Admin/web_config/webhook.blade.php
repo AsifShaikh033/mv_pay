@@ -37,7 +37,29 @@
                                     </div>
                                     <small class="form-text text-muted">Copy this and add it in your Cyrus settings</small>
                                 </div>
+
                             </div>
+                            <div class="col-md-6 col-lg-6">
+                            <div class="form-group">
+                                    <label for="webhook_url">Webhook For Digital Pay </label>
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <input 
+                                            type="text" 
+                                            id="copyWebhookUrlseconds" 
+                                            value="{{ url('/digital_webhook') }}" 
+                                            readonly 
+                                            class="form-control"
+                                        />
+                                        <button 
+                                            onclick="copyWebhookUrlsecond()" 
+                                            class="btn btn-success"
+                                        >
+                                            Copy
+                                        </button>
+                                    </div>
+                                    <small class="form-text text-muted">Copy this and add it in your Digital settings</small>
+                                </div>
+                        </div>
                         </div>
                         <!-- New section for displaying API response details -->
                         <div class="row mt-4">
@@ -66,6 +88,12 @@
 <script>
     function copyWebhookUrl() {
         const webhookInput = document.getElementById('webhookUrl');
+        webhookInput.select();
+        document.execCommand('copy');
+        alert('Webhook URL copied to clipboard!');
+    }
+    function copyWebhookUrlsecond() {
+        const webhookInput = document.getElementById('copyWebhookUrlseconds');
         webhookInput.select();
         document.execCommand('copy');
         alert('Webhook URL copied to clipboard!');

@@ -48,11 +48,11 @@
     </style>
 
 
-
 <div class="content-body mt-5">
     <div class="container choose_plan-container mt-5">
+
 <!-- Modal -->
-<!-- <div class="modal fade " id="cashbackModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"> -->
+<!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"> -->
 <div>
   <div class="modal-dialog">
     <div class="modal-content rechargeModal">
@@ -60,25 +60,30 @@
         <!-- <button type="button" class="btn-close bg-danger" data-bs-dismiss="modal" aria-label="Close"></button> -->
     </div>
       <div class="modal_header">
-      <h5 class="modal-title w-100" id="rechargeModalLabel">Recharge Of {{$transaction->amount}} has
-      been proceed successfully.</h5>
+      <h5 class="modal-title w-100" id="rechargeModalLabel">Recharge of {{$transaction->amount}} Rs is under Process.If Recharge failed. You will get  back shortly..</h5>
        
       </div>
       <div class="modal-body d-flex justify-content-center text-white">
                     <div class="image-container mb-3">
-                    <img src="{{ asset('assets_web/images/others_services/cash.png') }}" alt="Recharge Failed" class="img-fluid">
-                    <p class="thank-you text-black">Thank  You For Using  MV Pay.
-                    collect your cash from mv vision.</p>
+                    <img src="{{ asset('assets_web/images/others_services/recharge_failed.png') }}" alt="Recharge Failed" class="img-fluid">
+                    <p class="thank-you">Thank You For Using MV Pay.</p>
                     </div>
                    
         </div>
     </div>
   </div>
 </div>
+
     </div>
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <script>
+    $(document).ready(function() {
+        $('#exampleModal').modal('show');
+    });
+</script>
 
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--

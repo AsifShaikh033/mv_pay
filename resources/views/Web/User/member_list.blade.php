@@ -28,21 +28,21 @@
                 <!-- Social Media Share Buttons -->
                 <div class="text-center mt-4">
                     <h5 class="text-primary"><i class="fas fa-share-alt"></i> Share on Social Media</h5>
-                    <div class="d-flex justify-content-center gap-3 mt-3">
+                    <div class="d-flex justify-content-center gap-1 mt-3">
                         <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(route('register', ['referral_code' => $referralCode])) }}" 
-                           target="_blank" class="btn btn-facebook rounded-pill shadow-sm">
+                           target="_blank" class="btn btn-facebook rounded-pill shadow-sm btn-sm">
                             <i class="fab fa-facebook-f"></i> Facebook
                         </a>
                         <a href="https://twitter.com/intent/tweet?url={{ urlencode(route('register', ['referral_code' => $referralCode])) }}" 
-                           target="_blank" class="btn btn-twitter rounded-pill shadow-sm">
+                           target="_blank" class="btn btn-twitter rounded-pill shadow-sm btn-sm">
                             <i class="fab fa-twitter"></i> Twitter
                         </a>
                         <a href="https://wa.me/?text={{ urlencode(route('register', ['referral_code' => $referralCode])) }}" 
-                           target="_blank" class="btn btn-whatsapp rounded-pill shadow-sm">
+                           target="_blank" class="btn btn-whatsapp rounded-pill shadow-sm btn-sm">
                             <i class="fab fa-whatsapp"></i> WhatsApp
                         </a>
                         <a href="https://t.me/share/url?url={{ urlencode(route('register', ['referral_code' => $referralCode])) }}" 
-                           target="_blank" class="btn btn-telegram rounded-pill shadow-sm">
+                           target="_blank" class="btn btn-telegram rounded-pill shadow-sm btn-sm">
                             <i class="fab fa-telegram-plane"></i> Telegram
                         </a>
                     </div>
