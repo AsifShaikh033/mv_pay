@@ -51,12 +51,7 @@ class RechargeController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->limit(3)
                 ->get();
-
-                $transaction_id = 11680869787;
-
-                $transaction = Transaction::where('transaction_id', $transaction_id)->first();
-
-                return view('Web.User.failed.rechargesuccessModal', compact('transaction', 'transaction_id'));
+                
             return view('Web.User.recharge.mobile',compact('circle', 'Operator','rechargeNumbers', 'planId'));
         }
 
