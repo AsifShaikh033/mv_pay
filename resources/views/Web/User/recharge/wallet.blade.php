@@ -205,10 +205,6 @@ input[type="search"]:focus, textarea:focus {
 }
 
 }
-.btn-gradient {
-    background: linear-gradient(45deg, #00ffd2, #001c44, #0876ff);
-    color: white !important;
-}
 
 </style>
 
@@ -237,7 +233,7 @@ input[type="search"]:focus, textarea:focus {
                             <!-- <i class="fas fa-search search-icon"></i>
                             <input type="search" id="search" placeholder="Search...">
                             <i class="fas fa-microphone mic-icon"></i> -->
-                            <button onclick="window.location='{{route('user.withdrawal')}}'" class="btn btn-gradient">Withdrawal</button>
+                            <button onclick="window.location='{{route('user.withdrawal')}}'" class="btn btn-primary">Withdrawal</button>
                         </div>
                         <!-- <textarea id="text" cols="30" rows="10" placeholder="Type your text..."></textarea> -->
                         <div class='budget_img'>

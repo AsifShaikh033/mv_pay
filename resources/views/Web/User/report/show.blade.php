@@ -25,6 +25,7 @@
                         'Idea' => 'idea.png',
                         'Jio' => 'jio.png',
                         'JIO' => 'jio.png',
+                        'Jio Logo' => 'jio.png',
                         'Reliance Jio' => 'jio.png',
                         'BSNL TopUp' => 'bsnl.png',
                         'BSNL' => 'bsnl.png',
