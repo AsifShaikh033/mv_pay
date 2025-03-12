@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Storage;
 class ManageUserController extends Controller
 {
      public function list(){
-         $user = User::all();
+        $user = User::with('referrer')->get();
 
          return view('Admin.user.list',compact('user'));
      }
