@@ -147,7 +147,7 @@
             <div class="showss">
 
 
-                <img src="{{ asset('assets_web/images/others_services/spin.png') }}" alt="Spin Wheel">
+                <img src="{{ asset('assets_web/images/others_services/spingf.png') }}" alt="Spin Wheel">
                 <h2>
                     <a href="https://mvvision.in/student/spin-mv-pay" target="_blank">
                         Click here
@@ -185,7 +185,7 @@
                 @endif
 
                 <div class="">
-                    <img src="{{ asset('assets_web/images/others_services/spin.png') }}" alt="Spin Wheel" style="width:100%">
+                    <img src="{{ asset('assets_web/images/others_services/spingf.png') }}" alt="Spin Wheel" style="width:100%">
                     <h3>You have received</h3>
                     <h1>₹{{ $transaction->amount }}</h1>
                 </div>
