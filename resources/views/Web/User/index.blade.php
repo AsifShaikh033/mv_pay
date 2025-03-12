@@ -44,7 +44,7 @@
   style="height: 20px;margin-bottom: 8px;"
     alt="Logo"
 />
-        <span>Welcome to MV PAY. We are dedicated to give you best service so that you can get good earnings from us. Keep on saving your money by using MV PAY and MV VISION. Stay tuned, keep supporting</span>
+        <span>Welcome to MV EASY PAY. We are dedicated to give you best service so that you can get good earnings from us. Keep on saving your money by using MV PAY and MV VISION. Stay tuned, keep supporting</span>
        
     </div>
 </div>
@@ -189,7 +189,7 @@
           Recharge
         </div>
       </div>
-      <button class="btn btn-sm btn-primary mb-0">
+      <button class="btn btn-sm mb-0" style="background: linear-gradient(45deg, #00ffd2, #001c44, #0876ff);color: white;">
         View All <i class="fas fa-arrow-right"></i>
       </button>
     </div>
@@ -235,7 +235,7 @@
           Offline(Manually Payment)
         </div>
       </div>
-      <button class="btn btn-sm btn-primary mb-0">
+      <button class="btn btn-sm mb-0" style="background: linear-gradient(45deg, #00ffd2, #001c44, #0876ff);color: white;">
         View All <i class="fas fa-arrow-right"></i>
       </button>
     </div>
@@ -275,7 +275,7 @@
 </div>
 
 
-      <button class="btn btn-sm btn-primary mb-0">
+      <button class="btn btn-sm mb-0" style="background: linear-gradient(45deg, #00ffd2, #001c44, #0876ff);color: white;">
         View All <i class="fas fa-arrow-right"></i>
       </button>
     </div>
@@ -379,7 +379,7 @@
     Financial Services
     </div>
   </div>
-  <button class="btn btn-sm btn-primary mb-0">
+  <button class="btn btn-sm mb-0" style="background: linear-gradient(45deg, #00ffd2, #001c44, #0876ff);color: white;">
     View All <i class="fas fa-arrow-right"></i>
   </button>
 </div>

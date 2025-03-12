@@ -151,7 +151,7 @@ img.spin-img {
                         <div class="header_1">
                             <div>
                                 <label style="font-size:10px;">Validity</label>
-                                <div class="validity_1">₹{{ $plan['recharge_amount'] }}</div>
+                                <div class="validity_1">₹{{ $plan['recharge_validity'] }}</div>
                             </div>
                         <!-- <div>
                             <label style="font-size:10px;" for="">Data</label>
@@ -159,7 +159,7 @@ img.spin-img {
                         </div> -->
                         <div>
                             <label style="font-size:10px;" for="">Amount</label>
-                            <div class="validity_1">{{ $plan['recharge_validity'] }}</div>
+                            <div class="validity_1">{{ $plan['recharge_amount'] }}</div>
                         </div>
                         </div>
                             <!-- <h4>₹{{ $plan['recharge_amount'] }}</h4>
