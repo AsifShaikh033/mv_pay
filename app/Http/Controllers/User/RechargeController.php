@@ -260,7 +260,7 @@ class RechargeController extends Controller
         $rechargeAmount = $request->input('recharge_amount');
         $rechargeValidity = $request->input('recharge_validity');
         $serviceType = $request->input('serviceType') ?? 'Prepaid-Mobile';
-
+       
         $user = auth()->user();
         $userBalance = $user->balance ?? 0;
     
@@ -472,11 +472,11 @@ class RechargeController extends Controller
             ->where('balance', '<=', $rechargeAmount)
             ->orderBy('balance', 'desc') 
             ->first();
-            Log::warning('BalanceCashback', ['BalanceCashback' => $cashback]);
-            if($cashback){
-              $send_spin_chance=  send_spin_chance($user,$rechargeAmount, $cashback->cashback, $cashback->category);
+          //  Log::warning('BalanceCashback', ['BalanceCashback' => $cashback]);
+            // if($cashback){
+              $send_spin_chance=  send_spin_chance($user,$rechargeAmount, 1, 'Prepaid-Mobile');
                 $transaction->spin_api_response = $send_spin_chance;
-            }
+            // }
            
             $transaction = Transaction::where('transaction_id', $transaction_id)->latest()->first();
             $transactionId = $transaction_id;

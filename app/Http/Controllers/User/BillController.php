@@ -53,7 +53,7 @@ class BillController extends Controller
             ->where('OperatorCode', 'CEB')
             ->value('OperatorCode');
 
-            $circleCode = '27';
+            $circleCode = '1';
 
             $billplans = $this->rechargeService->electricityBillPay(
                 $billNumber,
@@ -107,10 +107,10 @@ class BillController extends Controller
             $transaction->save();
 
             if ($transaction->status == 1) {
-                if ($cashback) {
+                // if ($cashback) {
                     $spin_count = 1;
-                    $send_spin_chance = send_spin_chance($user, $amount, $cashback->cashback, $cashback->category);
-                }
+                    $send_spin_chance = send_spin_chance($user, $amount, 1, 'Electricity');
+                // }
                 
                 return redirect()->back()->with('success', 'Bill successful. Transaction ID: ' . $transaction->transaction_id);
             } elseif (isset($billplans['ErrorMessage'])) {

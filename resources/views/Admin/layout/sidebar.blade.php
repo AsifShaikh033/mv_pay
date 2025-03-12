@@ -89,14 +89,13 @@
                       <span class="sub-item">Banner</span>
                   </a>
               </li>
-              <li>
+              <!-- <li>
                 <a href="{{ route('admin.balance.cashback.list') }}" class="{{ Request::routeIs('admin.balance.cashback.list') ? 'active' : '' }}">
-                  <!-- <i class="fas fa-file"></i> -->
-                  <!-- <p>Balance Cashback</p> -->
+               
                   <span class="sub-item">Balance Cashback</span>
                   <span class="badge badge-secondary">1</span>
                 </a>
-              </li>
+              </li> -->
               <li>
                   <a href="{{ route('admin.utr.list') }}" class="{{ Request::routeIs('admin.utr.list') ? 'active' : '' }}">
                       <span class="sub-item">UTR Number</span>
