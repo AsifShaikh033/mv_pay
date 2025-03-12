@@ -85,7 +85,7 @@
                     font-size: 15px;
                 }        
             .showss h3 {
-                font-size: 15px;
+                font-size: 13px;
             }
             .showss p {
     font-size: 10px;
@@ -94,6 +94,10 @@
             .showss h1 {
                 font-size: 20px !important;
                 margin:0px;
+            }
+            .large-content h1 {
+                font-size: 36px !important;
+                font-weight: bold !important;
             }
 
     }
@@ -137,8 +141,7 @@
     <h2 class="text-light text-center mb-4 mt-5">{{ $reportTitle }}</h2>
 
     <div class="container">
-    @if($transactions->isEmpty())
-        <div class="snow">
+    <div class="snow">
             <img src="{{ asset('assets_web/images/others_services/trophy.png') }}" class="trophy" alt="Trophy">
 
             <div class="showss">
@@ -160,6 +163,8 @@
                 <h1>Spin Cashback</h1>
             </div>
         </div>
+    @if($transactions->isEmpty())
+       
         @else
         @foreach($transactions as $index => $transaction)
         <div class="snow">
@@ -167,7 +172,7 @@
 
             <div class="showss">
                 @if($index === 0)
-                    <h2>
+                    <!-- <h2>
                         <a href="https://mvvision.in/student/spin-mv-pay" target="_blank">
                             Click here
                         </a>
@@ -176,13 +181,13 @@
                         <a href="https://mvvision.in/student/spin-mv-pay" target="_blank">
                             https://mvvision.in/student/spin-mv-pay
                         </a>
-                    </p>
+                    </p> -->
                 @endif
 
-                <div class="{{ $index !== 0 ? 'large-content' : '' }}">
-                    <img src="{{ asset('assets_web/images/others_services/spin.png') }}" alt="Spin Wheel">
+                <div class="">
+                    <img src="{{ asset('assets_web/images/others_services/spin.png') }}" alt="Spin Wheel" style="width:100%">
                     <h3>You have received</h3>
-                    <h1>{{ $transaction->amount }}</h1>
+                    <h1>₹{{ $transaction->amount }}</h1>
                 </div>
             </div>
         </div>
