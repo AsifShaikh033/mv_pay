@@ -301,7 +301,6 @@ color: white;
   color: transparent; /* Make the text transparent so background is visible */
   -webkit-background-clip: text; /* Clip background to the text */
   display: inline-block;
-  font-size: 20px !important;
   animation: colorFlow 3s linear infinite; /* Animate the background to simulate the color flow */
 }
 
@@ -340,7 +339,6 @@ border-radius: 15px;
   color: transparent;
   -webkit-background-clip: text;
   display: inline-block;
-  font-size: 20px !important;
   animation: colorFlow 3s linear infinite;
 }
 

@@ -185,7 +185,7 @@
       <!-- <span>Loan</span> -->
 
       <div class="outPop">
-        <div class="popUpWord">
+        <div class="popUpWord" style="font-size: 20px;">
           Recharge
         </div>
       </div>
@@ -231,7 +231,7 @@
       <!-- <span>Loan</span> -->
 
       <div class="outPop">
-        <div class="popUpWord">
+        <div class="popUpWord" style="font-size: 20px;">
           Offline(Manually Payment)
         </div>
       </div>
@@ -269,7 +269,7 @@
     <div class="recharge-services-view mb-3">
     <!-- <span class="flowing-text">Recharge</span> -->
     <div class="outPop">
-  <div class="popUpWord">
+  <div class="popUpWord" style="font-size: 20px;">
     Bill Payments
   </div>
 </div>
@@ -375,7 +375,7 @@
     <div class="recharge-services-view mb-3">
       <!-- <span>Insurance</span> -->
         <div class="outPop">
-    <div class="popUpWord">
+    <div class="popUpWord" style="font-size: 20px;">
     Financial Services
     </div>
   </div>
