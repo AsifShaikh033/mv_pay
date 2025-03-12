@@ -159,13 +159,13 @@
             <i class="fa fa-play play-circle"></i>
 
               <!-- <img class='icon' src="{{ asset('assets_web/images/others_services/s_1.png') }}" alt="Telegram"> -->
-              <a href="https://t.me/7999544712"><button class="btn btn-outline-light badge mb-0">CLICK HERE</button></a>
+              <a href="https://youtube.com/playlist?list=PLB1D5jO_Dxly72go5HEOq07pvrkS1Torb&si=q0xNTXM8tE18O3sb"  target="_blank"><button class="btn btn-outline-light badge mb-0">CLICK HERE</button></a>
             </div>
           </div>
           <div class="col-6">
             <div class="support-item">
               <img class='icon' src="{{ asset('assets_web/images/others_services/r_1.png') }}" alt="Call">
-              <a href="tel:+9238711395"><button class="btn btn-outline-light badge mb-0">CLICK HERE</button></a>
+              <a href="tel:+91799544712"><button class="btn btn-outline-light badge mb-0">CLICK HERE</button></a>
             </div>
             <div class="support-item">
             <i class='fab fa-telegram-plane' style="font-size:48px;color:skyblue;margin-right: 10px;"></i>
@@ -182,7 +182,7 @@
 
 
               <!-- <img class='icon' src="{{ asset('assets_web/images/others_services/s_5.png') }}" alt="Support"> -->
-              <button class="btn btn-outline-light badge mb-0">CLICK HERE</button>
+              <a href="https://whatsapp.com/channel/0029VaxyuAsKwqSSTKeVGt3C" target="_blank"><button class="btn btn-outline-light badge mb-0">CLICK HERE</button></a>
             </div>
           </div>
         </div>
