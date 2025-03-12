@@ -40,7 +40,7 @@
 
     .pin-input input {
         /* width: 40px; */
-        width: 63px;
+        width: 60px;
         /* height: 40px; */
         height: 35px;
         text-align: center;

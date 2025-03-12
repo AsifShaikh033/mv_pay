@@ -176,7 +176,7 @@ img.spin-img {
                         <span id="full-desc-{{ $loop->index }}" style="display: none;">{{ $planDescription }}</span>
                           <div class="validity d-flex align-items-center gap-4">
                                 <img src="{{ asset('assets_web/images/wallet/13.png') }}" class="spin-img" style="width:15%!important;height: 15%!important;" alt="">
-                                <p class="text-light">Spin UPTO ₹200</p>
+                                <p class="text-light">Spin And Earn UPTO ₹200</p>
                               </div>
                             <!-- <form id="rechargeForm" action="{{ route('user.recharge.process') }}" method="POST"> -->
                             <form id="rechargeForm" action="{{ route('user.recharge.form') }}" method="GET">
