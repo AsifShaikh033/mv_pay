@@ -46,11 +46,13 @@ class UserController extends Controller
             $user->identity_image = $imagePath;
         }
           
-        // if ($request->filled('password')) {
-        //     $user->password =Hash::make($request->password);
-        // }
+        if ($request->filled('password')) {
+            $user->password =Hash::make($request->password);
+        }
     
         $user->save();
+        $user = Auth::user();
+        SetToken($user);
     
         return redirect()->route('user.profile')->with('success', 'Profile updated successfully!');
     }

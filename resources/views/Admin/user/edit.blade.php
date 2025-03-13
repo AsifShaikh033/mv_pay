@@ -88,6 +88,20 @@
                                         @endif
                                     </div>
                                 </div>
+                                
+                                <div class="col-md-6 col-lg-6">
+                                    <div class="form-group">
+                                        <label for="tagline">Password</label>
+                                        <div class="input-group">
+                                            <input type="password" name="password" class="form-control" id="password" placeholder="Enter New Password">
+                                            <div class="input-group-append">
+                                                <button type="button" class="btn btn-outline-secondary" onclick="togglePassword()">
+                                                    <i id="password-icon" class="fa fa-eye"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="card-action">
@@ -101,6 +115,23 @@
         </div>
     </div>
 </div>
+
+<script>
+function togglePassword() {
+    const passwordInput = document.getElementById('password');
+    const passwordIcon = document.getElementById('password-icon');
+    
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        passwordIcon.classList.remove('fa-eye');
+        passwordIcon.classList.add('fa-eye-slash');
+    } else {
+        passwordInput.type = 'password';
+        passwordIcon.classList.remove('fa-eye-slash');
+        passwordIcon.classList.add('fa-eye');
+    }
+}
+</script>
 
 
 @endsection
