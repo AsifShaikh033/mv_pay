@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\BalanceCashbackController;
 use App\Http\Controllers\Admin\UtrController;
 use App\Http\Controllers\ApiFetchController;
 use App\Http\Controllers\WithdrawalController;
+use App\Http\Controllers\SpinCashbackController;
 use App\Http\Controllers\LeadGenerationController;
 
 
@@ -74,6 +75,9 @@ Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function
 
     //Withdrawal History
     Route::get('/[withdrawal-list', [WithdrawalController::class, 'list'])->name('withdrawal.list');
+
+    //Spin Cashback
+    Route::get('/[spin-cashback', [SpinCashbackController::class, 'list'])->name('spin.cashback');
 
     // lead generation
 

@@ -53,7 +53,7 @@ class BillController extends Controller
             ->where('OperatorCode', 'CEB')
             ->value('OperatorCode');
 
-            $circleCode = '27';
+            $circleCode = '1';
 
             $billplans = $this->rechargeService->electricityBillPay(
                 $billNumber,
@@ -79,9 +79,9 @@ class BillController extends Controller
             $transaction->trx_type = '-';
 
             if (isset($billplans['Status']) && $billplans['Status'] === "FAILURE") {
-                $transaction->status = 0;
-                $transaction->payment_status = 'pending';
-                $transaction->details = 'Bill Pending for ' . $transaction->remark . ' ' . $request->circle;
+                $transaction->status = 2;
+                $transaction->payment_status = 'failed';
+                $transaction->details = 'Bill failed for ' . $transaction->remark . ' ' . $request->circle;
             } elseif (isset($billplans['Status']) && $billplans['Status'] === "Success") {
                 $user->balance -= $amount;
                 $user->save();
@@ -91,6 +91,15 @@ class BillController extends Controller
                 $transaction->details = 'Bill Successful for ' . $transaction->remark . ' ' . $request->circle;
                 $transaction->remark = 'electricity_bill';
                 $transaction->post_balance = $user->balance;
+            }   else {
+                $user->balance -= $amount;
+                $user->save();
+
+                $transaction->status = 0;
+                $transaction->payment_status = 'pending';
+                $transaction->details = 'Bill pending for ' . $transaction->remark . ' ' . $request->circle;
+                $transaction->remark = 'electricity_bill';
+                $transaction->post_balance = $user->balance;
             }
 
             $cashback = BalanceCashback::where('category', 'Electricity')->where('balance', $amount)->first();
@@ -98,10 +107,10 @@ class BillController extends Controller
             $transaction->save();
 
             if ($transaction->status == 1) {
-                if ($cashback) {
+                // if ($cashback) {
                     $spin_count = 1;
-                    $send_spin_chance = send_spin_chance($user, $amount, $cashback->cashback, $cashback->category);
-                }
+                    $send_spin_chance = send_spin_chance($user, $amount, 1, 'Electricity');
+                // }
                 
                 return redirect()->back()->with('success', 'Bill successful. Transaction ID: ' . $transaction->transaction_id);
             } elseif (isset($billplans['ErrorMessage'])) {

@@ -89,14 +89,13 @@
                       <span class="sub-item">Banner</span>
                   </a>
               </li>
-              <li>
+              <!-- <li>
                 <a href="{{ route('admin.balance.cashback.list') }}" class="{{ Request::routeIs('admin.balance.cashback.list') ? 'active' : '' }}">
-                  <!-- <i class="fas fa-file"></i> -->
-                  <!-- <p>Balance Cashback</p> -->
+               
                   <span class="sub-item">Balance Cashback</span>
                   <span class="badge badge-secondary">1</span>
                 </a>
-              </li>
+              </li> -->
               <li>
                   <a href="{{ route('admin.utr.list') }}" class="{{ Request::routeIs('admin.utr.list') ? 'active' : '' }}">
                       <span class="sub-item">UTR Number</span>
@@ -134,13 +133,13 @@
                 <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#transaction" 
                       aria-expanded="{{ Request::routeIs('admin.transaction.list')
-                       || Request::routeIs('admin.withdrawal.list')  ? 'true' : 'false' }}">
+                      || Request::routeIs('admin.spin.cashback') || Request::routeIs('admin.withdrawal.list')  ? 'true' : 'false' }}">
                       <i class="fas fa-th-list"></i>
                       <p>Transactions</p>
                         <span class="caret"></span>
                     </a>
                     <div class="collapse {{ Request::routeIs('admin.transaction.list') 
-                       || Request::routeIs('admin.withdrawal.list')? 'show' : '' }}" id="transaction">
+                       || Request::routeIs('admin.spin.cashback') || Request::routeIs('admin.withdrawal.list')? 'show' : '' }}" id="transaction">
                         <ul class="nav nav-collapse">
                             <li>
                                 <a href="{{ route('admin.transaction.list') }}" class="{{ Request::routeIs('admin.transaction.list') ? 'active' : '' }}">
@@ -150,6 +149,11 @@
                             <li>
                               <a href="{{ route('admin.withdrawal.list') }}" class="{{ Request::routeIs('admin.withdrawal.list') ? 'active' : '' }}">
                                   <span class="sub-item">Withdrawal History</span>
+                              </a>
+                          </li>
+                          <li>
+                              <a href="{{ route('admin.spin.cashback') }}" class="{{ Request::routeIs('admin.spin.cashback') ? 'active' : '' }}">
+                                  <span class="sub-item">Spin Cashback</span>
                               </a>
                           </li>
                         </ul>

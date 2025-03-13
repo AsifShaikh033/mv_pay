@@ -44,7 +44,7 @@
   style="height: 20px;margin-bottom: 8px;"
     alt="Logo"
 />
-        <span>Welcome to MV PAY. We are dedicated to give you best service so that you can get good earnings from us. Keep on saving your money by using MV PAY and MV VISION. Stay tuned, keep supporting</span>
+        <span>Welcome to MV EASY PAY. We are dedicated to give you best service so that you can get good earnings from us. Keep on saving your money by using MV PAY and MV VISION. Stay tuned, keep supporting</span>
        
     </div>
 </div>
@@ -185,11 +185,11 @@
       <!-- <span>Loan</span> -->
 
       <div class="outPop">
-        <div class="popUpWord">
+        <div class="popUpWord" style="font-size: 20px;">
           Recharge
         </div>
       </div>
-      <button class="btn btn-sm btn-primary mb-0">
+      <button class="btn btn-sm mb-0" style="background: linear-gradient(45deg, #00ffd2, #001c44, #0876ff);color: white;">
         View All <i class="fas fa-arrow-right"></i>
       </button>
     </div>
@@ -231,11 +231,11 @@
       <!-- <span>Loan</span> -->
 
       <div class="outPop">
-        <div class="popUpWord">
+        <div class="popUpWord" style="font-size: 20px;">
           Offline(Manually Payment)
         </div>
       </div>
-      <button class="btn btn-sm btn-primary mb-0">
+      <button class="btn btn-sm mb-0" style="background: linear-gradient(45deg, #00ffd2, #001c44, #0876ff);color: white;">
         View All <i class="fas fa-arrow-right"></i>
       </button>
     </div>
@@ -269,13 +269,13 @@
     <div class="recharge-services-view mb-3">
     <!-- <span class="flowing-text">Recharge</span> -->
     <div class="outPop">
-  <div class="popUpWord">
+  <div class="popUpWord" style="font-size: 20px;">
     Bill Payments
   </div>
 </div>
 
 
-      <button class="btn btn-sm btn-primary mb-0">
+      <button class="btn btn-sm mb-0" style="background: linear-gradient(45deg, #00ffd2, #001c44, #0876ff);color: white;">
         View All <i class="fas fa-arrow-right"></i>
       </button>
     </div>
@@ -375,11 +375,11 @@
     <div class="recharge-services-view mb-3">
       <!-- <span>Insurance</span> -->
         <div class="outPop">
-    <div class="popUpWord">
+    <div class="popUpWord" style="font-size: 20px;">
     Financial Services
     </div>
   </div>
-  <button class="btn btn-sm btn-primary mb-0">
+  <button class="btn btn-sm mb-0" style="background: linear-gradient(45deg, #00ffd2, #001c44, #0876ff);color: white;">
     View All <i class="fas fa-arrow-right"></i>
   </button>
 </div>
