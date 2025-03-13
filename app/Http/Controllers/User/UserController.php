@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Transaction;
 use App\Models\Bankdetail;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -45,9 +46,9 @@ class UserController extends Controller
             $user->identity_image = $imagePath;
         }
           
-        if ($request->filled('password')) {
-            $user->password = bcrypt($request->password);
-        }
+        // if ($request->filled('password')) {
+        //     $user->password =Hash::make($request->password);
+        // }
     
         $user->save();
     

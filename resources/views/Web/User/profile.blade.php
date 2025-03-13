@@ -74,7 +74,7 @@
                     <div class="mb-3 box_store">
                         <label for="password" class="form-label d-block text-start">{{ __('Password') }}</label>
                         <div class="input-group">
-                            <input type="password" id="password" name="password" value="{{$data->mob_number}}"  class="form-control @error('password') is-invalid @enderror" >
+                            <input type="password" id="password" name="password" value=""  class="form-control @error('password') is-invalid @enderror" >
                             <span class="input-group-text" id="togglePassword">
                                 <i class="bi bi-eye-slash" id="eyeIcon"></i>
                             </span>
