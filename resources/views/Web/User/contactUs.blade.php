@@ -165,8 +165,9 @@
           <div class="col-6">
             <div class="support-item">
               <img class='icon' src="{{ asset('assets_web/images/others_services/r_1.png') }}" alt="Call">
-              <a href="tel:+91799544712"><button class="btn btn-outline-light badge mb-0">CLICK HERE</button></a>
+              <a href="tel:+919238711395"><button class="btn btn-outline-light badge mb-0">CLICK HERE</button></a>
             </div>
+            
             <div class="support-item">
             <i class='fab fa-telegram-plane' style="font-size:48px;color:skyblue;margin-right: 10px;"></i>
 
