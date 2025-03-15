@@ -665,9 +665,10 @@ public function wallet(){
     $authUser = Auth::user();
 
     $spinWinTotal = Transaction::where('user_id', $userId)
-        ->where('remark', 'spin_win')
-        ->where('status', 1)
-        ->count();
+    ->where('remark', 'spin_win')
+    ->where('status', 1)
+    ->sum('amount');
+
 
         $user = User::find($userId);
         $referredUser = User::find($authUser->referred_by);
