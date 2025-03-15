@@ -165,9 +165,10 @@ class RechargeController extends Controller
             ->orderBy('balance', 'desc') 
             ->first();
             Log::warning('BalanceCashback', ['BalanceCashback' => $cashback]);
-            if ($cashback) {
-              $send_spin_chance =  send_spin_chance($user, $amount, $cashback->cashback, $cashback->category);
-            }
+           // if ($cashback) {
+              //$send_spin_chance =  send_spin_chance($user, $amount, $cashback->cashback, $cashback->category);
+              $send_spin_chance=  send_spin_chance($user,$amount, 1, 'Prepaid-Mobile');
+          //  }
 
             if ($message === 'The selected provider id is invalid.' || $message === 'Your Balance is low kinldy refill your wallet' ) {
                 session()->flash('error', $message);
@@ -228,9 +229,10 @@ class RechargeController extends Controller
                 ->orderBy('balance', 'desc') 
                 ->first();
                 Log::warning('BalanceCashback', ['BalanceCashback' => $cashback]);
-                if ($cashback) {
-                  $send_spin_chance =  send_spin_chance($user, $amount, $cashback->cashback, $cashback->category);
-                }
+              //  if ($cashback) {
+                 // $send_spin_chance =  send_spin_chance($user, $amount, $cashback->cashback, $cashback->category);
+                 $send_spin_chance=  send_spin_chance($user,$amount, 1, 'Prepaid-Mobile');
+                //}
                 return view('Web.User.failed.rechargesuccessModal', compact('transaction', 'transaction_id'));
             }elseif($transaction->status == 2){
                 return view('Web.User.failed.rechargependingModal', compact('transaction', 'transaction_id'));
@@ -381,10 +383,11 @@ class RechargeController extends Controller
                 ->first();
                 Log::warning('BalanceCashback', ['BalanceCashback' => $cashback]);
 
-                if ($cashback) {
-                  $send_spin_chance =  send_spin_chance($user, $rechargeAmount, $cashback->cashback, $cashback->category);
+             //   if ($cashback) {
+                  //$send_spin_chance =  send_spin_chance($user, $rechargeAmount, $cashback->cashback, $cashback->category);
+                  $send_spin_chance=  send_spin_chance($user,$rechargeAmount, 1, 'Prepaid-Mobile');
                     $transaction->spin_api_response = $send_spin_chance;
-                }
+              //  }
                 } else {
                     $transaction->status = 0;
                     $transaction->payment_status = 'failed';
@@ -665,13 +668,19 @@ public function wallet(){
     $authUser = Auth::user();
 
     $spinWinTotal = Transaction::where('user_id', $userId)
-        ->where('remark', 'spin_win')
-        ->where('status', 1)
-        ->count();
+    ->where('remark', 'spin_win')
+    ->where('status', 1)
+    ->sum('amount');
+
+    $referredBalance = Transaction::where('user_id', $userId)
+    ->where('remark', 'reffrel_bonus')
+    ->where('status', 1)
+    ->sum('amount');
+
 
         $user = User::find($userId);
         $referredUser = User::find($authUser->referred_by);
-        $referredBalance = $referredUser ? $referredUser->balance : 0.00;
+        //$referredBalance = $referredUser ? $referredUser->balance : 0.00;
 
         $total = $spinWinTotal + $referredBalance;
 

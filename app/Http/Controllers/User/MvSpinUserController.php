@@ -95,7 +95,7 @@ class MvSpinUserController extends Controller
             $transaction->status = 1;
             $transaction->payment_status = 'paid';
             $transaction->remark = 'spin_win';
-            $transaction->details = 'You have received cashback from MV Vission for a recharge of ' . $request->recharge_plan . ' so you have won ' . $request->amount . ' amount from your spin';
+            $transaction->details = 'You have received cashback from MV Vision for a recharge of ' . $request->recharge_plan . ' so you have won ' . $request->amount . ' amount from your spin';
             $transaction->save();
         
             return response()->json(['status'=>'success','message' => 'Amount updated successfully.'], 200);
