@@ -153,7 +153,7 @@
                           </li>
                           <li>
                               <a href="{{ route('admin.spin.cashback') }}" class="{{ Request::routeIs('admin.spin.cashback') ? 'active' : '' }}">
-                                  <span class="sub-item">Spin Cashback</span>
+                                  <span class="sub-item">Spin Winners</span>
                               </a>
                           </li>
                         </ul>
