@@ -227,8 +227,8 @@ body{
                 <i></i>
             </div>
             <div class="links">
-                <a href="#">Forgot Password</a>
-                <a href="#">Signup</a>
+                <!-- <a href="#">Forgot Password</a>
+                <a href="#">Signup</a> -->
             </div>
             <input type="submit" id="submit" value="Login">
         </form>
