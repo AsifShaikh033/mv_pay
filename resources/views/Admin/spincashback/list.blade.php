@@ -59,68 +59,10 @@
     </div>
 </div>
 
-<!-- Approve Confirmation Modal -->
-<div class="modal fade" id="approveModal" tabindex="-1" aria-labelledby="approveModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Confirm Approval</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">Are you sure you want to approve this withdrawal?</div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <form method="POST" action="" id="approveForm">
-                    @csrf
-                    <button type="submit" class="btn btn-success">Approve</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Reject Confirmation Modal -->
-<div class="modal fade" id="rejectModal" tabindex="-1" aria-labelledby="rejectModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Reject Withdrawal</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                <textarea id="rejectReason" class="form-control" placeholder="Enter reason for rejection"></textarea>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <form method="POST" action="" id="rejectForm">
-                    @csrf
-                    <input type="hidden" name="reason" id="reasonInput">
-                    <button type="submit" class="btn btn-danger">Reject</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
 
 @push('scripts')
 <script>
-    $(document).ready(function() {
-        $('#add-row').DataTable();
 
-        $('#approveModal').on('show.bs.modal', function(e) {
-            let id = $(e.relatedTarget).data('id');
-            $('#approveForm').attr('action', `{{ url('admin/withdrawal') }}/${id}/approve`);
-        });
-
-        $('#rejectModal').on('show.bs.modal', function(e) {
-            let id = $(e.relatedTarget).data('id');
-            $('#rejectForm').attr('action', `{{ url('admin/withdrawal') }}/${id}/reject`);
-        });
-
-        $('#rejectForm').submit(function() {
-            $('#reasonInput').val($('#rejectReason').val());
-        });
-    });
 </script>
 @endpush
 
