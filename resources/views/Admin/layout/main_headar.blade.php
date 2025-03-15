@@ -73,7 +73,7 @@
                     </form>
                   </ul>
                 </li>
-                <li class="nav-item topbar-icon dropdown hidden-caret">
+                <li class="nav-item topbar-icon dropdown hidden-caret d-none">
                   <a
                     class="nav-link dropdown-toggle"
                     href="#"
@@ -86,7 +86,7 @@
                     <i class="fa fa-envelope"></i>
                   </a>
                   <ul
-                    class="dropdown-menu messages-notif-box animated fadeIn"
+                    class="dropdown-menu messages-notif-box animated fadeIn "
                     aria-labelledby="messageDropdown"
                   >
                     <li>
@@ -164,7 +164,7 @@
                     </li>
                   </ul>
                 </li>
-                <li class="nav-item topbar-icon dropdown hidden-caret">
+                <li class="nav-item topbar-icon dropdown hidden-caret d-none">
                   <a
                     class="nav-link dropdown-toggle"
                     href="#"
@@ -242,7 +242,7 @@
                     </li>
                   </ul>
                 </li>
-                <li class="nav-item topbar-icon dropdown hidden-caret">
+                <li class="nav-item topbar-icon dropdown hidden-caret d-none">
                   <a
                     class="nav-link"
                     data-bs-toggle="dropdown"
