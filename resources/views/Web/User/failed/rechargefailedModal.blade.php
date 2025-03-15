@@ -44,6 +44,10 @@
             .thank-you {
                 font-size: 0.9rem;
             }
+            #rechargeModalLabel {
+            font-size: 10px;
+            font-weight: 600;
+        }
         }
     </style>
 
@@ -60,13 +64,13 @@
         <!-- <button type="button" class="btn-close bg-danger" data-bs-dismiss="modal" aria-label="Close"></button> -->
     </div>
       <div class="modal_header">
-      <h5 class="modal-title w-100" id="rechargeModalLabel">Recharge of {{$transaction->amount}} Rs has been failed. Try again later.</h5>
+      <h5 class="modal-title" id="rechargeModalLabel">Recharge of {{$transaction->amount}} Rs has been failed. Try again later.</h5>
        
       </div>
       <div class="modal-body d-flex justify-content-center text-white">
                     <div class="image-container mb-3">
                     <img src="{{ asset('assets_web/images/others_services/recharge_failed.png') }}" alt="Recharge Failed" class="img-fluid">
-                    <p class="thank-you">Thank You For Using MV Pay.</p>
+                    <p class="thank-you text-light">Thank You For Using MV Pay.</p>
                     </div>
                    
         </div>
