@@ -154,7 +154,7 @@ class RechargeController extends Controller
                 return $response->json();
             }
 
-        private function handleDigitalResponse($response, $mobileNumber, $amount, $transaction_id, $user, $circleCode, $serviceType)
+        private function handleDigitalResponse($response, $mobileNumber, $amount, $transaction_id, $user, $circleCode, $serviceType,$operatorCode_recharge)
         {
             $status = $response['status'] ?? 'failure';
             $message = $response['message'] ?? 'Unknown error occurred.';
@@ -186,7 +186,7 @@ class RechargeController extends Controller
             $recharge->user_id = $user->id;
             $recharge->number = $mobileNumber;
             $recharge->serviceType = $serviceType;
-            $recharge->operator = $response['operator'] ?? null;
+            $recharge->operator = $operatorCode_recharge;
             $recharge->circle = $circleCode;
             $recharge->amount = $amount;
             $recharge->user_tx = $transaction_id;
@@ -259,6 +259,7 @@ class RechargeController extends Controller
         $circleCode = $request->input('circleCode');
         $operator = $request->input('operator');
         $operatorCode = $request->input('operatorCode');
+        $operatorCode_recharge = $request->input('operatorCode');
         $rechargeAmount = $request->input('recharge_amount');
         $rechargeValidity = $request->input('recharge_validity');
         $serviceType = $request->input('serviceType') ?? 'Prepaid-Mobile';
@@ -287,7 +288,7 @@ class RechargeController extends Controller
                 $operatorCode = $operatorCodes[$operatorCode] ?? $operatorCode;
                 $digitalResponse = $this->digitalRecharge($mobileNumber, $rechargeAmount, $operatorCode,$transaction_id);
                 Log::warning('Call the c digitalResponse service', ['digitalResponse' => $digitalResponse]);
-                return $this->handleDigitalResponse($digitalResponse, $mobileNumber, $rechargeAmount, $transaction_id, $user, $circleCode, $serviceType);
+                return $this->handleDigitalResponse($digitalResponse, $mobileNumber, $rechargeAmount, $transaction_id, $user, $circleCode, $serviceType,$operatorCode_recharge);
             }
         
             $operatorMapping = [
