@@ -4,10 +4,10 @@
 
 <style>
     
-.boxs {
+    .boxs {
     position: relative;
     width: 100%;
-    height: 750px;
+    height: 800px;
     background: #1c1c1c;
     border-radius: 8px;
     overflow: hidden;
