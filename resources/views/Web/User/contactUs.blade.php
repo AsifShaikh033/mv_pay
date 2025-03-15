@@ -93,6 +93,12 @@
     width: 100%;
 }
   }
+  @media (max-width: 480px) {
+    .card h3 {
+        font-size: 12px !important;
+        margin-bottom: 0px;
+    }
+}
 
   .display_flex {
     display: flex;
@@ -129,7 +135,7 @@
 <div class="content-body">
   <div class="container-fluid mt-5 pt-5 d-flex justify-content-center">
     <div class="card w-100 h-100 shadow-lg animated fadeIn p-3">
-      <h3 class="mb-0 support">MV Pay Support</h3>
+      <h3 class="mb-0 support">MV EASY PAY Support</h3>
       <div class="display_flex">
         <div>
           <img src="{{ asset('assets_web/images/others_services/r_2.png') }}" alt="Service Image" class="img_size">
