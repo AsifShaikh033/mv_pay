@@ -23,6 +23,7 @@
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th>Address</th>
+                                        <th>Referred By</th>
                                         <th style="width: 10%">Action</th>
                                     </tr>
                                 </thead>
@@ -32,6 +33,7 @@
                                         <td>{{ $userData->name }}</td>
                                         <td>{{ $userData->email }}</td>
                                         <td>{{ $userData->address }}</td>
+                                        <td>{{ $userData->referrer ? $userData->referrer->name : 'N/A' }}</td>
                                         <td>
                                             <div class="form-button-action">
                                                 <a href="{{ route('admin.editUser', $userData->id) }}" class="btn btn-link btn-primary btn-lg">

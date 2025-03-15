@@ -35,6 +35,7 @@ class RechargeService
         $this->AXIS_BANK='FC8FD51008';
         $this->Bill_Pay = 'X7Cf62_cIGage(i';
         $this->Bill_Pay_MEMBER_ID = 'AP517747';
+        $this->Bill_Pay_MEMBER_ID_new = 'AP548117';
     }
 
 
@@ -238,8 +239,8 @@ class RechargeService
     public function electricityBillPay($billNumber, $operatorCode, $circleCode, $amount, $transaction_id)
     {
         $response = Http::get($this->apiBaseUrl . 'services_cyapi/recharge_cyapi.aspx', [
-            'memberid'         => $this->Bill_Pay_MEMBER_ID,
-            'pin'              => $this->Bill_Pay, 
+            'memberid'         => $this->Bill_Pay_MEMBER_ID_new,
+            'pin'              => $this->PR_MOBILE_RECHARGE, 
             'number'           => $billNumber, 
             'operator'         => $operatorCode,
             'circle'          => $circleCode,

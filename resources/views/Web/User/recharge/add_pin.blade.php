@@ -48,6 +48,9 @@
         border: 1px solid #ccc;
         border-radius: 8px;
     }
+    .spin-img {
+        margin-left: 13px;
+    }
     .numpad {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -77,7 +80,15 @@
     color: #fff !important;
     }
 
-
+   /* Responsive styles for mobile view */
+   @media (max-width: 600px) {
+        .pin-input input {
+            width: 53px;
+        }
+        .spin-img {
+            margin-left: 5px;
+        }
+    }
 </style>
 <div class="content-body">
     <div class="container choose_plan-container mt-5">
@@ -92,10 +103,10 @@
                 <input type="hidden" name="recharge_pin" id="recharge_pin" value="">
 
                 <div class="pin-spin">
-                    <img src="{{ asset('assets_web/images/wallet/13.png') }}" class="spin-img" style="width:25px!important;height:25px!important;margin-left: 13px;" alt="">
-                    <img src="{{ asset('assets_web/images/wallet/13.png') }}" class="spin-img" style="width:25px!important;height:25px!important;margin-left: 13px;" alt="">
-                    <img src="{{ asset('assets_web/images/wallet/13.png') }}" class="spin-img" style="width:25px!important;height:25px!important;margin-left: 13px;" alt="">
-                    <img src="{{ asset('assets_web/images/wallet/13.png') }}" class="spin-img" style="width:25px!important;height:25px!important;margin-left: 13px;" alt="">
+                    <img src="{{ asset('assets_web/images/wallet/13.png') }}" class="spin-img" style="width:25px!important;height:25px!important;" alt="">
+                    <img src="{{ asset('assets_web/images/wallet/13.png') }}" class="spin-img" style="width:25px!important;height:25px!important;" alt="">
+                    <img src="{{ asset('assets_web/images/wallet/13.png') }}" class="spin-img" style="width:25px!important;height:25px!important;" alt="">
+                    <img src="{{ asset('assets_web/images/wallet/13.png') }}" class="spin-img" style="width:25px!important;height:25px!important;" alt="">
                 </div>
                 <div class="pin-input">
                     <input type="password" maxlength="1" oninput="moveToNext(this, 0)">

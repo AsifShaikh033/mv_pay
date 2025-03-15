@@ -151,7 +151,7 @@ img.spin-img {
                         <div class="header_1">
                             <div>
                                 <label style="font-size:10px;">Validity</label>
-                                <div class="validity_1">₹{{ $plan['recharge_amount'] }}</div>
+                                <div class="validity_1">₹{{ $plan['recharge_validity'] }}</div>
                             </div>
                         <!-- <div>
                             <label style="font-size:10px;" for="">Data</label>
@@ -159,7 +159,7 @@ img.spin-img {
                         </div> -->
                         <div>
                             <label style="font-size:10px;" for="">Amount</label>
-                            <div class="validity_1">{{ $plan['recharge_validity'] }}</div>
+                            <div class="validity_1">{{ $plan['recharge_amount'] }}</div>
                         </div>
                         </div>
                             <!-- <h4>₹{{ $plan['recharge_amount'] }}</h4>
@@ -176,7 +176,7 @@ img.spin-img {
                         <span id="full-desc-{{ $loop->index }}" style="display: none;">{{ $planDescription }}</span>
                           <div class="validity d-flex align-items-center gap-4">
                                 <img src="{{ asset('assets_web/images/wallet/13.png') }}" class="spin-img" style="width:15%!important;height: 15%!important;" alt="">
-                                <p class="text-light">Spin UPTO ₹200</p>
+                                <p class="text-light">Spin And Earn UPTO ₹200</p>
                               </div>
                             <!-- <form id="rechargeForm" action="{{ route('user.recharge.process') }}" method="POST"> -->
                             <form id="rechargeForm" action="{{ route('user.recharge.form') }}" method="GET">

@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Transaction;
 use App\Models\Bankdetail;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -46,10 +47,12 @@ class UserController extends Controller
         }
           
         if ($request->filled('password')) {
-            $user->password = bcrypt($request->password);
+            $user->password =Hash::make($request->password);
         }
     
         $user->save();
+        $user = Auth::user();
+        SetToken($user);
     
         return redirect()->route('user.profile')->with('success', 'Profile updated successfully!');
     }

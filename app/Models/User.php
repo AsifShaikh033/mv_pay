@@ -61,4 +61,13 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * Get the referrer of the user.
+     */
+    public function referrer()
+    {
+        return $this->belongsTo(User::class, 'referred_by');
+    }
+    
 }

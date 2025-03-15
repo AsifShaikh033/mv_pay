@@ -66,13 +66,13 @@
     <!-- Status (Right) -->
                         <div>
                         <strong>Status:</strong>
-                            @if($transaction->status == '1')
+                            @if($transaction->status === 1)
                                 <span class="badge bg-success">Success</span>
-                            @elseif($transaction->status == '0')
+                            @elseif($transaction->status === 0)
                                 <span class="badge bg-warning">Pending</span>
-                            @elseif($transaction->status == '2')
+                            @elseif($transaction->status === 2)
                                 <span class="badge bg-danger">Failed</span>
-                             @elseif($transaction->status == '3')
+                             @elseif($transaction->status === 3)
                              <span class="badge bg-danger">Rejected</span>   
                             @endif
                         </div>

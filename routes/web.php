@@ -187,6 +187,7 @@ Route::get('/recharge-get', [RechargeController::class, 'recharge']);
         Route::get('/failed_page', [WithdrawalController::class, 'failed_page'])->name('failed_page');
 
         Route::post('/withdrawalrequest', [WithdrawalController::class, 'requestWithdrawal'])->name('requestWithdrawal');
+        Route::get('/recharge_pages', [WithdrawalController::class, 'recharge_pages'])->name('recharge_pages');
 
       
     });

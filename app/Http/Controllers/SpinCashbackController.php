@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Withdrawal;
 use App\Models\Transaction;
 
-class WithdrawalController extends Controller
+class SpinCashbackController extends Controller
 {
 
     public function withdrawal() {
@@ -152,17 +152,11 @@ public function rejectWithdrawal(Request $request, $id)
     }
     public function list()
     {
-        $withdrawals = Withdrawal::orderBy('created_at', 'desc')->get();
-        return view('Admin.withdrawal.list', compact('withdrawals'));
-
+        $withdrawals = Transaction::where('remark', 'spin_win')
+            ->orderBy('created_at', 'desc')
+            ->get();
+    
+        return view('Admin.spincashback.list', compact('withdrawals'));
     }
-   
-    public function recharge_pages(){
 
-        $transaction = Transaction::where('id',1)->first();
-        $transaction_id = 1;
-       // return view('Web.User.failed.rechargependingModal', compact('transaction', 'transaction_id'));
-       // return view('Web.User.failed.rechargefailedModal', compact('transaction', 'transaction_id'));
-        return view('Web.User.failed.rechargesuccessModal', compact('transaction', 'transaction_id'));
-    }
 }

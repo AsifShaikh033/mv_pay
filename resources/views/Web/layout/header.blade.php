@@ -105,7 +105,7 @@
         <nav class="navbar navbar-expand">
           <div class="collapse navbar-collapse justify-content-between">
             <div class="header-left">
-              <div class="dashboard_bar"> MV Pay </div>
+              <div class="dashboard_bar"> MV Easy Pay </div>
             </div>
             <ul class="navbar-nav header-right">
               <li class="nav-item">
@@ -233,7 +233,7 @@
         @if(Auth::check())  
             <li class="">
             <a class="logout" href="{{route('user.logout')}}">
-            <i class="basecolor flaticon-381-smartphone-2"></i>
+            <i class="basecolor fa fa-sign-out"></i>
             <span class="nav-text">Logout</span>
             </a>
             </li>

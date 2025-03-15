@@ -5,13 +5,14 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 
 class ManageUserController extends Controller
 {
      public function list(){
-         $user = User::all();
+        $user = User::with('referrer')->get();
 
          return view('Admin.user.list',compact('user'));
      }
@@ -48,7 +49,12 @@ class ManageUserController extends Controller
         $user->address = $request->address;
         $user->mob_number = $request->mob_number;
         $user->city = $request->city;
+         if ($request->filled('password')) {
+            $user->password =Hash::make($request->password);
+        }
         $user->save();
+        $user = User::findOrFail($id);
+        SetToken($user);
 
         return redirect()->route('admin.user.list')->with('success', 'User updated successfully!');
     }
