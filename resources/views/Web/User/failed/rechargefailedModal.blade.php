@@ -9,16 +9,8 @@
   
     <style>
         .rechargeModal {
-            background: linear-gradient(135deg, #000, #001aff);
-            /* color: #fff;
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 0; */
-        }
+    background: linear-gradient(45deg, #00ffd2, #001c44, #0876ff);
+}
         .modal_header {
     background: #fff;
     color: #000;
@@ -70,7 +62,7 @@
       <div class="modal-body d-flex justify-content-center text-white">
                     <div class="image-container mb-3">
                     <img src="{{ asset('assets_web/images/others_services/recharge_failed.png') }}" alt="Recharge Failed" class="img-fluid">
-                    <p class="thank-you text-light">Thank You For Using MV Pay.</p>
+                    <p class="thank-you text-light">Thank You For Using MV EASY Pay.</p>
                     </div>
                    
         </div>
