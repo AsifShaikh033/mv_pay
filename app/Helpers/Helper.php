@@ -130,7 +130,7 @@ if (!function_exists('send_spin_chance')) {
             if ($response->successful()) {
                 return response()->json([
                     'message' => 'mv vision spin count updated.',
-                    'token' => $randomToken,
+                    'token' => '',
                 ]);
             } else {
                 return response()->json([
