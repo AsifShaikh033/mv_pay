@@ -382,7 +382,7 @@ class RechargeController extends Controller
                 ->where('balance', '<=', $rechargeAmount)
                 ->orderBy('balance', 'desc') 
                 ->first();
-                Log::warning('BalanceCashback', ['BalanceCashback' => $cashback]);
+                //Log::warning('BalanceCashback', ['BalanceCashback' => $cashback]);
 
              //   if ($cashback) {
                   //$send_spin_chance =  send_spin_chance($user, $rechargeAmount, $cashback->cashback, $cashback->category);
