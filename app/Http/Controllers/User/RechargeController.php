@@ -479,7 +479,12 @@ class RechargeController extends Controller
           //  Log::warning('BalanceCashback', ['BalanceCashback' => $cashback]);
             // if($cashback){
               $send_spin_chance=  send_spin_chance($user,$rechargeAmount, 1, 'Prepaid-Mobile');
+              $transaction = Transaction::where('transaction_id', $transaction_id)->latest()->first();
+              if ($transaction) {  // Check if a transaction exists before assigning values
                 $transaction->spin_api_response = $send_spin_chance;
+                $transaction->save();
+            }
+             
             // }
            
             $transaction = Transaction::where('transaction_id', $transaction_id)->latest()->first();
