@@ -78,7 +78,7 @@ class BillController extends Controller
             $transaction->remark = 'electricity_bill';
             $transaction->trx_type = '-';
 
-            if (isset($billplans['Status']) && $billplans['Status'] === "FAILURE") {
+            if (isset($billplans['Status']) && $billplans['Status'] === "Failure") {
                 $transaction->status = 2;
                 $transaction->payment_status = 'failed';
                 $transaction->details = 'Bill failed for ' . $transaction->remark . ' ' . $request->circle;
