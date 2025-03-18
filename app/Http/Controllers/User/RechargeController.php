@@ -159,7 +159,7 @@ class RechargeController extends Controller
             $status = $response['status'] ?? 'failure';
             $message = $response['message'] ?? 'Unknown error occurred.';
             $operatorRef = $response['operator_ref'] ?? null;
-            $this->recharge_bonus($user, $amount, $response);
+          //  $this->recharge_bonus($user, $amount, $response);
             $cashback = BalanceCashback::where('category', 'Prepaid-Mobile')
             ->where('balance', '<=', $amount)
             ->orderBy('balance', 'desc') 
@@ -167,7 +167,7 @@ class RechargeController extends Controller
             Log::warning('BalanceCashback', ['BalanceCashback' => $cashback]);
            // if ($cashback) {
               //$send_spin_chance =  send_spin_chance($user, $amount, $cashback->cashback, $cashback->category);
-              $send_spin_chance=  send_spin_chance($user,$amount, 1, 'Prepaid-Mobile');
+            //  $send_spin_chance=  send_spin_chance($user,$amount, 1, 'Prepaid-Mobile');
           //  }
 
             if ($message === 'The selected provider id is invalid.' || $message === 'Your Balance is low kinldy refill your wallet' ) {
