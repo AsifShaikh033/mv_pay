@@ -197,7 +197,8 @@
             <div class="ms-3 mt-3">
             <form method="POST" action="{{ route('user.recharge.bill_plan') }}" onsubmit="submitPin(event)">
                 @csrf
-                <input type="hidden" name="bill_number" value="{{ $customerDetails['bill_number'] ?? old('bill_number') }}">
+                <!-- <input type="hidden" name="bill_number" value="{{ $customerDetails['bill_number'] ?? old('bill_number') }}"> -->
+                <input type="hidden" name="bill_number" value="{{ request('bill_number') ?? old('bill_number') }}">
                 <input type="hidden" name="circle" value="{{ $data['circle'] ?? old('circle') }}">
                 <input type="hidden" name="recharge_amount" value="{{ $customerDetails['due_amount'] ?? old('due_amount') }}">
 
