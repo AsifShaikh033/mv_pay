@@ -238,23 +238,32 @@ class RechargeService
      */
     public function electricityBillPay($billNumber, $operatorCode, $circleCode, $amount, $transaction_id)
     {
-        $response = Http::get($this->apiBaseUrl . 'services_cyapi/recharge_cyapi.aspx', [
-            'memberid'         => $this->Bill_Pay_MEMBER_ID_new,
-            'pin'              => $this->PR_MOBILE_RECHARGE, 
-            'number'           => $billNumber, 
-            'operator'         => $operatorCode,
-            'circle'          => $circleCode,
-            'amount'          => $amount,
-            'usertx'          => $transaction_id,
-           // 'account'         => '2715500000356',
-           // 'othervalue'      => 'Other_Values',
-           // 'othervalue1'     => 'Other_Values', 
-            'format'           => 'json',
-            'RechargeMode'     => 1
-        ]);
-
+        $payload = [
+            'memberid'     => $this->Bill_Pay_MEMBER_ID_new, // API ID starting with AP**
+            'pin'          => $this->PR_MOBILE_RECHARGE,  // PIN from API panel
+            'number'       => $billNumber, // Mobile No / KNO etc.
+            'operator'     => $operatorCode, // GetOperator method output
+            'circle'       => $circleCode, // GetCircle method output (Keep 1 for services other than prepaid/postpaid)
+            'amount'       => $amount, // Recharge amount
+            'usertx'       => $transaction_id, // Unique 10 alphanumeric transaction ID
+            'account'      => '', // Only needed for BSNL / MTNL / Airtel Broadband
+            'othervalue'   => '', // If required by operator
+            'othervalue1'  => '', // If required by operator
+            'format'       => 'json',
+            'RechargeMode' => 1 // Pass 1 as default, 2 for secondary route if failed
+        ];
+    
+        // Log request payload
+        \Log::info('Electricity Bill Pay API Request:', $payload);
+    
+        $response = Http::get($this->apiBaseUrl . 'services_cyapi/recharge_cyapi.aspx', $payload);
+    
+        // Log response
+        \Log::info('Electricity Bill Pay API Response:', ['response' => $response->json()]);
+    
         return $response->json();
     }
+    
 
 
      /**
