@@ -17,6 +17,7 @@ use App\Http\Controllers\LeadGenerateController;
 use App\Http\Controllers\User\BharatpeController; 
 use App\Http\Controllers\WithdrawalController; 
 use App\Http\Controllers\WebhookController;
+use App\Http\Controllers\User\DthController;
 Route::get('/api/register-user', [UserController::class, 'registeruser']);
 Route::get('/recharge-get', [RechargeController::class, 'recharge']);
 
@@ -168,8 +169,14 @@ Route::get('/recharge-get', [RechargeController::class, 'recharge']);
         Route::post('/recharge/bill_plan',[BillController::class,'bill_plan'])->name('recharge.bill_plan');
         Route::get('/recharge/bill_fetch',[BillController::class,'bill_FORM_FETCH'])->name('recharge.bill_fetch');
         Route::get('/bill_details_by_number', [BillController::class, 'bill_details'])->name('recharge.bill_details_by_number');
-
-
+        //DTH
+        Route::controller(DthController::class)->group(function () {
+            Route::prefix('dth')->group(function () {
+                Route::get('/info', 'dth_firsts')->name('dth_first');
+                Route::get('/bill_fetch', 'dth_FORM_FETCH')->name('dth.bill_fetch');
+                Route::post('/bill_', 'bill_plan')->name('recharge.bill_plan');
+            });
+        });
         //Common Function
         Route::get('/recharge/bills',[BillController::class,'common'])->name('recharge.bills');
 
