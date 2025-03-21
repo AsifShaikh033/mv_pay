@@ -254,12 +254,12 @@ class RechargeService
         ];
     
         // Log request payload
-        \Log::info('Electricity Bill Pay API Request:', $payload);
+      //  \Log::info('Electricity Bill Pay API Request:', $payload);
     
         $response = Http::get($this->apiBaseUrl . 'services_cyapi/recharge_cyapi.aspx', $payload);
     
         // Log response
-        \Log::info('Electricity Bill Pay API Response:', ['response' => $response->json()]);
+        //\Log::info('Electricity Bill Pay API Response:', ['response' => $response->json()]);
     
         return $response->json();
     }

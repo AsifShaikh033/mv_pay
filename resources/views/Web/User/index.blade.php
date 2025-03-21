@@ -210,7 +210,7 @@
       </div>
       </div>
       <div class="col-md-3 col-6">
-      <div class="recharge-box mb-3 p-2" onclick="redirectToRecharge('DTH')">
+      <div class="recharge-box mb-3 p-2" onclick="redirectTodth('DTH')">
         <div class=""><img src="{{ asset('assets_web/images/dashboard/dth.png') }}" alt="" width="50"></div> 
         <span>DTH</span>
       </div>
@@ -293,7 +293,7 @@
       </div>
 
       <div class="col-md-3 col-6">
-        <div class="recharge-box mb-3 " onclick="redirectToRecharge('DTH')">
+        <div class="recharge-box mb-3 " onclick="redirectTodth('DTH')">
     
             <div class=""><img src="{{ asset('assets_web/images/dashboard/dth.png') }}" alt="" width="50"></div> 
             <span>DTH Recharge</span>
@@ -454,6 +454,9 @@ $(document).ready(function() {
 <script>
 function redirectToRecharge(serviceType) {
     window.location.href = "{{ route('user.recharge.bills') }}?serviceType=" + encodeURIComponent(serviceType);
+}
+function redirectTodth(serviceType) {
+    window.location.href = "{{ route('user.dth_first') }}?serviceType=" + encodeURIComponent(serviceType);
 }
 </script>
 <script>
