@@ -159,7 +159,7 @@
         <button class="prepaid-button mb-3">Bills</button>
     
     <form id="rechargeForm" action="{{ route('user.recharge.bill_fetch') }}" method="GET">
- 
+    <input type="hidden" name="mode" value="{{ $mode }}">
     <div class="input-section">
         
         <div class="input-group_1 mb-2">

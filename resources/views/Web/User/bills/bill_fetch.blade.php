@@ -168,7 +168,7 @@
                     </span>
                 </div>
             </div>
-
+            <input type="hidden" name="mode" value="{{ $mode }}">
             <input type="hidden" name="Key" value="{{ $KEY }}">  
             <input type="hidden" name="Key" value="{{ $KEY }}">  
             <input type="hidden" name="operatorCode" value="{{ $operatorCode }}">  
