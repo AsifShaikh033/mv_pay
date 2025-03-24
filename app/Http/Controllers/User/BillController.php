@@ -152,7 +152,8 @@ class BillController extends Controller
             }
         }
 
-        public function electtric_f(){
+        public function electtric_f(Request $request)
+        {
            
             $mode = $request->get('mode', 1); 
             $circle = Circle::all();
