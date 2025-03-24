@@ -236,7 +236,7 @@ class RechargeService
     /**
      * Fetch Electricity Bill Plans
      */
-    public function electricityBillPay($billNumber, $operatorCode, $circleCode, $amount, $transaction_id)
+    public function electricityBillPay($billNumber, $operatorCode, $circleCode, $amount, $transaction_id,$mode)
     {
         $payload = [
             'memberid'     => $this->Bill_Pay_MEMBER_ID_new, // API ID starting with AP**
@@ -250,7 +250,7 @@ class RechargeService
             'othervalue'   => '', // If required by operator
             'othervalue1'  => '', // If required by operator
             'format'       => 'json',
-            'RechargeMode' => 1 // Pass 1 as default, 2 for secondary route if failed
+            'RechargeMode' => $mode // Pass 1 as default, 2 for secondary route if failed
         ];
     
         // Log request payload

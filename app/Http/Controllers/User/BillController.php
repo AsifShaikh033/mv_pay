@@ -33,6 +33,7 @@ class BillController extends Controller
             $billNumber = $request->input('bill_number');
             $circle = $request->input('circle');
             $amount = $request->input('recharge_amount');
+            $mode = (int) $request->input('mode', 1);
 
             if (!$billNumber || !$circle || !$amount) {
                 return back()->withErrors('Please fill all required fields.');
@@ -60,7 +61,8 @@ class BillController extends Controller
                 $operatorCode,
                 $circleCode,
                 $amount,
-                $transaction_id
+                $transaction_id,
+                $mode
             );
 
             \Log::info('Bill Plan API Response:', $billplans);
@@ -151,7 +153,8 @@ class BillController extends Controller
         }
 
         public function electtric_f(){
-
+           
+            $mode = $request->get('mode', 1); 
             $circle = Circle::all();
             $Operator = Operator::where('ServiceTypeName', 'Electricity')
            // ->whereIn('OperatorCode', ['AT', 'BSNL', 'VI', 'JIO'])
@@ -163,7 +166,7 @@ class BillController extends Controller
                 ->limit(3)
                 ->get();
         // return  $Operator;
-            return view('Web.User.bills.electric_bill',compact('circle', 'Operator', 'billNumbers'));
+            return view('Web.User.bills.electric_bill',compact('mode','circle', 'Operator', 'billNumbers'));
         }
 
         public function bill_FORM_FETCH(Request $request)
@@ -172,10 +175,11 @@ class BillController extends Controller
                 $request->input('operator')
             );
 
+            $mode = $request->input('mode');
             $operatorCode = $request->input('operator');
             $KEY = $response[0]['Key'] ?? null;
 
-            return view('Web.User.bills.bill_fetch', compact('operatorCode', 'KEY'));
+            return view('Web.User.bills.bill_fetch', compact('mode','operatorCode', 'KEY'));
         }
 
 
@@ -184,6 +188,7 @@ class BillController extends Controller
             $billNumber = $request->input('bill_number');
             $operatorCode = $request->input('operatorCode');
             $key = $request->input('Key');
+            $mode = $request->input('mode');
         
             $fetchResponse = $this->rechargeService->billoperatorfetch($operatorCode, $billNumber, $key);
            
@@ -226,7 +231,7 @@ class BillController extends Controller
                 'serviceType' => $Operator->ServiceTypeName ?? 'N/A'
             ];
             // return $data;
-            return view('Web.User.bills.bill_details', compact('circle', 'Operator', 'customerDetails', 'billNumbers', 'data'));
+            return view('Web.User.bills.bill_details', compact('mode','circle', 'Operator', 'customerDetails', 'billNumbers', 'data'));
         }
                 
 

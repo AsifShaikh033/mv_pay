@@ -242,7 +242,7 @@
 
     <div class="options-grid row gap-0">
         <div class="col-md-3 col-6">
-          <div class="recharge-box mb-3 p-2" onclick="window.location.href='{{ route('user.recharge.electricity') }}'">
+          <div class="recharge-box mb-3 p-2"  onclick="window.location.href='{{ route('user.recharge.electricity', ['mode' => 2]) }}'">
 
           <div class=""><img src="{{ asset('assets_web/images/wallet/electricity.png') }}" alt="" width="50"></div> 
               <span>Electricity Offline System(Manual)</span>

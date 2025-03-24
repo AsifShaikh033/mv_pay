@@ -201,7 +201,7 @@
                 <input type="hidden" name="bill_number" value="{{ request('bill_number') ?? old('bill_number') }}">
                 <input type="hidden" name="circle" value="{{ $data['circle'] ?? old('circle') }}">
                 <input type="hidden" name="recharge_amount" value="{{ $customerDetails['due_amount'] ?? old('due_amount') }}">
-
+                <input type="hidden" name="mode" value="{{ $mode }}">
 
                 <div class="pin-spin">
                     <img src="{{ asset('assets_web/images/wallet/13.png') }}" class="spin-img" style="width:25px!important;height:25px!important;" alt="">
