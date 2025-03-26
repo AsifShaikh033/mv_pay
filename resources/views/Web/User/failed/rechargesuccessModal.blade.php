@@ -6,77 +6,164 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 <title>Hello, world!</title>
-
 <style>
-   .rechargeModal {
-    background: linear-gradient(45deg, #00ffd2, #001c44, #0876ff);
+       
+       .container_index {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 35px 35px  0px 35px black;
+    text-align: center;
+    width: 70%;
+}
+       .features {
+           background: #212529;
+           color: white;
+           padding: 10px;
+           border-radius: 5px;
+           margin-top: 10px;
+       }
+       .features ul {
+           list-style: none;
+           padding: 0;
+       }
+       .download-btn {
+           background: #28a745;
+           color: white;
+           padding: 10px;
+           display: block;
+           text-align: center;
+           text-decoration: none;
+           border-radius: 5px;
+       }
+       .img-fluid-custom {
+           max-height: 150px;
+       }
+       .change_name {
+   text-align: left;
+}
+         @media (max-width: 576px) {
+           .change_name {
+   font-size: 10px;
+   text-align: left;
+}
+.container_index {
+   width: 100%; 
+}
+.bordered-text {
+   font-size: 25px !important;
+   font-weight: 700;
+
+   -webkit-text-stroke: 1px black !important;
+}
+       }
+       
+       .border_bottom {
+   position: relative;
+   width: 100%;
+   border-bottom: 2px solid #000;
+   margin: 10px;
 }
 
-    .modal_header {
-        background: #fff;
-        color: #000;
-        border: 2px solid red;
-        padding: 10px 10px;
-        border-radius: 25px;
-        box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
-        margin: 0 29px;
-    }
+       .border_bottom::before,
+       .border_bottom::after {
+           content: '';
+           position: absolute;
+           background-color: #000; 
+       }
+       .header-text {
+    font-weight: 700;
+}
+    .border_bottom::before {
+   bottom: -5px;
+   left: 0px;
+   width: 2px;
+   height: 8px;
+}
+.website-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+       .border_bottom::after {
+           bottom: -5px; 
+           right: 0px;  
+           width: 2px;  
+           height: 8px;
+       }
+.bordered-text {
+   font-size: 35px;
+   font-weight: 700;
+   color: yellow;
+   text-align: left;
+   -webkit-text-stroke: 2px black;
+}
+.content-body{
+    min-height:924px!important;
+}
+   </style>
+</head>
+<body>
+    
+<div class="content-body mt-5" >
+   <div class="container_index container">
+       <div class="row text-center">
+       <p class="bordered-text">अब हर बार 200 रुपये तक का</p>
+           <div class="col-6">
+               <p class="bordered-text">कैशबैक !!</p>
+           </div>
+           <div class="col-4">
+               <img src="{{ asset('assets_web/images/others_services/11.png') }}" class="img-fluid">
+           </div>
+         
+           <div class="col-2">
+               <img src="{{ asset('assets_web/images/others_services/5.png') }}" class="img-fluid">
+           </div>
+       </div>
 
-    .image-container img {
-        width: 100%;
-        height: auto;
-    }
-
-    .thank-you {
-        font-size: 1rem;
-    }
-
-    @media (max-width: 576px) {
-        .modal-content {
-            padding: 1rem;
-        }
-
-        #rechargeModalLabel {
-            font-size: 10px;
-            font-weight: 600;
-        }
-
-        .thank-you {
-            font-size: 0.9rem;
-        }
-    }
-</style>
-
-
-
-<div class="content-body mt-5">
-    <div class="container choose_plan-container mt-5">
-        <!-- Modal -->
-        <!-- <div class="modal fade " id="cashbackModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"> -->
-        <div>
-            <div class="modal-dialog">
-                <div class="modal-content rechargeModal">
-                    <div class='d-flex justify-content-end mb-3'>
-                        <!-- <button type="button" class="btn-close bg-danger" data-bs-dismiss="modal" aria-label="Close"></button> -->
-                    </div>
-                    <div class="modal_header">
-                        <h5 class="modal-title" id="rechargeModalLabel">Recharge Of has {{$transaction->amount}}
-                            been proceed successfully.</h5>
-
-                    </div>
-                    <div class="modal-body d-flex justify-content-center text-white">
-                        <div class="image-container mb-3">
-                            <img src="{{ asset('assets_web/images/others_services/cash.png') }}" alt="Recharge Failed" class="img-fluid">
-                            <p class="thank-you text-light">Thank You For Using MV EASY PAY.
-                                collect your cash from mv vision.</p>
-                        </div>
-
-                    </div>
-                </div>
+       <div class="row align-items-center text-center">
+           <div class="col-2">
+               <img src="{{ asset('assets_web/images/others_services/9.png') }}" class="img-fluid" >
+           </div>
+           <div class="col-6">
+               <h4 class="change_name">Payment of ₹  is successful!</h4>
+               <h5 class="mt-2 m-0 change_name">22 Mar, 2025 ! 07:15 PM</h5>
+               <h5 class="change_name">Transaction Details</h5>
+               <h6 class="change_name">Ref/UTR NO. 132222323</h6>
             </div>
-        </div>
-    </div>
-</div>
+           <div class="col-4">
+               <img src="{{ asset('assets_web/images/others_services/phone.png') }}" class="img-fluid" style="max-width: 100%;">
+           </div>
+       </div>
+                  <h6 class="change_name mb-0">Your Transaction has successfully Processed.</h6>
+       <div class="row align-items-center text-center">
+         <div class="col-6">
+
+          <div class="border_bottom"></div>
+           <h6 class="header-text change_name">Let's download the application now</h6>
+       <p class="change_name m-0">Unlock the full potential of your finances with our Mobile Banking App—secure, convenient, and packed with features to manage your money anytime, anywhere!</p>
+        <div class="website-link">
+           <img src="{{ asset('assets_web/images/others_services/browser.png') }}" alt="Website Icon" style="width:30px;height:30px;">
+           <div class="change_name fs-12">
+           <label for="" class="m-0 p-0">Our Website:</label><br> <a href="https://www.mveasypay.com" target="_blank">www.mveasypay.com</a></div>
+       </div>
+         </div>
+         <div class="col-6">
+           <div class="features mt-3">
+               <h5 class="change_name">MV EASY PAY Features:</h5>
+               <ul class="change_name">
+                   <li>✔ Cashback Har Bar</li>
+                   <li>✔ Referral Cashback</li>
+                   <li>✔ Easy Process</li>
+                   <li>✔ No Need to Link Bank A/C</li>
+                   <li>✔ Many More Coming</li>
+               </ul>
+           </div>
+       </div>
+
+      
+   </div>
+   </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
