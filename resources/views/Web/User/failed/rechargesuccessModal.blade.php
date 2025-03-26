@@ -4,6 +4,7 @@
 
 <!-- Bootstrap CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari&display=swap" rel="stylesheet">
 
 <title>Hello, world!</title>
 <style>
@@ -24,9 +25,10 @@
            margin-top: 10px;
        }
        .features ul {
-           list-style: none;
-           padding: 0;
-       }
+    list-style: none;
+    padding: 0;
+    color: #1abeff;
+}
        .download-btn {
            background: #28a745;
            color: white;
@@ -41,6 +43,7 @@
        }
        .change_name {
    text-align: left;
+   font-weight: 600px;
 }
          @media (max-width: 576px) {
            .change_name {
@@ -49,13 +52,16 @@
 }
 .container_index {
    width: 100%; 
+   
+   box-shadow: none;
 }
 .bordered-text {
-   font-size: 25px !important;
-   font-weight: 700;
-
-   -webkit-text-stroke: 1px black !important;
+    font-size: 22px !important;
 }
+.bordered-text-1 {
+    font-size: 15px;
+}
+
        }
        
        .border_bottom {
@@ -91,15 +97,27 @@
            width: 2px;  
            height: 8px;
        }
-.bordered-text {
-   font-size: 35px;
-   font-weight: 700;
-   color: yellow;
-   text-align: left;
-   -webkit-text-stroke: 2px black;
+       .bordered-text {
+    font-size: 35px;
+    font-weight: 700;
+    color: darkblue;
+    text-align: left;
+    /* -webkit-text-stroke: 1px black; */
+}
+.bordered-text-1 {
+    font-size: 25px;
+    font-weight: 700;
+    color: darkblue;
+    text-align: left;
 }
 .content-body{
-    min-height:924px!important;
+    min-height: 992px !important;
+}
+.font-bolder{
+    font-weight: 700;
+}
+.head-color {
+    color: #1abeff;
 }
    </style>
 </head>
@@ -108,9 +126,9 @@
 <div class="content-body mt-5" >
    <div class="container_index container">
        <div class="row text-center">
-       <p class="bordered-text">अब हर बार 200 रुपये तक का</p>
+       <p class="bordered-text">AB Har Bar 200₹ tak  Cashback Rewards Paiye Dosto.</p>
            <div class="col-6">
-               <p class="bordered-text">कैशबैक !!</p>
+               <p class="bordered-text-1">Join MV Easy Pay today for more benefits.</p>
            </div>
            <div class="col-4">
                <img src="{{ asset('assets_web/images/others_services/11.png') }}" class="img-fluid">
@@ -126,10 +144,11 @@
                <img src="{{ asset('assets_web/images/others_services/9.png') }}" class="img-fluid" >
            </div>
            <div class="col-6">
-               <h4 class="change_name">Payment of ₹  is successful!</h4>
-               <h5 class="mt-2 m-0 change_name">22 Mar, 2025 ! 07:15 PM</h5>
-               <h5 class="change_name">Transaction Details</h5>
-               <h6 class="change_name">Ref/UTR NO. 132222323</h6>
+               <h4 class="change_name">Payment of ₹ {{$transaction->amount}}  is successful!</h4>
+               <h6 class="mt-2 m-0 change_name font-bolder">{{ \Carbon\Carbon::parse($transaction->created_at)->format('d M, Y ! h:i A') }}
+               </h6>
+               <h6 class="change_name m-0 font-bolder">Transaction Details</h6>
+               <h6 class="change_name font-bolder">Ref/UTR NO. {{$transaction->transaction_id}}</h6>
             </div>
            <div class="col-4">
                <img src="{{ asset('assets_web/images/others_services/phone.png') }}" class="img-fluid" style="max-width: 100%;">
@@ -150,7 +169,7 @@
          </div>
          <div class="col-6">
            <div class="features mt-3">
-               <h5 class="change_name">MV EASY PAY Features:</h5>
+               <h5 class="change_name head-color">MV EASY PAY Features:</h5>
                <ul class="change_name">
                    <li>✔ Cashback Har Bar</li>
                    <li>✔ Referral Cashback</li>
