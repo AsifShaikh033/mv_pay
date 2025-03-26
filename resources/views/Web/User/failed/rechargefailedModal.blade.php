@@ -39,17 +39,21 @@
         .img-fluid-custom {
             max-height: 150px;
         }
-		.change_name {
-    text-align: left;
+        .change_name {
+   text-align: left;
+   font-weight: 600px;
 }
 		  @media (max-width: 576px) {
-		  .container_index {
-    width: 100%; 
+            .container_index {
+   width: 100%; 
+   
+   box-shadow: none;
 }
             .change_name {
     font-size: 10px;
     text-align: left;
 }
+
         }
 		
 		.border_bottom {
@@ -90,6 +94,12 @@
 .content-body{
     min-height:924px!important;
 }
+.font-bolder{
+    font-weight: 700;
+}
+.head-color {
+    color: #1abeff;
+}
     </style>
 
 
@@ -113,9 +123,9 @@
                 <img src="{{ asset('assets_web/images/others_services/9.png') }}" class="img-fluid" >
             </div>
             <div class="col-6">
-                <h4 class="change_name">Payment of ₹  is unsuccessful!</h4>
-                <h5 class="mt-2 m-0 change_name">22 Mar, 2025 | 07:15 PM</h5>
-                <h5 class="change_name">Your Transaction has failed. Please try again later.</h5>
+                <h4 class="change_name font-bolder">Payment of ₹ {{$transaction->amount}} is unsuccessful!</h4>
+                <h6 class="mt-2 m-0 change_name font-bolder">{{ \Carbon\Carbon::parse($transaction->created_at)->format('d M, Y ! h:i A') }}</h6>
+                <h6 class="change_name font-bolder">Your Transaction has failed. Please try again later.</h6>
             </div>
             <div class="col-4">
                 <img src="{{ asset('assets_web/images/others_services/8.png') }}" class="img-fluid" style="max-width: 100%;">
@@ -123,20 +133,20 @@
         </div>
 		<div class="row align-items-center mt-4 text-center">
 		  <div class="col-6">
-		   <h4 class="change_name">अब हर बार 200 रुपये तक का कैशबैक पाएं</h4>
+		   <h6 class="change_name font-bolder">अब हर बार 200 रुपये तक का कैशबैक पाएं</h6>
 		   <div class="border_bottom"></div>
-		    <h5 class="header-text change_name">Let's download the application now</h5>
+		    <h6 class="header-text change_name font-bolder">Let's download the application now</h6>
         <p class="change_name m-0">Unlock the full potential of your finances with our Mobile Banking App—secure, convenient, and packed with features to manage your money anytime, anywhere!</p>
         <div class="website-link">
            <img src="{{ asset('assets_web/images/others_services/browser.png') }}" alt="Website Icon" style="width:30px;height:30px;">
-           <div class="change_name">
-           Our Website: <a href="https://www.mveasypay.com" target="_blank">www.mveasypay.com</a></div>
+           <div class="change_name fs-12">
+           <label for="" class="m-0 p-0">Our Website:</label><br> <a href="https://www.mveasypay.com" target="_blank">www.mveasypay.com</a></div>
        </div>
 		  </div>
 		  <div class="col-6">
 			<div class="features mt-3">
-				<h5 class="change_name">MV EASY PAY Features:</h5>
-				<ul class="change_name">
+				<h5 class="change_name head-color">MV EASY PAY Features:</h5>
+				<ul class="change_name head-color">
 					<li>✔ Cashback Har Bar</li>
 					<li>✔ Referral Cashback</li>
 					<li>✔ Easy Process</li>
