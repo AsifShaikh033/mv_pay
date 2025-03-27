@@ -104,7 +104,7 @@ Route::get('/recharge-get', [RechargeController::class, 'recharge']);
     Route::get('/api/mv_pay_winning', [MvSpinUserController::class, 'mv_pay_winning_amount']);
 
     Route::post('/api/chech-subcription', [HomeController::class, 'chechSubcription']);
-    Route::get('/termsAndConditions', [UserController::class, 'termsAndConditions'])->name('termsAndConditions');
+    Route::get('/termsAndConditions', [UserController::class, 'termsAndConditions'])->name('user.termsAndConditions');
     //Homepage 
     Route::get('/', [WebController::class, 'index'])->name('index');
    
