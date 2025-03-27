@@ -104,7 +104,9 @@ Route::get('/recharge-get', [RechargeController::class, 'recharge']);
     Route::get('/api/mv_pay_winning', [MvSpinUserController::class, 'mv_pay_winning_amount']);
 
     Route::post('/api/chech-subcription', [HomeController::class, 'chechSubcription']);
+
     Route::get('/termsAndConditions', [UserController::class, 'termsAndConditions'])->name('user.termsAndConditions');
+    Route::get('/privacyAndPolicy', [UserController::class, 'privacyAndPolicy'])->name('user.privacyAndPolicy');
     //Homepage 
     Route::get('/', [WebController::class, 'index'])->name('index');
    
@@ -125,7 +127,6 @@ Route::get('/recharge-get', [RechargeController::class, 'recharge']);
         Route::get('/about', [UserController::class, 'about'])->name('about');
         Route::get('/services', [UserController::class, 'services'])->name('services');
         Route::get('/payment_history', [UserController::class, 'payment_history'])->name('payment_history');
-        Route::get('/privacyAndPolicy', [UserController::class, 'privacyAndPolicy'])->name('privacyAndPolicy');
         Route::get('/refundAndpolicy', [UserController::class, 'refundAndpolicy'])->name('refundAndpolicy');
         Route::get('/contactUs', [UserController::class, 'contactUs'])->name('contactUs');
         Route::post('/update-profile-user', [UserController::class, 'updateprofile'])->name('updateprofile');
