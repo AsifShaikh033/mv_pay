@@ -158,11 +158,10 @@ public function rejectWithdrawal(Request $request, $id)
     }
    
     public function recharge_pages(){
-
         $transaction = Transaction::where('id',1)->first();
         $transaction_id = 1;
     //    return view('Web.User.failed.rechargependingModal', compact('transaction', 'transaction_id'));
-    //    return view('Web.User.failed.rechargefailedModal', compact('transaction', 'transaction_id'));
-        return view('Web.User.failed.rechargesuccessModal', compact('transaction', 'transaction_id'));
+       return view('Web.User.failed.rechargefailedModal', compact('transaction', 'transaction_id'));
+        // return view('Web.User.failed.rechargesuccessModal', compact('transaction', 'transaction_id'));
     }
 }
