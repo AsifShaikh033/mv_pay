@@ -46,9 +46,9 @@
    font-weight: 600px;
 }
          @media (max-width: 576px) {
-           .change_name {
-   font-size: 10px;
-   text-align: left;
+            .change_name {
+    font-size: 9px;
+    text-align: left;
 }
 .container_index {
    width: 100%; 
@@ -56,12 +56,17 @@
    box-shadow: none;
 }
 .bordered-text {
-    font-size: 22px !important;
+    font-size: 15px !important;
 }
 .bordered-text-1 {
-    font-size: 15px;
+    font-size: 11px !important;
+    margin: 0px;
 }
 
+.fs-12 {
+    font-size: 9px !important;
+    line-height: 100%;
+}
        }
        
        .border_bottom {
@@ -126,7 +131,7 @@
 <div class="content-body mt-5" >
    <div class="container_index container">
        <div class="row text-center">
-       <p class="bordered-text">AB Har Bar 200₹ tak  Cashback Rewards Paiye Dosto.</p>
+       <p class="bordered-text m-0">AB Har Bar 200₹ tak  Cashback Rewards Paiye Dosto.</p>
            <div class="col-6">
                <p class="bordered-text-1">Join MV Easy Pay today for more benefits.</p>
            </div>
@@ -160,8 +165,8 @@
 
           <div class="border_bottom"></div>
            <h6 class="header-text change_name">Let's download the application now</h6>
-       <p class="change_name m-0">Unlock the full potential of your finances with our Mobile Banking App—secure, convenient, and packed with features to manage your money anytime, anywhere!</p>
-        <div class="website-link">
+       <p class="change_name m-0" style="line-height:100%;">Unlock the full potential of your finances with our Mobile Banking App—secure, convenient, and packed with features to manage your money anytime, anywhere!</p>
+        <div class="website-link mt-1">
            <img src="{{ asset('assets_web/images/others_services/browser.png') }}" alt="Website Icon" style="width:30px;height:30px;">
            <div class="change_name fs-12">
            <label for="" class="m-0 p-0">Our Website:</label><br> <a href="https://www.mveasypay.com" target="_blank">www.mveasypay.com</a></div>
