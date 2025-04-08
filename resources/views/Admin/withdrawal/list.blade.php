@@ -69,7 +69,7 @@
                                                 @endif
                                             </div>
                                             @else
-                                              N/A   {{ $withdrawal->Bank->bank_name }}
+                                              N/A  
                                              @endif
 
                                         {{-- Bank Section --}}
