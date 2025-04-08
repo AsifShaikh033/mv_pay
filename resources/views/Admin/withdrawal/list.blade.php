@@ -22,6 +22,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>User Name</th>
+                                    <th>Account Details</th>
                                     <th>Amount</th>
                                     <th>Status</th>
                                     <th>Transaction ID</th>
@@ -34,6 +35,64 @@
                                     <tr>
                                         <td>{{ $withdrawal->id }}</td>
                                         <td>{{ $withdrawal->user->name ?? 'N/A' }}</td>
+                                        <td>
+                                                                    {{-- UPI Section --}}
+                                        @if(!empty($withdrawal->Bank->upi_id) || !empty($withdrawal->Bank->barcode_image))
+                                            <div>
+                                                <strong>UPI Details:</strong><br>
+                                                @if(!empty($withdrawal->Bank->upi_id))
+                                                    <span class="badge bg-success">UPI ID:</span> {{ $withdrawal->Bank->upi_id }}<br>
+                                                @endif
+
+                                                @if(!empty($withdrawal->Bank->barcode))
+                                                    <span class="badge bg-info">QR Code:</span><br>
+                                                    <img 
+                                                    src="{{ asset('storage/' . $withdrawal->bank->barcode) }}" 
+                                                    alt="QR Code" 
+                                                    style="max-width: 120px; margin-top: 5px; cursor: pointer;" 
+                                                    data-bs-toggle="modal" 
+                                                    data-bs-target="#qrModal{{ $withdrawal->id }}"
+                                                >
+                                                <div class="modal fade" id="qrModal{{ $withdrawal->id }}" tabindex="-1" aria-labelledby="qrModalLabel{{ $withdrawal->id }}" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="qrModalLabel{{ $withdrawal->id }}">Full QR Code</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body text-center">
+                                                <img src="{{ asset('storage/' . $withdrawal->bank->barcode) }}" alt="Full QR Code" style="max-width: 100%;">
+                                            </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                                @endif
+                                            </div>
+                                            @else
+                                              N/A   {{ $withdrawal->Bank->bank_name }}
+                                             @endif
+
+                                        {{-- Bank Section --}}
+                                        @if(!empty($withdrawal->Bank->bank_name) || !empty($withdrawal->Bank->account_number))
+                                            <div style="margin-top: 10px;">
+                                                <strong>Bank Details:</strong><br>
+                                                @if(!empty($withdrawal->Bank->bank_name))
+                                                    <span class="badge bg-primary">Bank Name:</span> {{ $withdrawal->Bank->bank_name }}<br>
+                                                @endif
+                                                @if(!empty($withdrawal->Bank->branch_name))
+                                                    <span class="badge bg-primary">Branch:</span> {{ $withdrawal->Bank->branch_name }}<br>
+                                                @endif
+                                                @if(!empty($withdrawal->Bank->ifsc_code))
+                                                    <span class="badge bg-primary">IFSC:</span> {{ $withdrawal->Bank->ifsc_code }}<br>
+                                                @endif
+                                                @if(!empty($withdrawal->Bank->account_number))
+                                                    <span class="badge bg-primary">Account No:</span> {{ $withdrawal->Bank->account_number }}<br>
+                                                @endif
+                                            </div>
+                                            @else
+                                            N/A </br>
+                                             @endif
+                                            </td>
                                         <td>{{ $withdrawal->amount }}</td>
                                         <td>
                                             @if($withdrawal->status == 'success')

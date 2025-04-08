@@ -23,4 +23,8 @@ class Withdrawal extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function bank()
+    {
+        return $this->hasOne(Bankdetail::class, 'user_id', 'user_id');
+    }
 }
