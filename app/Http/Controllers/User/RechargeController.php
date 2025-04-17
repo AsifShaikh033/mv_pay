@@ -435,7 +435,7 @@ class RechargeController extends Controller
         // Call the recharge service
        $plans = $this->rechargeService->recharge_prepaid($mobileNumber, $operatorCode, $circleCode, $rechargeAmount, $transaction_id);
         Log::warning('Call the recharge service', ['plans' => $plans]);
-        if (isset($plans['Status']) && $plans['Status'] === "FAILURE"  || $plans['Status'] === "Failure") {
+        if (isset($plans['Status']) && $plans['Status'] === "FAILURE"  || $plans['Status'] === "Failure" ) {
 
             $Transaction->post_balance = $user->balance;
             $Transaction->status = 0;
@@ -491,6 +491,44 @@ class RechargeController extends Controller
             $transactionId = $transaction_id;
             return view('Web.User.failed.rechargesuccessModal', compact('transaction','transactionId'));
     
+    }elseif (isset($plans['Status']) && $plans['Status'] === "Pending") {
+
+            
+        $user->balance -= $rechargeAmount;
+        
+        $Recharge->status = 'pending';
+        $Recharge->format = 'json';
+        $Recharge->api_response = json_encode($plans);
+
+        $Transaction->post_balance = $user->balance;
+        $Transaction->status = 0;
+        $Transaction->payment_status = 'pending';
+        $Transaction->save();
+        $Recharge->save();
+        $user->save();
+        //recharge bonus
+        $this->recharge_bonus($user, $rechargeAmount, $plans);
+        //spin bonus
+        $user = Auth::user();
+        // $cashback = BalanceCashback::where('category', 'Prepaid-Mobile')->where('balance', $rechargeAmount)->first();
+        $cashback = BalanceCashback::where('category', 'Prepaid-Mobile')
+        ->where('balance', '<=', $rechargeAmount)
+        ->orderBy('balance', 'desc') 
+        ->first();
+      //  Log::warning('BalanceCashback', ['BalanceCashback' => $cashback]);
+        // if($cashback){
+          $send_spin_chance=  send_spin_chance($user,$rechargeAmount, 1, 'Prepaid-Mobile');
+          $transaction = Transaction::where('transaction_id', $transaction_id)->latest()->first();
+          if ($transaction) {  // Check if a transaction exists before assigning values
+           // $transaction->spin_api_response = $send_spin_chance;
+           // $transaction->save();
+        }
+         
+        // }
+       
+        $transaction = Transaction::where('transaction_id', $transaction_id)->latest()->first();
+        $transactionId = $transaction_id;
+        return view('Web.User.failed.rechargependingModal', compact('transaction','transactionId'));
     }
    }
         
