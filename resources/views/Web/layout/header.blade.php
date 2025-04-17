@@ -80,8 +80,94 @@
             transform: scale(1.05);
         }
 
+    /* @media (min-width: 1024px) { */
+      [data-header-position="fixed"][data-sidebar-position="fixed"] .dlabnav {
+          width: 100%;
+      }
+      .dlabnav .metismenu > li {
+          flex: 0 0 calc(33.333% - 20px); /* 3 columns, subtracting gap */
+          box-sizing: border-box;
+      }
+
+      .dlabnav .metismenu > li .dash_changes::before, .dash_changes::after {
+        display:none
+      }
+
+      .dlabnav .metismenu > li  .dash_changes img , .dlabnav .metismenu > li  .dashboard img {
+        width: 100% !important;
+        height: auto !important;
+        max-width: 100px;
+      }
+      
+
+      [data-sidebar-style="full"][data-layout="vertical"] .dlabnav .metismenu > li > a {
+          background: #00FFFF !important;
+          color: #000;
+          font-weight: bold;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding: 10px;
+      }
+      [data-sidebar-style="full"][data-layout="vertical"] .menu-toggle .button-container_sidebar {
+          display: none;
+      }
+
+      .dlabnav .metismenu {
+          flex-wrap: wrap; /* allow items to wrap */
+          padding-top: 15px;
+          gap: 20px; /* optional: space between items */
+          flex-flow: row;
+          flex-wrap: wrap;
+        
+          margin: auto;
+          width: 60%;
+          border: 2px solid #000;
+          padding: 10px;
+          border-radius: 15px;
+        }
+        [data-sidebar-position="fixed"][data-layout="vertical"] .dlabnav .dlabnav-scroll {
+          background: #fff;
+          padding-top: 50px;
+      }
+      .button-container_sidebar {
+        display: flex;
+        justify-content: center;
+        gap: 50px;
+        padding: 20px;
+        justify-content: space-between;
+        max-width: 60%;
+        margin: auto;
+      }
+      
+      .button-container_sidebar .button {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          background: linear-gradient(to bottom right, #ffd1dc, #b0e0e6);
+          padding: 10px 20px;
+          border-radius: 20px;
+          box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+          cursor: pointer;
+          font-weight: bold;
+          font-size: 16px;
+          color: #000;
+          text-decoration: none;
+          transition: transform 0.2s ease;
+      }
+      
+      .button-container_sidebar .button:hover {
+          transform: scale(1.05);
+      }
+      
+      .button-container_sidebar .button img {
+          width: 30px;
+          height: 30px;
+      }
+    /* } */
+
 </style>
-<div id="main-wrapper">
+<div id="main-wrapper" class="show menu-toggle">
   <div class="mainpage">
     <div class="nav-header">
       <div class="nav-control">
@@ -132,52 +218,67 @@
     </div>
     <div class="dlabnav">
     <div class="dlabnav-scroll">
-    
+      <div class="button-container_sidebar">
+        <div class="button">
+              <img src="{{ asset('assets_web/images/sidebar/dashboard.png') }}" style="width:50px;height:50px"  alt="Logo" /> 
+              <span>Back</span>
+          </div>
+          <div class="button">
+              <img src="{{ asset('assets_web/images/sidebar/dashboard.png') }}" style="width:50px;height:50px"  alt="Logo" /> 
+              <span>Change Language ▼</span>
+          </div>
+      </div>
         <ul class="metismenu" id="menu">
           
             
-        <li>
+        <li title="Dashboard">
             <a id="ctl00_lnkServices" class="dashboard" href="{{ route('index') }}">
-            <i class="basecolor fa-solid fa-gauge"></i>
+            {{-- <i class="basecolor fa-solid fa-gauge"></i> --}}
+            <img src="{{ asset('assets_web/images/sidebar/dashboard.png') }}" style="width:50px;height:50px"  alt="Logo" /> 
             <span class="nav-text">Dashboard</span>
             </a>
         </li>
         @if(!Auth::check())  
           
-          <li>
+          <li title="login">
                 <a id="ctl00_lnkServices" class='dash_changes' href="{{ route('login') }}">
-                <i class="basecolor flaticon-381-user-2"></i>
+                {{-- <i class="basecolor flaticon-381-user-2"></i> --}}
+                <img src="{{ asset('assets_web/images/sidebar/dashboard.png') }}" style="width:50px;height:50px"  alt="Logo" /> 
                 <span class="nav-text">Login</span>
                 </a>
             </li>
           
-            <li class="nav-item">
+            <li class="nav-item" title="Register">
             <a class="nav-link dash_changes"  href="{{ route('register') }}">
-             <i class="basecolor flaticon-043-menu"></i>
+              <img src="{{ asset('assets_web/images/sidebar/dashboard.png') }}" style="width:50px;height:50px"  alt="Logo" /> 
+             {{-- <i class="basecolor flaticon-043-menu"></i> --}}
                   <span class="nav-text">Register</span>
                 </a>
             </li> 
           @endif
             @if(Auth::check())  
-            <li>
+            <li title="My account">
                 <a class="dash_changes" href="{{ route('user.profile') }}">
-                <i class="basecolor flaticon-user"></i>
+                  <img src="{{ asset('assets_web/images/sidebar/profile-account.png') }}" style="width:50px;height:50px"  alt="Logo" /> 
+                {{-- <i class="basecolor flaticon-user"></i> --}}
                 <span class="nav-text">My account</span>
                 </a>
           </li>
 
-          <li >
+          <li title="Others">
             <a class="dash_changes"  href="{{route('user.others')}}">
-                <i class="basecolor flaticon-381-more"></i> 
+              <img src="{{ asset('assets_web/images/sidebar/other-details.png') }}" style="width:50px;height:50px"  alt="Logo" /> 
+                {{-- <i class="basecolor flaticon-381-more"></i>  --}}
                 <span class="nav-text">Others</span>
                 </a>
              
             </li>
 
-            <li >
+            <li title="Set Pin">
               <a class="dash_changes"  href="{{route('user.add.pin')}}">
 
-                  <i class="basecolor fa-solid fa-thumbtack"></i> 
+                  {{-- <i class="basecolor fa-solid fa-thumbtack"></i>  --}}
+                  <img src="{{ asset('assets_web/images/sidebar/set-pin.png') }}" style="width:50px;height:50px"  alt="Logo" /> 
 
                   <span class="nav-text">Set Pin</span>
 
@@ -185,9 +286,10 @@
                
               </li>
 
-            <li >
+            <li title="Reports">
             <a class="dash_changes" href="{{route('user.reports')}}">
-            <i class="basecolor flaticon-381-list-1"></i>
+              <img src="{{ asset('assets_web/images/sidebar/report.png') }}" style="width:50px;height:50px"  alt="Logo" /> 
+            {{-- <i class="basecolor flaticon-381-list-1"></i> --}}
                   <span class="nav-text">Reports</span>
                   </a>
             </li>
@@ -200,40 +302,46 @@
             </a>
         </li>
         -->
-        <li>
+        <li title="Privacy & Policy">
             <a class="dash_changes" href="{{route('user.privacyAndPolicy')}}">
-            <i class="basecolor flaticon-050-info"></i>
+              <img src="{{ asset('assets_web/images/sidebar/privacy-policy.png') }}" style="width:50px;height:50px"  alt="Logo" /> 
+            {{-- <i class="basecolor flaticon-050-info"></i> --}}
             <span class="nav-text">Privacy & Policy</span>
             </a>
         </li>
-        <li>
+        <li title="Terms & Conditions">
             <a class="dash_changes" href="{{route('user.termsAndConditions')}}">
-            <i class="basecolor flaticon-025-dashboard"></i>
+              <img src="{{ asset('assets_web/images/sidebar/terms-condition.png') }}" style="width:50px;height:50px"  alt="Logo" /> 
+            {{-- <i class="basecolor flaticon-025-dashboard"></i> --}}
             <span class="nav-text">Terms & Conditions</span>
             </a>
         </li>
-        <li>
+        <li title="Refund and policy">
             <a class="dash_changes" href="{{route('user.refundAndpolicy')}}">
-            <i class="basecolor flaticon-041-graph"></i>
+              <img src="{{ asset('assets_web/images/sidebar/refund-policy.png') }}" style="width:50px;height:50px"  alt="Logo" /> 
+            {{-- <i class="basecolor flaticon-041-graph"></i> --}}
             <span class="nav-text">Refund and policy</span>
             </a>
         </li>
-        <li>
+        <li title="About Us">
             <a class="dash_changes" href="{{route('user.about')}}">
-            <i class="basecolor flaticon-086-star"></i>
+              <img src="{{ asset('assets_web/images/sidebar/aboutus.png') }}" style="width:50px;height:50px"  alt="Logo" /> 
+            {{-- <i class="basecolor flaticon-086-star"></i> --}}
             <span class="nav-text">About Us</span>
             </a>
         </li>
-        <li>
+        <li title="Contact us">
             <a class="dash_changes" href="{{route('user.contactUs')}}">
-            <i class="basecolor flaticon-381-smartphone-2"></i>
+              <img src="{{ asset('assets_web/images/sidebar/contactus.png') }}" style="width:50px;height:50px"  alt="Logo" /> 
+            {{-- <i class="basecolor flaticon-381-smartphone-2"></i> --}}
             <span class="nav-text">Contact us</span>
             </a>
         </li>
         @if(Auth::check())  
-            <li class="">
+            <li class="" title="Logout">
             <a class="logout" href="{{route('user.logout')}}">
-            <i class="basecolor fa fa-sign-out"></i>
+              <img src="{{ asset('assets_web/images/sidebar/logout.png') }}" style="width:50px;height:50px"  alt="Logo" /> 
+            {{-- <i class="basecolor fa fa-sign-out"></i> --}}
             <span class="nav-text">Logout</span>
             </a>
             </li>
