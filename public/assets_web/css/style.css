@@ -13190,7 +13190,7 @@ label {
 
 [data-sidebar-style="mini"] .nav-control,
 [data-layout="horizontal"] .nav-control {
-    display: none;
+    display: block;
 }
 
 @media only screen and (max-width: 767px) {
