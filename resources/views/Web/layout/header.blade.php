@@ -166,6 +166,25 @@
       }
     /* } */
 
+
+    [data-sidebar-style="full"][data-layout="vertical"] .menu-toggle .dlabnav .metismenu > li {
+        padding: 0 5px;
+    }
+    [data-sidebar-style="full"][data-layout="vertical"] .menu-toggle .dlabnav .metismenu {
+        width: 100%;
+        gap:10px;
+        justify-content: center;
+        border:none;
+    }
+
+    [data-sidebar-style="full"][data-layout="vertical"] .menu-toggle .dlabnav .metismenu li a img {
+        width: 30px !important;
+    }
+    [data-sidebar-style="full"][data-layout="vertical"] .menu-toggle .dlabnav .metismenu > li a {
+        padding: 10px;
+    }
+    
+
 </style>
 <div id="main-wrapper" class="show menu-toggle">
   <div class="mainpage">
@@ -220,11 +239,11 @@
     <div class="dlabnav-scroll">
       <div class="button-container_sidebar">
         <div class="button">
-              <img src="{{ asset('assets_web/images/sidebar/dashboard.png') }}" style="width:50px;height:50px"  alt="Logo" /> 
+              <img src="{{ asset('assets_web/images/sidebar/arrow.png') }}" style="width:30px;height:30px"  alt="Logo" /> 
               <span>Back</span>
           </div>
           <div class="button">
-              <img src="{{ asset('assets_web/images/sidebar/dashboard.png') }}" style="width:50px;height:50px"  alt="Logo" /> 
+              <img src="{{ asset('assets_web/images/sidebar/language.png') }}" style="width:30px;height:30px"  alt="Logo" /> 
               <span>Change Language ▼</span>
           </div>
       </div>
