@@ -183,6 +183,57 @@
     [data-sidebar-style="full"][data-layout="vertical"] .menu-toggle .dlabnav .metismenu > li a {
         padding: 10px;
     }
+
+
+
+
+@media (max-width: 750px) {
+  [data-sidebar-position="fixed"][data-layout="vertical"]  .button-container_sidebar {
+    gap: 10px;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 100%;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+[data-sidebar-position="fixed"][data-layout="vertical"]   {  padding: 10px!important;
+    =: 20px;
+    gap: 4px;
+    font-size: 14px;
+    line-height: 1rem;
+}
+
+[data-sidebar-position="fixed"][data-layout="vertical"]  .button-container_sidebar .button img {
+    width: 15px !important;
+    height: auto !important;
+}
+
+[data-sidebar-position="fixed"][data-layout="vertical"]   .dlabnav .metismenu {
+    max-width: 100%;
+    width: 100%;
+    gap:5px;
+}
+[data-sidebar-position="fixed"][data-layout="vertical"]  .dlabnav .metismenu > li {
+        padding: 0px 15px;
+        flex: 0 0 calc(33.333% - 80px);
+        min-width: 32%;
+        padding: 5px;
+    }
+    [data-sidebar-position="fixed"][data-layout="vertical"]  .dlabnav .dlabnav-scroll {
+    background: #fff;
+    padding-top: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.button-container_sidebar .button {
+    padding: 10px!important;
+    gap: 4px;
+    font-size: 14px;
+    line-height: 1rem;
+}
+}
     
 
 </style>
