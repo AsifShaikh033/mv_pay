@@ -401,7 +401,7 @@
             <a class="dash_changes" href="{{route('user.refundAndpolicy')}}">
               <img src="{{ asset('assets_web/images/sidebar/refund-policy.png') }}" style="width:50px;height:50px"  alt="Logo" /> 
             {{-- <i class="basecolor flaticon-041-graph"></i> --}}
-            <span class="nav-text">Refund and policy</span>
+            <span class="nav-text">Refund & Policy</span>
             </a>
         </li>
         <li title="About Us">
