@@ -31,7 +31,8 @@
     font-size: 24px;
     font-weight: bold;
     color: white;
-    background: linear-gradient(to bottom, #1919ff, darkred);
+    /* background: linear-gradient(to bottom, #1919ff, darkred); */
+    background: #00FFFF;
     border: 2px solid gold;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
     cursor: pointer;
@@ -64,14 +65,16 @@
 
         .dashboard {
     /* background: linear-gradient(to bottom, blue, darkblue); */
-    background: linear-gradient(to bottom, #1919ff, darkred);
+    /* background: linear-gradient(to bottom, #1919ff, darkred); */
+    background: #00FFFF;
     margin-bottom: 10px;
     border:2px solid gold;
 }
 
         .logout {
             /* background: none; */
-            background: linear-gradient(to bottom, #1919ff, darkred);
+            /* background: linear-gradient(to bottom, #1919ff, darkred); */
+            background: #00FFFF;
             color: gold;
             border: 2px solid gold;
             margin-bottom: 10px;
@@ -127,7 +130,8 @@
           border-radius: 15px;
         }
         [data-sidebar-position="fixed"][data-layout="vertical"] .dlabnav .dlabnav-scroll {
-          background: #fff;
+          /* background: #fff; */
+          background: radial-gradient(circle, #ffffff, #afffee, #00ffff);
           padding-top: 50px;
       }
       .button-container_sidebar {
@@ -221,7 +225,7 @@
         padding: 5px;
     }
     [data-sidebar-position="fixed"][data-layout="vertical"]  .dlabnav .dlabnav-scroll {
-    background: #fff;
+    /* background: #fff; */
     padding-top: 50px;
     padding-left: 20px;
     padding-right: 20px;
@@ -293,10 +297,17 @@
               <img src="{{ asset('assets_web/images/sidebar/arrow.png') }}" style="width:30px;height:30px"  alt="Logo" /> 
               <span>Back</span>
           </div>
-          <div class="button">
-              <img src="{{ asset('assets_web/images/sidebar/language.png') }}" style="width:30px;height:30px"  alt="Logo" /> 
-              <span>Change Language ▼</span>
-          </div>
+          <div class="button language-button" style="position: relative;">
+          <img src="{{ asset('assets_web/images/sidebar/language.png') }}" style="width:30px;height:30px" alt="Language" />
+          <span id="language-toggle">Change Language ▼</span>
+          <div id="f"></div>
+          <select id="customLanguageSelect" style="position: absolute; top:100%; left:0; width:150px; margin-top:5px; padding:5px; display:none;z-index:99999;">
+            <option value="">Select Language</option>
+            <option value="en">English</option>
+            <option value="hi">Hindi</option>
+          </select>
+        </div>
+
       </div>
         <ul class="metismenu" id="menu">
           
@@ -407,6 +418,13 @@
             <span class="nav-text">Contact us</span>
             </a>
         </li>
+        <li title="Download App">
+          <a class="dash_changes" href="{{ asset('assets_web/apk/MV_Easy_Pay.apk') }}" download>
+              <img src="{{ asset('assets_web/images/sidebar/download-apk.png') }}" style="width:50px;height:50px" alt="Logo" />
+              <span class="nav-text">Download App</span>
+          </a>
+      </li>
+
         @if(Auth::check())  
             <li class="" title="Logout">
             <a class="logout" href="{{route('user.logout')}}">
@@ -430,3 +448,45 @@
     </a>
     <a class="backbtn" id="lblMenuName"></a>
 </div>
+<script>
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+      pageLanguage: 'en',
+      includedLanguages: 'en,hi',
+      layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+      autoDisplay: false
+    }, 'google_translate_element');
+  }
+
+  // Toggle dropdown when clicking on "Change Language"
+  document.getElementById('language-toggle').addEventListener('click', function(event) {
+    event.stopPropagation();
+    const selectBox = document.getElementById('customLanguageSelect');
+    selectBox.style.display = selectBox.style.display === 'block' ? 'none' : 'block';
+  });
+
+  // When language is selected
+  document.getElementById('customLanguageSelect').addEventListener('change', function() {
+    const selectedLang = this.value;
+    const googleCombo = document.querySelector('.goog-te-combo');
+    if (googleCombo && selectedLang) {
+      googleCombo.value = selectedLang;
+      googleCombo.dispatchEvent(new Event('change'));
+    }
+    this.style.display = 'none'; // Hide after selection
+  });
+
+  // ✅ Updated: Close only if clicking **outside** the language area
+  document.addEventListener('click', function(event) {
+    const selectBox = document.getElementById('customLanguageSelect');
+    const toggleButton = document.getElementById('language-toggle');
+
+    // If click is outside both the select and the toggle button
+    if (!selectBox.contains(event.target) && !toggleButton.contains(event.target)) {
+      selectBox.style.display = 'none';
+    }
+  });
+</script>
+
+
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>

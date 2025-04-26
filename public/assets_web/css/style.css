@@ -25212,23 +25212,35 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 
     [data-sibebarbg="color_1"][data-theme-version="dark"] .dlabnav .metismenu > li > a,
     [data-sibebarbg="color_1"] .dlabnav .metismenu > li > a {
-        color: rgba(255, 255, 255, 0.85);
+        /* color: rgba(255, 255, 255, 0.85); */
+        color: #000;
+        text-align: center;
+        font-weight: bold;
     }
 
         [data-sibebarbg="color_1"][data-theme-version="dark"] .dlabnav .metismenu > li > a i,
         [data-sibebarbg="color_1"] .dlabnav .metismenu > li > a i {
-            color: rgba(255, 255, 255, 0.85);
+            /* color: rgba(255, 255, 255, 0.85); */
+            color: #000;
+            text-align: center;
+            font-weight: bold;
         }
 
     [data-sibebarbg="color_1"][data-theme-version="dark"] .dlabnav .metismenu > li.mm-active > a,
     [data-sibebarbg="color_1"] .dlabnav .metismenu > li.mm-active > a {
         background: rgba(255, 255, 255, 0.15);
-        color: #fff;
+        /* color: #fff; */
+        color: #000;
+        text-align: center;
+        font-weight: bold;
     }
 
         [data-sibebarbg="color_1"][data-theme-version="dark"] .dlabnav .metismenu > li.mm-active > a i,
         [data-sibebarbg="color_1"] .dlabnav .metismenu > li.mm-active > a i {
-            color: #fff;
+            /* color: #fff; */
+            color: #000;
+            text-align: center;
+            font-weight: bold;
         }
 
     [data-sibebarbg="color_1"][data-theme-version="dark"] .dlabnav .metismenu .has-arrow:after,
@@ -45916,5 +45928,9 @@ button#btnBooking {
 @media (max-width: 767px) {
 .header-margin-top{
     margin-top:65px;
+}
+[data-sidebar-position="fixed"][data-layout="vertical"] .dlabnav .metismenu span.nav-text {
+    min-height: 30px;
+    display: inline-block;
 }
 }
