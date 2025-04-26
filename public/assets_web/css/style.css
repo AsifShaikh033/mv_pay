@@ -45931,6 +45931,7 @@ button#btnBooking {
 }
 [data-sidebar-position="fixed"][data-layout="vertical"] .dlabnav .metismenu span.nav-text {
     min-height: 30px;
+    font-size: 12px;
     display: inline-block;
 }
 }
