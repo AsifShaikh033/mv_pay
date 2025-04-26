@@ -293,11 +293,12 @@
     <div class="dlabnav">
     <div class="dlabnav-scroll">
       <div class="button-container_sidebar">
-        <div class="button">
+        <div class="button" id="backButton">
               <img src="{{ asset('assets_web/images/sidebar/arrow.png') }}" style="width:30px;height:30px"  alt="Logo" /> 
               <span>Back</span>
           </div>
-          <div class="button language-button" style="position: relative;">
+          
+          <!-- <div class="button language-button" style="position: relative;">
           <img src="{{ asset('assets_web/images/sidebar/language.png') }}" style="width:30px;height:30px" alt="Language" />
           <span id="language-toggle">Change Language ▼</span>
           <div id="f"></div>
@@ -306,7 +307,7 @@
             <option value="en">English</option>
             <option value="hi">Hindi</option>
           </select>
-        </div>
+        </div> -->
 
       </div>
         <ul class="metismenu" id="menu">
@@ -449,6 +450,12 @@
     <a class="backbtn" id="lblMenuName"></a>
 </div>
 <script>
+    document.getElementById('backButton').addEventListener('click', function() {
+        window.location.href = "{{ route('login') }}";
+    });
+</script>
+
+<script>
   function googleTranslateElementInit() {
     new google.translate.TranslateElement({
       pageLanguage: 'en',
@@ -487,6 +494,5 @@
     }
   });
 </script>
-
 
 <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
