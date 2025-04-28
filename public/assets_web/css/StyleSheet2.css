@@ -263,10 +263,6 @@ input[type=text] {
         transition: 0.5s;
     }
 
-        .menu_overlay.active {
-            right: 0px;
-        }
-
     .div_mobile_next_page {
         display: flex;
         width: 100%;

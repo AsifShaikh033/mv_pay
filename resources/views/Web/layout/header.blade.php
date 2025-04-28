@@ -245,7 +245,8 @@
 }  
 
 </style>
-<div id="main-wrapper" class="show menu-toggle">
+<!-- <div id="main-wrapper" class="show menu-toggle"> -->
+<div id="main-wrapper"> 
   <div class="mainpage">
     <div class="nav-header">
       <div class="nav-control">
@@ -336,7 +337,7 @@
           
             <li class="nav-item" title="Register">
             <a class="nav-link dash_changes"  href="{{ route('register') }}">
-              <img src="{{ asset('assets_web/images/sidebar/dashboard.png') }}" style="width:50px;height:50px"  alt="Logo" /> 
+              <img src="{{ asset('assets_web/images/sidebar/registration.png') }}" style="width:50px;height:50px"  alt="Logo" /> 
              {{-- <i class="basecolor flaticon-043-menu"></i> --}}
                   <span class="nav-text">Register</span>
                 </a>
@@ -453,6 +454,40 @@
     </a>
     <a class="backbtn" id="lblMenuName"></a>
 </div>
+<!-- Add this script at the bottom of your body -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const menuLinks = document.querySelectorAll('#menu a');
+  const mainWrapper = document.getElementById('main-wrapper');
+
+  // PAGE LOAD par check karo, agar mobile device hai to sidebar band karo
+  if (window.innerWidth <= 768) {
+    mainWrapper.classList.remove('menu-toggle', 'show');
+  }
+
+  // Mobile par link click karne par bhi default behavior
+  menuLinks.forEach(function(link) {
+    link.addEventListener('click', function(event) {
+      if (window.innerWidth <= 768) {
+        // No need to preventDefault and delay now
+        // Kyunki page reload pe already sidebar hat jayega
+      }
+    });
+  });
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const backButton = document.querySelector('.button'); // selecting the button
+  const mainWrapper = document.getElementById('main-wrapper'); // selecting the main wrapper
+
+  backButton.addEventListener('click', function() {
+    mainWrapper.classList.remove('show'); // remove the 'show' class
+    mainWrapper.classList.remove('menu-toggle'); // optionally remove 'menu-toggle' too if you want
+  });
+});
+</script>
 
 <script>
   function googleTranslateElementInit() {
