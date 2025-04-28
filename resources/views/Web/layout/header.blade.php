@@ -31,9 +31,9 @@
     font-size: 24px;
     font-weight: bold;
     color: white;
-    /* background: linear-gradient(to bottom, #1919ff, darkred); */
-    background: #00FFFF;
-    border: 2px solid gold;
+    background: radial-gradient(circle, #ffffff, #afffee, #00ffff);
+    /* background: #00FFFF; */
+    border: 2px solid darkred;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
     cursor: pointer;
     position: relative;
@@ -65,18 +65,18 @@
 
         .dashboard {
     /* background: linear-gradient(to bottom, blue, darkblue); */
-    /* background: linear-gradient(to bottom, #1919ff, darkred); */
-    background: #00FFFF;
+    background: radial-gradient(circle, #ffffff, #afffee, #00ffff);
+    /* background: #00FFFF; */
     margin-bottom: 10px;
-    border:2px solid gold;
+    border:2px solid darkred;
 }
 
         .logout {
             /* background: none; */
-            /* background: linear-gradient(to bottom, #1919ff, darkred); */
-            background: #00FFFF;
+            background: radial-gradient(circle, #ffffff, #afffee, #00ffff);
+            /* background: #00FFFF; */
             color: gold;
-            border: 2px solid gold;
+            border: 2px solid darkred;
             margin-bottom: 10px;
         }
         .dash_changes:hover {
@@ -104,7 +104,8 @@
       
 
       [data-sidebar-style="full"][data-layout="vertical"] .dlabnav .metismenu > li > a {
-          background: #00FFFF !important;
+          /* background: #00FFFF !important; */
+          background: radial-gradient(circle, #ffffff, #afffee, #00ffff) !important;
           color: #000;
           font-weight: bold;
           display: flex;
@@ -130,8 +131,7 @@
           border-radius: 15px;
         }
         [data-sidebar-position="fixed"][data-layout="vertical"] .dlabnav .dlabnav-scroll {
-          /* background: #fff; */
-          background: radial-gradient(circle, #ffffff, #afffee, #00ffff);
+          background: #fff;
           padding-top: 50px;
       }
       .button-container_sidebar {
@@ -148,20 +148,22 @@
           display: flex;
           align-items: center;
           gap: 10px;
-          background: linear-gradient(to bottom right, #ffd1dc, #b0e0e6);
+          /* background: linear-gradient(to bottom right, #ffd1dc, #b0e0e6); */
+          background: linear-gradient(45deg, #00ffd2, #001c44, #0876ff);
           padding: 10px 20px;
           border-radius: 20px;
           box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
           cursor: pointer;
           font-weight: bold;
           font-size: 16px;
-          color: #000;
+          color: #fff;
           text-decoration: none;
           transition: transform 0.2s ease;
       }
       
       .button-container_sidebar .button:hover {
           transform: scale(1.05);
+          background: linear-gradient(277deg, #8b005e, #14002e);
       }
       
       .button-container_sidebar .button img {
@@ -238,7 +240,9 @@
     line-height: 1rem;
 }
 }
-    
+.nav-header {
+    background: radial-gradient(circle, #ffffff, #afffee, #00ffff) !important;
+}  
 
 </style>
 <div id="main-wrapper" class="show menu-toggle">
@@ -293,8 +297,8 @@
     <div class="dlabnav">
     <div class="dlabnav-scroll">
       <div class="button-container_sidebar">
-        <div class="button" id="backButton">
-              <img src="{{ asset('assets_web/images/sidebar/arrow.png') }}" style="width:30px;height:30px"  alt="Logo" /> 
+        <div class="button">
+              <img src="{{ asset('assets_web/images/sidebar/arrow.png') }}" style="width:30px;height:30px;filter: brightness(0) invert(1);"  alt="Logo" /> 
               <span>Back</span>
           </div>
           
@@ -325,7 +329,7 @@
           <li title="login">
                 <a id="ctl00_lnkServices" class='dash_changes' href="{{ route('login') }}">
                 {{-- <i class="basecolor flaticon-381-user-2"></i> --}}
-                <img src="{{ asset('assets_web/images/sidebar/dashboard.png') }}" style="width:50px;height:50px"  alt="Logo" /> 
+                <img src="{{ asset('assets_web/images/sidebar/login.png') }}" style="width:50px;height:50px"  alt="Logo" /> 
                 <span class="nav-text">Login</span>
                 </a>
             </li>
@@ -449,11 +453,6 @@
     </a>
     <a class="backbtn" id="lblMenuName"></a>
 </div>
-<script>
-    document.getElementById('backButton').addEventListener('click', function() {
-        window.location.href = "{{ route('login') }}";
-    });
-</script>
 
 <script>
   function googleTranslateElementInit() {
@@ -465,14 +464,12 @@
     }, 'google_translate_element');
   }
 
-  // Toggle dropdown when clicking on "Change Language"
   document.getElementById('language-toggle').addEventListener('click', function(event) {
     event.stopPropagation();
     const selectBox = document.getElementById('customLanguageSelect');
     selectBox.style.display = selectBox.style.display === 'block' ? 'none' : 'block';
   });
 
-  // When language is selected
   document.getElementById('customLanguageSelect').addEventListener('change', function() {
     const selectedLang = this.value;
     const googleCombo = document.querySelector('.goog-te-combo');
@@ -480,15 +477,13 @@
       googleCombo.value = selectedLang;
       googleCombo.dispatchEvent(new Event('change'));
     }
-    this.style.display = 'none'; // Hide after selection
+    this.style.display = 'none';
   });
 
-  // ✅ Updated: Close only if clicking **outside** the language area
   document.addEventListener('click', function(event) {
     const selectBox = document.getElementById('customLanguageSelect');
     const toggleButton = document.getElementById('language-toggle');
 
-    // If click is outside both the select and the toggle button
     if (!selectBox.contains(event.target) && !toggleButton.contains(event.target)) {
       selectBox.style.display = 'none';
     }
