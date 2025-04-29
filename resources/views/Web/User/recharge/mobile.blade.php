@@ -221,6 +221,13 @@ hr {
     height: 5px !important;
     background:  #ffde59;
 }
+button.prepaid-button {
+    background: linear-gradient(45deg, #00ffd2, #001c44, #0876ff);
+    padding: 5px 15px !important;
+    font-size: 18px;
+    line-height: 1rem;
+    color: #fff;
+}
 </style>
 
 <div class="content-body">
