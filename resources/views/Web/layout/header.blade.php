@@ -244,6 +244,16 @@
     background: radial-gradient(circle, #ffffff, #afffee, #00ffff) !important;
 }  
 
+@media only screen and (max-width: 600px) {
+ul.footer_icons {
+    margin-bottom: 0px !important;
+}
+
+.div_footer_x_overlay {
+    top: 15px;
+}
+}
+
 </style>
 <!-- <div id="main-wrapper" class="show menu-toggle"> -->
 <div id="main-wrapper"> 
@@ -463,6 +473,8 @@ document.addEventListener("DOMContentLoaded", function() {
   // PAGE LOAD par check karo, agar mobile device hai to sidebar band karo
   if (window.innerWidth <= 768) {
     mainWrapper.classList.remove('menu-toggle', 'show');
+  }else{
+    mainWrapper.classList.add('menu-toggle');
   }
 
   // Mobile par link click karne par bhi default behavior

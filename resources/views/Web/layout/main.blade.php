@@ -60,10 +60,40 @@
         }
     </style>
     <script type="text/javascript" src="../../../ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    
+<style>
+    #loader-wrapper {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(277deg, #8b005e, #14002e) !important; /* or any background color */
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #loader {
+        border: 8px solid #f3f3f3;
+        border-top: 8px solid #1d0031;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        0%   { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+</style>
 </head>
 <body class="body">
-    
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+    </div>
+        
     <div class="container-fluid pb-5 mb-5">
         <div class="row">
 
@@ -189,5 +219,14 @@
         <div class="glitchButton" style="position: fixed; bottom: 20px; right: 20px;"></div>
 
 </body>
+<script>
+  window.addEventListener('load', function () {
+    const loader = document.getElementById('loader-wrapper');
+    if (loader) {
+      loader.style.display = 'none';
+    }
+  });
+</script>
+
 
 </html>
