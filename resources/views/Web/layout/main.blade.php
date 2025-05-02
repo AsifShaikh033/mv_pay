@@ -75,12 +75,16 @@
     }
 
     #loader {
-        border: 8px solid #f3f3f3;
-        border-top: 8px solid #1d0031;
-        border-radius: 50%;
-        width: 60px;
-        height: 60px;
-        animation: spin 1s linear infinite;
+        width: 50%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #loader img {
+        width: 100%;
+        height: auto;
     }
 
     @keyframes spin {
@@ -91,7 +95,9 @@
 </head>
 <body class="body">
     <div id="loader-wrapper">
-        <div id="loader"></div>
+        <div id="loader">
+          <img src="{{ asset('assets_web/images/loader.gif') }}" alt="Loading..." />
+        </div>
     </div>
         
     <div class="container-fluid pb-5 mb-5">
