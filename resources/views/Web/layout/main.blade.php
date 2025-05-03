@@ -82,6 +82,12 @@
         align-items: center;
     }
 
+    @media only screen and (max-width: 600px) {
+        #loader {
+            width: 100%;
+        }
+    }
+
     #loader img {
         width: 100%;
         height: auto;
