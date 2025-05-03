@@ -96,7 +96,7 @@
 <body class="body">
     <div id="loader-wrapper">
         <div id="loader">
-          <img src="{{ asset('assets_web/images/loader.gif') }}" alt="Loading..." />
+          <img src="{{ asset('assets_web/images/loadernew.gif') }}" alt="Loading..." />
         </div>
     </div>
         
