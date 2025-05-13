@@ -191,9 +191,14 @@
     }
 
 
-
-
+.dlabnav .metismenu {
+    display: flex;
+} 
 @media (max-width: 750px) {
+  [data-sidebar-position="fixed"][data-layout="vertical"] .dlabnav .metismenu li a {
+      width: 100%;
+  }
+
   [data-sidebar-position="fixed"][data-layout="vertical"]  .button-container_sidebar {
     gap: 10px;
     justify-content: space-between;
@@ -225,6 +230,8 @@
         flex: 0 0 calc(33.333% - 80px);
         min-width: 32%;
         padding: 5px;
+        display: flex;
+        width: 100%;
     }
     [data-sidebar-position="fixed"][data-layout="vertical"]  .dlabnav .dlabnav-scroll {
     /* background: #fff; */
